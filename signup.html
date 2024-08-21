@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <script src="register.js"></script>
+    <link rel="stylesheet" href="register.css">
+
+</head>
+<body>
+    <main id="registerpage">
+        <form id="registerform" onsubmit="saveNewUser(); return false;">
+            <div id="signup-headline">
+            <h1>Sign up</h1>
+            <div id="border-headline"></div>
+            </div>
+            <input id="name" class="input-field" type="text" placeholder="Name" required>
+            <!-- <img src="./person.svg" alt="person" class="signup-icons"> -->
+            <input id="email" class="input-field" type="email" placeholder="Email" required>
+            <!-- <img src="./mail.svg" alt="mail" class="signup-icons"> -->
+            <input id="password" class="input-field" type="password" placeholder="Password" required>
+            <!-- <img src="./lock.svg" alt="lock" class="signup-icons"> -->
+            <input id="confirm_password" class="input-field" type="password" placeholder="Confirm Password" required onkeyup="confirmPassword()">
+            <img id="green" class="d-none confirm_style" src="./green.png" alt="green">
+            <img id="red" class="d-none confirm_style" src="./red.png" alt="red">
+            <!-- <div id="privacy-policy-accept">
+            <div id="div-checkbutton">
+                <input id="checkbutton" type="checkbox" required>
+                <div id="privacy-policy-accept-text">I accept the <a href id="link-privacy-policy" src="#">Privacy policy</a></div>
+            </div>
+        </div> -->
+            <!-- <img src="./lock.svg" alt="lock" class="signup-icons"> -->
+            <button id="input-btn">Sign up</button>
+        </form>
+</main>
+</body>
+</html>

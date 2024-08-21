@@ -1,0 +1,196 @@
+@font-face {
+    font-family: Inter;
+    src: url(./fonts/Inter_18pt-Regular.ttf);
+}
+
+@font-face {
+    font-family: Inter-Bold;
+    src: url(./fonts/Inter_28pt-Bold.ttf);
+}
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: Inter;
+}
+
+body {
+    margin: 0;
+}
+
+.d-none {
+    display: none !important;
+}
+
+h1 {
+    width: 315px;
+    height: 74px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 61px;
+    margin: 0;
+    font-family: Inter-Bold;
+}
+
+#signup-headline {
+    width: 315px;
+    height: 89px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 16px 0;
+}
+
+#border-headline {
+    width: 150px;
+    height: 3px;
+    border-bottom: 3px solid #29ABE2;
+}
+
+#registerpage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F6F7F8;
+}
+
+#registerform {
+    width: 598px;
+    height: 630px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    padding: 48px 88px;
+    gap: 24px;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+}
+
+.input-field {
+    width: 422px;
+    height: 48px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding: 12px 21px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 21px;
+}
+
+.input-field:focus {
+    outline: none;
+}
+
+::placeholder {
+    color: #D1D1D1;
+}
+
+.signup-icons {
+    width: 24px;
+    height: 24px;
+}
+
+#input-btn {
+    width: 126px;
+    height:55px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2A3647;
+    color: white;
+    font-family: Inter-Bold;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+#div-checkbutton {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #2A3647;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#checkbutton {
+    width: 16px;
+    height: 16px;
+    /* border: 2px solid #2A3647;
+    border-radius: 3px; */
+}
+
+#privacy-policy-accept {
+    width: 420px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#privacy-policy-accept-text {
+    width: 420px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginpage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F6F7F8;
+}
+
+#loginform {
+    width: 652px;
+    height: 493px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 30px;
+    background-color: white;
+    padding: 48px 88px;
+    gap: 24px;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+}
+
+#msgBox {
+    width: 422px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 19px;
+    gap: 12px;
+}
+
+#strong {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm_style {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    top: -75px;
+    left: 190px;
+}
