@@ -1,11 +1,11 @@
 @font-face {
     font-family: Inter;
-    src: url(./fonts/Inter_18pt-Regular.ttf);
+    src: url(../assets/fonts/Inter_18pt-Regular.ttf);
 }
 
 @font-face {
     font-family: Inter-Bold;
-    src: url(./fonts/Inter_28pt-Bold.ttf);
+    src: url(../assets/fonts/Inter_28pt-Bold.ttf);
 }
 
 * {

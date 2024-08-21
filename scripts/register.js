@@ -25,7 +25,7 @@ async function loginUser(path = "/users") {
     let user = UserKeys.find(u => u.email == email.value && u.password == password.value);
     if (user) {
         console.log("User gefunden");
-        window.location.href = 'eingeloggt.html';
+        window.location.href = 'index.html';
     } else {
         console.log("User nicht gefunden");
         return
