@@ -21,6 +21,7 @@ a {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
 }
 
 .join-logo img {
@@ -81,4 +82,39 @@ a {
     font-weight: 400;
     cursor: pointer;
     color: #29abe2;
+}
+
+/* HEADER */
+
+.header {
+    margin-left: 232px; 
+    padding: 20px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 96px;
+    box-shadow:  0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.header h3{
+    margin-left: 80px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.help-user-icons{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-profil{
+    width: 56px;
+    height: 56px;
+}
+
+.help-icon{
+    width: 32px;
+    height: 32px;
 }
