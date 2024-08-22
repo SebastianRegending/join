@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: whitesmoke; 
+}
+
+.menu-container {
+    background-color: #2A3647;
+    width: 232px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.join-logo img {
+    width: 100px;
+    height: 120px;
+    margin-top: 80px;
+}
+
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center; 
+    justify-content: start;
+    padding: 10px 15px; 
+    width: 100%; 
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    height: 46px; 
+    padding-left: 48px;
+}
+
+.menu-item:hover {
+    background-color: #091931; 
+}
+
+.menu-item img {
+    margin-right: 10px; 
+    width: 30px;
+    height: 30px;
+}
+
+.menu-item span {
+    font-size: 16px;
+    font-weight: 200;
+}
+
+.legal-links{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 80px;
+}
+
+.legal-links a{
+    color: #A8A8A8;
+    padding: 8px;
+    gap: 8px;
+}
+
+
+.legal-links a:hover{
+    font-weight: 400;
+    cursor: pointer;
+    color: #29abe2;
+}
