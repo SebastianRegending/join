@@ -1,0 +1,88 @@
+@font-face{
+    font-family: 'Inter';
+    src: url(../assets/fonts/Inter_18pt-Regular.ttf);
+    font-style: normal;
+}
+*{
+    font-family: 'Inter';
+}
+
+#contacts-area{
+    width: 456px;
+    height: 100%;
+}
+
+.add-contact-button{
+    background-color: #2A3647;
+    color: white;
+    width: 352px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;;
+    gap: 8px;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.add-contact-button:hover{
+    cursor: pointer;
+}
+
+.contact-card{
+background-color: #2A3647;
+border-radius: 10px;
+width:352px;
+height: 78px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+Padding: 15px 24px 15px 24px;
+Gap: 35px;
+}
+
+
+.letter-card a{
+    color: #007cee;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.contact-card-names{
+    font-size: 20px;
+}
+
+.contact-card-letter{
+    font-size: 21px;
+    font-weight: 400;
+    width: 352px;
+    height: 66px;
+    border-bottom: solid 1px #d1d1d1;
+    display: flex;
+    align-items: center; 
+    margin-bottom: 8px;
+}
+.contact-datas{
+    width: 352px;
+    height: 78px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.contact-datas:hover{
+    background-color: #2A3647;
+    color: white;
+}
+
+.initials{
+    border-radius: 50px;
+    background-color: yellow;
+    height:42px;
+    width:42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+
+}
