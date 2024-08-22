@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Inter;
+    src: url(../assets/fonts/Inter_18pt-Regular.ttf);
+}
+
+@font-face {
+    font-family: Inter-Bold;
+    src: url(../assets/fonts/Inter_28pt-Bold.ttf);
+}s
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,7 +15,8 @@
 }
 
 body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0 auto;
+    font-family: "Inter", sans-serif;
 }
 
 a {
@@ -22,6 +33,7 @@ a {
     justify-content: space-between;
     align-items: center;
     position: fixed;
+    overflow: hidden;
 }
 
 .join-logo img {
@@ -44,14 +56,14 @@ a {
     justify-content: start;
     padding: 10px 15px; 
     width: 100%; 
-    background-color: transparent;
     transition: background-color 0.3s ease;
     height: 46px; 
-    padding-left: 48px;
+    padding-left: 112px;
 }
 
 .menu-item:hover {
     background-color: #091931; 
+     
 }
 
 .menu-item img {
