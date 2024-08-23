@@ -5,11 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="./scripts/register.js"></script>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/menu.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/assets.css">
+    <link rel="stylesheet" href="./styles/fonts.css">
     <link rel="stylesheet" href="./styles/register.css">
 
 </head>
 <body>
     <main id="loginpage">
+        <img id="joinlogo" src="./assets/img/Capa1.png" alt="Join-Logo">
+        <div id="joinuser">Not a Join User?
+            <button id="input-btn-small" onclick="goToSignIn()">Sign up</button>
+        </div>
         <form id="loginform" onsubmit="loginUser(); return false;">
             <div id="signup-headline">
                 <h1>Log in</h1>
@@ -17,9 +26,18 @@
                 </div>
             <input id="emaillogin" class="input-field" type="email" placeholder="Email" required>
             <input id="passwordlogin" class="input-field" type="password" placeholder="Password" required>
-            <button id="input-btn">Login</button>
-            <div id="msgBox"></div>
+            <div id="rememberme">
+                <input class="checkbox" type="checkbox">Remember me
+            </div>
+            <div id="loginbuttons">
+            <button id="input-btn">Log in</button>
+            <button id="guest-input-btn">Guest Log in</button>
+            </div>
         </form>
-</main>
+        <div id="privacy-legal">
+        <a href="privacypolicy.html">Privacy Policy</a>
+        <a href="legalnotice.html">Legal Notice</a>
+        </div>
+    </main>
 </body>
 </html>
