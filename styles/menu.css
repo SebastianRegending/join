@@ -10,7 +10,7 @@
 
 * {
     box-sizing: border-box;
-    margin: 0;
+    margin: 0 auto;
     scroll-behavior: smooth;
 }
 
@@ -21,7 +21,7 @@ body{
 
 a {
     text-decoration: none;
-    color: whitesmoke; 
+    color: #A8A8A8;
 }
 
 .menu-container {
