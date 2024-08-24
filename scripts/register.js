@@ -32,16 +32,6 @@ async function loginUser(path = "/users") {
     };
 }
 
-function msgURL() {
-const urlParams = new URLSearchParams(window.location.search);
-const msg = urlParams.get('msg');
-if (msg) {
-    msgBox.innerHTML = msg;
-} else {
-    document.getElementById('msgBox').classList.add('d-none');
-};
-}
-
 function confirmPassword() {
     if (document.getElementById('password').value ==
         document.getElementById('confirm_password').value) {
@@ -55,4 +45,8 @@ function confirmPassword() {
         document.getElementById('green').classList.add('d-none')
         document.getElementById('red').classList.add('d-none');
 }
+}
+
+function goToSignIn() {
+    window.location.href = 'signup.html';
 }
