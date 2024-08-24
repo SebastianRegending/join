@@ -14,7 +14,7 @@
     background-color: white;
     margin-left: 232px;
     margin-top: 0;
-    z-index: 20;
+    
     padding: 22px 28px 22px 28px;
     
     
@@ -60,7 +60,8 @@ display: flex;
     padding: 0;
     height: 100vh;
     width: 100%;
-    z-index: -1;
+  
+    
 }
 
 .letter-card a{
@@ -123,12 +124,17 @@ width: 353px;
     display: flex;
     align-items: center;
     gap: 30px;
+    margin-bottom: 40px;
 }
 
+#choosen-contacts-name{
+    font-size: 47px;
+    font-weight: 500;
+}
 
 #choosen-contact span{
     font-size: 61px;
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 
 
@@ -136,6 +142,7 @@ width: 353px;
     font-weight: 400;
     font-size: 27px;
     padding: 100px 0px 0px 60px;
+    
 }
 
 
@@ -172,6 +179,7 @@ align-items: center;
 .mail-and-phone{
 font-size: 16px;
 font-weight: 700;
+margin-top: 24px;
 }
 
 .bg-dark-blue{
@@ -183,3 +191,79 @@ font-weight: 700;
     background-color: #2A3647;
     color: white;
 }
+
+.contact-information{
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    
+}
+
+.mail-choosen{
+    color: #007cee;
+    font-size: 16px;
+    text-decoration: none;
+   
+}
+
+.phone-choosen{
+    font-weight: 400;
+    font-size: 16px;
+    color: black;
+}
+
+
+.dialog-bg{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-dialog{
+    z-index: 110;
+    height: 594px;
+    display: flex;
+}
+
+.contact-dialog-logo-side{
+    width: 467px;
+    height: 100%;
+    background-color: #2A3647;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+}
+
+.contact-dialog-edit-side{
+    width: 745px;
+    height: 100%;
+    background-color: white;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.d-none{
+display: none;
+}
+
+.input-field {
+    width: 422px;
+    height: 48px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding: 12px 21px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 21px;
+}
+
+
