@@ -10,12 +10,20 @@
 #contacts-area{
     width: 456px;
     height: 100%;
+    background-color: white;
+    margin-left: 232px;
+    margin-top: 0;
+    z-index: 20;
+    padding: 22px 28px 22px 28px;
+    
+    
 }
 
 .add-contact-button{
     background-color: #2A3647;
     color: white;
     width: 352px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,6 +50,18 @@ Gap: 35px;
 }
 
 
+.contact-page{
+display: flex;
+}
+
+#choosen-contact{
+    background-color: #f6f7f8;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: -1;
+}
+
 .letter-card a{
     color: #007cee;
     font-size: 16px;
@@ -56,12 +76,14 @@ Gap: 35px;
     font-size: 21px;
     font-weight: 400;
     width: 352px;
-    height: 66px;
+    height: 74px;
     border-bottom: solid 1px #d1d1d1;
     display: flex;
     align-items: center; 
     margin-bottom: 8px;
 }
+
+
 .contact-datas{
     width: 352px;
     height: 78px;
@@ -70,13 +92,22 @@ Gap: 35px;
     border-radius: 10px;
 }
 
-.contact-datas:hover{
-    background-color: #2A3647;
-    color: white;
+
+#contacts-alphabet-list{
+padding: 0;
+margin: 0;
+width: 353px;
 }
 
+
+.contact-datas:hover{
+    background-color: #f6f7f8;
+    cursor: pointer;
+}
+
+
 .initials{
-    border-radius: 50px;
+    border-radius: 50%;
     background-color: yellow;
     height:42px;
     width:42px;
@@ -84,5 +115,70 @@ Gap: 35px;
     justify-content: center;
     align-items: center;
     margin-right: 40px;
+}
 
+
+.choosen-contact-headline{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+
+#choosen-contact span{
+    font-size: 61px;
+    font-weight: 700;
+}
+
+
+#choosen-contact {
+    font-weight: 400;
+    font-size: 27px;
+    padding: 100px 0px 0px 60px;
+}
+
+
+.initials-big{
+    border-radius: 50%;
+    background-color: yellow;
+    height:120px;
+    width:120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+}
+
+
+.choosen-contact-card{
+display: flex;
+align-items: center;
+
+}
+
+.edit-area{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-right: 16px;
+}
+
+.edit-area img{
+    height: 18.25px;
+    width: 18.25px;
+}
+
+.mail-and-phone{
+font-size: 16px;
+font-weight: 700;
+}
+
+.bg-dark-blue{
+    background-color: #2A3647;
+    color: white;
+}
+
+.bg-dark-blue:hover{
+    background-color: #2A3647;
+    color: white;
 }

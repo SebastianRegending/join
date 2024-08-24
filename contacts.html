@@ -5,20 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
     <link rel="stylesheet" href="./styles/contacts.css">
+    <link rel="stylesheet" href="./styles/menu.css">
 
     <script src="./scripts/contacts.js"></script>
+    <script src="./scripts/script.js"></script>
 
 </head>
-<body onload="loadContacts()">
-   <div>
-        <div id="contacts-area">
-            <div class="add-contact-button"><span>Add new contact</span><img src="./assets/img/person_add.svg"></div>
-            <div id="contacts-alphabet-list"></div>
+<body onload="includeHTML(); loadContacts()">
 
+<div w3-include-html="./menu.html">
+</div>
+<div class="contact-page">
+    <div id="contacts-area">
+        <div class="add-contact-button">
+            <span>Add new contact</span>
+            <img src="./assets/img/person_add.svg">
         </div>
-        <div></div>
+        <div id="contacts-alphabet-list">
+        </div>
+    </div>
+    <div id="choosen-contact">
+            <div class="choosen-contact-headline">
+            <span>Contacts</span>
+            <img src="./assets/img/separator-blue.svg">Better with a team
+        </div>
+        <div id="choosen-contact-loading-area"></div>
+    </div>
+            
+</div>
 
 
-   </div>
 </body>
 </html>
