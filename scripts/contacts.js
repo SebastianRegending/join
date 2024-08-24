@@ -8,16 +8,20 @@ async function loadContacts() {
     let response = await fetch(BASE_URL + ".json");
     let responseToJson = await response.json();
 
+    if (responseToJson) {
+        contacts = json2arrayContacts(responseToJson);
+        document.getElementById('contacts-alphabet-list').innerHTML = ``;
 
-    contacts = json2arrayContacts(responseToJson);
+        let n = 0;
 
-    let n = 0;
+        while (n < contacts.length) {
+            IDs = json2arrayIDs(contacts[n]);
+            let oneContact = json2arrayIDs(contacts[n]);
+            let letterForCards = oneContact[0]['initials'].charAt(0);
+            console.log(IDs)
+            IDs.sort((a, b) => a.name.localeCompare(b.name));
 
-    while (n < contacts.length) {
-        IDs = json2arrayIDs(contacts[n]);
-        let oneContact = json2arrayIDs(contacts[n]);
-        let letterForCards = oneContact[0]['initials'].charAt(0);
-        document.getElementById('contacts-alphabet-list').innerHTML += `
+            document.getElementById('contacts-alphabet-list').innerHTML += `
            <div>
                 <div class="contact-card-letter">
                      ${letterForCards}
@@ -25,18 +29,20 @@ async function loadContacts() {
                 <div id="contacts-${letterForCards}-content" class="letter-card">
                 </div>
            </div>`;
-
-        for (let i = 0; i < IDs.length; i++) {
-            document.getElementById(`contacts-${letterForCards}-content`).innerHTML += `
-                <div id="${IDs[i]['email']}" class="contact-datas" onclick="chooseContact(\'${IDs[i]['name']}\', \'${IDs[i]['email']}\', \'${IDs[i]['phone']}\', \'${IDs[i]['initials']}\')">
+            for (let i = 0; i < IDs.length; i++) {
+                document.getElementById(`contacts-${letterForCards}-content`).innerHTML += `
+                <div id="${IDs[i]['email']}" class="contact-datas" onclick="chooseContact(\'${IDs[i]['id']}\', \'${IDs[i]['name']}\', \'${IDs[i]['email']}\', \'${IDs[i]['phone']}\', \'${IDs[i]['initials']}\')">
                     <div class="initials">${IDs[i]['initials']}</div>
                     <div>
                         <div class="contact-card-names">${IDs[i]['name']}</div>
                         <a href='mailto:${IDs[i]['email']}'>${IDs[i]['email']}</a>
                     </div>
                 </div>`;
+            }
+            n++;
         }
-        n++;
+    } else {
+        document.getElementById('contacts-alphabet-list').innerHTML = ``
     }
 }
 
@@ -52,7 +58,9 @@ function json2arrayIDs(json) {
     let result = [];
     let keys = Object.keys(json);
     keys.forEach(function (key) {
-        result.push(json[key]);
+        let contact = json[key];
+        contact.id = key;
+        result.push(contact);
     });
     return result;
 }
@@ -61,9 +69,8 @@ function pushArrays(index) {
     currentObject = contacts[index];
 }
 
-
-function chooseContact(name, email, phone, initials) {
-    let oldContact
+function chooseContact(id, name, email, phone, initials) {
+    let oldContact;
     if (currentContact) {
         oldContact = currentContact;
     }
@@ -73,24 +80,24 @@ function chooseContact(name, email, phone, initials) {
     if (oldContact) {
         document.getElementById(oldContact).classList.remove('bg-dark-blue');
     }
-    loadChoosenContact(name, email, phone, initials);
-
+    loadChoosenContact(id, name, email, phone, initials);
 }
 
 
-function loadChoosenContact(name, email, phone, initials) {
+function loadChoosenContact(id, name, email, phone, initials) {
+    let letter = initials.charAt(0);
     document.getElementById('choosen-contact-loading-area').innerHTML = /*html*/`
-                  <div class="choosen-contact-card">
+        <div class="choosen-contact-card">
             <div class="initials-big">${initials}</div>
             <div class="choosen-contact-name-area">
                 <div id="choosen-contacts-name">${name}</div>
                 <div class="edit-area">
-                    <div class="edit-area"><img src="./assets/img/edit.svg" alt="edit-icon">Edit</div>
-                    <div class="edit-area"><img src="./assets/img/delete.svg" alt="delete-icon">Delete</div>
+                    <div class="edit-area-field"><img src="./assets/img/edit.svg" alt="edit-icon">Edit</div>
+                    <div class="edit-area-field"><img src="./assets/img/delete.svg" alt="delete-icon" onclick="deleteContact('${id}', '${letter}')">Delete</div>
                 </div>
             </div>
         </div>
-        <div class="contact-information" >Contact Information</div>
+        <div class="contact-information">Contact Information</div>
         <div>
             <div class="mail-and-phone">Email</div>
             <a class="mail-choosen" href="mailto:${email}">${email}</a>
@@ -99,8 +106,8 @@ function loadChoosenContact(name, email, phone, initials) {
             <div class="mail-and-phone">Phone</div>
             <a href="tel:${phone}" class="phone-choosen" id="choosen-phone">${phone}</a>
         </div>`;
-
 }
+
 
 function openAddContact() {
     document.getElementById("add-contact-dialog").classList.remove('d-none')
@@ -146,6 +153,18 @@ function createInitials(name) {
     words.length = 2;
     words.forEach((element) => initials.push(element.charAt(0)));
 
+}
+
+async function deleteContact(id, letter) {
+
+    console.log(`${BASE_URL}/contacts/letter${letter}/${id}.json`);
+    await fetch(`${BASE_URL}/letter${letter}/${id}.json`, {
+        method: "DELETE"
+    });
+    oldContact = ``;
+    currentContact = ``;
+    document.getElementById('choosen-contact-loading-area').innerHTML = ``;
+    loadContacts();
 }
 
 

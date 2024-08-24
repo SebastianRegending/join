@@ -169,11 +169,19 @@ align-items: center;
     align-items: center;
     font-size: 16px;
     margin-right: 16px;
+
 }
 
 .edit-area img{
     height: 18.25px;
     width: 18.25px;
+}
+.edit-area-field{
+    margin-right: 24px;
+}
+.edit-area-field:hover{
+    cursor: pointer;
+
 }
 
 .mail-and-phone{
