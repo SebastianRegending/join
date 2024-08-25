@@ -244,9 +244,9 @@ if(colorNumber == 1){
     color = "lightblue";
 }else if(colorNumber == 8){
     color = "pink";
-}else if(colorNumber == 3){
+}else if(colorNumber == 9){
     color = "lightred";
-}else if(colorNumber == 3){
+}else if(colorNumber == 10){
     color = "green";
 };
 return color;
@@ -267,8 +267,9 @@ function createRandomNumbers(){
         }
     }
     let colorNumber = randomNumbers[randomNumbers.length - 1];
-    
+    console.log(colorNumber)
     return colorNumber;
+    
 
 }
 
