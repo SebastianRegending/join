@@ -4,21 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
+    <link rel="stylesheet" href="./styles/menu.css">
     <link rel="stylesheet" href="./styles/contacts.css">
+    
 
     <script src="./scripts/contacts.js"></script>
+    <script src="./scripts/script.js"></script>
 
 </head>
-<body onload="loadContacts()">
-   <div>
-        <div id="contacts-area">
-            <div class="add-contact-button"><span>Add new contact</span><img src="./assets/img/person_add.svg"></div>
-            <div id="contacts-alphabet-list"></div>
+<body onload="includeHTML(); loadContacts()">
 
+<div w3-include-html="./menu.html">
+
+</div>
+
+<div class="contact-page">
+    <div id="contacts-area">
+        <div class="dialog-bg d-none" id="add-contact-dialog">
+            <div class="contact-dialog">
+                <div class="contact-dialog-logo-side"></div>
+                <div class="contact-dialog-edit-side">
+                    <form class="contact-form" onsubmit="createContact(); closeAddContact(); reloadPage(); loadContacts(); return false"> 
+                        <input id="add-contact-name" class="input-field" required type="text" placeholder="Name">
+                        <input id="add-contact-email" class="input-field" required type="text" placeholder="Email">
+                        <input id="add-contact-phone" class="input-field" required type="text" placeholder="Phone">
+                        <div class="cancel-button" onclick="closeAddContact()">Cancel</div>
+                        <button>Create Contact</button>
+                    </form>
+
+                </div>
+            </div>
         </div>
-        <div></div>
+        <div class="add-contact-button" onclick="openAddContact()">
+            <span>Add new contact</span>
+            <img src="./assets/img/person_add.svg">
+        </div>
+        <div id="contacts-alphabet-list">
+        </div>
+    </div>
+    <div id="choosen-contact">
+             <div class="choosen-contact-headline">
+            <span>Contacts</span>
+            <img src="./assets/img/separator-blue.svg">Better with a team
+        </div>
+        <div id="choosen-contact-loading-area"></div>
+    </div>
+</div>
 
 
-   </div>
 </body>
 </html>

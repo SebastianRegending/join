@@ -3,6 +3,7 @@
     src: url(../assets/fonts/Inter_18pt-Regular.ttf);
     font-style: normal;
 }
+
 *{
     font-family: 'Inter';
 }
@@ -10,12 +11,20 @@
 #contacts-area{
     width: 456px;
     height: 100%;
+    background-color: white;
+    margin-left: 232px;
+    margin-top: 0;
+    
+    padding: 22px 28px 22px 28px;
+    
+    
 }
 
 .add-contact-button{
     background-color: #2A3647;
     color: white;
     width: 352px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,6 +51,19 @@ Gap: 35px;
 }
 
 
+.contact-page{
+display: flex;
+}
+
+#choosen-contact{
+    background-color: #f6f7f8;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+  
+    
+}
+
 .letter-card a{
     color: #007cee;
     font-size: 16px;
@@ -56,12 +78,14 @@ Gap: 35px;
     font-size: 21px;
     font-weight: 400;
     width: 352px;
-    height: 66px;
+    height: 74px;
     border-bottom: solid 1px #d1d1d1;
     display: flex;
     align-items: center; 
     margin-bottom: 8px;
 }
+
+
 .contact-datas{
     width: 352px;
     height: 78px;
@@ -70,13 +94,22 @@ Gap: 35px;
     border-radius: 10px;
 }
 
-.contact-datas:hover{
-    background-color: #2A3647;
-    color: white;
+
+#contacts-alphabet-list{
+padding: 0;
+margin: 0;
+width: 353px;
 }
 
+
+.contact-datas:hover{
+    background-color: #f6f7f8;
+    cursor: pointer;
+}
+
+
 .initials{
-    border-radius: 50px;
+    border-radius: 50%;
     background-color: yellow;
     height:42px;
     width:42px;
@@ -84,5 +117,161 @@ Gap: 35px;
     justify-content: center;
     align-items: center;
     margin-right: 40px;
+}
+
+
+.choosen-contact-headline{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+#choosen-contacts-name{
+    font-size: 47px;
+    font-weight: 500;
+}
+
+#choosen-contact span{
+    font-size: 61px;
+    font-weight: 700 !important;
+}
+
+
+#choosen-contact {
+    font-weight: 400;
+    font-size: 27px;
+    padding: 100px 0px 0px 60px;
+    
+}
+
+
+.initials-big{
+    border-radius: 50%;
+    background-color: yellow;
+    height:120px;
+    width:120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+}
+
+
+.choosen-contact-card{
+display: flex;
+align-items: center;
 
 }
+
+.edit-area{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-right: 16px;
+
+}
+
+.edit-area img{
+    height: 18.25px;
+    width: 18.25px;
+}
+.edit-area-field{
+    margin-right: 24px;
+}
+.edit-area-field:hover{
+    cursor: pointer;
+
+}
+
+.mail-and-phone{
+font-size: 16px;
+font-weight: 700;
+margin-top: 24px;
+}
+
+.bg-dark-blue{
+    background-color: #2A3647;
+    color: white;
+}
+
+.bg-dark-blue:hover{
+    background-color: #2A3647;
+    color: white;
+}
+
+.contact-information{
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    
+}
+
+.mail-choosen{
+    color: #007cee;
+    font-size: 16px;
+    text-decoration: none;
+   
+}
+
+.phone-choosen{
+    font-weight: 400;
+    font-size: 16px;
+    color: black;
+}
+
+
+.dialog-bg{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-dialog{
+    z-index: 110;
+    height: 594px;
+    display: flex;
+}
+
+.contact-dialog-logo-side{
+    width: 467px;
+    height: 100%;
+    background-color: #2A3647;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+}
+
+.contact-dialog-edit-side{
+    width: 745px;
+    height: 100%;
+    background-color: white;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.d-none{
+display: none;
+}
+
+.input-field {
+    width: 422px;
+    height: 48px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding: 12px 21px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 21px;
+}
+
+
