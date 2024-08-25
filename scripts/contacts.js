@@ -3,6 +3,10 @@ let contacts = [];
 let initials = [];
 let IDs;
 let currentContact;
+let IdForEditing;
+let letterForEditing;
+let randomNumbers = [];
+
 
 async function loadContacts() {
     let response = await fetch(BASE_URL + ".json");
@@ -13,7 +17,6 @@ async function loadContacts() {
         document.getElementById('contacts-alphabet-list').innerHTML = ``;
 
         let n = 0;
-
         while (n < contacts.length) {
             IDs = json2arrayIDs(contacts[n]);
             let oneContact = json2arrayIDs(contacts[n]);
@@ -29,10 +32,12 @@ async function loadContacts() {
                 <div id="contacts-${letterForCards}-content" class="letter-card">
                 </div>
            </div>`;
+
+
             for (let i = 0; i < IDs.length; i++) {
                 document.getElementById(`contacts-${letterForCards}-content`).innerHTML += `
-                <div id="${IDs[i]['email']}" class="contact-datas" onclick="chooseContact(\'${IDs[i]['id']}\', \'${IDs[i]['name']}\', \'${IDs[i]['email']}\', \'${IDs[i]['phone']}\', \'${IDs[i]['initials']}\')">
-                    <div class="initials">${IDs[i]['initials']}</div>
+                <div id="${IDs[i]['email']}" class="contact-datas" onclick="chooseContact(\'${IDs[i]['id']}\', \'${IDs[i]['name']}\', \'${IDs[i]['email']}\', \'${IDs[i]['phone']}\', \'${IDs[i]['initials']}\', \'${IDs[i]['color']}\')">
+                    <div class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}</div>
                     <div>
                         <div class="contact-card-names">${IDs[i]['name']}</div>
                         <a href='mailto:${IDs[i]['email']}'>${IDs[i]['email']}</a>
@@ -42,9 +47,10 @@ async function loadContacts() {
             n++;
         }
     } else {
-        document.getElementById('contacts-alphabet-list').innerHTML = ``
+        document.getElementById('contacts-alphabet-list').innerHTML = ``;
     }
 }
+
 
 function json2arrayContacts(json) {
     let result = [];
@@ -54,6 +60,8 @@ function json2arrayContacts(json) {
     });
     return result;
 }
+
+
 function json2arrayIDs(json) {
     let result = [];
     let keys = Object.keys(json);
@@ -65,11 +73,13 @@ function json2arrayIDs(json) {
     return result;
 }
 
+
 function pushArrays(index) {
     currentObject = contacts[index];
 }
 
-function chooseContact(id, name, email, phone, initials) {
+
+function chooseContact(id, name, email, phone, inits, color) {
     let oldContact;
     if (currentContact) {
         oldContact = currentContact;
@@ -80,20 +90,20 @@ function chooseContact(id, name, email, phone, initials) {
     if (oldContact) {
         document.getElementById(oldContact).classList.remove('bg-dark-blue');
     }
-    loadChoosenContact(id, name, email, phone, initials);
+    loadChoosenContact(id, name, email, phone, inits, color);
 }
 
 
-function loadChoosenContact(id, name, email, phone, initials) {
-    let letter = initials.charAt(0);
+function loadChoosenContact(id, name, email, phone, inits, color) {
+    let letter = inits.charAt(0);
     document.getElementById('choosen-contact-loading-area').innerHTML = /*html*/`
         <div class="choosen-contact-card">
-            <div class="initials-big">${initials}</div>
+            <div class="circle-big circle-${color}">${inits}</div>
             <div class="choosen-contact-name-area">
                 <div id="choosen-contacts-name">${name}</div>
                 <div class="edit-area">
-                    <div class="edit-area-field"><img src="./assets/img/edit.svg" alt="edit-icon">Edit</div>
-                    <div class="edit-area-field"><img src="./assets/img/delete.svg" alt="delete-icon" onclick="deleteContact('${id}', '${letter}')">Delete</div>
+                    <div class="edit-area-field"onclick="openEditContact('${id}', '${letter}', '${name}', '${email}', '${phone}', '${inits}')"><img src="./assets/img/edit.svg" alt="edit-icon">Edit</div>
+                    <div class="edit-area-field" onclick="deleteContact('${id}', '${letter}')"><img src="./assets/img/delete.svg" alt="delete-icon">Delete</div>
                 </div>
             </div>
         </div>
@@ -110,15 +120,56 @@ function loadChoosenContact(id, name, email, phone, initials) {
 
 
 function openAddContact() {
-    document.getElementById("add-contact-dialog").classList.remove('d-none')
+    document.getElementById('add-contact-dialog').classList.remove('d-none');
 }
+
 
 function closeAddContact() {
     document.getElementById('add-contact-name').value = ``;
     document.getElementById('add-contact-email').value = ``;
     document.getElementById('add-contact-phone').value = ``;
-    document.getElementById("add-contact-dialog").classList.add('d-none')
+    document.getElementById("add-contact-dialog").classList.add('d-none');
 }
+
+
+function openEditContact(id, letter, name, email, phone, inits) {
+    document.getElementById('edit-contact-name').value = name;
+    document.getElementById('edit-contact-email').value = email;
+    document.getElementById('edit-contact-phone').value = phone;
+    document.getElementById('edit-initials').innerHTML = inits;
+    document.getElementById('edit-contact-dialog').classList.remove('d-none');
+    IdForEditing = id;
+    letterForEditing = letter;
+}
+
+
+async function submitEditetContact() {
+    console.log("drin");
+    let name = document.getElementById('edit-contact-name');
+    let email = document.getElementById('edit-contact-email');
+    let phone = document.getElementById('edit-contact-phone');
+  
+    createInitials(name.value);
+    let initialsForSaving = initials.join('').toUpperCase();
+    let path = `/letter${letterForEditing}/${IdForEditing}`
+
+    data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving });
+console.log(data);
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "PUT",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+
+    return responseToJson = await response.json();
+}
+
+function closeEditContact() {
+    document.getElementById("edit-contact-dialog").classList.add('d-none');
+}
+
 
 async function createContact(path = "", data = {}) {
     let name = document.getElementById('add-contact-name');
@@ -128,11 +179,10 @@ async function createContact(path = "", data = {}) {
     path = `/letter${letter}`
 
     createInitials(name.value);
-
     let initialsForSaving = initials.join('').toUpperCase();
+    let color = createColor();
 
-
-    data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving });
+    data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color });
 
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
@@ -155,6 +205,7 @@ function createInitials(name) {
 
 }
 
+
 async function deleteContact(id, letter) {
 
     console.log(`${BASE_URL}/contacts/letter${letter}/${id}.json`);
@@ -167,4 +218,57 @@ async function deleteContact(id, letter) {
     loadContacts();
 }
 
+
+async function editContact(id, letter) {
+
+    
+}
+
+
+function createColor(){
+    let color;
+    let colorNumber = createRandomNumbers();
+if(colorNumber == 1){
+    color = "yellow";
+} else if(colorNumber == 2){
+    color = "orange";
+} else if(colorNumber == 3){
+    color = "turquoise";
+}else if(colorNumber == 4){
+    color = "purple";
+}else if(colorNumber == 5){
+    color = "lightpurple";
+}else if(colorNumber == 6){
+    color = "blue";
+}else if(colorNumber == 7){
+    color = "lightblue";
+}else if(colorNumber == 8){
+    color = "pink";
+}else if(colorNumber == 3){
+    color = "lightred";
+}else if(colorNumber == 3){
+    color = "green";
+};
+return color;
+}
+
+
+function createRandomNumbers(){
+    if(randomNumbers.length > 9){
+        randomNumbers = [];
+    }
+    let n = randomNumbers.length - 1;
+    let finalNumber = randomNumbers.length;
+    while (n < finalNumber){
+        let x = Math.floor((Math.random() * 10) + 1);
+        if(!randomNumbers.includes(x)){
+            randomNumbers.push(x);
+            n++;
+        }
+    }
+    let colorNumber = randomNumbers[randomNumbers.length - 1];
+    
+    return colorNumber;
+
+}
 

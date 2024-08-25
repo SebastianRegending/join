@@ -22,9 +22,15 @@
     <div id="contacts-area">
         <div class="dialog-bg d-none" id="add-contact-dialog">
             <div class="contact-dialog">
-                <div class="contact-dialog-logo-side"></div>
+                <div class="contact-dialog-logo-side">
+                        <img class="dialog-logo" src="./assets/img/join.png" alt="join-logo">
+                        <h2>Add contact</h2>
+                        <span>Tasks are better with a team!</span>
+                        <img class="dialog-separator" src="./assets/img/separator-blue.svg">
+
+                </div>
                 <div class="contact-dialog-edit-side">
-                    <form class="contact-form" onsubmit="createContact(); closeAddContact(); reloadPage(); loadContacts(); return false"> 
+                    <form class="contact-form" onsubmit="createContact(); closeAddContact(); loadContacts(); return false"> 
                         <input id="add-contact-name" class="input-field" required type="text" placeholder="Name">
                         <input id="add-contact-email" class="input-field" required type="text" placeholder="Email">
                         <input id="add-contact-phone" class="input-field" required type="text" placeholder="Phone">
@@ -35,6 +41,30 @@
                 </div>
             </div>
         </div>
+
+        <div class="dialog-bg d-none" id="edit-contact-dialog">
+            <div class="contact-dialog">
+                <div class="contact-dialog-logo-side">
+                        <img class="dialog-logo" src="./assets/img/join.png" alt="join-logo">
+                        <h2>Edit contact</h2>
+                        
+                        <img class="dialog-separator" src="./assets/img/separator-blue.svg">
+
+                </div>
+                <div class="contact-dialog-edit-side">
+                    <div id="edit-initials"></div>
+                    <form id="edit-form" class="contact-form" onsubmit="submitEditetContact(); return false"> 
+                        <input id="edit-contact-name" class="input-field" required type="text" placeholder="Name">
+                        <input id="edit-contact-email" class="input-field" required type="text" placeholder="Email">
+                        <input id="edit-contact-phone" class="input-field" required type="text" placeholder="Phone">
+                        <div class="cancel-button" onclick="closeEditContact()">Delete</div>
+                        <button>Save</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
         <div class="add-contact-button" onclick="openAddContact()">
             <span>Add new contact</span>
             <img src="./assets/img/person_add.svg">
