@@ -6,8 +6,6 @@
     <title>Sign Up</title>
     <script src="./scripts/register.js"></script>
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/menu.css">
-    <link rel="stylesheet" href="./styles/header.css">
     <link rel="stylesheet" href="./styles/assets.css">
     <link rel="stylesheet" href="./styles/fonts.css">
     <link rel="stylesheet" href="./styles/register.css">
@@ -17,27 +15,26 @@
     <main id="registerpage">
         <form id="registerform" onsubmit="saveNewUser(); return false;">
             <div id="signup-headline">
-            <h1>Sign up</h1>
+                
+                <h1 class="h1-signup"><img class="arrow-left-line" src="./assets/img/arrow-left-line.png" onclick="backToLogin()">Sign up</h1>
             <div id="border-headline"></div>
             </div>
             <input id="name" class="input-field" type="text" placeholder="Name" required>
-            <!-- <img src="./person.svg" alt="person" class="signup-icons"> -->
+            <img src="./assets/img/person.png" alt="person" class="small-icons-inputfield">
             <input id="email" class="input-field" type="email" placeholder="Email" required>
-            <!-- <img src="./mail.svg" alt="mail" class="signup-icons"> -->
+            <img src="./assets/img/mail.png" alt="mail" class="small-icons-inputfield">
             <input id="password" class="input-field" type="password" placeholder="Password" required>
-            <!-- <img src="./lock.svg" alt="lock" class="signup-icons"> -->
-            <input id="confirm_password" class="input-field" type="password" placeholder="Confirm Password" required onkeyup="confirmPassword()">
-            <img id="green" class="d-none confirm_style" src="./assets/img/green.png" alt="green">
-            <img id="red" class="d-none confirm_style" src="./assets/img/red.png" alt="red">
-            <!-- <div id="privacy-policy-accept">
-            <div id="div-checkbox">
-                <input class="checkbutton" type="checkbox" required>
-                <div id="privacy-policy-accept-text">I accept the <a href id="link-privacy-policy" src="#">Privacy policy</a></div>
-            </div>
-        </div> -->
-            <!-- <img src="./lock.svg" alt="lock" class="signup-icons"> -->
-            <button id="input-btn">Sign up</button>
+            <img src="./assets/img/lock.png" alt="lock" class="small-icons-inputfield">
+            <input id="confirm_password" class="input-field" type="password" placeholder="Confirm Password" required>
+            <img src="./assets/img/lock.png" alt="lock" class="small-icons-inputfield">
+            <div id="privacy-policy-accept">
+                <input id="checkbox" class="checkbutton" type="checkbox" required onclick="isChecked()">
+                I accept the
+                <a href="privacypolicy.html" id="link-privacy-policy" class="link-privacy-policy-style">Privacy policy</a>
+            </div> 
+            <button id="input-btn" disabled onclick="confirmPassword()">Sign up</button>
         </form>
+        <div id="toaster">You Signed Up successfully</div>
 </main>
 </body>
 </html>

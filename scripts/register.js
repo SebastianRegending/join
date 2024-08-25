@@ -12,7 +12,7 @@ async function saveNewUser(path = "/users", data = {}) {
         },
         body: JSON.stringify(data)
     });
-    window.location.href = 'login.html?msg=Du hast dich erfolgreich registriert';
+    confirmPassword();
     return responseToJson = await response.json();
 }
 
@@ -33,20 +33,41 @@ async function loginUser(path = "/users") {
 }
 
 function confirmPassword() {
-    if (document.getElementById('password').value ==
-        document.getElementById('confirm_password').value) {
-        document.getElementById('green').classList.remove('d-none');
-        document.getElementById('red').classList.add('d-none');
+    let form = document.getElementById('registerform');
+    if (form.password.value == '' || form.confirm_password.value == '') {
+        return
     } else {
-        document.getElementById('red').classList.remove('d-none');
-        document.getElementById('green').classList.add('d-none');
+        if (form.password.value === form.confirm_password.value) {
+            launchToasterAndRedirect();
+        } else {
+            return
+        }
     }
-    if (document.getElementById('confirm_password').value == 0 || document.getElementById('password').value == 0) {
-        document.getElementById('green').classList.add('d-none')
-        document.getElementById('red').classList.add('d-none');
-}
 }
 
-function goToSignIn() {
+function isChecked() {
+    let isChecked = document.getElementById('checkbox').checked;
+    let signInButton = document.getElementById('input-btn');
+    if(isChecked){
+        signInButton.disabled = false;
+    } else {
+        signInButton.disabled = true;
+    }
+        
+}
+
+function goToSignUp() {
     window.location.href = 'signup.html';
+}
+
+function backToLogin() {
+    window.location.href = 'login.html';
+}
+
+function launchToasterAndRedirect() {
+    let x = document.getElementById("toaster")
+    x.className = "show";
+    setTimeout(function() { x.className = x.className.replace("show", "");
+        window.location.href = 'login.html';
+     }, 4000);
 }

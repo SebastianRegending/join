@@ -6,4 +6,18 @@
 
 a{
     text-decoration: none;
+    color: #A8A8A8;
+}
+
+#loading-screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loading-screen-logo {
+    width: 274px;
+    height: 334px;
 }
