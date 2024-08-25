@@ -1,0 +1,241 @@
+@font-face {
+    font-family: Inter-SemiBold;
+    src: url(../assets/fonts/Inter_24pt-SemiBold.ttf);
+}
+
+#content-summary {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #F6F7F8;
+}
+
+#join-360 {
+    width: 625px;
+    height: 73px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 70px 0 0 300px;
+}
+
+#join-360-headline {
+    width: 265px;
+    height: 73px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Inter-Bold;
+    font-size: 61px;
+    margin: 0 auto 0 0;
+}
+
+#join-360-bordercontainer {
+    width: 3px;
+    height: 59px;
+    background-color: #29ABE2;
+    margin: 0;
+}
+
+#join-360-slogan{
+    width: 301px;
+    height: 32px;
+    font-size: 27px;
+    color: #2A3647;
+    margin: 0 0 0 auto;
+}
+
+#summary {
+    width: 560px;
+    height: 562px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px 0 0 300px;
+    gap: 32px;
+}
+
+#summary-top {
+    width: 100%;
+    height: 168px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-top-style {
+    width: 264px;
+    height: 168px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    border-radius: 30px;
+    padding: 38px 19px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    margin: 0px;
+    cursor: pointer;
+    transition: 75ms linear;
+}
+
+.summary-top-style:hover {
+    transform: scale(1.1, 1.1);
+    background-color: #2A3647;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2); 
+}
+
+.summary-img {
+    width: 69px;
+    height: 69px;
+    margin: 0 0 0 auto;
+}
+
+.summary-card-small {
+    width: 63px;
+    height: 101px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 0 0;
+}
+
+.summary-small-number {
+    width: 31px;
+    height: 77px;
+    font-family: Inter-SemiBold;
+    font-size: 64px;
+}
+
+.summary-small-text {
+    width: 63px;
+    height: 24px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.summary-bottom-small-number {
+    width: 41px;
+    height: 77px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Inter-Bold;
+    font-size: 64px;
+}
+
+.summary-bottom-small-text {
+    width: 83px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    text-align: center;
+}
+
+#summary-urgent {
+    width: 100%;
+    height: 168px;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    padding: 28px 48px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 75ms linear;
+}
+
+#summary-urgent:hover {
+    transform: scale(1.1, 1.1);
+    background-color: #2A3647;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2); 
+}
+
+#summary-urgent-left {
+    width: 130px;
+    height: 96px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin: 0 auto 0 0;
+}
+
+#summary-urgent-border {
+    width: 2px;
+    height: 102px;
+    background-color: #D1D1D1;
+    margin: 0;
+}
+
+#summary-urgent-right {
+    width: 178px;
+    height: 57px;
+    margin: 0 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+#summary-urgent-right-date {
+    width: 178px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    font-family: Inter-Bold;
+    font-size: 21px;
+    color: #2A3647;
+    margin: 0;
+}
+
+#summary-urgent-right-deadline {
+    width: 148px;
+    height: 19px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #2A3647;
+    margin: 0;
+}
+
+#summary-bottom {
+    width: 100%;
+    height: 168px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-bottom-style {
+    width: 168px;
+    height: 168px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 25px 0;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    cursor: pointer;
+    transition: 75ms linear;
+}
+
+.summary-bottom-style:hover {
+    transform: scale(1.1, 1.1);
+    background-color: #2A3647;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2); 
+}
+
+.summary-bottom-content-style {
+    width: 83px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
