@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/board.css">
+    <script src="./scripts/script.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body onload="includeHTML()">
+    <div w3-include-html="./menu.html"></div>
+
+    <section class="board-container">
+        <div class="board-header">
+            <h1>Board</h1>
+            <div class="task-input">
+                <input type="text">
+                <button>Add task +</button>
+            </div>
+        </div>
+
+        <div class="task-board">
+            <div class="task-column">
+                <h2>To Do <span>+</span></h2>
+                <!-- To-do-Aufgaben hier -->
+            </div>
+            <div class="task-column">
+                <h2>In Progress <span>+</span></h2>
+                <!-- In-progress-Aufgaben hier -->
+            </div>
+            <div class="task-column">
+                <h2>Await Feedback <span>+</span></h2>
+                <!-- Aufgaben, die auf Feedback warten, hier -->
+            </div>
+            <div class="task-column">
+                <h2>Done <span>+</span></h2>
+                <!-- Abgeschlossene Aufgaben hier -->
+            </div>
+        </div>
+
+        <div class="todo-card">
+            <!-- Labels (Board Card Label, z.B. User Story) -->
+            <div class="card-labels">
+                <span class="label">User Story</span>
+            </div>
+
+            <!-- Titel und Inhalt -->
+            <div class="card-content">
+                <h3 class="card-title">Title</h3>
+                <p class="card-description">Content</p>
+            </div>
+
+            <!-- Fortschrittsanzeige und Subtasks -->
+            <div class="card-progress">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 50%;"></div> <!-- z.B. 50% Fortschritt -->
+                </div>
+                <p class="subtasks">0/2 Subtasks</p>
+            </div>
+
+            <!-- Profilbadges von Usern -->
+            <div class="card-users">
+                <span class="user-badge">AS</span>
+                <span class="user-badge">DE</span>
+                <span class="user-badge">EF</span>
+            </div>
+
+            <!-- Prioritätssymbol -->
+            <div class="priority">
+                <span class="priority-symbol">>></span> <!-- Priority symbols -->
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
