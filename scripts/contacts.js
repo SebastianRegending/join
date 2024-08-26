@@ -144,17 +144,16 @@ function openEditContact(id, letter, name, email, phone, inits) {
 
 
 async function submitEditetContact() {
-    console.log("drin");
     let name = document.getElementById('edit-contact-name');
     let email = document.getElementById('edit-contact-email');
     let phone = document.getElementById('edit-contact-phone');
-  
+
     createInitials(name.value);
     let initialsForSaving = initials.join('').toUpperCase();
     let path = `/letter${letterForEditing}/${IdForEditing}`
-
-    data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving });
-console.log(data);
+    let color = createColor();
+    data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color });
+    console.log(data);
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
         header: {
@@ -162,7 +161,7 @@ console.log(data);
         },
         body: JSON.stringify(data)
     });
-
+    loadContacts();
     return responseToJson = await response.json();
 }
 
@@ -191,6 +190,7 @@ async function createContact(path = "", data = {}) {
         },
         body: JSON.stringify(data)
     });
+    loadContacts();
 
     return responseToJson = await response.json();
 }
@@ -219,49 +219,44 @@ async function deleteContact(id, letter) {
 }
 
 
-async function editContact(id, letter) {
 
-    
-}
-
-
-function createColor(){
+function createColor() {
     let color;
     let colorNumber = createRandomNumbers();
-if(colorNumber == 1){
-    color = "yellow";
-} else if(colorNumber == 2){
-    color = "orange";
-} else if(colorNumber == 3){
-    color = "turquoise";
-}else if(colorNumber == 4){
-    color = "purple";
-}else if(colorNumber == 5){
-    color = "lightpurple";
-}else if(colorNumber == 6){
-    color = "blue";
-}else if(colorNumber == 7){
-    color = "lightblue";
-}else if(colorNumber == 8){
-    color = "pink";
-}else if(colorNumber == 9){
-    color = "lightred";
-}else if(colorNumber == 10){
-    color = "green";
-};
-return color;
+    if (colorNumber == 1) {
+        color = "yellow";
+    } else if (colorNumber == 2) {
+        color = "orange";
+    } else if (colorNumber == 3) {
+        color = "turquoise";
+    } else if (colorNumber == 4) {
+        color = "purple";
+    } else if (colorNumber == 5) {
+        color = "lightpurple";
+    } else if (colorNumber == 6) {
+        color = "blue";
+    } else if (colorNumber == 7) {
+        color = "lightblue";
+    } else if (colorNumber == 8) {
+        color = "pink";
+    } else if (colorNumber == 9) {
+        color = "lightred";
+    } else if (colorNumber == 10) {
+        color = "green";
+    };
+    return color;
 }
 
 
-function createRandomNumbers(){
-    if(randomNumbers.length > 9){
+function createRandomNumbers() {
+    if (randomNumbers.length > 9) {
         randomNumbers = [];
     }
     let n = randomNumbers.length - 1;
     let finalNumber = randomNumbers.length;
-    while (n < finalNumber){
+    while (n < finalNumber) {
         let x = Math.floor((Math.random() * 10) + 1);
-        if(!randomNumbers.includes(x)){
+        if (!randomNumbers.includes(x)) {
             randomNumbers.push(x);
             n++;
         }
@@ -269,7 +264,7 @@ function createRandomNumbers(){
     let colorNumber = randomNumbers[randomNumbers.length - 1];
     console.log(colorNumber)
     return colorNumber;
-    
+
 
 }
 
