@@ -1,11 +1,11 @@
-const BASE_URL = ('https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/');
+const BASE_URL_USER = ('https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/');
 
 async function saveNewUser(path = "/users", data = {}) {
     let name = document.getElementById('name');
     let email = document.getElementById('email');
     let password = document.getElementById('password');
     data = ({ name: name.value, email: email.value, password: password.value });
-    let response = await fetch(BASE_URL + path + ".json", {
+    let response = await fetch(BASE_URL_USER + path + ".json", {
         method: "POST",
         header: {
             "Content-Type": "application/json",
@@ -17,7 +17,7 @@ async function saveNewUser(path = "/users", data = {}) {
 }
 
 async function loginUser(path = "/users") {
-    let response = await fetch(BASE_URL + path + ".json");
+    let response = await fetch(BASE_URL_USER + path + ".json");
     responseToJson = await response.json();
     let UserKeys = Object.values(responseToJson);
     let email = document.getElementById('emaillogin');
@@ -25,7 +25,7 @@ async function loginUser(path = "/users") {
     let user = UserKeys.find(u => u.email == email.value && u.password == password.value);
     if (user) {
         console.log("User gefunden");
-        window.location.href = 'index.html';
+        window.location.href = 'summary.html';
     } else {
         console.log("User nicht gefunden");
         return
