@@ -23,7 +23,7 @@ async function loadContacts() {
             let letterForCards = oneContact[0]['initials'].charAt(0);
             
             IDs.sort((a, b) => a.name.localeCompare(b.name));
-
+           
             document.getElementById('contacts-alphabet-list').innerHTML += `
            <div>
                 <div class="contact-card-letter">
@@ -32,7 +32,7 @@ async function loadContacts() {
                 <div id="contacts-${letterForCards}-content" class="letter-card">
                 </div>
            </div>`;
-
+        
 
             for (let i = 0; i < IDs.length; i++) {
                 document.getElementById(`contacts-${letterForCards}-content`).innerHTML += `
@@ -43,6 +43,9 @@ async function loadContacts() {
                         <a href='mailto:${IDs[i]['email']}'>${IDs[i]['email']}</a>
                     </div>
                 </div>`;
+                if(currentContact == IDs[i]['id']){
+                    document.getElementById(IDs[i]['id']).classList.add('bg-dark-blue')
+                }
             }
             n++;
         }
@@ -85,12 +88,17 @@ function chooseContact(id, name, email, phone, inits, color) {
         oldContact = currentContact;
     }
     currentContact = id;
-
-    document.getElementById(currentContact).classList.add('bg-dark-blue');
-    if (oldContact) {
+    if(currentContact == oldContact){
         document.getElementById(oldContact).classList.remove('bg-dark-blue');
+        currentContact = "";
+        document.getElementById('choosen-contact-loading-area').innerHTML = ``;
+    }else{
+        document.getElementById(currentContact).classList.add('bg-dark-blue');
+        loadChoosenContact(id, name, email, phone, inits, color);
     }
-    loadChoosenContact(id, name, email, phone, inits, color);
+
+    loadContacts();
+    
     
 }
 
@@ -178,7 +186,6 @@ async function createContact(path = "", data = {}) {
     let phone = document.getElementById('add-contact-phone');
     let letter = name.value.charAt(0).toUpperCase();
     path = `/letter${letter}`
-
     createInitials(name.value);
     let initialsForSaving = initials.join('').toUpperCase();
     let color = createColor();

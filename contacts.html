@@ -31,7 +31,7 @@
                 </div>
                 <div class="contact-dialog-edit-side">
                     <form class="contact-form" onsubmit="createContact(); closeAddContact(); loadContacts(); return false"> 
-                        <input id="add-contact-name" class="input-field" required type="text" placeholder="Name">
+                        <input id="add-contact-name" class="input-field" pattern="[A-Za-z\s]{0,50}" required title="Pleace Enter Alphabet Characters Only" type="text" placeholder="Name">
                         <input id="add-contact-email" class="input-field" required type="text" placeholder="Email">
                         <input id="add-contact-phone" class="input-field" required type="text" placeholder="Phone">
                         <div class="cancel-button" onclick="closeAddContact()">Cancel</div>
@@ -54,7 +54,7 @@
                 <div class="contact-dialog-edit-side">
                     <div id="edit-initials"></div>
                     <form id="edit-form" class="contact-form" onsubmit="submitEditetContact(); return false"> 
-                        <input id="edit-contact-name" class="input-field" required type="text" placeholder="Name">
+                        <input id="edit-contact-name" class="input-field" pattern="[A-Za-z\s]{0,50}" required title="Pleace Enter Alphabet Characters Only" type="text" placeholder="Name">
                         <input id="edit-contact-email" class="input-field" required type="text" placeholder="Email">
                         <input id="edit-contact-phone" class="input-field" required type="text" placeholder="Phone">
                         <div class="cancel-button" onclick="closeEditContact()">Delete</div>
