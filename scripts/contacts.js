@@ -21,7 +21,7 @@ async function loadContacts() {
             IDs = json2arrayIDs(contacts[n]);
             let oneContact = json2arrayIDs(contacts[n]);
             let letterForCards = oneContact[0]['initials'].charAt(0);
-            console.log(IDs)
+            
             IDs.sort((a, b) => a.name.localeCompare(b.name));
 
             document.getElementById('contacts-alphabet-list').innerHTML += `
@@ -36,7 +36,7 @@ async function loadContacts() {
 
             for (let i = 0; i < IDs.length; i++) {
                 document.getElementById(`contacts-${letterForCards}-content`).innerHTML += `
-                <div id="${IDs[i]['email']}" class="contact-datas" onclick="chooseContact(\'${IDs[i]['id']}\', \'${IDs[i]['name']}\', \'${IDs[i]['email']}\', \'${IDs[i]['phone']}\', \'${IDs[i]['initials']}\', \'${IDs[i]['color']}\')">
+                <div id="${IDs[i]['id']}" class="contact-datas" onclick="chooseContact(\'${IDs[i]['id']}\', \'${IDs[i]['name']}\', \'${IDs[i]['email']}\', \'${IDs[i]['phone']}\', \'${IDs[i]['initials']}\', \'${IDs[i]['color']}\')">
                     <div class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}</div>
                     <div>
                         <div class="contact-card-names">${IDs[i]['name']}</div>
@@ -84,13 +84,14 @@ function chooseContact(id, name, email, phone, inits, color) {
     if (currentContact) {
         oldContact = currentContact;
     }
-    currentContact = email;
+    currentContact = id;
 
     document.getElementById(currentContact).classList.add('bg-dark-blue');
     if (oldContact) {
         document.getElementById(oldContact).classList.remove('bg-dark-blue');
     }
     loadChoosenContact(id, name, email, phone, inits, color);
+    
 }
 
 
@@ -147,13 +148,12 @@ async function submitEditetContact() {
     let name = document.getElementById('edit-contact-name');
     let email = document.getElementById('edit-contact-email');
     let phone = document.getElementById('edit-contact-phone');
-
+   
     createInitials(name.value);
     let initialsForSaving = initials.join('').toUpperCase();
     let path = `/letter${letterForEditing}/${IdForEditing}`
     let color = createColor();
     data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color });
-    console.log(data);
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
         header: {
@@ -162,6 +162,8 @@ async function submitEditetContact() {
         body: JSON.stringify(data)
     });
     loadContacts();
+    loadChoosenContact(IdForEditing, name.value, email.value, phone.value, initialsForSaving, color);
+    closeEditContact();
     return responseToJson = await response.json();
 }
 
@@ -202,13 +204,10 @@ function createInitials(name) {
 
     words.length = 2;
     words.forEach((element) => initials.push(element.charAt(0)));
-
 }
 
 
 async function deleteContact(id, letter) {
-
-    console.log(`${BASE_URL}/contacts/letter${letter}/${id}.json`);
     await fetch(`${BASE_URL}/letter${letter}/${id}.json`, {
         method: "DELETE"
     });
@@ -262,9 +261,6 @@ function createRandomNumbers() {
         }
     }
     let colorNumber = randomNumbers[randomNumbers.length - 1];
-    console.log(colorNumber)
     return colorNumber;
-
-
 }
 
