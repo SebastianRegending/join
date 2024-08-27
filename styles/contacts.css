@@ -110,6 +110,54 @@
     transition: 100ms linear;
 }
 
+.white-input-btn-edit {
+    width: 113px;
+    height: 57px;
+    gap: 4px;
+    display: flex;
+    color: #2A3647;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2A3647;
+    border-radius: 8px;
+    
+    background-color: white;
+    font-family: Inter-Bold;
+    font-size: 21px;
+    cursor: pointer;
+    transition: 100ms linear;
+}
+
+.white-input-btn-edit:hover {
+    color: #29ABE2;
+    border-color: #29ABE2;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+.blue-btn-edit{
+    width: 111px;
+    height: 57px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    background-color: #2A3647;
+    color: white;
+    font-family: Inter-Bold;
+    font-size: 21px;
+    cursor: pointer;
+    transition: 100ms linear;
+    gap: 4px;
+
+}
+
+.blue-btn-edit:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
 .contact-card {
     background-color: #2A3647;
     border-radius: 10px;
@@ -159,7 +207,7 @@
 
 
 .contact-datas {
-    width: 352px;
+    width: 304px;
     height: 48px;
     display: flex;
     padding: 15px 24px 15px 24px;
