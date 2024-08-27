@@ -23,7 +23,7 @@
 .add-contact-button {
     background-color: #2A3647;
     color: white;
-    width: 352px;
+    width: 352px !important;
     height: 56px;
     display: flex;
     align-items: center;
