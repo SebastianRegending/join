@@ -213,6 +213,19 @@
 
 }
 
+#edit-initials{
+  width: 120px;
+  height: 120px;
+  background-color: grey;
+  border-radius: 50%;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  color: white;
+  font-size: 47px;
+  font-weight: 500;
+}
+
 .edit-area {
     display: flex;
     align-items: center;
@@ -424,42 +437,42 @@ background-color: #d1d1d1;
 
 
 .circle-yellow {
-    background-color: #ffbb2b;
+    background-color: #ffbb2b !important;
 }
 
 .circle-orange {
-    background-color: #ff7a00;
+    background-color: #ff7a00 !important;
 }
 
 .circle-turquoise {
-    background-color: #1fd7c1;
+    background-color: #1fd7c1 !important;
 }
 
 .circle-purple {
-    background-color: #462f8a;
+    background-color: #462f8a !important;
 }
 
 .circle-lightpurple {
-    background-color: #6e52ff;
+    background-color: #6e52ff !important;
 }
 
 
 .circle-blue {
-    background-color: #0038ff;
+    background-color: #0038ff !important;
 }
 
 .circle-lightblue {
-    background-color: #00bee8;
+    background-color: #00bee8 !important;
 }
 
 .circle-pink {
-    background-color: #fc71ff;
+    background-color: #fc71ff !important;
 }
 
 .circle-lightred {
-    background-color: #ff4646;
+    background-color: #ff4646 !important;
 }
 
 .circle-green {
-    background-color: #33691e;
+    background-color: #33691e !important;
 }

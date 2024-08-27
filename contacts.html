@@ -56,20 +56,23 @@
                 <div class="contact-dialog-logo-side">
                         <img class="dialog-logo" src="./assets/img/join.png" alt="join-logo">
                         <h2>Edit contact</h2>
-                        
-                        <img class="dialog-separator" src="./assets/img/separator-blue.svg">
+                        <div class="dialog-separator"></div>
 
                 </div>
                 <div class="contact-dialog-edit-side">
-                    <div id="edit-initials"></div>
-                    <form id="edit-form" class="contact-form" onsubmit="submitEditetContact(); return false"> 
-                        <input id="edit-contact-name" class="input-field" pattern="[A-Za-z\s]{0,50}" required title="Pleace Enter Alphabet Characters Only" type="text" placeholder="Name">
-                        <input id="edit-contact-email" class="input-field" required type="text" placeholder="Email">
-                        <input id="edit-contact-phone" class="input-field" required type="text" placeholder="Phone">
-                        <div class="cancel-button" onclick="closeEditContact()">Delete</div>
-                        <button>Save</button>
-                    </form>
-
+                    <div class="add-contact-dialog-header"><img class="cancel-add-contact-dialog" onclick="closeEditContact()" src="./assets/img/cancel.svg" alt="cancel-icon"></div>
+                    <div  class="flexed">
+                        <div id="edit-initials"></div>
+                        <form id="edit-form" class="contact-form" onsubmit="submitEditetContact(); return false"> 
+                            <input id="edit-contact-name" class="input-field icon-small-person" pattern="[A-Za-z\s]{0,50}" required title="Pleace Enter Alphabet Characters Only" type="text" placeholder="Name">
+                            <input id="edit-contact-email" class="input-field icon-small-mail" required type="text" placeholder="Email">
+                            <input id="edit-contact-phone" class="input-field icon-small-call" required type="text" placeholder="Phone">
+                            <div class="button-area">
+                            <div class="white-input-btn" onclick="closeEditContact()">Delete</div>
+                            <button class="blue-btn">Save</button>
+                        </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
