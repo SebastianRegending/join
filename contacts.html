@@ -20,24 +20,33 @@
 
 <div class="contact-page">
     <div id="contacts-area">
-        <div class="dialog-bg d-none" id="add-contact-dialog">
+        <div class="dialog-bg d-non" id="add-contact-dialog">
             <div class="contact-dialog">
                 <div class="contact-dialog-logo-side">
                         <img class="dialog-logo" src="./assets/img/join.png" alt="join-logo">
                         <h2>Add contact</h2>
                         <span>Tasks are better with a team!</span>
-                        <img class="dialog-separator" src="./assets/img/separator-blue.svg">
-
+                        <div class="dialog-separator"></div>
+                        
                 </div>
                 <div class="contact-dialog-edit-side">
-                    <form class="contact-form" onsubmit="createContact(); closeAddContact(); loadContacts(); return false"> 
-                        <input id="add-contact-name" class="input-field" pattern="[A-Za-z\s]{0,50}" required title="Pleace Enter Alphabet Characters Only" type="text" placeholder="Name">
-                        <input id="add-contact-email" class="input-field" required type="text" placeholder="Email">
-                        <input id="add-contact-phone" class="input-field" required type="text" placeholder="Phone">
-                        <div class="cancel-button" onclick="closeAddContact()">Cancel</div>
-                        <button>Create Contact</button>
-                    </form>
-
+                    <div class="add-contact-dialog-header"><img class="cancel-add-contact-dialog" onclick="closeAddContact()" src="./assets/img/cancel.svg" alt="cancel-icon"></div>
+                    <div class="flexed">
+                        <div>
+                            <img src="./assets/img/profilepic.png" alt="profilepic">
+                        </div>
+                        <div>
+                            <form class="contact-form" onsubmit="createContact(); closeAddContact(); loadContacts(); return false"> 
+                                <input id="add-contact-name" class="input-field icon-small-person" pattern="[A-Za-z\s]{0,50}" required title="Pleace Enter Alphabet Characters Only" type="text" placeholder="Name">
+                                <input id="add-contact-email" class="input-field icon-small-mail" required type="text" placeholder="Email">
+                                <input id="add-contact-phone" class="input-field icon-small-call" required type="text" placeholder="Phone">
+                                <div class="button-area">
+                                    <div class="white-input-btn" onclick="closeAddContact()">Cancel <img src="./assets/img/cancel.svg" alt="cancel-icon"></div>
+                                    <button class="blue-btn">Create Contact<img src="./assets/img/check.svg" alt="check-icon"></button>
+                                </div>
+                            </form>
+                        </div>
+                </div>
                 </div>
             </div>
         </div>
