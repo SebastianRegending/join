@@ -316,7 +316,7 @@ h1 {
 
 #toaster.show {
     visibility: visible;
-    animation: slidein 1s, stay 2s 1s, slideout 1s 2.5s;
+    animation: slidein 0.75s, stay 1s 0.75s, slideout 0.75s 1.5s;
 }
 
 @keyframes slidein {
