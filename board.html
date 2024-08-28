@@ -16,9 +16,11 @@
     <section class="board-container">
         <div class="board-header">
             <h1>Board</h1>
-            <div class="task-input">
-                <input type="text">
-                <button>Add task +</button>
+            <div class="task-input-container">
+                <div class="task-input">
+                    <input type="text" placeholder="Find Task">
+                </div>
+                <button class="add-task">Add task <span>+</span></button>
             </div>
         </div>
 
@@ -49,8 +51,8 @@
 
             <!-- Titel und Inhalt -->
             <div class="card-content">
-                <h3 class="card-title">Title</h3>
-                <p class="card-description">Content</p>
+                <h3 class="card-title">Kochwelt Page & Recipe Recommender</h3>
+                <p class="card-description">Build start page with recipe recommendation...</p>
             </div>
 
             <!-- Fortschrittsanzeige und Subtasks -->
@@ -61,16 +63,21 @@
                 <p class="subtasks">0/2 Subtasks</p>
             </div>
 
-            <!-- Profilbadges von Usern -->
-            <div class="card-users">
-                <span class="user-badge">AS</span>
-                <span class="user-badge">DE</span>
-                <span class="user-badge">EF</span>
-            </div>
+            <div class="card-footer">
+                <!-- Profilbadges von Usern -->
+                <div class="card-users">
+                    <span class="user-badge">AS</span>
+                    <span class="user-badge">DE</span>
+                    <span class="user-badge">EF</span>
+                </div>
 
-            <!-- Prioritätssymbol -->
-            <div class="priority">
-                <span class="priority-symbol">>></span> <!-- Priority symbols -->
+                <!-- Prioritätssymbol -->
+                <div class="priority">
+                    <span class="priority-symbol">
+                        <img src="./assets/img/vector.png" alt="">
+                    </span>
+                    <!-- Priority symbols -->
+                </div>
             </div>
         </div>
     </section>

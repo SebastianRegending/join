@@ -1,6 +1,220 @@
+body{
+    background-color: #F6F7F8;
+}
+
 .board-container{
     margin-top: 80px;
     margin-left: 338px;
     max-width: 1440px;
     margin-right: 80px;
+}
+
+.board-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.board-header h1{
+    font-size: 62px;
+}
+
+.task-input-container{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.add-task{
+    width: 160px;
+    height: 48px;
+    border-radius: 10px;
+    padding: 8px 16px;
+    background-color: #2a3647;
+    color: #FFFFFF;
+    font-size: 24px;
+}
+
+
+
+.task-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+     gap: 10px;
+}
+
+.task-input input {
+    padding: 8px 16px;
+    border-radius: 10px;
+    height: 32px;
+    width: 280px;
+    border: 1px solid #A8A8A8; /* Randfarbe */
+    padding-right: 60px; /* Platz für Separator und Lupe auf der rechten Seite */
+    font-size: 24px; /* Schriftgröße für den Text im Input */
+}
+
+.task-input input::placeholder {
+    font-size: 24px; /* Schriftgröße für den Placeholder */
+    color: #A8A8A8; /* Optionale Placeholder-Farbe */
+}
+
+/* Lupe und Separator im Input-Feld */
+.task-input::before {
+ content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;  /* Breite des Lupenbildes */
+    height: 24px; /* Höhe des Lupenbildes */
+    background-image: url('../assets/img/magnifier.svg'); /* Pfad zum Bild der Lupe */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.task-input::after {
+    content: "";
+    position: absolute;
+    right: 40px; /* Position des Separators vor der Lupe */
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background-color: #A8A8A8; /* Farbe des Separators */
+}
+
+.task-board {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task-column h2 {
+    color: #42526E;
+    font-size: 20px;
+    width: 244px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task-column h2 span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    border: 2px solid #42526E;
+    padding: 2px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.1s ease-out, background-color 0.3s ease; 
+    margin-left: 10px; 
+}
+
+.task-column h2 span:hover {
+    background-color: #2A3647; 
+    color: #FFFFFF;
+}
+
+.task-column h2 span:active {
+    transform: translateX(5px); 
+    transition: transform 0.1s ease-out; 
+}
+
+.todo-card{
+    width: 212px;
+    height: 260px;
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 16px;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+}
+
+.label {
+    background-color: #0038FF;
+    padding: 4px 16px;
+    border-radius: 8px;
+    color: #ffffff
+}
+
+.card-description{
+    font-size: 16px;
+    color: #a8a8a8;
+}
+
+.card-progress {
+    position: relative;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-bar {
+    width: 120px;
+    height: 8px;  
+    background-color: #F4F4F4; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    position: relative;
+}
+
+.progress {
+    width: 64px;
+    height: 8px; 
+    background-color: #4589FF; 
+}
+
+.subtasks {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.priority-symbol img{
+   padding: 10px 18px;
+   width: 32px;
+}
+
+.card-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px; 
+    margin-top: 24px;
+
+}
+
+.card-users {
+    display: flex;
+    align-items: center;
+}
+
+.user-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%; 
+    border: 1px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #ffffff; 
+    margin-left: -10px; 
+    position: relative;
+}
+
+.user-badge:nth-child(1) {
+    background-color: #FF7A00; 
+}
+
+.user-badge:nth-child(2) {
+    background-color: #1FD7C1; 
+}
+
+.user-badge:nth-child(3) {
+    background-color: #462F8A; 
 }
