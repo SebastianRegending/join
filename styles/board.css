@@ -34,15 +34,22 @@ body{
     background-color: #2a3647;
     color: #FFFFFF;
     font-size: 24px;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+    border: none;
 }
 
-
+.add-task:hover{
+    background-color:#29ABE2;
+    cursor: pointer;
+   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.4);
+    transition: transform 0.1s ease-in-out, 0.2s;
+}
 
 .task-input {
     position: relative;
     display: flex;
     align-items: center;
-     gap: 10px;
+    gap: 10px;
 }
 
 .task-input input {
@@ -50,14 +57,14 @@ body{
     border-radius: 10px;
     height: 32px;
     width: 280px;
-    border: 1px solid #A8A8A8; /* Randfarbe */
-    padding-right: 60px; /* Platz für Separator und Lupe auf der rechten Seite */
-    font-size: 24px; /* Schriftgröße für den Text im Input */
+    border: 1px solid #A8A8A8; 
+    padding-right: 60px; 
+    font-size: 24px; 
 }
 
 .task-input input::placeholder {
-    font-size: 24px; /* Schriftgröße für den Placeholder */
-    color: #A8A8A8; /* Optionale Placeholder-Farbe */
+    font-size: 24px; 
+    color: #A8A8A8; 
 }
 
 /* Lupe und Separator im Input-Feld */
@@ -67,9 +74,9 @@ body{
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    width: 24px;  /* Breite des Lupenbildes */
-    height: 24px; /* Höhe des Lupenbildes */
-    background-image: url('../assets/img/magnifier.svg'); /* Pfad zum Bild der Lupe */
+    width: 24px;  
+    height: 24px; 
+    background-image: url('../assets/img/magnifier.svg'); 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -78,11 +85,11 @@ body{
 .task-input::after {
     content: "";
     position: absolute;
-    right: 40px; /* Position des Separators vor der Lupe */
+    right: 40px; 
     top: 8px;
     bottom: 8px;
     width: 1px;
-    background-color: #A8A8A8; /* Farbe des Separators */
+    background-color: #A8A8A8; 
 }
 
 .task-board {
@@ -111,7 +118,7 @@ body{
     padding: 2px;
     font-size: 20px;
     cursor: pointer;
-    transition: transform 0.1s ease-out, background-color 0.3s ease; 
+    transition: transform 0.1s ease-in-out, 0.2s;; 
     margin-left: 10px; 
 }
 
