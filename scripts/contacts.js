@@ -1,4 +1,4 @@
-const BASE_URL = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts"
+const BASE_URL = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts";
 let contacts = [];
 let initials = [];
 let IDs;

@@ -7,6 +7,10 @@ h1{
     margin-left: 232px;
 }
 
+.flexed{
+    display: flex;
+}
+
 .form-left-side{
     display: flex;
     flex-direction: column;

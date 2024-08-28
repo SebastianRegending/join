@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,41 +10,59 @@
     <script src="./scripts/addtask.js"></script>
     <script src="./scripts/script.js"></script>
 </head>
-<body onload="includeHTML()">
+
+<body onload="includeHTML(); loadContacts()">
     <div w3-include-html="./menu.html"></div>
     <h1>Add Task</h1>
-    <form class="add-task-form">
+    <form class="add-task-form" onsubmit="addTask()">
         <div class="form-left-side">
-        <label for="input-title">Title</label>
-        <input id="input-title" required type="text" placeholder="Enter a title">
-        <label for="input-description">Description</label>
-        <textarea id="input-description">Enter a Description</textarea>
-        <label>Assigned to</label>
-        <div class="multiselect">
-            <div class="selectBox" onclick="showCheckboxes()">
-              <select>
-                <option>Select an option</option>
-              </select>
-              <div class="overSelect"></div>
+            <label for="input-title">Title</label>
+            <input id="input-title" required type="text" placeholder="Enter a title">
+            <label for="input-description">Description</label>
+            <textarea id="input-description">Enter a Description</textarea>
+            <label>Assigned to</label>
+            <div class="multiselect">
+                <div class="selectBox" onclick="showCheckboxes()">
+                    <select>
+                        <option>Select contacts to assign</option>
+                    </select>
+                    <div class="overSelect"></div>
+                </div>
+                <div id="checkboxes">
+                    <!-- <label for="one">
+                        <input type="checkbox" id="one" />First checkbox</label>
+                    <label for="two">
+                        <input type="checkbox" id="two" />Second checkbox</label>
+                    <label for="three">
+                        <input type="checkbox" id="three" />Third checkbox</label> -->
+                </div>
             </div>
-            <div id="checkboxes">
-              <label for="one">
-                <input type="checkbox" id="one" />First checkbox</label>
-              <label for="two">
-                <input type="checkbox" id="two" />Second checkbox</label>
-              <label for="three">
-                <input type="checkbox" id="three" />Third checkbox</label>
+        </div>
+        <div class="form-right-side">
+            <label for="deadline">Due date</label>
+            <input type="date" id="deadline">
+            <span>Prio</span>
+            <div class="flexed">
+                <div>Urgent</div>
+                <div>Medium</div>
+                <div>Low</div>
             </div>
-          </div>
-    </div>
-    <div class="form-right-side">
-        <label for="deadline">Due date</label>
-        <input id="deadline">
+            <label for="category">Category</label>
+            <select name="category" id="category">
+                <option value="" disabled selected hidden>Select your option</option>
+                <option value="technicalTask">Technical Task</option>
+                <option value="userStory">User Story</option>
+            </select>
+            <label for="subtasks">Subtasks</label>
+            <input id="subtasks">
 
-
-    </div>
-
+        </div>
+        <div>
+            <div>Clear</div>
+            <button>Create Task</button>
+        </div>
 
     </form>
 </body>
+
 </html>
