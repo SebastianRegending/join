@@ -1,3 +1,5 @@
+let UserLogin = [];
+
 function navigateToBoard() {
     window.location.href = 'board.html'
 }
@@ -15,6 +17,15 @@ function setDaytimeOnGreeting() {
     document.getElementById('daytime-greeting').innerHTML = greet;
 }
 
-async function setUsernameOnGreeting() {
+async function setUsernameOnGreeting(email) {
+    let response = await fetch(BASE_URL_USER + "/users.json");
+    let users = await response.json();
+    UserKeys = Object.values(users);
+    let loggedInUser = UserKeys.find(u => u.email === email);
     
+    if (loggedInUser) {
+        document.getElementById('username-greeting').innerHTML = `${loggedInUser.name}`;
+    } else {
+        document.getElementById('username-greeting').innerHTML = 'User not found';
+    }
 }

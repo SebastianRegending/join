@@ -23,7 +23,7 @@
 .add-contact-button {
     background-color: #2A3647;
     color: white;
-    width: 352px;
+    width: 352px !important;
     height: 56px;
     display: flex;
     align-items: center;
@@ -37,6 +37,125 @@
 
 .add-contact-button:hover {
     cursor: pointer;
+}
+
+.button-area {
+    display: flex;
+    gap: 24px;
+}
+
+.flexed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+
+}
+
+.blue-btn {
+    width: 214px;
+    height: 57px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    background-color: #2A3647;
+    color: white;
+    font-family: Inter-Bold;
+    font-size: 21px;
+    cursor: pointer;
+    transition: 100ms linear;
+    gap: 4px;
+}
+
+.blue-btn:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+.add-contact-dialog-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 48px 48px 0px 0px;
+    margin-bottom: 60px;
+}
+
+.white-input-btn {
+    width: 126px;
+    height: 57px;
+    gap: 4px;
+    display: flex;
+    color: #2A3647;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2A3647;
+    border-radius: 8px;
+    /* padding: 15px 24px; */
+    background-color: white;
+    font-family: Inter-Bold;
+    font-size: 21px;
+    cursor: pointer;
+    transition: 100ms linear;
+}
+
+.white-input-btn:hover {
+    color: #29ABE2;
+    border-color: #29ABE2;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+.white-input-btn:hover img {
+    filter: invert(66%) sepia(29%) saturate(4458%) hue-rotate(165deg) brightness(93%) contrast(89%);
+    transition: 100ms linear;
+}
+
+.white-input-btn-edit {
+    width: 113px;
+    height: 57px;
+    gap: 4px;
+    display: flex;
+    color: #2A3647;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2A3647;
+    border-radius: 8px;
+    
+    background-color: white;
+    font-family: Inter-Bold;
+    font-size: 21px;
+    cursor: pointer;
+    transition: 100ms linear;
+}
+
+.white-input-btn-edit:hover {
+    color: #29ABE2;
+    border-color: #29ABE2;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+.blue-btn-edit{
+    width: 111px;
+    height: 57px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    background-color: #2A3647;
+    color: white;
+    font-family: Inter-Bold;
+    font-size: 21px;
+    cursor: pointer;
+    transition: 100ms linear;
+    gap: 4px;
+
+}
+
+.blue-btn-edit:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
 .contact-card {
@@ -88,9 +207,10 @@
 
 
 .contact-datas {
-    width: 352px;
-    height: 78px;
+    width: 304px;
+    height: 48px;
     display: flex;
+    padding: 15px 24px 15px 24px;
     align-items: center;
     border-radius: 10px;
 }
@@ -139,6 +259,19 @@
     display: flex;
     align-items: center;
 
+}
+
+#edit-initials{
+  width: 120px;
+  height: 120px;
+  background-color: grey;
+  border-radius: 50%;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  color: white;
+  font-size: 47px;
+  font-weight: 500;
 }
 
 .edit-area {
@@ -201,6 +334,16 @@
 }
 
 
+.cancel-add-contact-dialog{
+    border-radius: 50%;
+    padding: 8px;
+}
+.cancel-add-contact-dialog:hover{
+cursor: pointer;
+background-color: #d1d1d1; 
+}
+
+
 .dialog-bg {
     position: fixed;
     top: 0;
@@ -218,6 +361,7 @@
     z-index: 110;
     height: 594px;
     display: flex;
+
 }
 
 .contact-dialog-logo-side {
@@ -241,16 +385,17 @@
     border-bottom-right-radius: 24px;
 }
 
-.contact-dialog-logo-side h2{
+.contact-dialog-logo-side h2 {
     color: white;
     font-weight: 700;
     font-size: 61px;
     margin-top: 0;
     margin-bottom: 0;
 }
-.contact-dialog-logo-side span{
+
+.contact-dialog-logo-side span {
     color: white;
-    font-weight: 400 ;
+    font-weight: 400;
     font-size: 27px;
     margin-top: 0;
 }
@@ -258,11 +403,13 @@
 .dialog-logo {
     width: 55.6px;
     height: 66.48px;
+    margin-bottom: 16px;
 }
-.dialog-separator{
-    rotate: 90deg;
-    width: 3px;
-    height: 90px;
+
+.dialog-separator {
+    width: 90px;
+    margin-top: 16px;
+    border-top: solid 3px #29ABE2
 }
 
 .d-none {
@@ -280,10 +427,38 @@
     align-items: center;
     justify-content: space-between;
     font-size: 21px;
+    margin-bottom: 32px;
+}
+
+.input-field:focus {
+    outline: none !important;
+    border: 1px solid #007cee;
+    box-shadow: 0 0 10px #719ECE;
+}
+
+.icon-small-person {
+    padding-right: 25px;
+    background: url("../assets/img/input-icon-person.svg") no-repeat;
+    background-size: 24px;
+    background-position: 400px;
+}
+
+.icon-small-mail {
+    padding-right: 25px;
+    background: url("../assets/img/input-icon-mail.svg") no-repeat;
+    background-size: 24px;
+    background-position: 400px;
+}
+
+.icon-small-call {
+    padding-right: 25px;
+    background: url("../assets/img/input-icon-call.svg") no-repeat;
+    background-size: 24px;
+    background-position: 400px;
 }
 
 
-.circle{
+.circle {
     border-radius: 50%;
     height: 42px;
     width: 42px;
@@ -303,51 +478,49 @@
     justify-content: center;
     align-items: center;
     margin-right: 40px;
-    color:white;
+    color: white;
     font-size: 47px;
     font-weight: 400;
 }
 
 
 .circle-yellow {
-    background-color: #ffbb2b;
+    background-color: #ffbb2b !important;
 }
 
 .circle-orange {
-    background-color:#ff7a00;
+    background-color: #ff7a00 !important;
 }
 
 .circle-turquoise {
-    background-color:#1fd7c1;
+    background-color: #1fd7c1 !important;
 }
 
 .circle-purple {
-    background-color: #462f8a;
+    background-color: #462f8a !important;
 }
 
 .circle-lightpurple {
-    background-color: #6e52ff;
+    background-color: #6e52ff !important;
 }
 
 
 .circle-blue {
-    background-color: #0038ff;
+    background-color: #0038ff !important;
 }
 
 .circle-lightblue {
-    background-color: #00bee8;
+    background-color: #00bee8 !important;
 }
 
 .circle-pink {
-    background-color: #fc71ff;
+    background-color: #fc71ff !important;
 }
 
 .circle-lightred {
-    background-color: #ff4646;
+    background-color: #ff4646 !important;
 }
 
 .circle-green {
-    background-color: #33691e;
+    background-color: #33691e !important;
 }
-
-

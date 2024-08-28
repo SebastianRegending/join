@@ -111,7 +111,7 @@ function loadChoosenContact(id, name, email, phone, inits, color) {
             <div class="choosen-contact-name-area">
                 <div id="choosen-contacts-name">${name}</div>
                 <div class="edit-area">
-                    <div class="edit-area-field"onclick="openEditContact('${id}', '${letter}', '${name}', '${email}', '${phone}', '${inits}')"><img src="./assets/img/edit.svg" alt="edit-icon">Edit</div>
+                    <div class="edit-area-field"onclick="openEditContact('${id}', '${letter}', '${name}', '${email}', '${phone}', '${inits}', '${color}')"><img src="./assets/img/edit.svg" alt="edit-icon">Edit</div>
                     <div class="edit-area-field" onclick="deleteContact('${id}', '${letter}')"><img src="./assets/img/delete.svg" alt="delete-icon">Delete</div>
                 </div>
             </div>
@@ -141,12 +141,14 @@ function closeAddContact() {
 }
 
 
-function openEditContact(id, letter, name, email, phone, inits) {
+function openEditContact(id, letter, name, email, phone, inits, color) {
     document.getElementById('edit-contact-name').value = name;
     document.getElementById('edit-contact-email').value = email;
     document.getElementById('edit-contact-phone').value = phone;
-    document.getElementById('edit-initials').innerHTML = inits;
     document.getElementById('edit-contact-dialog').classList.remove('d-none');
+    document.getElementById('edit-initials').classList.add(`circle-${color}`);
+    document.getElementById('edit-initials').innerHTML = inits;;
+
     IdForEditing = id;
     letterForEditing = letter;
 }
@@ -177,6 +179,7 @@ async function submitEditetContact() {
 
 function closeEditContact() {
     document.getElementById("edit-contact-dialog").classList.add('d-none');
+    document.getElementById('edit-initials').removeAttribute("class");
 }
 
 
