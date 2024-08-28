@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="./styles/addtask.css">
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <script src="./scripts/addtask.js"></script>
+    <script src="./scripts/script.js"></script>
+</head>
+<body onload="includeHTML()">
+    <div w3-include-html="./menu.html"></div>
+    <h1>Add Task</h1>
+    <form class="add-task-form">
+        <div class="form-left-side">
+        <label for="input-title">Title</label>
+        <input id="input-title" required type="text" placeholder="Enter a title">
+        <label for="input-description">Description</label>
+        <textarea id="input-description">Enter a Description</textarea>
+        <label>Assigned to</label>
+        <div class="multiselect">
+            <div class="selectBox" onclick="showCheckboxes()">
+              <select>
+                <option>Select an option</option>
+              </select>
+              <div class="overSelect"></div>
+            </div>
+            <div id="checkboxes">
+              <label for="one">
+                <input type="checkbox" id="one" />First checkbox</label>
+              <label for="two">
+                <input type="checkbox" id="two" />Second checkbox</label>
+              <label for="three">
+                <input type="checkbox" id="three" />Third checkbox</label>
+            </div>
+          </div>
+    </div>
+    <div class="form-right-side">
+        <label for="deadline">Due date</label>
+        <input id="deadline">
+
+
+    </div>
+
+
+    </form>
+</body>
+</html>
