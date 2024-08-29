@@ -43,15 +43,15 @@
             <input type="date" id="deadline">
             <span>Prio</span>
             <div class="flexed">
-                <div>Urgent</div>
-                <div>Medium</div>
-                <div>Low</div>
+                <div onclick="setPrio('urgent')">Urgent</div>
+                <div onclick="setPrio('medium')">Medium</div>
+                <div onclick="setPrio('low')">Low</div>
             </div>
             <label for="category">Category</label>
             <select name="category" id="category">
                 <option value="" disabled selected hidden>Select your option</option>
-                <option value="technicalTask">Technical Task</option>
-                <option value="userStory">User Story</option>
+                <option value="Technical Task">Technical Task</option>
+                <option value="User Story">User Story</option>
             </select>
             <label for="subtasks">Subtasks</label>
             <input id="subtasks">

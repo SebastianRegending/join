@@ -3,7 +3,10 @@ let contacts = [];
 let IDs;
 let expanded = false;
 let URL_contacts = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts";
-//let BASE_URL = 
+let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
+let prio = "medium";
+let contactsArray = [];
+let subtasks = [];
 
 function showCheckboxes() {
   let checkboxes = document.getElementById("checkboxes");
@@ -29,8 +32,8 @@ async function loadContacts() {
 
       document.getElementById('checkboxes').innerHTML += `
       <label for="$contact-${i}">
-                       <input type="checkbox" id="$contact-${i}" />${IDs[i]['name']}</label>`;
-      console.log(IDs);
+                       <input type="checkbox" name="contacts" value="${IDs[i]['name']}" id="$contact-${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}"/>${IDs[i]['name']}</label>`;
+                      // console.log(IDs[i]['id']);
 
     }
 
@@ -42,9 +45,30 @@ async function loadContacts() {
 function addTask() {
   let title = document.getElementById('input-title');
   let description = document.getElementById('input-description');
-  let assignedContacts = [];
+  let assignedContacts = getSelected();
+  let deadline = document.getElementById('deadline');
+  
+  let category = document.getElementById('category');
+  
+  
+uploadTask(title, description, deadline, category);
 
+}
 
+async function uploadTask(title, description, deadline, category){
+  
+  data = ({ title: title.value, description: description.value, deadline: deadline.value, prio: prio, category: category.value, contacts: contactsArray});
+
+    let response = await fetch(URL_tasks + ".json", {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+    
+
+    return responseToJson = await response.json();
 }
 
 
@@ -62,7 +86,33 @@ function json2arrayIDs(json) {
   let result = [];
   let keys = Object.keys(json);
   keys.forEach(function (key) {
+    let contact = json[key]; 
+    contact.id = key;
     result.push(json[key]);
   });
   return result;
+}
+
+function setPrio(priority){
+  prio = priority;
+}
+
+
+function getSelected() {
+
+  let checkboxes = document.querySelectorAll('input[name="contacts"]:checked');
+    let selectedData = [];
+  
+  checkboxes.forEach((checkbox) => {
+
+      let name = checkbox.value;
+      let id = checkbox.getAttribute('data-id');
+      let letter = checkbox.getAttribute('data-letter');
+      
+      contactsArray.push({name: name, id: id, letter: letter});
+      console.log(contactsArray);
+     // return selectedData;
+  });
+ 
+
 }
