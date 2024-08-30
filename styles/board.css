@@ -92,6 +92,19 @@ body{
     background-color: #A8A8A8; 
 }
 
+.no-tasks{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    size: 16px;
+    width: 100%;
+    height: 48px;
+    color: #a8a8a8;
+    border-radius: 10px;
+    background-color: #E7E7E7;
+    border: 1px dashed #A8A8A8;
+}
+
 .task-board {
     display: flex;
     align-items: center;
@@ -224,4 +237,47 @@ body{
 
 .user-badge:nth-child(3) {
     background-color: #462F8A; 
+}
+
+.drag-area-highlight {
+    border: 1px dashed #42526E;
+    min-height: 50px; /* Stellt sicher, dass die Drop-Zone sichtbar ist */
+}
+
+#ToDo{
+    width: 244px;
+    height: 60vh;
+}
+
+#inProgress{
+    width: 244px;
+    height: 60vh;
+}
+
+#AwaitFeedback{
+    width: 244px;
+    height: 60vh;
+}
+
+#Done{
+    width: 244px;
+    height: 60vh;
+}
+
+.column-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* CSS-Animationen für das Dragging */
+
+@keyframes elasticDrop {
+    0% { transform: scale(1.1); }
+    60% { transform: scale(0.9); }
+    80% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.todo-card.elastic {
+    animation: elasticDrop 0.4s ease-in-out;
 }

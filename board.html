@@ -40,34 +40,55 @@
             </div>
         </div>
 
-        <div class="todo-card">
-            <div class="card-labels">
-                <span class="label">User Story</span>
+        <div class="column-container">
+            <div id="ToDo" class="task-column" ondrop="moveTo(event, 'ToDo')" ondragover="allowDrop(event)"
+                ondragenter="highlight('ToDo')" ondragleave="removeHighlight('ToDo')">
+                <div class="no-tasks">No tasks To do</div>
+            </div>
+            <div id="inProgress" ondrop="moveTo(event, 'inProgress')" ondragover="allowDrop(event)"
+                ondragenter="highlight('inProgress')" ondragleave="removeHighlight('inProgress')">
+
+                <div id="task1" class="todo-card" draggable="true" ondragstart="startDragging(event)">
+                    <div class="card-labels">
+                        <span class="label">User Story</span>
+                    </div>
+
+                    <div class="card-content">
+                        <h3 class="card-title">Kochwelt Page & Recipe Recommender</h3>
+                        <p class="card-description">Build start page with recipe recommendation...</p>
+                    </div>
+
+                    <div class="card-progress">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 50%;"></div>
+                            <p class="subtasks">0/2 Subtasks</p>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="card-users">
+                            <span class="user-badge">AS</span>
+                            <span class="user-badge">DE</span>
+                            <span class="user-badge">EF</span>
+                        </div>
+                        <div class="priority">
+                            <span class="priority-symbol">
+                                <img src="./assets/img/vector.png" alt="">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="card-content">
-                <h3 class="card-title">Kochwelt Page & Recipe Recommender</h3>
-                <p class="card-description">Build start page with recipe recommendation...</p>
+            <div id="AwaitFeedback" ondrop="moveTo(event, 'AwaitFeedback')" ondragover="allowDrop(event)"
+                ondragenter="highlight('AwaitFeedback')" ondragleave="removeHighlight('AwaitFeedback')">
+                <div class="no-tasks">No tasks To do</div>
             </div>
 
-            <div class="card-progress">
-                <div class="progress-bar">
-                    <div class="progress" style="width: 50%;"></div>
-                    <p class="subtasks">0/2 Subtasks</p>
-                </div>
-            </div>
-
-            <div class="card-footer">
-                <div class="card-users">
-                    <span class="user-badge">AS</span>
-                    <span class="user-badge">DE</span>
-                    <span class="user-badge">EF</span>
-                </div>
-                <div class="priority">
-                    <span class="priority-symbol">
-                        <img src="./assets/img/vector.png" alt="">
-                    </span>
-                </div>
+            <div id="Done" ondrop="moveTo(event, 'Done')" ondragover="allowDrop(event)" ondragenter="highlight('Done')"
+                ondragleave="removeHighlight('Done')">
+                <div class="no-tasks">No tasks To do</div>
             </div>
         </div>
     </section>
