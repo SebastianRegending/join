@@ -1,5 +1,9 @@
 const BASE_URL_USER = ('https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/');
 
+let myLoginEmail = [];
+let checkBoxLogin = [];
+let myLoginPassword = [];
+
 async function saveNewUser(path = "/users", data = {}) {
     let name = document.getElementById('name');
     let email = document.getElementById('email');
@@ -26,6 +30,8 @@ async function loginUser(path = "/users") {
     if (user) {
         console.log("User gefunden");
         window.location.href = 'summary.html';
+        saveLogin();
+        saveCheckBox();
     } else {
         console.log("User nicht gefunden");
         return
@@ -70,4 +76,44 @@ function launchToasterAndRedirect() {
     setTimeout(function() { x.className = x.className.replace("show", "");
         window.location.href = 'login.html';
      }, 4000);
+}
+
+function saveLogin() {
+    let isChecked = document.getElementById('rememberme-checkbox').checked;
+    let inputEmail = document.getElementById('emaillogin');
+    let inputPassword = document.getElementById('passwordlogin');    
+    if (isChecked) {
+    if(inputEmail.value != '') {
+        myLoginEmail.push(inputEmail.value)
+    }
+    if(inputPassword.value != '') {
+        myLoginPassword.push(inputPassword.value)
+    }
+} else {
+    localStorage.clear();
+}
+saveToLocalStorage();
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem('email', JSON.stringify(myLoginEmail));
+    localStorage.setItem('password', JSON.stringify(myLoginPassword)); 
+    }
+
+function populateForm() {
+    let email = JSON.parse(localStorage.getItem('email'));
+    let password = JSON.parse(localStorage.getItem('password'));   
+    if (email) {
+        document.getElementById('emaillogin').value = email; 
+    }
+    if (password) {
+        document.getElementById('passwordlogin').value = password;
+    }
+    let checked = JSON.parse(localStorage.getItem("rememberme-checkbox"));
+    document.getElementById("rememberme-checkbox").checked = checked;
+}
+
+function saveCheckBox() {
+	let checkbox = document.getElementById("rememberme-checkbox");
+    localStorage.setItem("rememberme-checkbox", checkbox.checked);  
 }

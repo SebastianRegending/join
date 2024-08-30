@@ -9,6 +9,24 @@
     display: none !important;
 }
 
+#animated-logo-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #F6F7F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+    
+}
+
+#animated-logo {
+    width: 274px;
+    height: 334px;
+    transform-origin: top left;
+    animation: LogoAni 0.5s ease-in-out 0.2s 1 normal none;
+}
+
 h1 {
     width: 315px;
     height: 74px;
@@ -37,8 +55,8 @@ h1 {
     width: 100px;
     height: 121px;
     position: relative;
-    top: 40px;
-    left: -600px;
+    top: -30px;
+    left: -580px;
 }
 
 #signup-headline {
@@ -289,7 +307,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     position: relative;
-    top: -90px;
+    top: -160px;
     left: 470px;
 }
 
@@ -332,4 +350,8 @@ h1 {
 @keyframes slideout {
     from { bottom: 50%; }
     to { bottom: -74px; }
+}
+
+@keyframes LogoAni {
+    100% {transform: scale(0.5) translate(-994px, -860px)}
 }
