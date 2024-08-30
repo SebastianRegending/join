@@ -136,8 +136,8 @@ body{
 }
 
 .task-column h2 span:hover {
-    background-color: #2A3647; 
-    color: #FFFFFF;
+    color: #29ABE2;
+    border: 2px solid #29ABE2;
 }
 
 .task-column h2 span:active {
