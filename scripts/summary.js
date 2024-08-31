@@ -18,16 +18,15 @@ function setDaytimeOnGreeting() {
 }
 
 async function setUsernameOnGreeting() {
-    let response = await fetch(BASE_URL_USER + "/users.json");
-    let users = await response.json();
-    UserKeys = Object.values(users);
-    let loggedInUser = UserKeys.find(u => u.email === email);
-    console.log(loggedInUser);
-    
-    if (loggedInUser) {
-        document.getElementById('username-greeting').innerHTML = `${loggedInUser.name}`;
-        
-    } else {
-        document.getElementById('username-greeting').innerHTML = 'User not found';
+    const response = await fetch(BASE_URL_USER + "/users.json");
+    const data = await response.json();
+    let UserKeys = Object.values(data);
+    UserLogin.push(UserKeys);
+    for (let i = 0; i < UserLogin.length; i++) {
+        const user = UserLogin[i][0]['name'];
+        console.log(UserLogin[i][0]['name']);        
+        if (user) {
+            document.getElementById('username-greeting').innerHTML = user;
+        }
     }
 }

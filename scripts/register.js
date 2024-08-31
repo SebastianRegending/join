@@ -1,8 +1,8 @@
 const BASE_URL_USER = ('https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/');
 
 let myLoginEmail = [];
-let checkBoxLogin = [];
 let myLoginPassword = [];
+let myName = [];
 
 async function saveNewUser(path = "/users", data = {}) {
     let name = document.getElementById('name');
@@ -33,6 +33,7 @@ async function loginUser(path = "/users") {
         saveLogin();
         saveCheckBox();
     } else {
+        wrongEmailOrPassword();
         console.log("User nicht gefunden");
         return
     };
@@ -116,4 +117,11 @@ function populateForm() {
 function saveCheckBox() {
 	let checkbox = document.getElementById("rememberme-checkbox");
     localStorage.setItem("rememberme-checkbox", checkbox.checked);  
+}
+
+function wrongEmailOrPassword() {
+    let x = document.getElementById("wrongEmailOrPassword")
+    x.className = "show";
+    setTimeout(function() { x.className = x.className.replace("show", "");
+     }, 4000);
 }

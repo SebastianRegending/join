@@ -134,6 +134,14 @@
     color: #FFFFFF;
 }
 
+#summary-todo:hover #summary-img-pencil {
+    content: url("../assets/img/pencil-white.png");
+}
+
+#summary-done:hover #summary-img-completed {
+    content: url("../assets/img/completed-white.png");
+}
+
 .summary-img {
     width: 69px;
     height: 69px;
