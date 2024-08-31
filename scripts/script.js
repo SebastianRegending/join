@@ -11,7 +11,6 @@ async function includeHTML() {
 }
 
 
-
 let currentDraggedElement;
 
 function startDragging(event) {
@@ -20,9 +19,11 @@ function startDragging(event) {
     currentDraggedElement.classList.add('dragging');
 }
 
+
 function allowDrop(event) {
     event.preventDefault();
 }
+
 
 function updateNoTasksMessage(container) {
     let noTasksMessage = container.querySelector('.no-tasks');
@@ -34,6 +35,7 @@ function updateNoTasksMessage(container) {
         container.insertAdjacentHTML('beforeend', '<div class="no-tasks">No tasks To do</div>');
     }
 }
+
 
 function moveTo(event, columnId) {
     event.preventDefault();
@@ -53,14 +55,17 @@ function moveTo(event, columnId) {
     }
 }
 
+
 function toggleHighlight(columnId, highlight = true) {
     let column = document.getElementById(columnId);
     column.classList.toggle('drag-area-highlight', highlight);
 }
 
+
 function highlight(columnId) {
     toggleHighlight(columnId, true);
 }
+
 
 function removeHighlight(columnId) {
     toggleHighlight(columnId, false);

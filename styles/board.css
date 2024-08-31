@@ -147,11 +147,16 @@ body{
 
 .todo-card{
     width: 212px;
-    height: 260px;
+    height: auto;
     background-color: #ffffff;
     border-radius: 24px;
     padding: 16px;
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+    margin-bottom: 16px;
+}
+
+.todo-card:hover{
+    cursor: pointer;
 }
 
 .label {
@@ -159,6 +164,10 @@ body{
     padding: 4px 16px;
     border-radius: 8px;
     color: #ffffff
+}
+
+.technical{
+    background-color: #1FD7C1;
 }
 
 .card-description{
@@ -241,7 +250,8 @@ body{
 
 .drag-area-highlight {
     border: 1px dashed #42526E;
-    min-height: 50px; /* Stellt sicher, dass die Drop-Zone sichtbar ist */
+    min-height: 50px; 
+    border-radius: 10px;
 }
 
 #ToDo{
