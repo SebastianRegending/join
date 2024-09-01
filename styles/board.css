@@ -311,7 +311,7 @@ body{
 }
 
 .dialog {
-    height: 60vh;
+    height: 80vh;
     width: 60vw;
     background-color: white;
     border: 1px solid lightgray;
@@ -319,7 +319,7 @@ body{
     padding: 24px;
     transform: translateX(100%);
     opacity: 0; 
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; 
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out; 
 }
 
 .dialog.show {
