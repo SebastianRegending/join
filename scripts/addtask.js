@@ -31,14 +31,15 @@ async function loadContacts() {
     for (let i = 0; i < IDs.length; i++) {
 
       document.getElementById('checkboxes').innerHTML += `
-      <label for="$contact-${i}">
-                       <input type="checkbox" name="contacts" value="${IDs[i]['name']}" id="$contact-${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}"/>${IDs[i]['name']}</label>`;
-                      // console.log(IDs[i]['id']);
+      <label  for="contacts${i}" class="contact-for-form">
+          <div class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}</div>
+          <div>${IDs[i]['name']}</div> 
+          <input class="input-check" type="checkbox" name="contacts${i}" value="${IDs[i]['name']}" id="$contact-${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}"/>
+      </label>`;
 
     }
 
     n++
-
   }
 }
 
@@ -47,28 +48,28 @@ function addTask() {
   let description = document.getElementById('input-description');
   let assignedContacts = getSelected();
   let deadline = document.getElementById('deadline');
-  
+
   let category = document.getElementById('category');
-  
-  
-uploadTask(title, description, deadline, category);
+
+
+  uploadTask(title, description, deadline, category);
 
 }
 
-async function uploadTask(title, description, deadline, category){
-  
-  data = ({ title: title.value, description: description.value, deadline: deadline.value, prio: prio, category: category.value, contacts: contactsArray});
+async function uploadTask(title, description, deadline, category) {
 
-    let response = await fetch(URL_tasks + ".json", {
-        method: "POST",
-        header: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
-    
+  data = ({ title: title.value, description: description.value, deadline: deadline.value, prio: prio, category: category.value, contacts: contactsArray, subtasks: subtasks });
 
-    return responseToJson = await response.json();
+  let response = await fetch(URL_tasks + ".json", {
+    method: "POST",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data)
+  });
+
+
+  return responseToJson = await response.json();
 }
 
 
@@ -86,14 +87,14 @@ function json2arrayIDs(json) {
   let result = [];
   let keys = Object.keys(json);
   keys.forEach(function (key) {
-    let contact = json[key]; 
+    let contact = json[key];
     contact.id = key;
     result.push(json[key]);
   });
   return result;
 }
 
-function setPrio(priority){
+function setPrio(priority) {
   prio = priority;
 }
 
@@ -101,18 +102,51 @@ function setPrio(priority){
 function getSelected() {
 
   let checkboxes = document.querySelectorAll('input[name="contacts"]:checked');
-    let selectedData = [];
-  
+  let selectedData = [];
+
   checkboxes.forEach((checkbox) => {
 
-      let name = checkbox.value;
-      let id = checkbox.getAttribute('data-id');
-      let letter = checkbox.getAttribute('data-letter');
-      
-      contactsArray.push({name: name, id: id, letter: letter});
-      console.log(contactsArray);
-     // return selectedData;
+    let name = checkbox.value;
+    let id = checkbox.getAttribute('data-id');
+    let letter = checkbox.getAttribute('data-letter');
+
+    contactsArray.push({ name: name, id: id, letter: letter });
+    console.log(contactsArray);
+    // return selectedData;
   });
- 
+
 
 }
+
+
+function addSubtask() {
+  let subtask = document.getElementById('subtasks');
+  subtasks.push(subtask.value);
+  document.getElementById('added-subtasks').innerHTML = ``;
+  for (let i = 0; i < subtasks.length; i++) {
+    document.getElementById('added-subtasks').innerHTML += `${subtasks[i]}`;
+  }
+  document.getElementById('subtasks').value = ``;
+}
+
+
+function colorPrioUrgent(){
+  document.getElementById('prio-urgent').classList.add('prio-active-urgent');
+  document.getElementById('prio-medium').classList.remove('prio-active-medium');
+  document.getElementById('prio-low').classList.remove('prio-active-low');
+}
+
+
+function colorPrioMedium(){
+  document.getElementById('prio-urgent').classList.remove('prio-active-urgent');
+  document.getElementById('prio-medium').classList.add('prio-active-medium');
+  document.getElementById('prio-low').classList.remove('prio-active-low');
+}
+
+function colorPrioLow(){
+  document.getElementById('prio-urgent').classList.remove('prio-active-urgent');
+  document.getElementById('prio-medium').classList.remove('prio-active-medium');
+  document.getElementById('prio-low').classList.add('prio-active-low');
+}
+
+
