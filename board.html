@@ -21,7 +21,7 @@
                 <div class="task-input">
                     <input type="text" placeholder="Find Task">
                 </div>
-                <button class="add-task">Add task <span>+</span></button>
+                <button class="add-task" onclick="openDialog('Neuen Task hinzufügen')">Add task <span>+</span></button>
             </div>
         </div>
 
@@ -111,6 +111,14 @@
             <div id="Done" ondrop="moveTo(event, 'Done')" ondragover="allowDrop(event)" ondragenter="highlight('Done')"
                 ondragleave="removeHighlight('Done')">
                 <div class="no-tasks">No tasks To do</div>
+            </div>
+        </div>
+
+        <div id="dialog" class="dialog-bg d-none" onclick="closeDialog()">
+            <div class="dialog">
+                <h1>Add task section still needs to be implemented</h1>
+                <p id="dialog-message">Neuen Task hinzufügen</p>
+                <button onclick="closeDialog()">Schließen</button>
             </div>
         </div>
     </section>

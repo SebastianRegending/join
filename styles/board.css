@@ -291,3 +291,42 @@ body{
 .todo-card.elastic {
     animation: elasticDrop 0.4s ease-in-out;
 }
+
+
+
+
+/* DIALOG */
+
+.dialog-bg {
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog {
+    height: 60vh;
+    width: 60vw;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 30px;
+    padding: 24px;
+    transform: translateX(100%);
+    opacity: 0; 
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; 
+}
+
+.dialog.show {
+    transform: translateX(0); 
+    opacity: 1; 
+}
+
+.d-none {
+    display: none;
+}

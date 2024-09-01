@@ -70,3 +70,29 @@ function highlight(columnId) {
 function removeHighlight(columnId) {
     toggleHighlight(columnId, false);
 }
+
+
+function openDialog(text) {
+    let dialog = document.getElementById('dialog');
+    let dialogBox = dialog.querySelector('.dialog');
+    
+    dialog.classList.remove('d-none');
+    
+    setTimeout(() => {
+        dialogBox.classList.add('show');
+    }, 10);
+    
+    document.getElementById('dialog-message').innerHTML = text;
+}
+
+
+function closeDialog() {
+    let dialog = document.getElementById('dialog');
+    let dialogBox = dialog.querySelector('.dialog');
+    
+    dialogBox.classList.remove('show');
+    
+    setTimeout(() => {
+        dialog.classList.add('d-none');
+    }, 500);
+}
