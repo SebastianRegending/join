@@ -60,17 +60,6 @@
     opacity: 1;  
 }
 
-#joinlogo {
-    transition: visibility 0s, opacity 0s ease-in-out;
-    opacity: 0;
-}
-
-
-#joinlogo.show {
-    visibility: visible;
-    opacity: 1;
-}
-
 h1 {
     width: 315px;
     height: 74px;
@@ -95,13 +84,6 @@ h1 {
     font-family: Inter-Bold;
 }
 
-#joinlogo {
-    width: 100px;
-    height: 121px;
-    position: absolute;
-    top: 50px; 
-    left: 50px;
-}
 
 #signup-headline {
     width: 315px;
@@ -216,7 +198,6 @@ h1 {
     height: 48px;
     border: 1px solid #2A3647;
     border-radius: 8px;
-    /* padding: 15px 24px; */
     background-color: white;
     font-family: Inter-Bold;
     font-size: 21px;
