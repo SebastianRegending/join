@@ -137,13 +137,13 @@ function startLogoAnimation() {
     }, 500);
 
     setTimeout(() => {
-        animatedLogoContainer.style.backgroundColor = 'transparent';
-    }, 1500);
+        loginPage.classList.remove('hidden');  
+        loginPage.classList.add('show'); 
+    }, 800); 
 
     setTimeout(() => {
-        loginPage.classList.add('show');  
-    }, 1000);  
+        animatedLogoContainer.style.backgroundColor = 'transparent';
+    }, 900);
 }
-
 
 
