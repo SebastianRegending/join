@@ -69,7 +69,7 @@ body{
 
 /* Lupe und Separator im Input-Feld */
 .task-input::before {
- content: "";
+    content: "";
     position: absolute;
     right: 10px;
     top: 50%;

@@ -125,3 +125,22 @@ function wrongEmailOrPassword() {
     setTimeout(function() { x.className = x.className.replace("show", "");
      }, 4000);
 }
+
+
+function startLogoAnimation() {
+    let animatedLogo = document.getElementById('animated-logo');
+    let animatedLogoContainer = document.getElementById('animated-logo-container');
+    let loginPage = document.getElementById('loginpage');
+
+    loginPage.classList.add('show');
+
+    setTimeout(() => {
+        animatedLogo.style.animation = "logoShrinkAndMove 1s forwards";
+    }, 500);
+
+    setTimeout(() => {
+        animatedLogoContainer.style.backgroundColor = 'transparent';
+    }, 1500);
+}
+
+

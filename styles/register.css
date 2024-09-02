@@ -7,6 +7,10 @@
 
 .d-none {
     display: none !important;
+} 
+
+.hidden {
+    visibility: hidden;
 }
 
 #animated-logo-container {
@@ -17,14 +21,40 @@
     justify-content: center;
     align-items: center;
     z-index: 4;
+
+    position: fixed;
+    top: 0;
+    left: 0;
     
+}
+
+@keyframes logoShrinkAndMove {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+    100% {
+        transform: scale(0.4) translate(-80vw, -70vh);
+    }
 }
 
 #animated-logo {
     width: 274px;
     height: 334px;
     transform-origin: top left;
-    animation: LogoAni 0.5s ease-in-out 0.2s 1 normal none;
+    animation-fill-mode: forwards; 
+}
+
+
+#loginpage,
+#joinlogo {
+    transition: visibility 0s, opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+
+#loginpage.show,
+#joinlogo.show {
+    visibility: visible;
+    opacity: 1;
 }
 
 h1 {
@@ -54,9 +84,9 @@ h1 {
 #joinlogo {
     width: 100px;
     height: 121px;
-    position: relative;
-    top: -30px;
-    left: -580px;
+    position: absolute;
+    top: 50px; 
+    left: 50px;
 }
 
 #signup-headline {
