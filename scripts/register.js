@@ -132,8 +132,6 @@ function startLogoAnimation() {
     let animatedLogoContainer = document.getElementById('animated-logo-container');
     let loginPage = document.getElementById('loginpage');
 
-    loginPage.classList.add('show');
-
     setTimeout(() => {
         animatedLogo.style.animation = "logoShrinkAndMove 1s forwards";
     }, 500);
@@ -141,6 +139,11 @@ function startLogoAnimation() {
     setTimeout(() => {
         animatedLogoContainer.style.backgroundColor = 'transparent';
     }, 1500);
+
+    setTimeout(() => {
+        loginPage.classList.add('show');  
+    }, 1000);  
 }
+
 
 
