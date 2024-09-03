@@ -26,8 +26,8 @@ async function setUsernameOnGreeting() {
             document.getElementById('username-greeting').innerHTML = currentUser.name;
             return;
         } else {
-            const currentUserNoRemember = UserLogin[i];
-            for (let i = 0; i < UserLogin.length; i++) {
+            for (let j = 0; j < UserLogin.length; j++) {
+            const currentUserNoRemember = UserLogin[j];
             console.log(currentUserNoRemember);            
             document.getElementById('username-greeting').innerHTML = currentUserNoRemember.name;
         }
