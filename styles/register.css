@@ -72,6 +72,12 @@
     opacity: 1;
 }
 
+.logo-behind {
+    z-index: 0;
+    position: absolute;
+    pointer-events: none; 
+}
+
 h1 {
     width: 315px;
     height: 74px;

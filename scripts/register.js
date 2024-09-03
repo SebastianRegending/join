@@ -152,6 +152,10 @@ function startLogoAnimation() {
     setTimeout(() => {
         animatedLogoContainer.style.backgroundColor = 'transparent';
     }, 900);
+
+    setTimeout(() => {
+        animatedLogoContainer.classList.add('logo-behind');
+    }, 1000);
 }
 
 
