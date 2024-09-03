@@ -1,5 +1,3 @@
-let UserLogin = [];
-
 function navigateToBoard() {
     window.location.href = 'board.html'
 }
@@ -20,13 +18,21 @@ function setDaytimeOnGreeting() {
 async function setUsernameOnGreeting() {
     const response = await fetch(BASE_URL_USER + "/users.json");
     const data = await response.json();
-    let UserKeys = Object.values(data);
-    UserLogin.push(UserKeys);
-    for (let i = 0; i < UserLogin.length; i++) {
-        const user = UserLogin[i][0]['name'];
-        console.log(UserLogin[i][0]['name']);        
-        if (user) {
-            document.getElementById('username-greeting').innerHTML = user;
+    let UserKeys = Object.values(data);      
+    let userEmail = JSON.parse(localStorage.getItem('email'));
+    for (let i = 0; i < UserKeys.length; i++) {
+        const currentUser = UserKeys[i];     
+        if (currentUser.email == userEmail) {
+            document.getElementById('username-greeting').innerHTML = currentUser.name;
+            return;
+        } else {
+            const currentUserNoRemember = UserLogin[i];
+            for (let i = 0; i < UserLogin.length; i++) {
+            console.log(currentUserNoRemember);            
+            document.getElementById('username-greeting').innerHTML = currentUserNoRemember.name;
         }
     }
 }
+}
+
+
