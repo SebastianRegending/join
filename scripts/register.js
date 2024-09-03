@@ -99,7 +99,6 @@ saveToLocalStorage();
 
 function saveUserLoginNoRemember(user) {
     if (user) {
-        sessionStorage.setItem('email', JSON.stringify(user.email));
         sessionStorage.setItem('name', JSON.stringify(user.name));
     }
 }
