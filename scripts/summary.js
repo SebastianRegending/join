@@ -26,13 +26,9 @@ async function setUsernameOnGreeting() {
             document.getElementById('username-greeting').innerHTML = currentUser.name;
             return;
         } else {
-            for (let j = 0; j < UserLogin.length; j++) {
-            const currentUserNoRemember = UserLogin[j];
-            console.log(currentUserNoRemember);            
-            document.getElementById('username-greeting').innerHTML = currentUserNoRemember.name;
+            let userNameNoRemember = JSON.parse(sessionStorage.getItem('name'));
+            document.getElementById('username-greeting').innerHTML = userNameNoRemember;
         }
     }
 }
-}
-
 
