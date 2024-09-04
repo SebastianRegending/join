@@ -49,6 +49,7 @@
     flex-direction: column;
     justify-content: center;
     margin: 0;
+    white-space: nowrap;
 }
 
 #daytime-greeting {

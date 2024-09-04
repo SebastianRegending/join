@@ -141,8 +141,7 @@ function closeDialog() {
 }
 
 function logOutButton() {
-    document.getElementById('logout-container-container').classList.toggle('d-none');
-    document.getElementById('logout-menu').classList.toggle('d-none');
+    document.getElementById('logout-container').classList.toggle('d-none');
 }
 
 function logOutUser() {
