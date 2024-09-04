@@ -355,9 +355,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-    top: -160px;
-    left: 470px;
+    margin: 0 0 180px 950px;
 }
 
 #toaster {

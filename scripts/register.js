@@ -3,7 +3,6 @@ const BASE_URL_USER = ('https://join-da080-default-rtdb.europe-west1.firebasedat
 let myLoginEmail = [];
 let myLoginPassword = [];
 let myName = [];
-let UserLogin = [];
 
 async function saveNewUser(path = "/users", data = {}) {
     let name = document.getElementById('name');
@@ -22,7 +21,6 @@ async function saveNewUser(path = "/users", data = {}) {
 }
 
 async function loginUser(path = "/users") {
-    // UserLogin = [];
     let response = await fetch(BASE_URL_USER + path + ".json");
     responseToJson = await response.json();
     let UserKeys = Object.values(responseToJson);
@@ -31,8 +29,7 @@ async function loginUser(path = "/users") {
     let user = UserKeys.find(u => u.email == email.value && u.password == password.value);
     if (user) {
         console.log("User gefunden");
-        UserLogin.push(user);
-        console.log(UserLogin)
+        saveUserLoginNoRemember(user);
         window.location.href = 'summary.html';
         saveLogin();
         saveCheckBox();
@@ -98,6 +95,12 @@ function saveLogin() {
     localStorage.clear();
 }
 saveToLocalStorage();
+}
+
+function saveUserLoginNoRemember(user) {
+    if (user) {
+        sessionStorage.setItem('name', JSON.stringify(user.name));
+    }
 }
 
 function saveToLocalStorage() {
