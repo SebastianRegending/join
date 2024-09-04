@@ -151,31 +151,3 @@ function startLogoAnimation() {
 }
 
 
-
-
-// Temporär erhaltene alte Version der Funktion, bis die neue optimierte Version vollständig getestet und verifiziert ist.
-
-// function startLogoAnimation() {
-//     let animatedLogo = document.getElementById('animated-logo');
-//     let animatedLogoContainer = document.getElementById('animated-logo-container');
-//     let loginPage = document.getElementById('loginpage');
-
-//     setTimeout(() => {
-//         animatedLogo.style.animation = "logoShrinkAndMove 1s forwards";
-//     }, 500);
-
-//     setTimeout(() => {
-//         loginPage.classList.remove('hidden');  
-//         loginPage.classList.add('show'); 
-//     }, 800); 
-
-//     setTimeout(() => {
-//         animatedLogoContainer.style.backgroundColor = 'transparent';
-//     }, 900);
-
-//     setTimeout(() => {
-//         animatedLogoContainer.classList.add('logo-behind');
-//     }, 1000);
-// }
-
-
