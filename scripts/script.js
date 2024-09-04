@@ -139,3 +139,22 @@ function closeDialog() {
         dialog.classList.add('d-none');
     }, 500);
 }
+
+function logOutButton() {
+    document.getElementById('logout-container-container').classList.toggle('d-none');
+    document.getElementById('logout-menu').classList.toggle('d-none');
+}
+
+function logOutUser() {
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = 'login.html';
+}
+
+function legalNotice() {
+    window.location.href = 'legalnotice.html';
+}
+
+function privacyPolicy() {
+    window.location.href = 'privacypolicy.html';
+}
