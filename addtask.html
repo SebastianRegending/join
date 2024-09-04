@@ -15,57 +15,72 @@
 <body onload="includeHTML(); loadContacts()">
     <div w3-include-html="./menu.html"></div>
     <h1>Add Task</h1>
-    <form class="add-task-form" onsubmit="addTask()">
-        <div class="form-left-side">
-            <label for="input-title">Title<span class="red-letter">*</span></label>
-            <input class="input-field" id="input-title" required type="text" placeholder="Enter a title">
-            <label for="input-description">Description</label>
-            <textarea id="input-description" placeholder="Enter a Description"></textarea>
-            <label>Assigned to</label>
-            <div class="multiselect">
-                <div class="selectBox" onclick="showCheckboxes()">
-                    <select class="input-field-select">
-                        <option>Select contacts to assign</option>
-                    </select>
-                    <div class="overSelect"></div>
-                </div>
-                <div id="checkboxes">
+    <form onsubmit="addTask()">
+        <div class="add-task-form">
+            <div class="form-left-side">
+                <label for="input-title">Title<span class="red-letter">*</span></label>
+                <input class="input-field" id="input-title" required type="text" placeholder="Enter a title">
+                <label for="input-description">Description</label>
+                <textarea id="input-description" placeholder="Enter a Description"></textarea>
+                <label>Assigned to</label>
+                <div class="multiselect">
+                    <div class="selectBox" onclick="showCheckboxes()">
+                        <select class="input-field-select">
+                            <option>Select contacts to assign</option>
+                        </select>
+                        <div class="overSelect"></div>
+                    </div>
+                    <div id="checkboxes">
+                    </div>
                 </div>
             </div>
+            <div class="form-right-side">
+                <label for="deadline">Due date</label>
+                <input class="input-field" type="date" placeholder="dd/mm/yyyy" id="deadline">
+                <span>Prio</span>
+                    <div class="flexed">
+                        
+                    <div class="prio-container" id="prio-urgent" onclick="setPrio('urgent'); colorPrioUrgent()">
+                        Urgent<img id="prio-pic-urgent" src="./assets/img/urgent-icon.svg"></div>
+
+                    <div class="prio-container prio-active-medium" id="prio-medium"
+                        onclick="setPrio('medium'); colorPrioMedium()">Medium <img id="prio-pic-medium"
+                            src="./assets/img/medium-icon.svg"></div>
+
+                    <div class="prio-container" id="prio-low" onclick="setPrio('low'); colorPrioLow()">Low <img
+                            id="prio-pic-low" src="./assets/img/low-icon.svg"></div>
+                        
+                    </div>
+                <label for="category">Category</label>
+                <select class="input-field" name="category" id="category">
+                    <option value="" disabled selected hidden>Select your option</option>
+                    <option value="Technical Task">Technical Task</option>
+                    <option value="User Story">User Story</option>
+                </select>
+                <label for="subtasks">Subtasks</label>
+                <div class="input-field-subtasks input-field-subtasks-smaller">
+                    <input id="subtasks" onfocus="openAddSubtask()">
+                    <div onclick="openAddSubtask()" id="add-button-icon-plus" class="add-subtask"><img
+                            src="./assets/img/add.svg"></div>
+
+                    <div class="cancel-container">
+                        <div class="d-none" onclick="cancelAddSubtask()" id="add-button-icon-cancel"><img
+                                src="./assets/img/cancel.svg"></div>
+                    </div>
+
+                    <div onclick="addSubtask()" id="add-button-icon-check" class="d-none"><img id="check"
+                            src="./assets/img/checkstandard.svg"></div>
+                </div>
+
+                <div class="flex-column" id="added-subtasks"></div>
+            </div>
         </div>
-        <div class="form-right-side">
-            <label for="deadline">Due date</label>
-            <input class="input-field" type="date" placeholder="dd/mm/yyyy" id="deadline">
-            <span>Prio</span>
+        <div class="submit-area">
+            <span><span class="red-letter">*</span>This field is required</span>
             <div class="flexed">
-                <div class="prio-container" id="prio-urgent" onclick="setPrio('urgent'); colorPrioUrgent()">Urgent<img
-                        id="prio-pic-urgent" src="./assets/img/urgent-icon.svg"></div>
-                <div class="prio-container prio-active-medium" id="prio-medium"
-                    onclick="setPrio('medium'); colorPrioMedium()">Medium <img id="prio-pic-medium"
-                        src="./assets/img/medium-icon.svg"></div>
-                <div class="prio-container" id="prio-low" onclick="setPrio('low'); colorPrioLow()">Low <img
-                        id="prio-pic-low" src="./assets/img/low-icon.svg"></div>
+                <div class="white-btn">Clear</div>
+                <button class="blue-btn">Create Task</button>
             </div>
-            <label for="category">Category</label>
-            <select class="input-field" name="category" id="category">
-                <option value="" disabled selected hidden>Select your option</option>
-                <option value="Technical Task">Technical Task</option>
-                <option value="User Story">User Story</option>
-            </select>
-            <label for="subtasks">Subtasks</label>
-            <div class="input-field-subtasks input-field-subtasks-smaller">
-                <input id="subtasks">
-                <div id="add-button-icon-plus" class="add-subtask d-none"><img src="./assets/img/add.svg"></div>
-
-                <div class="add-subtask" onclick="cancelAddSubtask()"><img src="./assets/img/cancel.svg"></div>
-                <div onclick="addSubtask()"><img id="check" src="./assets/img/check.svg"></div>
-            </div>
-
-            <div class="flex-column" id="added-subtasks"></div>
-        </div>
-        <div>
-            <div>Clear</div>
-            <button>Create Task</button>
         </div>
 
     </form>

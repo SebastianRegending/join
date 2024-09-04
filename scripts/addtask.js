@@ -124,9 +124,10 @@ function addSubtask() {
   subtasks.push(subtask.value);
   document.getElementById('added-subtasks').innerHTML = ``;
   for (let i = 0; i < subtasks.length; i++) {
-    document.getElementById('added-subtasks').innerHTML += `${subtasks[i]}`;
+    document.getElementById('added-subtasks').innerHTML += `<li>${subtasks[i]}</li>`;
   }
   document.getElementById('subtasks').value = ``;
+  cancelAddSubtask()
 }
 
 
@@ -149,4 +150,18 @@ function colorPrioLow(){
   document.getElementById('prio-low').classList.add('prio-active-low');
 }
 
+function openAddSubtask() {
+document.getElementById('add-button-icon-plus').classList.add('d-none');
+document.getElementById('add-button-icon-cancel').classList.remove('d-none');
+document.getElementById('add-button-icon-check').classList.remove('d-none');
+document.getElementById('subtasks').focus();
+}
+
+
+function cancelAddSubtask(){
+  document.getElementById('add-button-icon-plus').classList.remove('d-none');
+  document.getElementById('add-button-icon-cancel').classList.add('d-none');
+  document.getElementById('add-button-icon-check').classList.add('d-none');
+
+}
 

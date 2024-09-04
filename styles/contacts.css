@@ -20,8 +20,6 @@ body{
     margin-top: 0;
 
     padding: 22px 28px 22px 28px;
-
-
 }
 
 .add-contact-button {
@@ -55,6 +53,7 @@ body{
     gap: 40px;
 
 }
+
 
 .blue-btn {
     width: 214px;
@@ -102,6 +101,7 @@ body{
     cursor: pointer;
     transition: 100ms linear;
 }
+
 
 .white-input-btn:hover {
     color: #29ABE2;
