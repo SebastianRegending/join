@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +10,18 @@
     <link rel="stylesheet" href="./styles/assets.css">
     <link rel="stylesheet" href="./styles/fonts.css">
     <link rel="stylesheet" href="./styles/register.css">
+    <link rel="icon" type="image/x-icon" href="./assets/img/join.png">
 
 </head>
+
 <body>
     <main id="registerpage">
         <form id="registerform" onsubmit="saveNewUser(); return false;">
             <div id="signup-headline">
-                
-                <h1 class="h1-signup"><img class="arrow-left-line" src="./assets/img/arrow-left-line.png" onclick="backToLogin()">Sign up</h1>
-            <div id="border-headline"></div>
+
+                <h1 class="h1-signup"><img class="arrow-left-line" src="./assets/img/arrow-left-line.png"
+                        onclick="backToLogin()">Sign up</h1>
+                <div id="border-headline"></div>
             </div>
             <input id="name" class="input-field" type="text" placeholder="Name" required>
             <img src="./assets/img/person.png" alt="person" class="small-icons-inputfield">
@@ -30,11 +34,13 @@
             <div id="privacy-policy-accept">
                 <input id="checkbox" class="checkbutton" type="checkbox" required onclick="isChecked()">
                 I accept the
-                <a href="privacypolicy.html" id="link-privacy-policy" class="link-privacy-policy-style">Privacy policy</a>
-            </div> 
+                <a href="privacypolicy.html" id="link-privacy-policy" class="link-privacy-policy-style">Privacy
+                    policy</a>
+            </div>
             <button id="input-btn" disabled onclick="confirmPassword()">Sign up</button>
         </form>
         <div id="toaster">You Signed Up successfully</div>
-</main>
+    </main>
 </body>
+
 </html>
