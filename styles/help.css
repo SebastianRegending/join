@@ -1,0 +1,37 @@
+body{
+    background-color: #F6F7F8;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.help-container{
+    margin-top: 80px;
+    margin-left: 338px;
+    max-width: 1440px;
+    margin-right: 80px;
+}
+
+.help-container h1{
+    font-size: 60px;
+}
+
+li {
+    margin-bottom: 32px;
+}
+
+ol > li::marker {
+  font-weight: bold; 
+}
+
+li {
+  position: relative;
+  padding-left: 35px;
+}
+
+li:before {
+  position: absolute;
+}
+
+.enjoy-using-join{
+    margin-bottom: 64px;
+}
