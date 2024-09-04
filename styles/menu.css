@@ -102,6 +102,15 @@ a {
 
 /* HEADER */
 
+/* header {
+    position: fixed;
+    top: 0;
+    width: calc(100% - 232px);
+    z-index: 1000; 
+    background-color: #ffffff; 
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+} */
+
 .header {
     margin-left: 232px; 
     padding: 20px;
@@ -123,6 +132,7 @@ a {
     display: flex;
     align-items: center;
     gap: 16px;
+    margin-right: 64px;
 }
 
 .user-profil{
