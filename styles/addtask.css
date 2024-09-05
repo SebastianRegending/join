@@ -11,6 +11,11 @@ h1 {
   display: flex;
 }
 
+.button-area-prio{
+  justify-content: space-between;
+  margin-bottom: 32px;
+  }
+
 .form-left-side {
   display: flex;
   flex-direction: column;
@@ -25,11 +30,12 @@ h1 {
 }
 
 .multiselect {
-  width: 200px;
+  width: 475px;
 }
 
 .selectBox {
   position: relative;
+  
 }
 
 .selectBox select {
@@ -39,6 +45,7 @@ h1 {
 
 .overSelect {
   position: absolute;
+  
   left: 0;
   right: 0;
   top: 0;
@@ -64,7 +71,7 @@ label {
 
 .input-field {
   font-family: Inter;
-  width: 440px;
+  width: 440px ;
   height: 48px;
   border: 1px solid #D1D1D1;
   border-radius: 10px;
@@ -190,10 +197,6 @@ option {
 
 }
 
-.multiselect {
-  width: 475px;
-
-}
 
 .contact-for-form {
   width: 440px;
@@ -349,6 +352,22 @@ padding: 12px;
   cursor: pointer;
 }
 
+#category{
+  width:475px;
+}
+
+#circle-area-assigned-contacts{
+  display:flex;
+
+}
+
+.assigned-contacts{
+  margin: 0 !important;
+  padding: 0 !important;
+  
+ }
+
+
 #add-button-icon-cancel{
   border-radius: 50%;
   display: flex;
@@ -421,4 +440,22 @@ padding: 12px;
 
 .circle-green {
   background-color: #33691e !important;
+}
+
+.z1{
+  z-index: 1;
+}
+.z2{
+  z-index: 2;
+  left:310px;
+}
+.z3{
+  z-index: 3;
+  left:350px;
+}
+.z4{
+  z-index: 390px;
+}
+.z5{
+  z-index: 430px;
 }

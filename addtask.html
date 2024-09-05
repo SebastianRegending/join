@@ -15,7 +15,7 @@
 <body onload="includeHTML(); loadContacts()">
     <div w3-include-html="./menu.html"></div>
     <h1>Add Task</h1>
-    <form onsubmit="addTask()">
+    <form onsubmit="addTask(); return false">
         <div class="add-task-form">
             <div class="form-left-side">
                 <label for="input-title">Title<span class="red-letter">*</span></label>
@@ -33,12 +33,15 @@
                     <div id="checkboxes">
                     </div>
                 </div>
+                <div id="circle-area-assigned-contacts">
+                    
+                </div>
             </div>
             <div class="form-right-side">
-                <label for="deadline">Due date</label>
-                <input class="input-field" type="date" placeholder="dd/mm/yyyy" id="deadline">
+                <label for="deadline">Due date<span class="red-letter">*</span></label>
+                <input class="input-field" type="date" placeholder="dd/mm/yyyy" id="deadline" required>
                 <span>Prio</span>
-                    <div class="flexed">
+                    <div class="flexed button-area-prio">
                         
                     <div class="prio-container" id="prio-urgent" onclick="setPrio('urgent'); colorPrioUrgent()">
                         Urgent<img id="prio-pic-urgent" src="./assets/img/urgent-icon.svg"></div>
@@ -51,8 +54,8 @@
                             id="prio-pic-low" src="./assets/img/low-icon.svg"></div>
                         
                     </div>
-                <label for="category">Category</label>
-                <select class="input-field" name="category" id="category">
+                <label for="category">Category<span class="red-letter">*</span></label>
+                <select class="input-field" name="category" id="category" required>
                     <option value="" disabled selected hidden>Select your option</option>
                     <option value="Technical Task">Technical Task</option>
                     <option value="User Story">User Story</option>
