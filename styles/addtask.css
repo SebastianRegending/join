@@ -278,6 +278,8 @@ max-width: 1028px;
 }
 
 
+
+
 #subtasks{
   font-family: Inter;
   width: 440px;
@@ -296,6 +298,11 @@ max-width: 1028px;
   outline: none !important;
   border: 0px ;
 }
+
+#subtasks::placeholder {
+  color: #D1D1D1;
+}
+
 
 .d-none {
   display: none;
@@ -374,8 +381,19 @@ padding: 12px;
   align-items: center;
   justify-content: center;
   padding: 12px;
-  
 }
+
+#deadline{
+  display: block !important;
+}
+
+#deadline::placeholder {
+  color: #D1D1D1 !important;
+}
+
+
+
+
 
 #add-button-icon-check:hover{
   background-color: #D1D1D1;
@@ -444,18 +462,61 @@ padding: 12px;
 
 .z1{
   z-index: 1;
+  left: 0px;
+  position: relative;
 }
 .z2{
   z-index: 2;
-  left:310px;
+  left: -10px;
+  position: relative;
 }
 .z3{
   z-index: 3;
-  left:350px;
+  left: -20px;
+  position: relative;
 }
 .z4{
-  z-index: 390px;
+  z-index: 4;
+  left: -30px;
+  position: relative;
 }
 .z5{
-  z-index: 430px;
+  z-index: 5;
+  left: -40px;
+  position: relative;
+}
+.z6{
+  z-index: 6;
+  left: -50px;
+  position: relative;
+}
+.z7{
+  z-index: 7;
+  left: -60px;
+  position: relative;
+}
+.z8{
+  z-index: 8;
+  left: -70px;
+  position: relative;
+}
+.z9{
+  z-index: 9;
+  left: -80px;
+  position: relative;
+}
+.z10{
+  z-index: 10;
+  left: -90px;
+  position: relative;
+}
+.z11{
+  z-index: 10;
+  left: -40px;
+  position: relative;
+}
+.z12{
+  z-index: 110;
+  left: -40px;
+  position: relative;
 }
