@@ -76,6 +76,17 @@ a {
      
 }
 
+.menu-item.active {
+    background-color: #091931;
+}
+
+
+.link-desktop-active {
+    background-color: #091931;
+    color: white;
+    cursor: default;
+}
+
 .menu-item img {
     margin-right: 10px; 
     width: 30px;
@@ -110,19 +121,18 @@ a {
 
 
 .header {
-    position: fixed; /* Fixiert den Header oben */
-    top: 0; /* Setzt den Header an die obere Position */
+    position: fixed; 
+    top: 0; 
     left: 0;
-    width: calc(100% - 232px); /* Nimmt den verbleibenden Platz ein */
-    margin-left: 232px; /* Lässt Platz für die Sidebar */
-    padding: 20px;
+    width: calc(100% - 232px);
+    margin-left: 232px; 
     background-color: #ffffff;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 96px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Stellt sicher, dass der Header über dem Inhalt liegt */
+    z-index: 1000; 
 }
 
 .header h3{
