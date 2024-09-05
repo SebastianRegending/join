@@ -14,6 +14,7 @@
 
 <body onload="includeHTML(); loadContacts()">
     <div w3-include-html="./menu.html"></div>
+    <section class="fullpage">
     <h1>Add Task</h1>
     <form onsubmit="addTask(); return false">
         <div class="add-task-form">
@@ -34,15 +35,15 @@
                     </div>
                 </div>
                 <div id="circle-area-assigned-contacts">
-                    
+
                 </div>
             </div>
             <div class="form-right-side">
                 <label for="deadline">Due date<span class="red-letter">*</span></label>
                 <input class="input-field" type="date" placeholder="dd/mm/yyyy" id="deadline" required>
                 <span>Prio</span>
-                    <div class="flexed button-area-prio">
-                        
+                <div class="flexed button-area-prio">
+
                     <div class="prio-container" id="prio-urgent" onclick="setPrio('urgent'); colorPrioUrgent()">
                         Urgent<img id="prio-pic-urgent" src="./assets/img/urgent-icon.svg"></div>
 
@@ -52,8 +53,8 @@
 
                     <div class="prio-container" id="prio-low" onclick="setPrio('low'); colorPrioLow()">Low <img
                             id="prio-pic-low" src="./assets/img/low-icon.svg"></div>
-                        
-                    </div>
+
+                </div>
                 <label for="category">Category<span class="red-letter">*</span></label>
                 <select class="input-field" name="category" id="category" required>
                     <option value="" disabled selected hidden>Select your option</option>
@@ -81,12 +82,13 @@
         <div class="submit-area">
             <span><span class="red-letter">*</span>This field is required</span>
             <div class="flexed">
-                <div class="white-btn">Clear</div>
-                <button class="blue-btn">Create Task</button>
+                <div class="white-btn" onclick="clearTasks()">Clear <img src="./assets/img/cancel.svg"></div>
+                <button class="blue-btn">Create Task<img src="./assets/img/check.svg"></button>
             </div>
         </div>
 
     </form>
+</section>
 </body>
 
 </html>

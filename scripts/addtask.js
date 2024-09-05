@@ -1,4 +1,3 @@
-
 let contacts = [];
 let IDs;
 let expanded = false;
@@ -11,6 +10,7 @@ let taskID = [];
 let checkedContacts = [];
 let checkedContactsColors = [];
 let checkedContactsInits = [];
+let progress = "To Do";
 
 
 
@@ -44,7 +44,6 @@ async function loadContacts() {
       </label>`;
 
     }
-
     n++
   }
 }
@@ -52,22 +51,22 @@ async function loadContacts() {
 
 function addCircle(color, id, inits) {
   let check = document.getElementById(id);
-  
+
   if (check.checked == true) {
-         checkedContacts.push(id);
-         checkedContactsColors.push(color);
-         checkedContactsInits.push(inits);
-    }
-   else {
+    checkedContacts.push(id);
+    checkedContactsColors.push(color);
+    checkedContactsInits.push(inits);
+  }
+  else {
     let indexForSplicing = checkedContacts.findIndex(item => item === id);
-          checkedContacts.splice(indexForSplicing, 1);
-          checkedContactsColors.splice(indexForSplicing, 1);
-          checkedContactsInits.splice(indexForSplicing, 1);
-      }
+    checkedContacts.splice(indexForSplicing, 1);
+    checkedContactsColors.splice(indexForSplicing, 1);
+    checkedContactsInits.splice(indexForSplicing, 1);
+  }
   document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
 
   for (let i = 0; i < checkedContacts.length; i++) {
-    document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsColors[i]} assigned-contacts z${i+1}">${checkedContactsInits[i]}</div>`;
+    document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsColors[i]} assigned-contacts z${i + 1}">${checkedContactsInits[i]}</div>`;
   }
 }
 
@@ -79,18 +78,17 @@ async function addTask() {
 
   let category = document.getElementById('category');
 
+  await uploadTask(title, description, deadline, category, assignedContacts);
 
- await uploadTask(title, description, deadline, category, assignedContacts);
 
-
- await updateContactsTask(assignedContacts);
+  await updateContactsTask(assignedContacts);
 }
 
 
 
 async function uploadTask(title, description, deadline, category, assignedContacts) {
 
-  data = ({ title: title.value, description: description.value, deadline: deadline.value, prio: prio, category: category.value, contacts: assignedContacts, subtasks: subtasks });
+  data = ({ title: title.value, description: description.value, deadline: deadline.value, prio: prio, category: category.value, contacts: assignedContacts, subtasks: subtasks, progress: progress  });
 
   let response = await fetch(URL_tasks + ".json", {
     method: "POST",
@@ -102,125 +100,146 @@ async function uploadTask(title, description, deadline, category, assignedContac
 
   let responseToJson = await response.json();
 
-      if (responseToJson['tasks']) {
-        responseToJson['tasks'].forEach(task => {
-          taskID.push(task);
-        });}
-
-    taskID.push(responseToJson['name']);
-    return responseToJson;
-  }
-
-
-  function json2arrayContacts(json) {
-    let result = [];
-    let keys = Object.keys(json);
-    keys.forEach(function (key) {
-      result.push(json[key]);
+  if (responseToJson['tasks']) {
+    responseToJson['tasks'].forEach(task => {
+      taskID.push(task);
     });
-    return result;
   }
 
-  function json2arrayIDs(json) {
-    let result = [];
-    let keys = Object.keys(json);
-    keys.forEach(function (key) {
-      let contact = json[key];
-      contact.id = key;
-      result.push(json[key]);
-    });
-    return result;
+  taskID.push(responseToJson['name']);
+  return responseToJson;
+}
+
+
+function json2arrayContacts(json) {
+  let result = [];
+  let keys = Object.keys(json);
+  keys.forEach(function (key) {
+    result.push(json[key]);
+  });
+  return result;
+}
+
+function json2arrayIDs(json) {
+  let result = [];
+  let keys = Object.keys(json);
+  keys.forEach(function (key) {
+    let contact = json[key];
+    contact.id = key;
+    result.push(json[key]);
+  });
+  return result;
+}
+
+function setPrio(priority) {
+  prio = priority;
+}
+
+
+function getSelected() {
+
+  let checkboxes = document.querySelectorAll('input[name="contacts"]:checked');
+  let selectedData = [];
+
+  checkboxes.forEach((checkbox) => {
+
+    let name = checkbox.value;
+    let id = checkbox.getAttribute('data-id');
+    let letter = checkbox.getAttribute('data-letter');
+
+    selectedData.push({ name: name, id: id, letter: letter });
+
+
+  });
+  return selectedData;
+}
+
+
+function addSubtask() {
+  let subtask = document.getElementById('subtasks');
+  subtasks.push(subtask.value);
+  document.getElementById('added-subtasks').innerHTML = ``;
+  for (let i = 0; i < subtasks.length; i++) {
+    document.getElementById('added-subtasks').innerHTML += `<li>${subtasks[i]}</li>`;
   }
+  document.getElementById('subtasks').value = ``;
+  cancelAddSubtask()
+}
 
-  function setPrio(priority) {
-    prio = priority;
+
+function colorPrioUrgent() {
+  document.getElementById('prio-urgent').classList.add('prio-active-urgent');
+  document.getElementById('prio-medium').classList.remove('prio-active-medium');
+  document.getElementById('prio-low').classList.remove('prio-active-low');
+}
+
+
+function colorPrioMedium() {
+  document.getElementById('prio-urgent').classList.remove('prio-active-urgent');
+  document.getElementById('prio-medium').classList.add('prio-active-medium');
+  document.getElementById('prio-low').classList.remove('prio-active-low');
+}
+
+function colorPrioLow() {
+  document.getElementById('prio-urgent').classList.remove('prio-active-urgent');
+  document.getElementById('prio-medium').classList.remove('prio-active-medium');
+  document.getElementById('prio-low').classList.add('prio-active-low');
+}
+
+function openAddSubtask() {
+  document.getElementById('add-button-icon-plus').classList.add('d-none');
+  document.getElementById('add-button-icon-cancel').classList.remove('d-none');
+  document.getElementById('add-button-icon-check').classList.remove('d-none');
+  document.getElementById('subtasks').focus();
+}
+
+
+function cancelAddSubtask() {
+  document.getElementById('add-button-icon-plus').classList.remove('d-none');
+  document.getElementById('add-button-icon-cancel').classList.add('d-none');
+  document.getElementById('add-button-icon-check').classList.add('d-none');
+}
+
+
+async function updateContactsTask(assignedContacts) {
+  for (let contact of assignedContacts) {
+    let path = `/letter${contact['letter']}/${contact['id']}`;
+    let response = await fetch(URL_contacts + path + ".json");
+    let responseToJson = await response.json();
+    uploadNewData(responseToJson, path)
   }
+}
 
 
-  function getSelected() {
+async function uploadNewData(dataForUpdate, path) {
+  let data = ({ name: dataForUpdate['name'], email: dataForUpdate['email'], phone: dataForUpdate['phone'], initials: dataForUpdate['initials'], color: dataForUpdate['color'], tasks: taskID});
 
-    let checkboxes = document.querySelectorAll('input[name="contacts"]:checked');
-    let selectedData = [];
+  let response = await fetch(URL_contacts + path + ".json", {
+    method: "PUT",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data)
+  });
+  return responseToJson = await response.json();
+}
 
-    checkboxes.forEach((checkbox) => {
-
-      let name = checkbox.value;
-      let id = checkbox.getAttribute('data-id');
-      let letter = checkbox.getAttribute('data-letter');
-
-      selectedData.push({ name: name, id: id, letter: letter });
-
-
-    });
-    return selectedData;
-  }
-
-
-  function addSubtask() {
-    let subtask = document.getElementById('subtasks');
-    subtasks.push(subtask.value);
-    document.getElementById('added-subtasks').innerHTML = ``;
-    for (let i = 0; i < subtasks.length; i++) {
-      document.getElementById('added-subtasks').innerHTML += `<li>${subtasks[i]}</li>`;
-    }
-    document.getElementById('subtasks').value = ``;
-    cancelAddSubtask()
-  }
-
-
-  function colorPrioUrgent() {
-    document.getElementById('prio-urgent').classList.add('prio-active-urgent');
-    document.getElementById('prio-medium').classList.remove('prio-active-medium');
-    document.getElementById('prio-low').classList.remove('prio-active-low');
-  }
+function clearTasks(){
+document.getElementById('input-title').value = ``;
+document.getElementById('input-description').value = ``;
+let checkboxes = document.querySelectorAll('input[name="contacts"]:checked');
+checkboxes.forEach(el => el.checked = false);
+checkedContacts = [];
+checkedContactsColors = [];
+checkedContactsInits = [];
+document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
+document.getElementById('deadline').value = ``;
+colorPrioMedium();
+prio = "medium";
+document.getElementById('category').innerHTML = ``;
+document.getElementById('subtasks').innerHTML = ``;
+document.getElementById('added-subtasks').innerHTML = ``;
+subtasks = [];
+}
 
 
-  function colorPrioMedium() {
-    document.getElementById('prio-urgent').classList.remove('prio-active-urgent');
-    document.getElementById('prio-medium').classList.add('prio-active-medium');
-    document.getElementById('prio-low').classList.remove('prio-active-low');
-  }
-
-  function colorPrioLow() {
-    document.getElementById('prio-urgent').classList.remove('prio-active-urgent');
-    document.getElementById('prio-medium').classList.remove('prio-active-medium');
-    document.getElementById('prio-low').classList.add('prio-active-low');
-  }
-
-  function openAddSubtask() {
-    document.getElementById('add-button-icon-plus').classList.add('d-none');
-    document.getElementById('add-button-icon-cancel').classList.remove('d-none');
-    document.getElementById('add-button-icon-check').classList.remove('d-none');
-    document.getElementById('subtasks').focus();
-  }
-
-
-  function cancelAddSubtask() {
-    document.getElementById('add-button-icon-plus').classList.remove('d-none');
-    document.getElementById('add-button-icon-cancel').classList.add('d-none');
-    document.getElementById('add-button-icon-check').classList.add('d-none');
-  }
-
-
-  async function updateContactsTask(assignedContacts) {
-    for (let contact of assignedContacts) {
-      let path = `/letter${contact['letter']}/${contact['id']}`;
-      let response = await fetch(URL_contacts + path + ".json");
-      let responseToJson = await response.json();
-      uploadNewData(responseToJson, path)
-    }
-  }
-
-
-  async function uploadNewData(dataForUpdate, path) {
-    let data = ({ name: dataForUpdate['name'], email: dataForUpdate['email'], phone: dataForUpdate['phone'], initials: dataForUpdate['initials'], color: dataForUpdate['color'], tasks: taskID });
-
-    let response = await fetch(URL_contacts + path + ".json", {
-      method: "PUT",
-      header: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data)
-    });
-    return responseToJson = await response.json();
-  }

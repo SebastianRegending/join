@@ -1,11 +1,23 @@
 .add-task-form {
   display: flex;
   margin-left: 232px;
-}
+ }
+
+
+ body{
+  background-color: #F6F7F8;
+ }
 
 h1 {
   margin-left: 272px;
 }
+
+
+.fullpage{
+  margin-top: 96px;
+  padding-top: 40px;
+ }
+
 
 .flexed {
   display: flex;
@@ -55,6 +67,12 @@ h1 {
 #checkboxes {
   display: none;
   border: 1px #dadada solid;
+  height: 150px;
+  overflow-y: auto;
+
+  --sb-track-color: #ffffff;
+  --sb-thumb-color: #a8a8a8;
+  --sb-size: 6px;
 }
 
 #checkboxes label {
@@ -63,6 +81,21 @@ h1 {
 
 #checkboxes label:hover {
   background-color: #1e90ff;
+}
+
+
+#checkboxes::-webkit-scrollbar {
+  width: var(--sb-size)
+}
+
+#checkboxes::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 17px;
+}
+
+#checkboxes::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 17px;
 }
 
 label {
@@ -104,6 +137,9 @@ label {
   justify-content: space-between;
   font-size: 21px;
   margin: 4px 0 32px 0;
+  overflow: auto;
+  resize: none;
+  word-break: keep-all;
 
 }
 
@@ -392,7 +428,15 @@ padding: 12px;
 }
 
 
-
+.contact-for-form{
+  border-radius: 10px;
+  }
+  
+  
+  .contact-for-form:hover{
+  background-color: #d1d1d1 !important;
+  }
+  
 
 
 #add-button-icon-check:hover{
@@ -519,4 +563,8 @@ padding: 12px;
   z-index: 110;
   left: -40px;
   position: relative;
+}
+
+.bg-blue{
+background-color: #0038ff;
 }
