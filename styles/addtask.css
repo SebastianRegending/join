@@ -4,16 +4,24 @@
 }
 
 h1 {
-  margin-left: 232px;
+  margin-left: 272px;
 }
 
 .flexed {
   display: flex;
 }
 
+.button-area-prio{
+  justify-content: space-between;
+  margin-bottom: 32px;
+  }
+
 .form-left-side {
   display: flex;
   flex-direction: column;
+  margin: 24px 40px 24px 40px;
+  padding-right: 40px;
+  border-right: solid 1px #D1D1D1;
 }
 
 .form-right-side {
@@ -22,11 +30,12 @@ h1 {
 }
 
 .multiselect {
-  width: 200px;
+  width: 475px;
 }
 
 .selectBox {
   position: relative;
+  
 }
 
 .selectBox select {
@@ -36,6 +45,7 @@ h1 {
 
 .overSelect {
   position: absolute;
+  
   left: 0;
   right: 0;
   top: 0;
@@ -61,7 +71,7 @@ label {
 
 .input-field {
   font-family: Inter;
-  width: 440px;
+  width: 440px ;
   height: 48px;
   border: 1px solid #D1D1D1;
   border-radius: 10px;
@@ -187,10 +197,6 @@ option {
 
 }
 
-.multiselect {
-  width: 475px;
-
-}
 
 .contact-for-form {
   width: 440px;
@@ -204,6 +210,71 @@ option {
   position: relative;
   margin-left: auto;
   margin-right: 40px;
+}
+
+.submit-area{
+  display: flex;
+  justify-content: space-between;
+margin-left: 272px;
+max-width: 1028px;
+}
+
+.submit-area button{
+  margin-left: 24px;
+}
+
+
+.blue-btn {
+  width: 214px;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background-color: #2A3647;
+  color: white;
+  font-family: Inter-Bold;
+  font-size: 21px;
+  cursor: pointer;
+  transition: 100ms linear;
+  gap: 4px;
+}
+
+.blue-btn:hover {
+  background-color: #29ABE2;
+  box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.white-btn {
+  width: 126px;
+  height: 57px;
+  gap: 4px;
+  display: flex;
+  color: #2A3647;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #2A3647;
+  border-radius: 8px;
+  /* padding: 15px 24px; */
+  background-color: white;
+  font-family: Inter-Bold;
+  font-size: 21px;
+  cursor: pointer;
+  transition: 100ms linear;
+}
+
+.white-btn:hover {
+  color: #29ABE2;
+  border-color: #29ABE2;
+  box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+.white-btn:hover img {
+  filter: invert(66%) sepia(29%) saturate(4458%) hue-rotate(165deg) brightness(93%) contrast(89%);
+  transition: 100ms linear;
 }
 
 
@@ -246,23 +317,77 @@ option {
 
 .input-field-subtasks img:hover{
   cursor: pointer;
-  background-color: #D1D1D1;
-  border-radius: 50%;
+  
+  
 }
 
 .flex-column{
   display:flex;
   flex-direction: column;
 }
+#add-button-icon-plus{
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 12px;
+}
 
-#check{
-  filter: invert(18%) sepia(10%) saturate(1919%) hue-rotate(176deg) brightness(88%) contrast(88%);
-  border-left: 1px solid #D1D1D1;
+#add-button-icon-plus:hover{
+  background-color: #D1D1D1;
+  cursor: pointer;
+}
+
+#add-button-icon-check{
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  
+}
+
+#add-button-icon-cancel:hover{
+  background-color: #D1D1D1;
+  cursor: pointer;
+}
+
+#category{
+  width:475px;
+}
+
+#circle-area-assigned-contacts{
+  display:flex;
 
 }
-.add-subtask{
-  margin-right: 12px;
+
+.assigned-contacts{
+  margin: 0 !important;
+  padding: 0 !important;
+  
+ }
+
+
+#add-button-icon-cancel{
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  
 }
+
+#add-button-icon-check:hover{
+  background-color: #D1D1D1;
+  cursor: pointer;
+}
+
+.cancel-container{
+  border-right: 1px solid #D1D1D1;  
+}
+
+
+
 
 .circle {
   border-radius: 50%;
@@ -315,4 +440,22 @@ option {
 
 .circle-green {
   background-color: #33691e !important;
+}
+
+.z1{
+  z-index: 1;
+}
+.z2{
+  z-index: 2;
+  left:310px;
+}
+.z3{
+  z-index: 3;
+  left:350px;
+}
+.z4{
+  z-index: 390px;
+}
+.z5{
+  z-index: 430px;
 }

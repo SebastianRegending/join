@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/menu.css">
     <link rel="icon" type="image/x-icon" href="./assets/img/join.png">
+    <script src="./scripts/script.js"></script>
     <title>Document</title>
 </head>
 
@@ -46,10 +47,16 @@
 
         <div class="help-user-icons">
             <a href="help.html"> <img class="help-icon" src="./assets/img/help.png" alt="help-icon"> </a>
-            <img class="user-profil" src="./assets/img/user.png" alt="user-profil">
+            <img class="user-profil" src="./assets/img/user.png" alt="user-profil" onclick="logOutButton()">
         </div>
     </header>
-
+    <div id="logout-container" class="d-none">
+        <div id="logout-menu">
+            <button class="logout-menu-btn" onclick="legalNotice()">Legal Notice</button>
+            <button class="logout-menu-btn" onclick="privacyPolicy()">Privacy Policy</button>
+            <button class="logout-menu-btn" onclick="logOutUser()">Log out</button>
+        </div>
+    </div>
 </body>
 
 </html>

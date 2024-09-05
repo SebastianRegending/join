@@ -7,6 +7,12 @@ let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.a
 let prio = "medium";
 let contactsArray = [];
 let subtasks = [];
+let taskID = [];
+let checkedContacts = [];
+let checkedContactsColors = [];
+let checkedContactsInits = [];
+
+
 
 function showCheckboxes() {
   let checkboxes = document.getElementById("checkboxes");
@@ -31,10 +37,10 @@ async function loadContacts() {
     for (let i = 0; i < IDs.length; i++) {
 
       document.getElementById('checkboxes').innerHTML += `
-      <label  for="contacts${i}" class="contact-for-form">
-          <div class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}</div>
+      <label for="contacts${n}" class="contact-for-form">
+          <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}</div>
           <div>${IDs[i]['name']}</div> 
-          <input class="input-check" type="checkbox" name="contacts${i}" value="${IDs[i]['name']}" id="$contact-${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}"/>
+          <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircle('${IDs[i]['color']}', 'contact-${n}', '${IDs[i]['initials']}')"/>
       </label>`;
 
     }
@@ -43,7 +49,29 @@ async function loadContacts() {
   }
 }
 
-function addTask() {
+
+function addCircle(color, id, inits) {
+  let check = document.getElementById(id);
+  
+  if (check.checked == true) {
+         checkedContacts.push(id);
+         checkedContactsColors.push(color);
+         checkedContactsInits.push(inits);
+    }
+   else {
+    let indexForSplicing = checkedContacts.findIndex(item => item === id);
+          checkedContacts.splice(indexForSplicing, 1);
+          checkedContactsColors.splice(indexForSplicing, 1);
+          checkedContactsInits.splice(indexForSplicing, 1);
+      }
+  document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
+
+  for (let i = 0; i < checkedContacts.length; i++) {
+    document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsColors[i]} assigned-contacts z${i+1}">${checkedContactsInits[i]}</div>`;
+  }
+}
+
+async function addTask() {
   let title = document.getElementById('input-title');
   let description = document.getElementById('input-description');
   let assignedContacts = getSelected();
@@ -52,101 +80,147 @@ function addTask() {
   let category = document.getElementById('category');
 
 
-  uploadTask(title, description, deadline, category);
+ await uploadTask(title, description, deadline, category, assignedContacts);
 
+
+ await updateContactsTask(assignedContacts);
 }
 
-async function uploadTask(title, description, deadline, category) {
 
-  data = ({ title: title.value, description: description.value, deadline: deadline.value, prio: prio, category: category.value, contacts: contactsArray, subtasks: subtasks });
+
+async function uploadTask(title, description, deadline, category, assignedContacts) {
+
+  data = ({ title: title.value, description: description.value, deadline: deadline.value, prio: prio, category: category.value, contacts: assignedContacts, subtasks: subtasks });
 
   let response = await fetch(URL_tasks + ".json", {
     method: "POST",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data)
   });
 
+  let responseToJson = await response.json();
 
-  return responseToJson = await response.json();
-}
+      if (responseToJson['tasks']) {
+        responseToJson['tasks'].forEach(task => {
+          taskID.push(task);
+        });}
 
-
-
-function json2arrayContacts(json) {
-  let result = [];
-  let keys = Object.keys(json);
-  keys.forEach(function (key) {
-    result.push(json[key]);
-  });
-  return result;
-}
-
-function json2arrayIDs(json) {
-  let result = [];
-  let keys = Object.keys(json);
-  keys.forEach(function (key) {
-    let contact = json[key];
-    contact.id = key;
-    result.push(json[key]);
-  });
-  return result;
-}
-
-function setPrio(priority) {
-  prio = priority;
-}
-
-
-function getSelected() {
-
-  let checkboxes = document.querySelectorAll('input[name="contacts"]:checked');
-  let selectedData = [];
-
-  checkboxes.forEach((checkbox) => {
-
-    let name = checkbox.value;
-    let id = checkbox.getAttribute('data-id');
-    let letter = checkbox.getAttribute('data-letter');
-
-    contactsArray.push({ name: name, id: id, letter: letter });
-    console.log(contactsArray);
-    // return selectedData;
-  });
-
-
-}
-
-
-function addSubtask() {
-  let subtask = document.getElementById('subtasks');
-  subtasks.push(subtask.value);
-  document.getElementById('added-subtasks').innerHTML = ``;
-  for (let i = 0; i < subtasks.length; i++) {
-    document.getElementById('added-subtasks').innerHTML += `${subtasks[i]}`;
+    taskID.push(responseToJson['name']);
+    return responseToJson;
   }
-  document.getElementById('subtasks').value = ``;
-}
 
 
-function colorPrioUrgent(){
-  document.getElementById('prio-urgent').classList.add('prio-active-urgent');
-  document.getElementById('prio-medium').classList.remove('prio-active-medium');
-  document.getElementById('prio-low').classList.remove('prio-active-low');
-}
+  function json2arrayContacts(json) {
+    let result = [];
+    let keys = Object.keys(json);
+    keys.forEach(function (key) {
+      result.push(json[key]);
+    });
+    return result;
+  }
+
+  function json2arrayIDs(json) {
+    let result = [];
+    let keys = Object.keys(json);
+    keys.forEach(function (key) {
+      let contact = json[key];
+      contact.id = key;
+      result.push(json[key]);
+    });
+    return result;
+  }
+
+  function setPrio(priority) {
+    prio = priority;
+  }
 
 
-function colorPrioMedium(){
-  document.getElementById('prio-urgent').classList.remove('prio-active-urgent');
-  document.getElementById('prio-medium').classList.add('prio-active-medium');
-  document.getElementById('prio-low').classList.remove('prio-active-low');
-}
+  function getSelected() {
 
-function colorPrioLow(){
-  document.getElementById('prio-urgent').classList.remove('prio-active-urgent');
-  document.getElementById('prio-medium').classList.remove('prio-active-medium');
-  document.getElementById('prio-low').classList.add('prio-active-low');
-}
+    let checkboxes = document.querySelectorAll('input[name="contacts"]:checked');
+    let selectedData = [];
+
+    checkboxes.forEach((checkbox) => {
+
+      let name = checkbox.value;
+      let id = checkbox.getAttribute('data-id');
+      let letter = checkbox.getAttribute('data-letter');
+
+      selectedData.push({ name: name, id: id, letter: letter });
 
 
+    });
+    return selectedData;
+  }
+
+
+  function addSubtask() {
+    let subtask = document.getElementById('subtasks');
+    subtasks.push(subtask.value);
+    document.getElementById('added-subtasks').innerHTML = ``;
+    for (let i = 0; i < subtasks.length; i++) {
+      document.getElementById('added-subtasks').innerHTML += `<li>${subtasks[i]}</li>`;
+    }
+    document.getElementById('subtasks').value = ``;
+    cancelAddSubtask()
+  }
+
+
+  function colorPrioUrgent() {
+    document.getElementById('prio-urgent').classList.add('prio-active-urgent');
+    document.getElementById('prio-medium').classList.remove('prio-active-medium');
+    document.getElementById('prio-low').classList.remove('prio-active-low');
+  }
+
+
+  function colorPrioMedium() {
+    document.getElementById('prio-urgent').classList.remove('prio-active-urgent');
+    document.getElementById('prio-medium').classList.add('prio-active-medium');
+    document.getElementById('prio-low').classList.remove('prio-active-low');
+  }
+
+  function colorPrioLow() {
+    document.getElementById('prio-urgent').classList.remove('prio-active-urgent');
+    document.getElementById('prio-medium').classList.remove('prio-active-medium');
+    document.getElementById('prio-low').classList.add('prio-active-low');
+  }
+
+  function openAddSubtask() {
+    document.getElementById('add-button-icon-plus').classList.add('d-none');
+    document.getElementById('add-button-icon-cancel').classList.remove('d-none');
+    document.getElementById('add-button-icon-check').classList.remove('d-none');
+    document.getElementById('subtasks').focus();
+  }
+
+
+  function cancelAddSubtask() {
+    document.getElementById('add-button-icon-plus').classList.remove('d-none');
+    document.getElementById('add-button-icon-cancel').classList.add('d-none');
+    document.getElementById('add-button-icon-check').classList.add('d-none');
+  }
+
+
+  async function updateContactsTask(assignedContacts) {
+    for (let contact of assignedContacts) {
+      let path = `/letter${contact['letter']}/${contact['id']}`;
+      let response = await fetch(URL_contacts + path + ".json");
+      let responseToJson = await response.json();
+      uploadNewData(responseToJson, path)
+    }
+  }
+
+
+  async function uploadNewData(dataForUpdate, path) {
+    let data = ({ name: dataForUpdate['name'], email: dataForUpdate['email'], phone: dataForUpdate['phone'], initials: dataForUpdate['initials'], color: dataForUpdate['color'], tasks: taskID });
+
+    let response = await fetch(URL_contacts + path + ".json", {
+      method: "PUT",
+      header: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data)
+    });
+    return responseToJson = await response.json();
+  }

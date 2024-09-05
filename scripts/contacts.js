@@ -6,6 +6,7 @@ let currentContact;
 let IdForEditing;
 let letterForEditing;
 let randomNumbers = [];
+let tasks = [];
 
 
 async function loadContacts() {
@@ -192,8 +193,9 @@ async function createContact(path = "", data = {}) {
     createInitials(name.value);
     let initialsForSaving = initials.join('').toUpperCase();
     let color = createColor();
+    let tasks = [];
 
-    data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color });
+    data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color, tasks: tasks});
 
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
