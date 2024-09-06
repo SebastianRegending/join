@@ -77,15 +77,12 @@ a {
 }
 
 .menu-item.active {
-    background-color: #091931;
+     background-color: #091931 !important;
+     cursor: default;
+     color: white;
 }
 
 
-.link-desktop-active {
-    background-color: #091931;
-    color: white;
-    cursor: default;
-}
 
 .menu-item img {
     margin-right: 10px; 

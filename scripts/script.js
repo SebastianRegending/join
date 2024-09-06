@@ -10,10 +10,11 @@ async function includeHTML() {
         let resp = await fetch(file);
         if (resp.ok) {
             element.innerHTML = await resp.text();
-        } 
+        }
     }
+    // Führe hier das Script aus, sobald die Inhalte eingefügt wurden
+    addActiveClass();
 }
-
 
 let currentDraggedElement;
 
@@ -156,4 +157,26 @@ function legalNotice() {
 
 function privacyPolicy() {
     window.location.href = 'privacypolicy.html';
+}
+
+
+/**
+ * Finds the current page path and compares it with the href attributes of links that have the 'menu-item' class.
+ * Adds the 'active' class to the matching menu item to visually highlight it.
+ *
+ * @function addActiveClass
+ * @returns {void} Adds the 'active' class to the matching menu item.
+ */
+function addActiveClass() {
+    let currentPath = window.location.pathname.split('/').pop();
+
+    document.querySelectorAll('.menu-item').forEach(item => {
+        let hrefPath = item.getAttribute('href').split('/').pop();
+
+        if (currentPath === hrefPath) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
 }
