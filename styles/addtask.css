@@ -14,8 +14,12 @@ h1 {
 
 
 .fullpage{
-  margin-top: 96px;
-  padding-top: 40px;
+  margin-top: 160px;
+  /* padding-top: 40px; */
+ }
+
+ .fullpage h1 {
+  font-size: 62px;
  }
 
 
@@ -251,8 +255,10 @@ option {
 .submit-area{
   display: flex;
   justify-content: space-between;
-margin-left: 272px;
-max-width: 1028px;
+  margin-left: 272px;
+  max-width: 1028px;
+  margin-top: 48px;
+  align-items: end;
 }
 
 .submit-area button{

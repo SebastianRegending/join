@@ -122,8 +122,6 @@ function openDialog(text) {
     setTimeout(() => {
         dialogBox.classList.add('show');
     }, 10);
-    
-    document.getElementById('dialog-message').innerHTML = text;
 }
 
 

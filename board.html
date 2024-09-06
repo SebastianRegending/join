@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./styles/board.css">
     <link rel="icon" type="image/x-icon" href="./assets/img/join.png">
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/board.js"></script>
 
     <title>Document</title>
 </head>
@@ -21,7 +22,7 @@
                 <div class="task-input">
                     <input type="text" placeholder="Find Task">
                 </div>
-                <button class="add-task" onclick="openDialog('Neuen Task hinzufügen')">Add task <span>+</span></button>
+                <button class="add-task" onclick="openDialog()">Add task <span>+</span></button>
             </div>
         </div>
 
@@ -115,14 +116,12 @@
         </div>
 
         <div id="dialog" class="dialog-bg d-none" onclick="closeDialog()">
-            <div class="dialog">
-                <h1>Add task section still needs to be implemented</h1>
-                <p id="dialog-message">Neuen Task hinzufügen</p>
+            <div id="dialog-content" class="dialog">
+
                 <button onclick="closeDialog()">Schließen</button>
             </div>
         </div>
     </section>
-
 </body>
 
 </html>

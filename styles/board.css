@@ -316,10 +316,11 @@ body{
     background-color: white;
     border: 1px solid lightgray;
     border-radius: 30px;
-    padding: 24px;
     transform: translateX(100%);
     opacity: 0; 
     transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out; 
+    justify-content: center;
+    align-items: center;
 }
 
 .dialog.show {
