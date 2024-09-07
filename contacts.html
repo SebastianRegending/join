@@ -16,11 +16,8 @@
 </head>
 
 <body onload="includeHTML(); loadContacts()">
-
     <div w3-include-html="./menu.html">
-
     </div>
-
     <section class="contact-page">
         <div id="contacts-area">
             <div class="dialog-bg d-none" id="add-contact-dialog">
@@ -41,7 +38,7 @@
                             </div>
                             <div>
                                 <form class="contact-form"
-                                    onsubmit="createContact(); closeAddContact(); loadContacts(); return false">
+                                    onsubmit="prepareCreateContact(); closeAddContact(); loadContacts(); return false">
                                     <input id="add-contact-name" class="input-field icon-small-person"
                                         pattern="[A-Za-z\s]{0,50}" required
                                         title="Pleace Enter Alphabet Characters Only" type="text" placeholder="Name">
@@ -75,7 +72,7 @@
                                 onclick="closeEditContact()" src="./assets/img/cancel.svg" alt="cancel-icon"></div>
                         <div class="flexed">
                             <div id="edit-initials"></div>
-                            <form id="edit-form" class="contact-form" onsubmit="submitEditetContact(); return false">
+                            <form id="edit-form" class="contact-form" onsubmit="prepareSubmitEditetContact(); return false">
                                 <input id="edit-contact-name" class="input-field icon-small-person"
                                     pattern="[A-Za-z\s]{0,50}" required title="Pleace Enter Alphabet Characters Only"
                                     type="text" placeholder="Name">
