@@ -9,45 +9,31 @@ let randomNumbers = [];
 let tasks = [];
 
 
+/**
+ * Loads the saved contacts from the database and converts it into a JSON
+ */
 async function loadContacts() {
     let response = await fetch(BASE_URL + ".json");
     let responseToJson = await response.json();
+    prepareRenderContacts(responseToJson);
+}
 
+
+/**
+ * Makes the global variable contacts an array with all contacts, empties the contacts area, makes the global variable IDs the current prepared letter-IDs
+ * 
+ * @param {json} responseToJson - loaded and converted JSON from Database, including the saved contacts
+ */
+function prepareRenderContacts(responseToJson) {
     if (responseToJson) {
         contacts = json2arrayContacts(responseToJson);
         document.getElementById('contacts-alphabet-list').innerHTML = ``;
-
         let n = 0;
         while (n < contacts.length) {
             IDs = json2arrayIDs(contacts[n]);
-            let oneContact = json2arrayIDs(contacts[n]);
-            let letterForCards = oneContact[0]['initials'].charAt(0);
-            
-            IDs.sort((a, b) => a.name.localeCompare(b.name));
-           
-            document.getElementById('contacts-alphabet-list').innerHTML += `
-           <div>
-                <div class="contact-card-letter">
-                     ${letterForCards}
-                </div>
-                <div id="contacts-${letterForCards}-content" class="letter-card">
-                </div>
-           </div>`;
-        
-
-            for (let i = 0; i < IDs.length; i++) {
-                document.getElementById(`contacts-${letterForCards}-content`).innerHTML += `
-                <div id="${IDs[i]['id']}" class="contact-datas" onclick="chooseContact(\'${IDs[i]['id']}\', \'${IDs[i]['name']}\', \'${IDs[i]['email']}\', \'${IDs[i]['phone']}\', \'${IDs[i]['initials']}\', \'${IDs[i]['color']}\')">
-                    <div class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}</div>
-                    <div>
-                        <div class="contact-card-names">${IDs[i]['name']}</div>
-                        <a href='mailto:${IDs[i]['email']}'>${IDs[i]['email']}</a>
-                    </div>
-                </div>`;
-                if(currentContact == IDs[i]['id']){
-                    document.getElementById(IDs[i]['id']).classList.add('bg-dark-blue')
-                }
-            }
+            let letterForCards = json2arrayIDs(contacts[n])[0]['initials'].charAt(0);
+            IDs.sort((a, b) => a['name'].localeCompare(b['name']));
+            renderContacts(letterForCards);
             n++;
         }
     } else {
@@ -56,6 +42,28 @@ async function loadContacts() {
 }
 
 
+/**
+ * Add an HTML-Template to the letter-headline and the following contacts, add bg-dark-blue css class to the current choosen contact
+ * 
+ * @param {string} letterForCards - First letter of the following contacts
+ */
+function renderContacts(letterForCards) {
+    document.getElementById('contacts-alphabet-list').innerHTML += createLetterTemplate(letterForCards);
+    for (let i = 0; i < IDs.length; i++) {
+        document.getElementById(`contacts-${letterForCards}-content`).innerHTML += createContactTemplate(i);
+        if (currentContact == IDs[i]['id']) {
+            document.getElementById(IDs[i]['id']).classList.add('bg-dark-blue')
+        }
+    }
+}
+
+
+/**
+ * Converts the contact-JSON into an array with all contacts as an object
+ * 
+ * @param {*} json 
+ * @returns array with all contacts
+ */
 function json2arrayContacts(json) {
     let result = [];
     let keys = Object.keys(json);
@@ -66,6 +74,12 @@ function json2arrayContacts(json) {
 }
 
 
+/**
+ * Extracts the unique IDs
+ * 
+ * @param {json} json 
+ * @returns unique ID, used by database
+ */
 function json2arrayIDs(json) {
     let result = [];
     let keys = Object.keys(json);
@@ -78,62 +92,61 @@ function json2arrayIDs(json) {
 }
 
 
-function pushArrays(index) {
-    currentObject = contacts[index];
-}
-
-
+/**
+ * Defines the variable oldContact to compare it with the global variable currentContact, to decide what templates has to change the color
+ * 
+ * @param {string} id 
+ * @param {string} name 
+ * @param {string} email 
+ * @param {string} phone 
+ * @param {string} inits 
+ * @param {string} color 
+ */
 function chooseContact(id, name, email, phone, inits, color) {
     let oldContact;
     if (currentContact) {
         oldContact = currentContact;
     }
     currentContact = id;
-    if(currentContact == oldContact){
+    if (currentContact == oldContact) {
         document.getElementById(oldContact).classList.remove('bg-dark-blue');
         currentContact = "";
         document.getElementById('choosen-contact-loading-area').innerHTML = ``;
-    }else{
+    } else {
         document.getElementById(currentContact).classList.add('bg-dark-blue');
         loadChoosenContact(id, name, email, phone, inits, color);
     }
-
     loadContacts();
-    
-    
 }
 
 
+/**
+ * defines the variable letter and loads the template into the choosen-contact-loading-area
+ * 
+ * @param {string} id 
+ * @param {string} name 
+ * @param {string} email 
+ * @param {string} phone 
+ * @param {string} inits 
+ * @param {string} color 
+ */
 function loadChoosenContact(id, name, email, phone, inits, color) {
     let letter = inits.charAt(0);
-    document.getElementById('choosen-contact-loading-area').innerHTML = /*html*/`
-        <div class="choosen-contact-card">
-            <div class="circle-big circle-${color}">${inits}</div>
-            <div class="choosen-contact-name-area">
-                <div id="choosen-contacts-name">${name}</div>
-                <div class="edit-area">
-                    <div class="edit-area-field"onclick="openEditContact('${id}', '${letter}', '${name}', '${email}', '${phone}', '${inits}', '${color}')"><img src="./assets/img/edit.svg" alt="edit-icon">Edit</div>
-                    <div class="edit-area-field" onclick="deleteContact('${id}', '${letter}')"><img src="./assets/img/delete.svg" alt="delete-icon">Delete</div>
-                </div>
-            </div>
-        </div>
-        <div class="contact-information">Contact Information</div>
-        <div>
-            <div class="mail-and-phone">Email</div>
-            <a class="mail-choosen" href="mailto:${email}">${email}</a>
-        </div>
-        <div>
-            <div class="mail-and-phone">Phone</div>
-            <a href="tel:${phone}" class="phone-choosen" id="choosen-phone">${phone}</a>
-        </div>`;
+    document.getElementById('choosen-contact-loading-area').innerHTML = createChoosenContactTemplate(letter, id, name, email, phone, inits, color);
 }
 
 
+/**
+ * Open Dialog
+ */
 function openAddContact() {
     document.getElementById('add-contact-dialog').classList.remove('d-none');
 }
 
 
+/**
+ * Close Dialog
+ */
 function closeAddContact() {
     document.getElementById('add-contact-name').value = ``;
     document.getElementById('add-contact-email').value = ``;
@@ -142,6 +155,17 @@ function closeAddContact() {
 }
 
 
+/**
+ * Puts the datas from the choosen contact in the inputfields and opens the dialog for editing. Set the global variables IdForEditing and letterForEditing to the current contact, to prepare later functions
+ * 
+ * @param {string} id 
+ * @param {string} letter 
+ * @param {string} name 
+ * @param {string} email 
+ * @param {string} phone 
+ * @param {string} inits 
+ * @param {string} color 
+ */
 function openEditContact(id, letter, name, email, phone, inits, color) {
     document.getElementById('edit-contact-name').value = name;
     document.getElementById('edit-contact-email').value = email;
@@ -149,21 +173,44 @@ function openEditContact(id, letter, name, email, phone, inits, color) {
     document.getElementById('edit-contact-dialog').classList.remove('d-none');
     document.getElementById('edit-initials').classList.add(`circle-${color}`);
     document.getElementById('edit-initials').innerHTML = inits;;
-
     IdForEditing = id;
     letterForEditing = letter;
 }
 
 
-async function submitEditetContact() {
+/**
+ * Defines some variables from the inputfields, to give them to the submit function, closes the dialog
+ * 
+ * @returns json of the editet contact
+ */
+async function prepareSubmitEditetContact() {
     let name = document.getElementById('edit-contact-name');
     let email = document.getElementById('edit-contact-email');
     let phone = document.getElementById('edit-contact-phone');
-   
     createInitials(name.value);
     let initialsForSaving = initials.join('').toUpperCase();
     let path = `/letter${letterForEditing}/${IdForEditing}`
     let color = createColor();
+    let response = await submitEditetContact(name, email, phone, initialsForSaving, color, path);
+    loadContacts();
+    loadChoosenContact(IdForEditing, name.value, email.value, phone.value, initialsForSaving, color);
+    closeEditContact();
+    return responseToJson = await response.json();
+}
+
+
+/**
+ * Submit the editet contact to database
+ * 
+ * @param {*} name - new name
+ * @param {*} email - new email
+ * @param {*} phone - new phone
+ * @param {*} initialsForSaving - new initials
+ * @param {*} color - new color
+ * @param {*} path - new path for saving in database
+ * @returns editet contact
+ */
+async function submitEditetContact(name, email, phone, initialsForSaving, color, path){
     data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color });
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
@@ -172,19 +219,26 @@ async function submitEditetContact() {
         },
         body: JSON.stringify(data)
     });
-    loadContacts();
-    loadChoosenContact(IdForEditing, name.value, email.value, phone.value, initialsForSaving, color);
-    closeEditContact();
-    return responseToJson = await response.json();
+    return response;
 }
 
+
+/**
+ * Close Dialog
+ */
 function closeEditContact() {
     document.getElementById("edit-contact-dialog").classList.add('d-none');
     document.getElementById('edit-initials').removeAttribute("class");
 }
 
 
-async function createContact(path = "", data = {}) {
+/**
+ * Defines some variables from the inputfields, to give them to the createContact function
+ * 
+ * @param {*} path 
+ * @returns json of the submittet contact
+ */
+async function prepareCreateContact(path = "") {
     let name = document.getElementById('add-contact-name');
     let email = document.getElementById('add-contact-email');
     let phone = document.getElementById('add-contact-phone');
@@ -194,9 +248,25 @@ async function createContact(path = "", data = {}) {
     let initialsForSaving = initials.join('').toUpperCase();
     let color = createColor();
     let tasks = [];
+    let response = await createContact(name, email, phone, initialsForSaving, color, tasks, path);
+    return responseToJson = await response.json();
+}
 
-    data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color, tasks: tasks});
 
+/**
+ * Submit the created contact to database
+ * 
+ * @param {string} name - name of the new contact
+ * @param {string} email - email of the new contact
+ * @param {string} phone - phone of the new contact
+ * @param {string} initialsForSaving - initials of the new contact
+ * @param {string} color - color for the circle of the new contact
+ * @param {string} tasks - tasks of the new contact
+ * @param {string} path - path where it will be saved on database
+ * @returns submittet contact
+ */
+async function createContact(name, email, phone, initialsForSaving, color, tasks, path){
+    data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color, tasks: tasks });
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         header: {
@@ -205,20 +275,29 @@ async function createContact(path = "", data = {}) {
         body: JSON.stringify(data)
     });
     loadContacts();
-
-    return responseToJson = await response.json();
+    return response;
 }
 
 
+/**
+ * Creates initials with maximum two letters
+ * 
+ * @param {string} name - name of the contact that is used to create the initials
+ */
 function createInitials(name) {
     let words = name.split(" ");
     initials = [];
-
     words.length = 2;
     words.forEach((element) => initials.push(element.charAt(0)));
 }
 
 
+/**
+ * Delete a contact im database
+ * 
+ * @param {string} id - id in database
+ * @param {string} letter - letter to find the right path in database
+ */
 async function deleteContact(id, letter) {
     await fetch(`${BASE_URL}/letter${letter}/${id}.json`, {
         method: "DELETE"
@@ -230,7 +309,11 @@ async function deleteContact(id, letter) {
 }
 
 
-
+/**
+ * Create a string of a color to choose the css-class
+ * 
+ * @returns random color
+ */
 function createColor() {
     let color;
     let colorNumber = createRandomNumbers();
@@ -259,6 +342,11 @@ function createColor() {
 }
 
 
+/**
+ * Creates a random Number, that will decide what color the circle gets
+ * 
+ * @returns random color-Number
+ */
 function createRandomNumbers() {
     if (randomNumbers.length > 9) {
         randomNumbers = [];
@@ -275,4 +363,3 @@ function createRandomNumbers() {
     let colorNumber = randomNumbers[randomNumbers.length - 1];
     return colorNumber;
 }
-

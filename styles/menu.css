@@ -72,20 +72,17 @@ a {
 }
 
 .menu-item:hover {
-    background-color: #2A3A51; 
+    background-color: #2a3d59; 
      
 }
 
 .menu-item.active {
-    background-color: #091931;
+     background-color: #091931 !important;
+     cursor: default;
+     color: white;
 }
 
 
-.link-desktop-active {
-    background-color: #091931;
-    color: white;
-    cursor: default;
-}
 
 .menu-item img {
     margin-right: 10px; 

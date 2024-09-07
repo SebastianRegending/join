@@ -4,23 +4,28 @@
     font-style: normal;
 }
 
+
 * {
     font-family: 'Inter';
 }
 
-body{
+
+body {
     background-color: #F6F7F8;
-    height: 100vh;
+    height: calc(100vh - 136px);
 }
+
+
 #contacts-area {
     width: 456px;
-    height: 100%;
+    height: calc(100vh - 118px);
     background-color: white;
     margin-left: 232px;
     margin-top: 0;
-
-    padding: 22px 28px 22px 28px;
+    margin-bottom: 0;
+    padding: 22px 0px 0px 28px;
 }
+
 
 .add-contact-button {
     background-color: #2A3647;
@@ -31,28 +36,30 @@ body{
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    ;
     gap: 8px;
     font-size: 21px;
     font-weight: 700;
 }
 
+
 .add-contact-button:hover {
     cursor: pointer;
 }
+
 
 .button-area {
     display: flex;
     gap: 24px;
 }
 
+
 .flexed {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 40px;
-
 }
+
 
 .blue-btn {
     width: 214px;
@@ -71,10 +78,12 @@ body{
     gap: 4px;
 }
 
+
 .blue-btn:hover {
     background-color: #29ABE2;
     box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
 }
+
 
 .add-contact-dialog-header {
     display: flex;
@@ -82,6 +91,7 @@ body{
     padding: 48px 48px 0px 0px;
     margin-bottom: 60px;
 }
+
 
 .white-input-btn {
     width: 126px;
@@ -93,7 +103,6 @@ body{
     justify-content: center;
     border: 1px solid #2A3647;
     border-radius: 8px;
-    /* padding: 15px 24px; */
     background-color: white;
     font-family: Inter-Bold;
     font-size: 21px;
@@ -108,10 +117,12 @@ body{
     box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
+
 .white-input-btn:hover img {
     filter: invert(66%) sepia(29%) saturate(4458%) hue-rotate(165deg) brightness(93%) contrast(89%);
     transition: 100ms linear;
 }
+
 
 .white-input-btn-edit {
     width: 113px;
@@ -123,13 +134,13 @@ body{
     justify-content: center;
     border: 1px solid #2A3647;
     border-radius: 8px;
-    
     background-color: white;
     font-family: Inter-Bold;
     font-size: 21px;
     cursor: pointer;
     transition: 100ms linear;
 }
+
 
 .white-input-btn-edit:hover {
     color: #29ABE2;
@@ -138,7 +149,7 @@ body{
 }
 
 
-.blue-btn-edit{
+.blue-btn-edit {
     width: 111px;
     height: 57px;
     display: flex;
@@ -153,13 +164,14 @@ body{
     cursor: pointer;
     transition: 100ms linear;
     gap: 4px;
-
 }
+
 
 .blue-btn-edit:hover {
     background-color: #29ABE2;
     box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
 }
+
 
 .contact-card {
     background-color: #2A3647;
@@ -176,17 +188,17 @@ body{
 
 .contact-page {
     display: flex;
-    
+    margin-top: 96px;
 }
+
 
 #choosen-contact {
     background-color: #f6f7f8;
     padding: 0;
-    
     width: 100%;
     margin-top: 10px;
-
 }
+
 
 .letter-card a {
     color: #007cee;
@@ -194,10 +206,11 @@ body{
     text-decoration: none;
 }
 
+
 .contact-card-names {
     font-size: 20px;
-   
 }
+
 
 .contact-card-letter {
     font-size: 21px;
@@ -224,14 +237,33 @@ body{
 #contacts-alphabet-list {
     padding: 0;
     margin: 0;
-    width: 353px;
-    height: calc(100vh - 96px);
-    
-}
+    width: 400px;
+    height: calc(100vh - 250px);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    --sb-track-color: #ffffff;
+    --sb-thumb-color: #a8a8a8;
+    --sb-size: 6px; 
+} 
+
+#contacts-alphabet-list::-webkit-scrollbar {
+    width: var(--sb-size)
+  }
+  
+  #contacts-alphabet-list:-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 17px;
+  }
+  
+  #contacts-alphabet-list::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 17px;
+  }
 
 
 .contact-datas:hover {
-    background-color: #f6f7f8;
+    background-color: #d1d1d1;
     cursor: pointer;
 }
 
@@ -243,11 +275,13 @@ body{
     margin-bottom: 40px;
 }
 
+
 #choosen-contacts-name {
     font-size: 47px;
     font-weight: 500;
     margin-bottom: 12px;
 }
+
 
 #choosen-contact span {
     font-size: 61px;
@@ -259,50 +293,52 @@ body{
     font-weight: 400;
     font-size: 27px;
     padding: 100px 0px 0px 60px;
-
 }
 
 
 .choosen-contact-card {
     display: flex;
     align-items: center;
-
 }
 
-#edit-initials{
-  width: 120px;
-  height: 120px;
-  background-color: grey;
-  border-radius: 50%;
-  display: flex;
-  align-items:center;
-  justify-content: center;
-  color: white;
-  font-size: 47px;
-  font-weight: 500;
+
+#edit-initials {
+    width: 120px;
+    height: 120px;
+    background-color: grey;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 47px;
+    font-weight: 500;
 }
+
 
 .edit-area {
     display: flex;
     align-items: center;
     font-size: 16px;
     margin-right: 16px;
-
 }
+
 
 .edit-area img {
     height: 18.25px;
     width: 18.25px;
 }
 
+
 .edit-area-field {
     margin-right: 24px;
 }
 
+
 .edit-area-field:hover {
     cursor: pointer;
-
 }
+
 
 .mail-and-phone {
     font-size: 16px;
@@ -310,30 +346,33 @@ body{
     margin-top: 24px;
 }
 
+
 .bg-dark-blue {
     background-color: #2A3647;
     color: white;
 }
+
 
 .bg-dark-blue:hover {
     background-color: #2A3647;
     color: white;
 }
 
+
 .contact-information {
     font-weight: 400;
     font-size: 20px;
     margin-top: 40px;
     margin-bottom: 40px;
-
 }
+
 
 .mail-choosen {
     color: #007cee;
     font-size: 16px;
     text-decoration: none;
-
 }
+
 
 .phone-choosen {
     font-weight: 400;
@@ -342,13 +381,15 @@ body{
 }
 
 
-.cancel-add-contact-dialog{
+.cancel-add-contact-dialog {
     border-radius: 50%;
     padding: 8px;
 }
-.cancel-add-contact-dialog:hover{
-cursor: pointer;
-background-color: #d1d1d1; 
+
+
+.cancel-add-contact-dialog:hover {
+    cursor: pointer;
+    background-color: #d1d1d1;
 }
 
 
@@ -365,12 +406,13 @@ background-color: #d1d1d1;
     align-items: center;
 }
 
+
 .contact-dialog {
     z-index: 110;
     height: 594px;
     display: flex;
-
 }
+
 
 .contact-dialog-logo-side {
     width: 467px;
@@ -382,8 +424,8 @@ background-color: #d1d1d1;
     flex-direction: column;
     justify-content: center;
     padding-left: 40px;
-
 }
+
 
 .contact-dialog-edit-side {
     width: 745px;
@@ -393,6 +435,7 @@ background-color: #d1d1d1;
     border-bottom-right-radius: 24px;
 }
 
+
 .contact-dialog-logo-side h2 {
     color: white;
     font-weight: 700;
@@ -401,6 +444,7 @@ background-color: #d1d1d1;
     margin-bottom: 0;
 }
 
+
 .contact-dialog-logo-side span {
     color: white;
     font-weight: 400;
@@ -408,11 +452,13 @@ background-color: #d1d1d1;
     margin-top: 0;
 }
 
+
 .dialog-logo {
     width: 55.6px;
     height: 66.48px;
     margin-bottom: 16px;
 }
+
 
 .dialog-separator {
     width: 90px;
@@ -420,9 +466,11 @@ background-color: #d1d1d1;
     border-top: solid 3px #29ABE2
 }
 
+
 .d-none {
     display: none;
 }
+
 
 .input-field {
     width: 422px;
@@ -438,15 +486,18 @@ background-color: #d1d1d1;
     margin-bottom: 32px;
 }
 
-.input-field::placeholder{
- color: #D1D1D1;   
+
+.input-field::placeholder {
+    color: #D1D1D1;
 }
+
 
 .input-field:focus {
     outline: none !important;
     border: 1px solid #007cee;
     box-shadow: 0 0 10px #719ECE;
 }
+
 
 .icon-small-person {
     padding-right: 25px;
@@ -455,12 +506,14 @@ background-color: #d1d1d1;
     background-position: 400px;
 }
 
+
 .icon-small-mail {
     padding-right: 25px;
     background: url("../assets/img/input-icon-mail.svg") no-repeat;
     background-size: 24px;
     background-position: 400px;
 }
+
 
 .icon-small-call {
     padding-right: 25px;
@@ -502,17 +555,21 @@ background-color: #d1d1d1;
     background-color: #ffbb2b !important;
 }
 
+
 .circle-orange {
     background-color: #ff7a00 !important;
 }
+
 
 .circle-turquoise {
     background-color: #1fd7c1 !important;
 }
 
+
 .circle-purple {
     background-color: #462f8a !important;
 }
+
 
 .circle-lightpurple {
     background-color: #6e52ff !important;
@@ -523,18 +580,41 @@ background-color: #d1d1d1;
     background-color: #0038ff !important;
 }
 
+
 .circle-lightblue {
     background-color: #00bee8 !important;
 }
+
 
 .circle-pink {
     background-color: #fc71ff !important;
 }
 
+
 .circle-lightred {
     background-color: #ff4646 !important;
 }
 
+
 .circle-green {
     background-color: #33691e !important;
+}
+
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%); 
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0); 
+        opacity: 1;
+    }
+}
+
+
+.choosen-contact-card {
+    animation: slideInFromRight 0.15s ease-out; 
+    opacity: 1; 
+    transform: translateX(0); 
 }
