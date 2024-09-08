@@ -128,16 +128,6 @@ function openDialog(text) {
 /**
  * Closes the dialog window with a sliding animation.
  */
-function closeDialog() {
-    let dialog = document.getElementById('dialog');
-    let dialogBox = dialog.querySelector('.dialog');
-    
-    dialogBox.classList.remove('show');
-    
-    setTimeout(() => {
-        dialog.classList.add('d-none');
-    }, 500);
-}
 
 function logOutButton() {
     document.getElementById('logout-container').classList.toggle('d-none');
