@@ -37,14 +37,25 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 500);
     }
 
+    document.getElementById('dialog').addEventListener('click', function(event) {
+        if (event.target === this) {
+            closeDialog();
+        }
+    });
+
     function loadScripts() {
-        let script = document.createElement('script');
-        script.src = './scripts/addtask.js';
-        document.body.appendChild(script);
+        return new Promise((resolve, reject) => {
+            let script = document.createElement('script');
+            script.src = './scripts/addtask.js';
+            script.onload = resolve; 
+            script.onerror = reject; 
+            document.body.appendChild(script);
+        });
     }
 
     document.querySelector('.add-task').addEventListener('click', openDialog);
 });
+
 
 async function loadTasks() {
     const URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
@@ -149,3 +160,4 @@ async function loadTasks() {
         console.error('Error loading tasks:', error);
     }
 }
+
