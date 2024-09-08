@@ -1,66 +1,50 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    /**
-     * Opens a dialog by loading content from an external HTML file.
-     * Fetches the content from './addtask.html' and inserts it into the dialog container.
-     */
-function openDialog() {
-    fetch('./addtask.html')
-        .then(response => response.text())
-        .then(data => {
-            const dialogContent = document.getElementById('dialog-content');
-            if (dialogContent) {
-                dialogContent.innerHTML = data;
+    function openDialog() {
+        fetch('./addtask.html')
+            .then(response => response.text())
+            .then(data => {
+                const dialogContent = document.getElementById('dialog-content');
+                if (dialogContent) {
+                    dialogContent.innerHTML = data;
 
-                const closeButton = document.createElement('div');
-                closeButton.innerHTML = `
-                    <img class="close-popup" src="./assets/img/close.png" alt="close-img">
-                `;
-                closeButton.addEventListener('click', closeDialog);
+                    const closeButton = document.createElement('div');
+                    closeButton.innerHTML = `
+                        <img class="close-popup" src="./assets/img/close.png" alt="close-img">
+                    `;
+                    closeButton.addEventListener('click', closeDialog);
 
-                dialogContent.insertBefore(closeButton, dialogContent.firstChild);
+                    dialogContent.insertBefore(closeButton, dialogContent.firstChild);
+                    document.getElementById('dialog').classList.remove('d-none');
 
-                document.getElementById('dialog').classList.remove('d-none');
-                
-                loadScripts().then(() => {
-                    loadContacts();
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Error loading the form:', error);
-        });
-}
+                    loadScripts().then(() => {
+                        loadContacts();
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error loading the form:', error);
+            });
+    }
 
+    function closeDialog() {
+        let dialog = document.getElementById('dialog');
+        let dialogBox = dialog.querySelector('.dialog');
 
-function closeDialog() {
-    let dialog = document.getElementById('dialog');
-    let dialogBox = dialog.querySelector('.dialog');
+        dialogBox.classList.remove('show');
+        setTimeout(() => {
+            dialog.classList.add('d-none');
+        }, 500);
+    }
 
-    dialogBox.classList.remove('show');
-
-    setTimeout(() => {
-        dialog.classList.add('d-none');
-    }, 500);
-}
-
-/**
- * Dynamically loads external JavaScript files into the document.
- * Appends 'addtask.js' and 'script.js' scripts to the document body.
- */
-function loadScripts() {
-    let script = document.createElement('script');
-    script.src = './scripts/addtask.js';
-    document.body.appendChild(script);
-}
+    function loadScripts() {
+        let script = document.createElement('script');
+        script.src = './scripts/addtask.js';
+        document.body.appendChild(script);
+    }
 
     document.querySelector('.add-task').addEventListener('click', openDialog);
 });
-
-
-
-
-// DATEN VON FIREBASE HERUTERLADEN
 
 async function loadTasks() {
     const URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
@@ -87,6 +71,26 @@ async function loadTasks() {
 
         for (let taskID in tasks) {
             let task = tasks[taskID];
+
+            let totalSubtasks = 0;
+            let completedSubtasks = 0;
+
+            let progressHTML = '';
+            if (task.subtasks && Array.isArray(task.subtasks)) {
+                totalSubtasks = task.subtasks.length;
+                completedSubtasks = task.subtasks.filter(subtask => subtask.done === true).length;
+
+                let progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
+
+                progressHTML = `
+                    <div class="card-progress">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: ${progressPercentage}%;"></div> 
+                        </div>
+                        <p class="subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</p>
+                    </div>
+                `;
+            }
 
             let contactsHTML = '';
             if (task.contacts) {
@@ -115,6 +119,8 @@ async function loadTasks() {
                         <p class="card-description">${task.description || 'No description available'}</p>
                     </div>
 
+                    ${progressHTML}
+
                     <div class="card-footer">
                         <div class="card-users">
                             ${contactsHTML}
@@ -138,6 +144,7 @@ async function loadTasks() {
                 document.getElementById('Done').innerHTML += taskHTML;
             }
         }
+
     } catch (error) {
         console.error('Error loading tasks:', error);
     }
