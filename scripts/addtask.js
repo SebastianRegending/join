@@ -236,7 +236,9 @@ document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
 document.getElementById('deadline').value = ``;
 colorPrioMedium();
 prio = "medium";
-document.getElementById('category').innerHTML = ``;
+document.getElementById('category').innerHTML = `<option value="" disabled selected hidden>Select your option</option>
+                    <option value="Technical Task">Technical Task</option>
+                    <option value="User Story">User Story</option>`;
 document.getElementById('subtasks').innerHTML = ``;
 document.getElementById('added-subtasks').innerHTML = ``;
 subtasks = [];

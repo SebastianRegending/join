@@ -15,7 +15,6 @@ h1 {
 
 .fullpage{
   margin-top: 160px;
-  /* padding-top: 40px; */
  }
 
  .fullpage h1 {
@@ -407,7 +406,7 @@ padding: 12px;
 
 #circle-area-assigned-contacts{
   display:flex;
-
+  padding-top: 16px;
 }
 
 .assigned-contacts{

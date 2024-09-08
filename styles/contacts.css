@@ -18,7 +18,7 @@ body {
 
 #contacts-area {
     width: 456px;
-    height: calc(100vh - 136px);
+    height: calc(100vh - 118px);
     background-color: white;
     margin-left: 232px;
     margin-top: 0;
@@ -598,4 +598,23 @@ body {
 
 .circle-green {
     background-color: #33691e !important;
+}
+
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%); 
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0); 
+        opacity: 1;
+    }
+}
+
+
+.choosen-contact-card {
+    animation: slideInFromRight 0.15s ease-out; 
+    opacity: 1; 
+    transform: translateX(0); 
 }
