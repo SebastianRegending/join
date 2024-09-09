@@ -359,7 +359,7 @@ option {
   align-items: center;
   justify-content: center;
   font-size: 21px;
-
+  background-color: white;
 }
 
 
@@ -393,7 +393,6 @@ option {
   align-items: center;
   justify-content: center;
   padding: 12px;
-
 }
 
 #add-button-icon-cancel:hover {

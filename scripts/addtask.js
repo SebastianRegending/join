@@ -321,6 +321,8 @@ function clearTasks() {
   prio = "medium";
   document.getElementById('category').innerHTML = emptyCategory();
   document.getElementById('subtasks').innerHTML = ``;
+  document.getElementById('subtasks').value = ``;
+  cancelAddSubtask();
   document.getElementById('added-subtasks').innerHTML = ``;
   subtasks = [];
 }
