@@ -53,6 +53,7 @@ function createContactTemplate(i){
  */
 function createChoosenContactTemplate(letter, id, name, email, phone, inits, color){
     return /*html*/`
+        <div class="choosen-contact-card-container">
             <div class="choosen-contact-card">
                 <div class="circle-big circle-${color}">${inits}
                 </div>
@@ -81,6 +82,7 @@ function createChoosenContactTemplate(letter, id, name, email, phone, inits, col
                 <a href="tel:${phone}" class="phone-choosen" id="choosen-phone">${phone}
                 </a>
             </div>
+        </div>
     `
     
     }

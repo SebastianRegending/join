@@ -601,6 +601,13 @@ body {
 }
 
 
+.choosen-contact-card-container {
+    animation: slideInFromRight 0.15s ease-out; 
+    opacity: 1; 
+    transform: translateX(0); 
+}
+
+
 @keyframes slideInFromRight {
     0% {
         transform: translateX(100%); 
@@ -613,8 +620,57 @@ body {
 }
 
 
-.choosen-contact-card {
-    animation: slideInFromRight 0.15s ease-out; 
-    opacity: 1; 
-    transform: translateX(0); 
+#add-contact-dialog.show{
+    animation: slidein 0.75s, fadein 0.75s;
 }
+
+
+#add-contact-dialog.hide{
+    animation: slideout 0.75s, fadeout 0.75s;
+}
+
+
+@keyframes slidein {
+    from {
+      right: -200vw;
+    }
+  
+    to {
+      right: center;
+    }
+  }
+
+
+  @keyframes slideout {
+    from {
+      right: center;
+    }
+  
+    to {
+      right: -200vw;
+    }
+  }
+
+  
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+}
+
+
+@keyframes fadeout {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      opacity: 0;
+    }
+}
+  
+  

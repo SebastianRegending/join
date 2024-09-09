@@ -608,7 +608,7 @@ option {
 
 
 #toaster-task {
-  /* visibility: hidden; */
+  visibility: hidden;
   width: 312px;
   height: 74px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);

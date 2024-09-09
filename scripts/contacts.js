@@ -141,6 +141,7 @@ function loadChoosenContact(id, name, email, phone, inits, color) {
  */
 function openAddContact() {
     document.getElementById('add-contact-dialog').classList.remove('d-none');
+    document.getElementById('add-contact-dialog').classList.add('show');
 }
 
 
@@ -151,7 +152,8 @@ function closeAddContact() {
     document.getElementById('add-contact-name').value = ``;
     document.getElementById('add-contact-email').value = ``;
     document.getElementById('add-contact-phone').value = ``;
-    document.getElementById("add-contact-dialog").classList.add('d-none');
+    document.getElementById("add-contact-dialog").classList.add('hide');
+    setTimeout(function(){document.getElementById('add-contact-dialog').classList.remove('show'); document.getElementById("add-contact-dialog").classList.add('d-none'); document.getElementById("add-contact-dialog").classList.remove('hide')}, 700);
 }
 
 
