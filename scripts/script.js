@@ -139,20 +139,32 @@ function closeDialog() {
     }, 500);
 }
 
+/**
+ * toggles the log out menu show/hide
+ */
 function logOutButton() {
     document.getElementById('logout-container').classList.toggle('d-none');
 }
 
+/**
+ * logs the user out and delete the datas from local and session storage
+ */
 function logOutUser() {
     localStorage.clear();
     sessionStorage.clear();
     window.location.href = 'login.html';
 }
 
+/**
+ * switch to legalnotice
+ */
 function legalNotice() {
     window.location.href = 'legalnotice.html';
 }
 
+/**
+ * switch to privacypolicy
+ */
 function privacyPolicy() {
     window.location.href = 'privacypolicy.html';
 }
@@ -177,4 +189,22 @@ function addActiveClass() {
             item.classList.remove('active');
         }
     });
+}
+
+function createInitialsForHeader(name) {
+    let words = name.split(" ");
+    initialsSummary = [];
+    words.length = 2;
+    words.forEach((element) => initialsSummary.push(element.charAt(0)));    
+}
+
+async function getInitialsForHeader() {
+    await setUsernameOnGreeting();
+    let firstInitial = initialsSummary[0];
+    let secondInitial = initialsSummary[1];
+    let combinedInitials = firstInitial + secondInitial;
+    document.getElementById('initials-header').innerHTML = combinedInitials;
+    if (secondInitial == undefined) {
+        document.getElementById('initials-header').innerHTML = firstInitial;
+    }
 }

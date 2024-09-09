@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./styles/menu.css">
     <link rel="icon" type="image/x-icon" href="./assets/img/join.png">
     <script src="./scripts/script.js" defer></script>
+    <script src="./scripts/summary.js" defer></script>
     <title>Document</title>
 </head>
 
@@ -47,7 +48,9 @@
 
         <div class="help-user-icons">
             <a href="help.html"> <img class="help-icon" src="./assets/img/help.png" alt="help-icon"> </a>
-            <img class="user-profil" src="./assets/img/user.png" alt="user-profil" onclick="logOutButton()">
+            <div class="initials-header-border" onclick="logOutButton()">
+                <div id="initials-header"></div>
+            </div>
         </div>
     </header>
     <div id="logout-container" class="d-none">
