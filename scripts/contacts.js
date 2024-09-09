@@ -141,6 +141,7 @@ function loadChoosenContact(id, name, email, phone, inits, color) {
  */
 function openAddContact() {
     document.getElementById('add-contact-dialog').classList.remove('d-none');
+    document.getElementById('add-contact-dialog').classList.add('show');
 }
 
 
@@ -151,7 +152,8 @@ function closeAddContact() {
     document.getElementById('add-contact-name').value = ``;
     document.getElementById('add-contact-email').value = ``;
     document.getElementById('add-contact-phone').value = ``;
-    document.getElementById("add-contact-dialog").classList.add('d-none');
+    document.getElementById("add-contact-dialog").classList.add('hide');
+    setTimeout(function(){document.getElementById('add-contact-dialog').classList.remove('show'); document.getElementById("add-contact-dialog").classList.add('d-none'); document.getElementById("add-contact-dialog").classList.remove('hide')}, 450);
 }
 
 
@@ -274,6 +276,8 @@ async function createContact(name, email, phone, initialsForSaving, color, tasks
         },
         body: JSON.stringify(data)
     });
+    document.getElementById('toaster-contact').classList.add('show');
+    setTimeout(function(){document.getElementById('toaster-contact').classList.remove('show');}, 2000);
     loadContacts();
     return response;
 }

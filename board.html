@@ -9,10 +9,10 @@
     <script src="./scripts/script.js"></script>
     <script src="./scripts/board.js"></script>
 
-    <title>Document</title>
+    <title>Join - Board</title>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); loadTasks()">
     <div w3-include-html="./menu.html"></div>
 
     <section class="board-container">
@@ -41,7 +41,42 @@
             </div>
         </div>
 
+        <!-- Task Columns to dynamically insert tasks -->
         <div class="column-container">
+            <!-- "To Do" column -->
+            <div id="ToDo" class="task-column" ondrop="moveTo(event, 'ToDo')" ondragover="allowDrop(event)"
+                ondragenter="highlight('ToDo')" ondragleave="removeHighlight('ToDo')">
+                <div class="no-tasks">No tasks To do</div>
+            </div>
+
+            <!-- "In Progress" column -->
+            <div id="inProgress" class="task-column" ondrop="moveTo(event, 'inProgress')" ondragover="allowDrop(event)"
+                ondragenter="highlight('inProgress')" ondragleave="removeHighlight('inProgress')">
+                <!-- Tasks will be dynamically added here -->
+            </div>
+
+            <!-- "Await Feedback" column -->
+            <div id="AwaitFeedback" class="task-column" ondrop="moveTo(event, 'AwaitFeedback')"
+                ondragover="allowDrop(event)" ondragenter="highlight('AwaitFeedback')"
+                ondragleave="removeHighlight('AwaitFeedback')">
+                <!-- Tasks will be dynamically added here -->
+            </div>
+
+            <!-- "Done" column -->
+            <div id="Done" class="task-column" ondrop="moveTo(event, 'Done')" ondragover="allowDrop(event)"
+                ondragenter="highlight('Done')" ondragleave="removeHighlight('Done')">
+                <div class="no-tasks">No tasks Done</div>
+            </div>
+        </div>
+
+        <!-- Dialog for adding a task -->
+        <div id="dialog" class="dialog-bg d-none" onclick="closeDialog()">
+            <div id="dialog-content" class="dialog">
+
+            </div>
+        </div>
+
+        <!-- <div class="column-container">
             <div id="ToDo" class="task-column" ondrop="moveTo(event, 'ToDo')" ondragover="allowDrop(event)"
                 ondragenter="highlight('ToDo')" ondragleave="removeHighlight('ToDo')">
                 <div class="no-tasks">No tasks To do</div>
@@ -113,12 +148,15 @@
                 ondragleave="removeHighlight('Done')">
                 <div class="no-tasks">No tasks To do</div>
             </div>
-        </div>
+        </div> -->
 
-        <div id="dialog" class="dialog-bg d-none" onclick="closeDialog()">
+        <div id="dialog" class="dialog-bg d-none">
             <div id="dialog-content" class="dialog">
 
-                <button onclick="closeDialog()">Schließen</button>
+                <div>
+                    <img class="close-popup" src="./assets/img/close.png" alt="close-img">
+                </div>
+
             </div>
         </div>
     </section>

@@ -16,84 +16,84 @@
     <script src="./scripts/contacts.js"></script>
     <script src="./scripts/summary.js"></script>
 
-    <title>Join</title>
+    <title>Join - Summary</title>
 </head>
 
 <body onload="includeHTML(); setDaytimeOnGreeting(); setUsernameOnGreeting(); getInitialsForHeader()">
     <section class="summary-container">
         <div w3-include-html="menu.html"></div>
-    <main id="content-summary">
-        <div id="content-summary-left">
-            <div id="join-360">
-                <div id="join-360-headline">Join 360</div>
-                <div id="join-360-bordercontainer"></div>
-                <div id="join-360-slogan">Key Metrics at a Glance</div>
-            </div>
-
-            <div id="summary">
-                <div id="summary-top">
-                    <div id="summary-todo" class="summary-top-style" onclick="navigateToBoard()">
-                        <img id="summary-img-pencil" class="summary-img" src="./assets/img/pencil.png" alt="pencil">
-                        <div class="summary-card-small">
-                            <div id="summary-todo" class="summary-small-number">1</div>
-                            <div class="summary-small-text">To-do</div>
-                        </div>
-                    </div>
-                    <div id="summary-done" class="summary-top-style" onclick="navigateToBoard()">
-                        <img class="summary-img" id="summary-img-completed" src="./assets/img/completed.png"
-                            alt="completed">
-                        <div class="summary-card-small">
-                            <div id="summary-done" class="summary-small-number">1</div>
-                            <div class="summary-small-text">Done</div>
-                        </div>
-                    </div>
-                </div>
-                <div id="summary-urgent" onclick="navigateToBoard()">
-                    <div id="summary-urgent-left">
-                        <img id="summary-urgent-change-img" class="summary-img" src="./assets/img/urgent-red.png"
-                            alt="urgent-red">
-                        <div class="summary-card-small">
-                            <div id="summary-urgent-change-number" class="summary-small-number">1</div>
-                            <div class="summary-small-text">Urgent</div>
-                        </div>
-                    </div>
-                    <div id="summary-urgent-border"></div>
-                    <div id="summary-urgent-right">
-                        <div id="summary-urgent-right-date">August 25, 2024</div>
-                        <div class="summary-urgent-right-deadline">Upcoming Deadline</div>
-                    </div>
+        <main id="content-summary">
+            <div id="content-summary-left">
+                <div id="join-360">
+                    <div id="join-360-headline">Join 360</div>
+                    <div id="join-360-bordercontainer"></div>
+                    <div id="join-360-slogan">Key Metrics at a Glance</div>
                 </div>
 
-                <div id="summary-bottom" onclick="navigateToBoard()">
-                    <div id="summary-tasksinboard" class="summary-bottom-style">
-                        <div class="summary-bottom-content-style">
-                            <div id="summary-bottom-tasks" class="summary-bottom-small-number">5</div>
-                            <div class="summary-bottom-small-text">Tasks in Board</div>
+                <div id="summary">
+                    <div id="summary-top">
+                        <div id="summary-todo" class="summary-top-style" onclick="navigateToBoard()">
+                            <img id="summary-img-pencil" class="summary-img" src="./assets/img/pencil.png" alt="pencil">
+                            <div class="summary-card-small">
+                                <div id="summary-todo" class="summary-small-number">1</div>
+                                <div class="summary-small-text">To-do</div>
+                            </div>
+                        </div>
+                        <div id="summary-done" class="summary-top-style" onclick="navigateToBoard()">
+                            <img class="summary-img" id="summary-img-completed" src="./assets/img/completed.png"
+                                alt="completed">
+                            <div class="summary-card-small">
+                                <div id="summary-done" class="summary-small-number">1</div>
+                                <div class="summary-small-text">Done</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="summary-bottom-style" onclick="navigateToBoard()">
-                        <div class="summary-bottom-content-style">
-                            <div id="summary-bottom-progress" class="summary-bottom-small-number">2</div>
-                            <div class="summary-bottom-small-text">Tasks in Progress</div>
+                    <div id="summary-urgent" onclick="navigateToBoard()">
+                        <div id="summary-urgent-left">
+                            <img id="summary-urgent-change-img" class="summary-img" src="./assets/img/urgent-red.png"
+                                alt="urgent-red">
+                            <div class="summary-card-small">
+                                <div id="summary-urgent-change-number" class="summary-small-number">1</div>
+                                <div class="summary-small-text">Urgent</div>
+                            </div>
+                        </div>
+                        <div id="summary-urgent-border"></div>
+                        <div id="summary-urgent-right">
+                            <div id="summary-urgent-right-date">August 25, 2024</div>
+                            <div class="summary-urgent-right-deadline">Upcoming Deadline</div>
                         </div>
                     </div>
-                    <div class="summary-bottom-style" onclick="navigateToBoard()">
-                        <div class="summary-bottom-content-style">
-                            <div id="summary-bottom-feedback" class="summary-bottom-small-number">2</div>
-                            <div class="summary-bottom-small-text">Awaiting Feedback</div>
+
+                    <div id="summary-bottom" onclick="navigateToBoard()">
+                        <div id="summary-tasksinboard" class="summary-bottom-style">
+                            <div class="summary-bottom-content-style">
+                                <div id="summary-bottom-tasks" class="summary-bottom-small-number">5</div>
+                                <div class="summary-bottom-small-text">Tasks in Board</div>
+                            </div>
+                        </div>
+                        <div class="summary-bottom-style" onclick="navigateToBoard()">
+                            <div class="summary-bottom-content-style">
+                                <div id="summary-bottom-progress" class="summary-bottom-small-number">2</div>
+                                <div class="summary-bottom-small-text">Tasks in Progress</div>
+                            </div>
+                        </div>
+                        <div class="summary-bottom-style" onclick="navigateToBoard()">
+                            <div class="summary-bottom-content-style">
+                                <div id="summary-bottom-feedback" class="summary-bottom-small-number">2</div>
+                                <div class="summary-bottom-small-text">Awaiting Feedback</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <aside id="content-summary-right">
-            <div id="personal-greeting">
-                <div id="daytime-greeting"></div>
-                <div id="username-greeting"></div>
-            </div>
-        </aside>
-    </main>
-</section>
+            <aside id="content-summary-right">
+                <div id="personal-greeting">
+                    <div id="daytime-greeting"></div>
+                    <div id="username-greeting"></div>
+                </div>
+            </aside>
+        </main>
+    </section>
 </body>
 
 </html>

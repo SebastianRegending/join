@@ -1,66 +1,76 @@
 .add-task-form {
   display: flex;
   margin-left: 232px;
- }
+}
 
 
- body{
+body {
   background-color: #F6F7F8;
- }
+}
 
 h1 {
   margin-left: 272px;
 }
 
 
-.fullpage{
+.fullpage {
   margin-top: 160px;
- }
+}
 
- .fullpage h1 {
+.fullpage h1 {
   font-size: 62px;
- }
+}
 
 
 .flexed {
   display: flex;
 }
 
-.button-area-prio{
+.button-area-prio {
   justify-content: space-between;
   margin-bottom: 32px;
-  }
+  width: 90%;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
 
 .form-left-side {
   display: flex;
   flex-direction: column;
+  width: 40%;
   margin: 24px 40px 24px 40px;
   padding-right: 40px;
   border-right: solid 1px #D1D1D1;
 }
 
 .form-right-side {
+  width: 40%;
   display: flex;
   flex-direction: column;
 }
 
 .multiselect {
-  width: 475px;
-}
-
-.selectBox {
-  position: relative;
+  width: 90% !important;
   
 }
 
+.selectBox {
+  position: relative !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .selectBox select {
+  position: relative !important;
   width: 100%;
   font-weight: bold;
+  box-sizing: border-box;
 }
 
 .overSelect {
   position: absolute;
-  
+  width: 90%;
   left: 0;
   right: 0;
   top: 0;
@@ -71,8 +81,10 @@ h1 {
   display: none;
   border: 1px #dadada solid;
   height: 150px;
+  width:100%;
   overflow-y: auto;
-
+  overflow-x: hidden;
+  box-sizing: border-box;
   --sb-track-color: #ffffff;
   --sb-thumb-color: #a8a8a8;
   --sb-size: 6px;
@@ -107,7 +119,7 @@ label {
 
 .input-field {
   font-family: Inter;
-  width: 440px ;
+  width: 90%;
   height: 48px;
   border: 1px solid #D1D1D1;
   border-radius: 10px;
@@ -130,7 +142,7 @@ label {
 }
 
 #input-description {
-  width: 440px;
+  width: 90%;
   height: 120px;
   border: 1px solid #D1D1D1;
   border-radius: 10px;
@@ -203,7 +215,7 @@ label {
 
 .input-field-select {
   font-family: Inter;
-  width: 440px;
+  width: 100%;
   height: 48px;
   border: 1px solid #D1D1D1;
   border-radius: 10px;
@@ -231,7 +243,7 @@ option {
 }
 
 .overSelect {
-  width: 440px;
+  width: 100%;
   padding: 0 12px 0 21px;
 
 }
@@ -248,10 +260,10 @@ option {
 .input-check {
   position: relative;
   margin-left: auto;
-  margin-right: 40px;
+  margin-right: 60px;
 }
 
-.submit-area{
+.submit-area {
   display: flex;
   justify-content: space-between;
   margin-left: 272px;
@@ -260,7 +272,7 @@ option {
   align-items: end;
 }
 
-.submit-area button{
+.submit-area button {
   margin-left: 24px;
 }
 
@@ -321,7 +333,7 @@ option {
 
 
 
-#subtasks{
+#subtasks {
   font-family: Inter;
   width: 440px;
   height: 48px;
@@ -337,7 +349,7 @@ option {
 
 #subtasks:focus {
   outline: none !important;
-  border: 0px ;
+  border: 0px;
 }
 
 #subtasks::placeholder {
@@ -351,7 +363,7 @@ option {
 
 .input-field-subtasks {
   font-family: Inter;
-  width: 472px;
+  width: 90%;
   height: 48px;
   border: 1px solid #D1D1D1;
   border-radius: 10px;
@@ -359,64 +371,64 @@ option {
   align-items: center;
   justify-content: center;
   font-size: 21px;
- 
+  background-color: white;
 }
 
 
-.input-field-subtasks img:hover{
+.input-field-subtasks img:hover {
   cursor: pointer;
-  
-  
+
+
 }
 
-.flex-column{
-  display:flex;
+.flex-column {
+  display: flex;
   flex-direction: column;
 }
-#add-button-icon-plus{
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 12px;
-}
 
-#add-button-icon-plus:hover{
-  background-color: #D1D1D1;
-  cursor: pointer;
-}
-
-#add-button-icon-check{
+#add-button-icon-plus {
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 12px;
-  
 }
 
-#add-button-icon-cancel:hover{
+#add-button-icon-plus:hover {
   background-color: #D1D1D1;
   cursor: pointer;
 }
 
-#category{
-  width:475px;
+#add-button-icon-check {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
 }
 
-#circle-area-assigned-contacts{
-  display:flex;
+#add-button-icon-cancel:hover {
+  background-color: #D1D1D1;
+  cursor: pointer;
+}
+
+#category {
+  width: 90%;
+}
+
+#circle-area-assigned-contacts {
+  display: flex;
   padding-top: 16px;
 }
 
-.assigned-contacts{
+.assigned-contacts {
   margin: 0 !important;
   padding: 0 !important;
-  
- }
+
+}
 
 
-#add-button-icon-cancel{
+#add-button-icon-cancel {
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -424,7 +436,7 @@ padding: 12px;
   padding: 12px;
 }
 
-#deadline{
+#deadline {
   display: block !important;
 }
 
@@ -433,27 +445,25 @@ padding: 12px;
 }
 
 
-.contact-for-form{
+.contact-for-form {
   border-radius: 10px;
-  }
-  
-  
-  .contact-for-form:hover{
+}
+
+
+.contact-for-form:hover {
   background-color: #d1d1d1 !important;
-  }
-  
+}
 
 
-#add-button-icon-check:hover{
+
+#add-button-icon-check:hover {
   background-color: #D1D1D1;
   cursor: pointer;
 }
 
-.cancel-container{
-  border-right: 1px solid #D1D1D1;  
+.cancel-container {
+  border-right: 1px solid #D1D1D1;
 }
-
-
 
 
 .circle {
@@ -468,21 +478,26 @@ padding: 12px;
   color: white;
 }
 
+
 .circle-yellow {
   background-color: #ffbb2b !important;
 }
+
 
 .circle-orange {
   background-color: #ff7a00 !important;
 }
 
+
 .circle-turquoise {
   background-color: #1fd7c1 !important;
 }
 
+
 .circle-purple {
   background-color: #462f8a !important;
 }
+
 
 .circle-lightpurple {
   background-color: #6e52ff !important;
@@ -493,83 +508,170 @@ padding: 12px;
   background-color: #0038ff !important;
 }
 
+
 .circle-lightblue {
   background-color: #00bee8 !important;
 }
+
 
 .circle-pink {
   background-color: #fc71ff !important;
 }
 
+
 .circle-lightred {
   background-color: #ff4646 !important;
 }
+
 
 .circle-green {
   background-color: #33691e !important;
 }
 
-.z1{
+
+.z1 {
   z-index: 1;
   left: 0px;
   position: relative;
 }
-.z2{
+
+
+.z2 {
   z-index: 2;
   left: -10px;
   position: relative;
 }
-.z3{
+
+
+.z3 {
   z-index: 3;
   left: -20px;
   position: relative;
 }
-.z4{
+
+
+.z4 {
   z-index: 4;
   left: -30px;
   position: relative;
 }
-.z5{
+
+
+.z5 {
   z-index: 5;
   left: -40px;
   position: relative;
 }
-.z6{
+
+
+.z6 {
   z-index: 6;
   left: -50px;
   position: relative;
 }
-.z7{
+
+
+.z7 {
   z-index: 7;
   left: -60px;
   position: relative;
 }
-.z8{
+
+
+.z8 {
   z-index: 8;
   left: -70px;
   position: relative;
 }
-.z9{
+
+
+.z9 {
   z-index: 9;
   left: -80px;
   position: relative;
 }
-.z10{
+
+
+.z10 {
   z-index: 10;
   left: -90px;
   position: relative;
 }
-.z11{
+
+
+.z11 {
   z-index: 10;
   left: -40px;
   position: relative;
 }
-.z12{
+
+
+.z12 {
   z-index: 110;
   left: -40px;
   position: relative;
 }
 
-.bg-blue{
-background-color: #0038ff;
+
+.bg-blue {
+  background-color: #0038ff;
+}
+
+
+#toaster-task {
+  visibility: hidden;
+  width: 312px;
+  height: 74px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2A3647;
+  font-size: 20px;
+  color: white;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  gap: 24px;
+  bottom: -74px;
+  transform: translateX(-50%);
+}
+
+
+#toaster-task.show {
+  visibility: visible;
+  animation: slidein 0.75s, stay 1s 0.75s, slideout 0.75s 1.5s;
+}
+
+
+@keyframes slidein {
+  from {
+    bottom: -74px;
+  }
+
+  to {
+    bottom: 50%;
+  }
+}
+
+@keyframes stay {
+  from {
+    bottom: 50%;
+  }
+
+  to {
+    bottom: 50%;
+  }
+}
+
+@keyframes slideout {
+  from {
+    bottom: 50%;
+  }
+
+  to {
+    bottom: -74px;
+  }
 }
