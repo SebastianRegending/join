@@ -621,12 +621,12 @@ body {
 
 
 #add-contact-dialog.show{
-    animation: slidein 0.75s, fadein 0.75s;
+    animation: slidein 0.5s, fadein 0.5s;
 }
 
 
 #add-contact-dialog.hide{
-    animation: slideout 0.75s, fadeout 0.75s;
+    animation: slideout 0.5s, fadeout 0.5s;
 }
 
 
@@ -651,7 +651,7 @@ body {
     }
   }
 
-  
+
   @keyframes fadein {
     from {
       opacity: 0;
