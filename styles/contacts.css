@@ -673,4 +673,60 @@ body {
     }
 }
   
+#toaster-contact {
+    /* visibility: hidden; */
+    width: 312px;
+    height: 74px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A3647;
+    font-size: 20px;
+    color: white;
+    position: fixed;
+    z-index: 1;
+    gap: 24px;
+    bottom: 10%;
+    transform: translateX(-50%);
+    right: 100vw;
+  }
+  
+  
+  #toaster-contact.show {
+    visibility: visible;
+    animation: slideintoaster 0.75s, staytoaster 1s 0.75s, slideouttoaster 0.75s 1.5s;
+  }
+
+  @keyframes slideintoaster {
+    from {
+      right: -100vw;
+    }
+  
+    to {
+      right: 0;
+    }
+  }
+  
+  @keyframes staytoaster {
+    from {
+      right: 0;
+    }
+  
+    to {
+      right: 0;
+    }
+  }
+  
+  @keyframes slideouttoaster {
+    from {
+      right: 0;
+    }
+  
+    to {
+      right: -100vw;
+    }
+  }
   

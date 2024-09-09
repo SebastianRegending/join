@@ -276,6 +276,8 @@ async function createContact(name, email, phone, initialsForSaving, color, tasks
         },
         body: JSON.stringify(data)
     });
+    document.getElementById('toaster-contact').classList.add('show');
+    setTimeout(function(){document.getElementById('toaster-contact').classList.remove('show');}, 2000);
     loadContacts();
     return response;
 }
