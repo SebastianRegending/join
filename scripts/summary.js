@@ -45,3 +45,20 @@ async function setUsernameOnGreeting() {
         }
     }
 }
+
+function createInitialsForHeader(name) {
+    let words = name.split(" ");
+    initialsSummary = [];
+    words.length = 2;
+    words.forEach((element) => initialsSummary.push(element.charAt(0)));
+    sessionStorage.setItem('Initials', JSON.stringify(initialsSummary));
+}
+
+async function getTasksFromFirebase(path = "") {
+    const response = await fetch(BASE_URL + path + ".json");
+    const data = await response.json();
+    let UserTasksArray = Object.values(data);
+    let UserTasks = UserTasksArray.find(contacts => contacts.tasks);
+    console.log(UserTasks);
+    
+}

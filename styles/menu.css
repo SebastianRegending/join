@@ -154,6 +154,11 @@ a {
 .help-icon{
     width: 32px;
     height: 32px;
+    transition: 0.15s linear;
+}
+
+.help-icon:hover {
+    transform: scale(1.2);
 }
 
 #logout-container {
@@ -204,6 +209,11 @@ a {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: 0.15s linear;
+}
+
+.initials-header-border:hover {
+    background-color: rgba(12, 46, 98, 0.12);
 }
 
 #initials-header {
