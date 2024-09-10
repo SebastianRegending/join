@@ -54,6 +54,17 @@ function createInitialsForHeader(name) {
     sessionStorage.setItem('Initials', JSON.stringify(initialsSummary));
 }
 
+async function showInitialsForHeader() {
+    await setUsernameOnGreeting();
+    let initialsHeader = JSON.parse(sessionStorage.getItem('Initials'));
+    if (initialsHeader) {
+        let firstInitial = initialsHeader[0];
+        let secondInitial = initialsHeader[1];
+        let combinedInitials = firstInitial + (secondInitial ? secondInitial : '');
+        document.getElementById('initials-header').innerHTML = combinedInitials;
+    }
+}
+
 async function getTasksFromFirebase(path = "") {
     const response = await fetch(BASE_URL + path + ".json");
     const data = await response.json();

@@ -8,8 +8,7 @@ async function initSummaryHTML() {
     await includeHTML();
     setDaytimeOnGreeting();
     setUsernameOnGreeting();
-    // showInitialsForHeader();
-    setInitialsForHeader();
+    showInitialsForHeader();
 }
 
 async function initBoardHTML() {
