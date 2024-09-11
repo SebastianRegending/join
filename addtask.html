@@ -27,7 +27,7 @@
                     <div class="multiselect">
                         <div class="selectBox" onclick="showCheckboxes()">
                             <select class="input-field-select">
-                                <option>Select contacts to assign</option>
+                                <option class="option-select">Select contacts to assign</option>
                             </select>
                             <div class="overSelect"></div>
                         </div>
@@ -79,16 +79,23 @@
                     <div class="flex-column" id="added-subtasks"></div>
                 </div>
             </div>
-            <div class="submit-area">
-                <span><span class="red-letter">*</span>This field is required</span>
-                <div class="flexed">
-                    <div class="white-btn" onclick="clearTasks()">Clear <img src="./assets/img/cancel.svg"></div>
-                    <button class="blue-btn" id="create-task-btn">Create Task<img src="./assets/img/check.svg"></button>
+            <div class="add-task-form">
+                <div class="form-left-side-help">
+                    <span><span class="red-letter">*</span>This field is required</span>
+                </div>
+                <div class="form-right-side">
+
+                    <div class="submit-area-right"></div>
+                    <div class="flexed submit-area-help-container">
+                        <span class="red-letter-resp"><span class="red-letter">*</span>This field is required</span>
+                        <div class="white-btn" onclick="clearTasks()">Clear <img src="./assets/img/cancel.svg"></div>
+                        <button class="blue-btn">Create Task<img src="./assets/img/check.svg"></button>
+                    </div>
                 </div>
             </div>
-
         </form>
     </section>
+    <div id="toaster-task">Task added to board <img src="./assets/img/board.svg"></div>
 </body>
 
 </html>
