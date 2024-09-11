@@ -28,7 +28,7 @@
                     <div class="multiselect">
                         <div class="selectBox" onclick="showCheckboxes()">
                             <select class="input-field-select">
-                                <option>Select contacts to assign</option>
+                                <option class="option-select">Select contacts to assign</option>
                             </select>
                             <div class="overSelect"></div>
                         </div>
@@ -54,40 +54,46 @@
                             
                             <div class="prio-container" id="prio-low" onclick="setPrio('low'); colorPrioLow()">Low <img
                                 id="prio-pic-low" src="./assets/img/low-icon.svg"></div>
-                                
-                            </div>
-                            <label for="category">Category<span class="red-letter">*</span></label>
-                            <select class="input-field" name="category" id="category" required>
-                                <option value="" disabled selected hidden>Select your option</option>
-                                <option value="Technical Task">Technical Task</option>
-                                <option value="User Story">User Story</option>
-                            </select>
-                            <label for="subtasks">Subtasks</label>
-                            <div class="input-field-subtasks input-field-subtasks-smaller">
-                                <input id="subtasks" onfocus="openAddSubtask()" placeholder="Add new subtask">
-                                <div onclick="openAddSubtask()" id="add-button-icon-plus" class="add-subtask"><img
-                                    src="./assets/img/add.svg"></div>
-                                    
-                                    <div class="cancel-container">
-                                        <div class="d-none" onclick="cancelAddSubtask()" id="add-button-icon-cancel"><img
-                                            src="./assets/img/cancel.svg"></div>
-                                        </div>
-                                        
-                                        <div onclick="addSubtask()" id="add-button-icon-check" class="d-none"><img id="check"
-                                            src="./assets/img/checkstandard.svg"></div>
-                                        </div>
-                                        
-                                        <div class="flex-column" id="added-subtasks"></div>
-                                    </div>
-                                </div>
-                                <div class="submit-area">
-                <span><span class="red-letter">*</span>This field is required</span>
-                <div class="flexed">
-                    <div class="white-btn" onclick="clearTasks()">Clear <img src="./assets/img/cancel.svg"></div>
-                    <button class="blue-btn">Create Task<img src="./assets/img/check.svg"></button>
+
+                    </div>
+                    <label for="category">Category<span class="red-letter">*</span></label>
+                    <select class="input-field" name="category" id="category" required>
+                        <option value="" disabled selected hidden>Select your option</option>
+                        <option value="Technical Task">Technical Task</option>
+                        <option value="User Story">User Story</option>
+                    </select>
+                    <label for="subtasks">Subtasks</label>
+                    <div class="input-field-subtasks input-field-subtasks-smaller">
+                        <input id="subtasks" onfocus="openAddSubtask()" placeholder="Add new subtask">
+                        <div onclick="openAddSubtask()" id="add-button-icon-plus" class="add-subtask"><img
+                                src="./assets/img/add.svg"></div>
+
+                        <div class="cancel-container">
+                            <div class="d-none" onclick="cancelAddSubtask()" id="add-button-icon-cancel"><img
+                                    src="./assets/img/cancel.svg"></div>
+                        </div>
+
+                        <div onclick="addSubtask()" id="add-button-icon-check" class="d-none"><img id="check"
+                                src="./assets/img/checkstandard.svg"></div>
+                    </div>
+
+                    <div class="flex-column" id="added-subtasks"></div>
                 </div>
             </div>
-            
+            <div class="add-task-form">
+                <div class="form-left-side-help">
+                    <span><span class="red-letter">*</span>This field is required</span>
+                </div>
+                <div class="form-right-side">
+
+                    <div class="submit-area-right"></div>
+                    <div class="flexed submit-area-help-container">
+                        <span class="red-letter-resp"><span class="red-letter">*</span>This field is required</span>
+                        <div class="white-btn" onclick="clearTasks()">Clear <img src="./assets/img/cancel.svg"></div>
+                        <button class="blue-btn">Create Task<img src="./assets/img/check.svg"></button>
+                    </div>
+                </div>
+            </div>
         </form>
     </section>
     <div id="toaster-task">Task added to board <img src="./assets/img/board.svg"></div>

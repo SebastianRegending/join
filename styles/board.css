@@ -437,3 +437,52 @@ body{
 }
 
 
+@keyframes taskAddedAnimation {
+
+    0% {
+        transform: translateY(0); 
+        opacity: 0;
+    }
+    20% {
+        transform: translateY(0); 
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50vh);
+        opacity: 1;
+    }
+}
+
+/* Die Task-Added-Animation */
+.task-added-animation {
+    position: fixed;
+    bottom: -180px;  /* Start unter dem Bildschirm */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2a3647;
+    color: whitesmoke;
+    font-family: Inter, sans-serif;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;  /* Konstante Opazität */
+    visibility: hidden;
+    transition: visibility 0.3s ease;
+    
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    width: 230px;
+    padding: 8px;
+}
+
+.task-added-animation.show {
+    visibility: visible;
+    animation: taskAddedAnimation 2s ease-in-out;
+}
+
+.task-added-animation img{
+    width: 24px;
+    height: 24px;
+}
