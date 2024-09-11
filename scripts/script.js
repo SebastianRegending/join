@@ -6,6 +6,7 @@ async function initAddTaskHTML() {
 
 async function initSummaryHTML() {
     await includeHTML();
+    getTasksFromFirebase();
     setDaytimeOnGreeting();
     setUsernameOnGreeting();
     showInitialsForHeader();

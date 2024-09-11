@@ -65,11 +65,12 @@ async function showInitialsForHeader() {
     }
 }
 
-async function getTasksFromFirebase(path = "") {
-    const response = await fetch(BASE_URL + path + ".json");
+async function getTasksFromFirebase(path = "/tasks") {
+    const response = await fetch(BASE_URL_USER + path + ".json");
     const data = await response.json();
     let UserTasksArray = Object.values(data);
-    let UserTasks = UserTasksArray.find(contacts => contacts.tasks);
-    console.log(UserTasks);
+    const taskLength = UserTasksArray.length;
+    document.getElementById('summary-bottom-tasks').innerHTML = taskLength;
+    
     
 }
