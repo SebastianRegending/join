@@ -1,3 +1,44 @@
+async function initAddTaskHTML() {
+    await includeHTML();
+    loadContacts();
+    setInitialsForHeader();
+}
+
+async function initSummaryHTML() {
+    await includeHTML();
+    getTasksFromFirebase();
+    setDaytimeOnGreeting();
+    setUsernameOnGreeting();
+    showInitialsForHeader();
+}
+
+async function initBoardHTML() {
+    await includeHTML();
+    loadTasks();
+    setInitialsForHeader();
+}
+
+async function initContactsHTML() {
+    await includeHTML();
+    loadContacts();
+    setInitialsForHeader();
+}
+
+async function initPrivacyPolicyHTML() {
+    await includeHTML();
+    setInitialsForHeader();
+}
+
+async function initLegalNoticeHTML() {
+    await includeHTML();
+    setInitialsForHeader();
+}
+
+async function initHelpHTML() {
+    await includeHTML();
+    setInitialsForHeader();
+}
+
 /**
  * Includes HTML content from external files into the current document.
  * Elements with the attribute `w3-include-html` will have their content replaced by the fetched HTML.
@@ -128,21 +169,43 @@ function openDialog(text) {
 /**
  * Closes the dialog window with a sliding animation.
  */
+function closeDialog() {
+    let dialog = document.getElementById('dialog');
+    let dialogBox = dialog.querySelector('.dialog');
+    
+    dialogBox.classList.remove('show');
+    
+    setTimeout(() => {
+        dialog.classList.add('d-none');
+    }, 500);
+}
 
+/**
+ * toggles the log out menu show/hide
+ */
 function logOutButton() {
     document.getElementById('logout-container').classList.toggle('d-none');
 }
 
+/**
+ * logs the user out and delete the datas from local and session storage
+ */
 function logOutUser() {
     localStorage.clear();
     sessionStorage.clear();
     window.location.href = 'login.html';
 }
 
+/**
+ * switch to legalnotice
+ */
 function legalNotice() {
     window.location.href = 'legalnotice.html';
 }
 
+/**
+ * switch to privacypolicy
+ */
 function privacyPolicy() {
     window.location.href = 'privacypolicy.html';
 }
@@ -167,4 +230,14 @@ function addActiveClass() {
             item.classList.remove('active');
         }
     });
+}
+
+function setInitialsForHeader() {
+    let initialsHeader = JSON.parse(sessionStorage.getItem('Initials'));
+    if (initialsHeader) {
+        let firstInitial = initialsHeader[0];
+        let secondInitial = initialsHeader[1];
+        let combinedInitials = firstInitial + (secondInitial ? secondInitial : '');
+        document.getElementById('initials-header').innerHTML = combinedInitials;
+    }
 }
