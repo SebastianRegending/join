@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     dialogContent.insertBefore(closeButton, dialogContent.firstChild);
                     document.getElementById('dialog').classList.remove('d-none');
+                    
+                    // Verhindert, dass sich der Dialog schließt, wenn auf den Inhalt geklickt wird
+                    document.getElementById('dialog-content').addEventListener('click', function (event) {
+                        event.stopPropagation(); // Stoppt das Ereignis, damit es nicht den Dialog-Hintergrund erreicht
+                    });
 
                     // Lädt das zusätzliche Skript und die Kontakte, nachdem das Dialogfenster geöffnet wurde
                     loadScripts().then(() => {
@@ -44,11 +49,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Event Listener, um den Dialog zu schließen, wenn außerhalb des Dialogs geklickt wird
+    // Event Listener, um den Dialog zu schließen, wenn auf den Hintergrund (außerhalb des Dialog-Inhalts) geklickt wird
     document.getElementById('dialog').addEventListener('click', function (event) {
-        if (event.target === this) {
-            closeDialog();
-        }
+        closeDialog();  // Schließt den Dialog, wenn auf den Hintergrund geklickt wurde
     });
 
     // Funktion zum Laden des zusätzlichen Skripts `addtask.js`
@@ -94,6 +97,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+
 
 // Funktion zum Laden der Tasks und deren Darstellung im Board
 async function loadTasks() {
