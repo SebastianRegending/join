@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/board.css">
+    <link rel="stylesheet" href="./styles/taskDetail.css">
     <link rel="icon" type="image/x-icon" href="./assets/img/join.png">
     <script src="./scripts/script.js"></script>
     <script src="./scripts/board.js"></script>
+    <script src="./scripts/taskDetail.js"></script>
 
     <title>Join - Board</title>
 </head>
@@ -76,97 +78,21 @@
             </div>
         </div>
 
-
-
-        <!-- <div class="column-container">
-            <div id="ToDo" class="task-column" ondrop="moveTo(event, 'ToDo')" ondragover="allowDrop(event)"
-                ondragenter="highlight('ToDo')" ondragleave="removeHighlight('ToDo')">
-                <div class="no-tasks">No tasks To do</div>
-            </div>
-            <div id="inProgress" ondrop="moveTo(event, 'inProgress')" ondragover="allowDrop(event)"
-                ondragenter="highlight('inProgress')" ondragleave="removeHighlight('inProgress')">
-
-                <div id="task1" class="todo-card" draggable="true" ondragstart="startDragging(event)">
-                    <div class="card-labels">
-                        <span class="label">User Story</span>
-                    </div>
-
-                    <div class="card-content">
-                        <h3 class="card-title">Kochwelt Page & Recipe Recommender</h3>
-                        <p class="card-description">Build start page with recipe recommendation...</p>
-                    </div>
-
-                    <div class="card-progress">
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 50%;"></div>
-                            <p class="subtasks">0/2 Subtasks</p>
-                        </div>
-                    </div>
-
-                    <div class="card-footer">
-                        <div class="card-users">
-                            <span class="user-badge">AS</span>
-                            <span class="user-badge">DE</span>
-                            <span class="user-badge">EF</span>
-                        </div>
-                        <div class="priority">
-                            <span class="priority-symbol">
-                                <img src="./assets/img/priority-medium.png" alt="">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div id="AwaitFeedback" ondrop="moveTo(event, 'AwaitFeedback')" ondragover="allowDrop(event)"
-                ondragenter="highlight('AwaitFeedback')" ondragleave="removeHighlight('AwaitFeedback')">
-                <div id="task2" class="todo-card" draggable="true" ondragstart="startDragging(event)">
-                    <div class="card-labels">
-                        <span class="label technical">Technical Task</span>
-                    </div>
-
-                    <div class="card-content">
-                        <h3 class="card-title">HTML Base Template Creation</h3>
-                        <p class="card-description">Create reusable HTML base templates...</p>
-                    </div>
-
-                    <div class="card-footer">
-                        <div class="card-users">
-                            <span class="user-badge">DE</span>
-                            <span class="user-badge">BZ</span>
-                            <span class="user-badge">AS</span>
-                        </div>
-                        <div class="priority">
-                            <span class="priority-symbol">
-                                <img src="./assets/img/priority-low.png" alt="">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="Done" ondrop="moveTo(event, 'Done')" ondragover="allowDrop(event)" ondragenter="highlight('Done')"
-                ondragleave="removeHighlight('Done')">
-                <div class="no-tasks">No tasks To do</div>
-            </div>
-        </div> -->
-
-        <div id="dialog" class="dialog-bg d-none">
-            <div id="dialog-content" class="dialog">
-
-                <div>
-                    <img class="close-popup" src="./assets/img/close.png" alt="close-img">
-                </div>
-
-            </div>
-        </div>
-
         <div id="task-added-animation" class="task-added-animation d-none">
             <p>Task added to board</p>
-            <img src="./assets/img/board.png" alt="">
+            <img src="./assets/img/board.png" alt="board-icon">
         </div>
+
+
+        <!-- Dialog for task details -->
+        <div id="pop-up-task" class="dialog-bg d-none" onclick="closePopUpIfOutside(event)">
+            <div id="pop-up-content" class="dialog-popup">
+
+            </div>
+        </div>
+
     </section>
+
 </body>
 
 </html>

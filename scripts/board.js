@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Funktion zum Erstellen eines neuen Tasks und Ausführen der Animation, bevor der Dialog geschlossen wird
     async function createTaskHandler(e) {
         e.preventDefault();  // Verhindert das Neuladen der Seite
-    
+
         await createNewTask();  // Erstellt den neuen Task
 
         // Zeigt die "Task added" Animation
@@ -77,22 +77,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-// Funktion zum Anzeigen der Animation "Task added"
-function showTaskAddedAnimation() {
-    return new Promise(resolve => {
-        const animationElement = document.getElementById('task-added-animation');
-        animationElement.classList.remove('d-none');  // Zeigt das Element an
-        animationElement.classList.add('show');  // Startet die Animation
+    // Funktion zum Anzeigen der Animation "Task added"
+    function showTaskAddedAnimation() {
+        return new Promise(resolve => {
+            const animationElement = document.getElementById('task-added-animation');
+            animationElement.classList.remove('d-none');  // Zeigt das Element an
+            animationElement.classList.add('show');  // Startet die Animation
 
-        setTimeout(() => {
-            animationElement.classList.remove('show');  // Entfernt die Animation
             setTimeout(() => {
-                animationElement.classList.add('d-none');  // Versteckt das Element wieder
-                resolve();
-            }, 300); 
-        }, 3000);
-    });
-}
+                animationElement.classList.remove('show');  // Entfernt die Animation
+                setTimeout(() => {
+                    animationElement.classList.add('d-none');  // Versteckt das Element wieder
+                    resolve();
+                }, 300);
+            }, 3000);
+        });
+    }
 });
 
 // Funktion zum Laden der Tasks und deren Darstellung im Board
@@ -116,7 +116,7 @@ async function loadTasks() {
         // Farben für Benutzer-Badges
         const colors = ['#FF7A00', '#1FD7C1', '#462F8A', '#6e52ff', '#00bee8'];
 
-        // Erstellt Initialen für Benutzernamen
+        // Wiederverwendbare Funktion zum Abrufen der Initialen
         function getInitials(name) {
             const nameParts = name.split(' ');
             return nameParts.map(part => part.charAt(0)).join('').toUpperCase();
@@ -135,14 +135,14 @@ async function loadTasks() {
                 progressHTML = `
                     <div class="card-progress">
                         <div class="progress-bar">
-                            <div class="progress" style="width: ${progressPercentage}%;"></div> 
+                            <div class="progress" style="width: ${progressPercentage}%;"></div>
                         </div>
                         <p class="subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</p>
                     </div>
                 `;
             }
 
-            // Erstellt HTML für Benutzer-Badges
+            // Benutzer-Badges
             let contactsHTML = '';
             if (task.contacts) {
                 task.contacts.forEach((contact, index) => {
@@ -153,10 +153,10 @@ async function loadTasks() {
             }
 
             // Klassifizierung nach Kategorie des Tasks
-            let labelClass = task.category === 'User Story' ? 'user-story-label' : task.category === 'Technical Task' ? 'technical-task-label' : '';
+            let labelClass = task.category === 'User Story' ? 'user-story-label' : 'technical-task-label';
 
             let taskHTML = `
-                <div id="task-${taskID}" class="todo-card" draggable="true" ondragstart="startDragging(event)">
+                <div id="task-${taskID}" class="todo-card" draggable="true" ondragstart="startDragging(event)" onclick="openPopUp('${taskID}')">
                     <div class="card-labels ${labelClass}">
                         <span class="label">${task.category}</span>
                     </div>
@@ -182,15 +182,7 @@ async function loadTasks() {
             `;
 
             // Task in die entsprechende Spalte einfügen
-            if (task.progress === 'To Do') {
-                columns.ToDo.insertAdjacentHTML('beforeend', taskHTML);
-            } else if (task.progress === 'In Progress') {
-                columns.InProgress.insertAdjacentHTML('beforeend', taskHTML);
-            } else if (task.progress === 'Await Feedback') {
-                columns.AwaitFeedback.insertAdjacentHTML('beforeend', taskHTML);
-            } else if (task.progress === 'Done') {
-                columns.Done.insertAdjacentHTML('beforeend', taskHTML);
-            }
+            columns[task.progress.replace(/\s/g, '')]?.insertAdjacentHTML('beforeend', taskHTML);
         }
 
         // Falls keine Tasks in den Spalten sind, eine Nachricht anzeigen
@@ -214,25 +206,19 @@ async function createNewTask() {
     let category = document.getElementById('category').value;
     let assignedContacts = getSelectedContacts(); // Ausgewählte Kontakte bekommen
 
-    // Überprüft, ob die erforderlichen Felder ausgefüllt sind
     if (!title || !category) {
         alert("Title and category are required!");
         return;
     }
 
-    // Task-Daten vorbereiten
     let newTaskData = {
-        title: title,
-        description: description,
-        deadline: deadline,
-        category: category,
+        title, description, deadline, category,
         contacts: assignedContacts,
-        progress: "To Do",  // Standardmäßig "To Do"
-        prio: "medium",  // Beispielhafte Priorität
-        subtasks: []  // Falls Subtasks existieren, können diese hier hinzugefügt werden
+        progress: "To Do",
+        prio: "medium",
+        subtasks: []
     };
 
-    // Task-Daten auf Firebase hochladen
     const URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks.json";
     try {
         let response = await fetch(URL_tasks, {
@@ -244,8 +230,6 @@ async function createNewTask() {
         });
 
         let result = await response.json();
-
-        // Neuer Task sofort im Board anzeigen
         addTaskToBoard(newTaskData, result.name);
 
     } catch (error) {
@@ -255,6 +239,30 @@ async function createNewTask() {
 
 // Funktion, um den Task sofort im Board anzuzeigen
 function addTaskToBoard(task, taskID) {
+    let progressHTML = '';
+    if (task.subtasks && Array.isArray(task.subtasks)) {
+        let totalSubtasks = task.subtasks.length;
+        let completedSubtasks = task.subtasks.filter(subtask => subtask.done).length;
+        let progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
+
+        progressHTML = `
+            <div class="card-progress">
+                <div class="progress-bar">
+                    <div class="progress" style="width: ${progressPercentage}%;"></div>
+                </div>
+                <p class="subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</p>
+            </div>
+        `;
+    }
+
+    let contactsHTML = '';
+    if (task.contacts) {
+        task.contacts.forEach((contact) => {
+            let initials = getInitials(contact.name);
+            contactsHTML += `<span class="user-badge">${initials}</span>`;
+        });
+    }
+
     let taskHTML = `
         <div id="task-${taskID}" class="todo-card" draggable="true" ondragstart="startDragging(event)">
             <div class="card-labels ${task.category === 'User Story' ? 'user-story-label' : 'technical-task-label'}">
@@ -264,9 +272,10 @@ function addTaskToBoard(task, taskID) {
                 <h3 class="card-title">${task.title}</h3>
                 <p class="card-description">${task.description || 'No description available'}</p>
             </div>
+            ${progressHTML}
             <div class="card-footer">
                 <div class="card-users">
-                    ${task.contacts.map(contact => `<span class="user-badge">${contact.initials}</span>`).join('')}
+                    ${contactsHTML}
                 </div>
                 <div class="priority">
                     <span class="priority-symbol">
@@ -277,7 +286,6 @@ function addTaskToBoard(task, taskID) {
         </div>
     `;
 
-    // Task in die "To Do"-Spalte einfügen
     document.getElementById('ToDo').insertAdjacentHTML('beforeend', taskHTML);
 }
 
@@ -288,7 +296,7 @@ function getSelectedContacts() {
     checkboxes.forEach(checkbox => {
         selectedContacts.push({
             name: checkbox.value,
-            initials: checkbox.getAttribute('data-initials')  // Initialen werden aus dem Input-Attribut genommen
+            initials: getInitials(checkbox.value)
         });
     });
     return selectedContacts;

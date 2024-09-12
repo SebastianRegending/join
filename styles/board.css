@@ -170,13 +170,21 @@ body{
 
 /* Hintergrundfarbe für Technical Task Label */
 .technical-task-label {
-    background-color: #1FD7C1; /* Farbe für Technical Task */
+    background-color: #1FD7C1;
     border-radius: 8px;
     padding: 4px 16px;
     color: whitesmoke;
     display: inline-block;
 }
 
+.technical-task{
+    background-color: #1FD7C1;
+    border-radius: 8px;
+    padding: 4px 16px;
+    color: whitesmoke;
+    display: inline-block;
+
+}
 
 .card-description{
     font-size: 16px;
@@ -456,7 +464,7 @@ body{
 /* Die Task-Added-Animation */
 .task-added-animation {
     position: fixed;
-    bottom: -180px;  /* Start unter dem Bildschirm */
+    bottom: -180px;  
     left: 50%;
     transform: translateX(-50%);
     background-color: #2a3647;
@@ -466,7 +474,7 @@ body{
     border-radius: 10px;
     text-align: center;
     z-index: 1000;
-    opacity: 0;  /* Konstante Opazität */
+    opacity: 0;  
     visibility: hidden;
     transition: visibility 0.3s ease;
     
