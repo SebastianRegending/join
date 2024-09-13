@@ -19,7 +19,7 @@
     <title>Join - Summary</title>
 </head>
 
-<body onload="includeHTML(); setDaytimeOnGreeting(); setUsernameOnGreeting()">
+<body onload="initSummaryHTML()">
     <section class="summary-container">
         <div w3-include-html="menu.html"></div>
         <main id="content-summary">
@@ -67,7 +67,7 @@
                     <div id="summary-bottom" onclick="navigateToBoard()">
                         <div id="summary-tasksinboard" class="summary-bottom-style">
                             <div class="summary-bottom-content-style">
-                                <div id="summary-bottom-tasks" class="summary-bottom-small-number">5</div>
+                                <div id="summary-bottom-tasks" class="summary-bottom-small-number"></div>
                                 <div class="summary-bottom-small-text">Tasks in Board</div>
                             </div>
                         </div>

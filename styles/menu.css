@@ -154,6 +154,11 @@ a {
 .help-icon{
     width: 32px;
     height: 32px;
+    transition: 0.15s linear;
+}
+
+.help-icon:hover {
+    transform: scale(1.2);
 }
 
 #logout-container {
@@ -193,6 +198,33 @@ a {
 
 .logout-menu-btn:hover {
     background-color: #2A3A51;
+}
+
+.initials-header-border {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #2A3647;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.15s linear;
+}
+
+.initials-header-border:hover {
+    background-color: rgba(12, 46, 98, 0.12);
+}
+
+#initials-header {
+    width: 28px;
+    height: 14px;
+    color: #29ABE2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'Inter-Bold';
 }
 
 

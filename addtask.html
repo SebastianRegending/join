@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join - Add Task</title>
-    <link rel="stylesheet" href="./styles/addtask.css">
-    <link rel="stylesheet" href="./styles/fonts.css">
-    <link rel="icon" type="image/x-icon" href="./assets/img/join.png">
-    <script src="./scripts/addtask.js"></script>
-    <script src="./scripts/script.js"></script>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Join - Add Task</title>
+        <link rel="stylesheet" href="./styles/addtask.css">
+        <link rel="stylesheet" href="./styles/fonts.css">
+        <link rel="stylesheet" href="./styles/menu.css">
+        <link rel="icon" type="image/x-icon" href="./assets/img/join.png">
+        <script src="./scripts/addtask.js"></script>
+        <script src="./scripts/script.js"></script>
 </head>
 
-<body onload="includeHTML(); loadContacts()">
+<body onload="initAddTaskHTML()">
     <div w3-include-html="./menu.html"></div>
     <section class="fullpage">
         <div class="headline-container">
@@ -37,7 +38,7 @@
                         </div>
                     </div>
                     <div id="circle-area-assigned-contacts">
-
+                        
                     </div>
                 </div>
                 <div class="form-right-side">
@@ -45,15 +46,15 @@
                     <input class="input-field" type="date" placeholder="dd/mm/yyyy" id="deadline" required>
                     <span>Prio</span>
                     <div class="flexed button-area-prio">
-
+                        
                         <div class="prio-container" id="prio-urgent" onclick="setPrio('urgent'); colorPrioUrgent()">
                             Urgent<img id="prio-pic-urgent" src="./assets/img/urgent-icon.svg"></div>
-
-                        <div class="prio-container prio-active-medium" id="prio-medium"
+                            
+                            <div class="prio-container prio-active-medium" id="prio-medium"
                             onclick="setPrio('medium'); colorPrioMedium()">Medium <img id="prio-pic-medium"
-                                src="./assets/img/medium-icon.svg"></div>
-
-                        <div class="prio-container" id="prio-low" onclick="setPrio('low'); colorPrioLow()">Low <img
+                            src="./assets/img/medium-icon.svg"></div>
+                            
+                            <div class="prio-container" id="prio-low" onclick="setPrio('low'); colorPrioLow()">Low <img
                                 id="prio-pic-low" src="./assets/img/low-icon.svg"></div>
 
                     </div>
@@ -86,13 +87,13 @@
                     <span><span class="red-letter">*</span>This field is required</span>
                 </div>
                 <div class="form-right-side">
-                    
+
                     <div class="submit-area-right"></div>
-                        <div class="flexed submit-area-help-container">
-                            <span class="red-letter-resp"><span class="red-letter">*</span>This field is required</span>
-                            <div class="white-btn" onclick="clearTasks()">Clear <img src="./assets/img/cancel.svg"></div>
-                            <button class="blue-btn">Create Task<img src="./assets/img/check.svg"></button>
-                        </div>
+                    <div class="flexed submit-area-help-container">
+                        <span class="red-letter-resp"><span class="red-letter">*</span>This field is required</span>
+                        <div class="white-btn" onclick="clearTasks()">Clear <img src="./assets/img/cancel.svg"></div>
+                        <button class="blue-btn">Create Task<img src="./assets/img/check.svg"></button>
+                    </div>
                 </div>
             </div>
         </form>

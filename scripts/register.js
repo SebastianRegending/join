@@ -4,6 +4,13 @@ let myLoginEmail = [];
 let myLoginPassword = [];
 let myName = [];
 
+/**
+ * saves the user in the database on signup
+ * 
+ * @param {*} path 
+ * @param {*} data 
+ * @returns 
+ */
 async function saveNewUser(path = "/users", data = {}) {
     let name = document.getElementById('name');
     let email = document.getElementById('email');
@@ -20,6 +27,12 @@ async function saveNewUser(path = "/users", data = {}) {
     return responseToJson = await response.json();
 }
 
+/**
+ * checks the values from input, compares the data with the database and log in the user
+ * 
+ * @param {*} path 
+ * @returns 
+ */
 async function loginUser(path = "/users") {
     let response = await fetch(BASE_URL_USER + path + ".json");
     responseToJson = await response.json();
@@ -40,6 +53,11 @@ async function loginUser(path = "/users") {
     };
 }
 
+/**
+ * checks the password of to input fields to confirm the password
+ * 
+ * @returns 
+ */
 function confirmPassword() {
     let form = document.getElementById('registerform');
     if (form.password.value == '' || form.confirm_password.value == '') {
@@ -53,6 +71,9 @@ function confirmPassword() {
     }
 }
 
+/**
+ * checks if the checkbox at the signup form is active and enable the sign in button
+ */
 function isChecked() {
     let isChecked = document.getElementById('checkbox').checked;
     let signInButton = document.getElementById('input-btn');
@@ -64,14 +85,23 @@ function isChecked() {
         
 }
 
+/**
+ * switch to signup
+ */
 function goToSignUp() {
     window.location.href = 'signup.html';
 }
 
+/**
+ * switch to login
+ */
 function backToLogin() {
     window.location.href = 'login.html';
 }
 
+/**
+ * starts the successfully signed in toaster and redirect to login
+ */
 function launchToasterAndRedirect() {
     let x = document.getElementById("toaster")
     x.className = "show";
@@ -80,6 +110,9 @@ function launchToasterAndRedirect() {
      }, 4000);
 }
 
+/**
+ * checks if the remember me checkbox is active at login form and saves the user in localstorage
+ */
 function saveLogin() {
     let isChecked = document.getElementById('rememberme-checkbox').checked;
     let inputEmail = document.getElementById('emaillogin');
@@ -97,17 +130,28 @@ function saveLogin() {
 saveToLocalStorage();
 }
 
+/**
+ * saves the name of the user for greeting in sessionstorage, if the remember me checkbox at the login form is not active
+ * 
+ * @param {json} user 
+ */
 function saveUserLoginNoRemember(user) {
     if (user) {
         sessionStorage.setItem('name', JSON.stringify(user.name));
     }
 }
 
+/**
+ * saves email and password in localstorage
+ */
 function saveToLocalStorage() {
     localStorage.setItem('email', JSON.stringify(myLoginEmail));
     localStorage.setItem('password', JSON.stringify(myLoginPassword)); 
     }
 
+    /**
+     * pre fills the login form if the remember me checkbox at the login form is active
+     */
 function preFillForm() {
     let email = JSON.parse(localStorage.getItem('email'));
     let password = JSON.parse(localStorage.getItem('password'));   
@@ -121,11 +165,17 @@ function preFillForm() {
     document.getElementById("rememberme-checkbox").checked = checked;
 }
 
+/**
+ * saves the status of the remember me checkbox in localstorage
+ */
 function saveCheckBox() {
 	let checkbox = document.getElementById("rememberme-checkbox");
     localStorage.setItem("rememberme-checkbox", checkbox.checked);  
 }
 
+/**
+ * starts the toaster if the email or password at the login form is incorrect
+ */
 function wrongEmailOrPassword() {
     let x = document.getElementById("wrongEmailOrPassword")
     x.className = "show";
@@ -133,7 +183,9 @@ function wrongEmailOrPassword() {
      }, 4000);
 }
 
-
+/**
+ * starts the jion logo animation at the beginning
+ */
 function startLogoAnimation() {
     let animatedLogo = document.getElementById('animated-logo');
     let animatedLogoContainer = document.getElementById('animated-logo-container');
