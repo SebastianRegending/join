@@ -744,12 +744,8 @@ option {
   }
 
   .submit-area-help-container {
+    width: 90%;
     justify-content: space-between;
-    position: fixed;
-    bottom: 80px;
-    background-color: #F6F7F8;
-    padding-bottom: 16px;
-    padding-top: 16px;
 
   }
 
@@ -846,5 +842,15 @@ option {
 
   .blue-btn {
     margin-left: 10px;
+  }
+
+  .submit-area-help-container {
+    justify-content: space-between;
+    position: fixed;
+    bottom: 80px;
+    background-color: #F6F7F8;
+    padding-bottom: 16px;
+    padding-top: 16px;
+
   }
 }
