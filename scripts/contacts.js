@@ -133,6 +133,9 @@ function chooseContact(id, name, email, phone, inits, color) {
 function loadChoosenContact(id, name, email, phone, inits, color) {
     let letter = inits.charAt(0);
     document.getElementById('choosen-contact-loading-area').innerHTML = createChoosenContactTemplate(letter, id, name, email, phone, inits, color);
+    if (window.innerWidth < 1001) {
+        openChooseResp();
+    }
 }
 
 
@@ -366,4 +369,20 @@ function createRandomNumbers() {
     }
     let colorNumber = randomNumbers[randomNumbers.length - 1];
     return colorNumber;
+}
+
+
+/**
+ * Opens choosen Contact Area via removing d-none
+ */
+function openChooseResp(){
+    document.getElementById('choosen-contact').style.display="block"
+}
+
+
+/**
+ * Closes choosen Contact Area via adding d-none
+ */
+function closeChooseResp(){
+    document.getElementById('choosen-contact').style.display="none"
 }

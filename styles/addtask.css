@@ -745,6 +745,12 @@ option {
 
   .submit-area-help-container {
     justify-content: space-between;
+    position: fixed;
+    bottom: 80px;
+    background-color: #F6F7F8;
+    padding-bottom: 16px;
+    padding-top: 16px;
+
   }
 
   .red-letter-resp {
@@ -770,7 +776,7 @@ option {
 
   .form-left-side {
     width: 100%;
-    margin: 24px 40px 24px 10px;
+    margin: 120px 40px 24px 10px;
   }
 
 
@@ -798,18 +804,31 @@ option {
     margin-left: 0px;
   }
 
+  .headline-container{
+    position: fixed;
+    padding-top: 16px;
+    z-index: 400;
+    background-color: #F6F7F8;
+    width: 100%;
+
+
+  }
 
   h1 {
     margin-left: 42px;
+    margin-top: 0;
+    padding: 0;
+
+
   }
 
   .fullpage {
     overflow: hidden;
+    margin-top: 96px;
   }
 
   .fullpage h1 {
     font-size: 47px;
-    ;
   }
 
   .prio-container {
