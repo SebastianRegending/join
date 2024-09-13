@@ -670,7 +670,7 @@ body {
     }
 }
 
-.arrow-back{
+.arrow-back {
     display: none;
 }
 
@@ -704,6 +704,10 @@ body {
     display: none;
 }
 
+.close-dialog-resp{
+    display: none;
+}
+
 @keyframes slideintoaster {
     from {
         right: -100vw;
@@ -732,6 +736,39 @@ body {
     to {
         right: -100vw;
     }
+}
+
+@media(min-width: 1001px) and (max-width: 1280px){
+    .contact-dialog-logo-side {
+        width: 30vw;
+        height: 100%;
+        padding-left: 30px;
+    }
+        
+    .contact-dialog-edit-side {
+        width: 60vw;
+        height: 100%;
+    }
+
+    .contact-dialog-edit-side input{
+        width: 300px;
+    }
+
+    .icon-small-person {
+
+        background-position: 90%;
+    }
+
+    .icon-small-mail {
+
+        background-position: 90%;
+    }
+
+    .icon-small-call {
+
+        background-position: 90%;
+    }
+
 }
 
 
@@ -763,27 +800,163 @@ body {
 
 @media(max-width: 1000px) {
 
+    .close-dialog-resp{
+        display: flex;
+        z-index: 200;
+        justify-content: flex-end;
+        border-radius: 50%;
+        position: relative;
+        top: 8%;
+        left: 42%;
+        
+
+    }
+
+    .close-dialog-resp img:hover{
+cursor: pointer;
+
+    }
+
+    .close-dialog-resp img{
+        border-radius: 50%;
+    }
+
+    .close-dialog-resp img:active{
+        background-color: #29ABE2;
+
+    }
+
+    .dialog-separator {
+        width: 60px;
+    }
+
+    .icon-small-person {
+
+        background-position: 90%;
+    }
+
+
+    .icon-small-mail {
+
+        background-position: 90%;
+    }
+
+
+    .icon-small-call {
+
+        background-position: 90%;
+    }
+
+    .blue-btn {
+        height: 51px;
+        font-size: 21px;
+        margin-top: 16px;
+    }
+
+    .blue-btn img {
+        width: 15px;
+        height: 11px;
+    }
+
+
     .contact-dialog {
         z-index: 200;
         height: 75vh;
         width: 80vw;
         display: flex;
+        align-items: center;
         flex-direction: column;
+
+    }
+
+    .contact-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .contact-dialog-logo-side {
         width: 90%;
-        height: 100%;
+        height: 40%;
         background-color: #2A3647;
         border-top-left-radius: 24px;
-        border-bottom-left-radius: 24px;
+        border-top-right-radius: 24px;
+        border-bottom-left-radius: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-left: 40px;
-    }
-    
+        padding: 0px 24px 0px 24px;
 
+    }
+
+    .contact-dialog-logo-side h2 {
+        font-size: 47px;
+    }
+
+    .dialog-logo {
+        display: none;
+    }
+
+    .contact-dialog-logo-side span {
+        font-size: 20px;
+    }
+
+    .contact-dialog-edit-side {
+        width: 90%;
+        height: 60%;
+        background-color: white;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 24px;
+        border-bottom-left-radius: 24px;
+        padding: 0px 24px 0px 24px;
+    }
+
+    .cancel-add-contact-dialog {
+        display: none;
+    }
+
+    .middle-area {
+        z-index: 300;
+        position: relative;
+        width: 100%;
+        top: -200px;
+        padding-top: 30px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 10px;
+    }
+
+    .middle-area img {
+        height: 120px;
+        margin-bottom: 0px;
+    }
+
+    .form-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .white-input-btn {
+        display: none;
+    }
+
+    .button-area {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-field {
+        height: 41px;
+        width: 80%;
+        margin-bottom: 8px;
+    }
 
     .contact-page {
         display: flex;
@@ -791,7 +964,7 @@ body {
         width: 100vw;
     }
 
-    .arrow-back{
+    .arrow-back {
         display: flex;
         width: 56px;
         height: 56px;
@@ -799,9 +972,9 @@ body {
         justify-content: center;
         margin-right: 32px;
         border-radius: 50%;
-        }
+    }
 
-    .arrow-back:hover{
+    .arrow-back:hover {
         cursor: pointer;
         background-color: #d1d1d1;
 
@@ -861,7 +1034,7 @@ body {
         right: 0;
     }
 
-    #choosen-contact-loading-area{
+    #choosen-contact-loading-area {
         margin-left: 32px;
     }
 
@@ -917,6 +1090,29 @@ body {
     .add-contact-button-resp {
         bottom: 90px;
 
+    }
+
+    
+    #contacts-area {
+margin-left: 0;
+width: 100vw;
+    }
+
+    #contacts-alphabet-list{
+        width: 100%;
+    }
+
+    #choosen-contact {
+        display: none;
+        width: 100%;
+        font-weight: 200;
+        font-size: 16px;
+        padding: 100px 0px 0px 0px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 
 

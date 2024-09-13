@@ -23,6 +23,7 @@
         <div id="contacts-area">
             <div class="dialog-bg d-none" id="add-contact-dialog">
                 <div class="contact-dialog">
+                    <div class="close-dialog-resp" onclick="closeAddContact()"><img src="./assets/img/closedialogresp.svg" alt="close add contact"></div>
                     <div class="contact-dialog-logo-side">
                         <img class="dialog-logo" src="./assets/img/join.png" alt="join-logo">
                         <h2>Add contact</h2>
@@ -33,11 +34,11 @@
                     <div class="contact-dialog-edit-side">
                         <div class="add-contact-dialog-header"><img class="cancel-add-contact-dialog"
                                 onclick="closeAddContact()" src="./assets/img/cancel.svg" alt="cancel-icon"></div>
-                        <div class="flexed">
+                        <div class="flexed middle-area">
                             <div>
                                 <img src="./assets/img/profilepic.png" alt="profilepic">
                             </div>
-                            <div>
+                            <div class="form-container">
                                 <form class="contact-form"
                                     onsubmit="prepareCreateContact(); closeAddContact(); loadContacts(); return false">
                                     <input id="add-contact-name" class="input-field icon-small-person"

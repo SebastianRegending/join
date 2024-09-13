@@ -215,13 +215,16 @@ function getSelected() {
  */
 function addSubtask() {
   let subtask = document.getElementById('subtasks');
-  subtasks.push(subtask.value);
+  if (subtask.value){
+  let subtaskobject = {title: `${subtask.value}`, done: "false"};
+  subtasks.push(subtaskobject);
   document.getElementById('added-subtasks').innerHTML = ``;
   for (let i = 0; i < subtasks.length; i++) {
-    document.getElementById('added-subtasks').innerHTML += `<li>${subtasks[i]}</li>`;
+    document.getElementById('added-subtasks').innerHTML += `<li>${subtasks[i]['title']}</li>`;
   }
   document.getElementById('subtasks').value = ``;
   cancelAddSubtask()
+}
 }
 
 
