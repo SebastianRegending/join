@@ -142,6 +142,31 @@ body{
     justify-content: space-between;
 }
 
+
+/* Jede Spalte hat eine feste Höhe und zeigt einen Scrollbalken nur bei Überlauf */
+.task-column {
+    overflow-y: auto; /* Scrollen nur bei Überlauf */
+    padding: 10px; /* Allgemeines Padding */
+    padding-right: 20px; /* Rechter Abstand für den Scrollbalken */
+    box-sizing: border-box; /* Sorgt dafür, dass Padding nicht die Breite beeinflusst */
+}
+
+/* Optional: Verbergen des Scrollbalkens für ein sauberes Design in Webkit-Browsern wie Chrome, Safari */
+.task-column::-webkit-scrollbar {
+    width: 4px;
+}
+
+.task-column::-webkit-scrollbar-thumb {
+    background-color: #cccccc; /* Farbe des Scrollbalkens */
+    border-radius: 4px;
+}
+
+.task-column::-webkit-scrollbar-thumb:hover {
+    background-color: #aaaaaa; /* Farbe des Scrollbalkens beim Hover */
+}
+
+
+
 .task-column h2 {
     color: #42526E;
     font-size: 20px;
@@ -282,18 +307,6 @@ body{
     margin-left: -10px;
 }
 
-/* .user-badge:nth-child(1) {
-    background-color: #FF7A00; 
-}
-
-.user-badge:nth-child(2) {
-    background-color: #1FD7C1; 
-}
-
-.user-badge:nth-child(3) {
-    background-color: #462F8A; 
-} */
-
 .drag-area-highlight {
     border: 1px dashed #42526E;
     min-height: 50px; 
@@ -301,29 +314,31 @@ body{
 }
 
 #ToDo{
-    width: 244px;
-    height: 60vh;
+    width: 280px;
+    height: 100%
 }
 
 #inProgress{
-    width: 244px;
-    height: 60vh;
+    width: 280px;
+    height: 100%
 }
 
 #AwaitFeedback{
-    width: 244px;
-    height: 60vh;
+    width: 280px;
+    height: 100%
 }
 
 #Done{
-    width: 244px;
-    height: 60vh;
+    width: 280px;
+    height: 100%
 }
 
-.column-container{
+.column-container {
+    height: calc(100vh - 200px);
     display: flex;
     justify-content: space-between;
 }
+
 
 /* CSS-Animationen für das Dragging */
 
