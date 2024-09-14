@@ -304,3 +304,18 @@ function getSelectedContacts() {
     });
     return selectedContacts;
 }
+
+
+function filterTasks() {
+    const searchTerm = document.getElementById('task-search-input').value.toLowerCase();
+    const tasks = document.querySelectorAll('.todo-card'); // Alle Task-Elemente
+
+    tasks.forEach(task => {
+        const taskTitle = task.querySelector('.card-title').textContent.toLowerCase();
+        if (taskTitle.includes(searchTerm)) {
+            task.style.display = 'block'; // Task anzeigen
+        } else {
+            task.style.display = 'none';  // Task ausblenden
+        }
+    });
+}

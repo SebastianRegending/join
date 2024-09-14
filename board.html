@@ -23,9 +23,10 @@
             <h1>Board</h1>
             <div class="task-input-container">
                 <div class="task-input">
-                    <input type="text" placeholder="Find Task">
+                    <input type="text" id="task-search-input" placeholder="Find Task" oninput="filterTasks()">
                     <button class="search-button" onclick="searchFunction()"></button>
                 </div>
+
                 <button class="add-task" onclick="openDialog()">Add task <span>+</span></button>
             </div>
 
