@@ -143,29 +143,67 @@ body{
 }
 
 
-/* Jede Spalte hat eine feste Höhe und zeigt einen Scrollbalken nur bei Überlauf */
 .task-column {
-    overflow-y: auto; /* Scrollen nur bei Überlauf */
-    padding: 10px; /* Allgemeines Padding */
-    padding-right: 20px; /* Rechter Abstand für den Scrollbalken */
-    box-sizing: border-box; /* Sorgt dafür, dass Padding nicht die Breite beeinflusst */
+    overflow-y: auto;
+    padding: 10px; 
+    padding-right: 20px; 
+    box-sizing: border-box; /
 }
 
-/* Optional: Verbergen des Scrollbalkens für ein sauberes Design in Webkit-Browsern wie Chrome, Safari */
+
 .task-column::-webkit-scrollbar {
     width: 4px;
 }
 
 .task-column::-webkit-scrollbar-thumb {
-    background-color: #cccccc; /* Farbe des Scrollbalkens */
+    background-color: #cccccc; 
     border-radius: 4px;
 }
 
 .task-column::-webkit-scrollbar-thumb:hover {
-    background-color: #aaaaaa; /* Farbe des Scrollbalkens beim Hover */
+    background-color: #aaaaaa; 
 }
 
+/* Styling des horizontalen Scrollbalkens */
+#ToDo::-webkit-scrollbar,
+#InProgress::-webkit-scrollbar,
+#AwaitFeedback::-webkit-scrollbar,
+#Done::-webkit-scrollbar {
+    height: 6px; /* Höhe des horizontalen Scrollbalkens */
+    cursor: grab;
+}
 
+/* Styling des Scrollbalken-Daumens */
+#ToDo::-webkit-scrollbar-thumb,
+#InProgress::-webkit-scrollbar-thumb,
+#AwaitFeedback::-webkit-scrollbar-thumb,
+#Done::-webkit-scrollbar-thumb {
+    background-color: #cccccc; 
+    border-radius: 4px; 
+    cursor: grab;
+}
+
+/* Hover-Effekt für den Scrollbalken-Daumen */
+#ToDo::-webkit-scrollbar-thumb:hover,
+#InProgress::-webkit-scrollbar-thumb:hover,
+#AwaitFeedback::-webkit-scrollbar-thumb:hover,
+#Done::-webkit-scrollbar-thumb:hover {
+    background-color: #aaaaaa; 
+    cursor: grab;
+}
+
+/* Hintergrund des Scrollbalkens (Track) */
+#ToDo::-webkit-scrollbar-track,
+#InProgress::-webkit-scrollbar-track,
+#AwaitFeedback::-webkit-scrollbar-track,
+#Done::-webkit-scrollbar-track {
+    background-color: #f0f0f0; 
+    cursor: grab;
+}
+
+#ToDo:hover, #InProgress:hover, #AwaitFeedback:hover, #Done:hover {
+    overflow: auto; 
+}
 
 .task-column h2 {
     color: #42526E;
@@ -203,7 +241,7 @@ body{
 
 .todo-card{
     width: 212px;
-    height: auto;
+    height: fit-content;
     background-color: #ffffff;
     border-radius: 24px;
     padding: 16px;
@@ -539,4 +577,42 @@ body{
 .task-added-animation img{
     width: 24px;
     height: 24px;
+}
+
+
+
+@media screen and (max-width: 1600px) {
+    .task-board {
+        display: flex;
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 20px; 
+        width: 100%; 
+    }
+
+    .task-column {
+        width: 100%; 
+        padding: 10px; 
+    }
+
+    .column-container {
+        display: flex;
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+        gap: 16px; 
+        height: auto;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    #ToDo, #InProgress, #AwaitFeedback, #Done {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    gap: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
 }

@@ -35,45 +35,58 @@
         <div class="task-board">
             <div class="task-column">
                 <h2>To Do <span onclick="openDialog('ToDo')">+</span></h2>
+                <div class="column-container">
+                    <div id="ToDo" class="task-column" ondrop="moveTo(event, 'ToDo')" ondragover="allowDrop(event)"
+                        ondragenter="highlight('ToDo')" ondragleave="removeHighlight('ToDo')">
+                        <div class="no-tasks">No tasks To do</div>
+                    </div>
+                </div>
             </div>
             <div class="task-column">
                 <h2>In Progress <span onclick="openDialog('InProgress')">+</span></h2>
+                <div class="column-container">
+                    <div id="inProgress" class="task-column" ondrop="moveTo(event, 'inProgress')"
+                        ondragover="allowDrop(event)" ondragenter="highlight('inProgress')"
+                        ondragleave="removeHighlight('inProgress')">
+                        <!-- Tasks will be dynamically added here -->
+                    </div>
+                </div>
             </div>
             <div class="task-column">
                 <h2>Await Feedback <span onclick="openDialog('AwaitFeedback')">+</span></h2>
+                <div class="column-container">
+                    <div id="AwaitFeedback" class="task-column" ondrop="moveTo(event, 'AwaitFeedback')"
+                        ondragover="allowDrop(event)" ondragenter="highlight('AwaitFeedback')"
+                        ondragleave="removeHighlight('AwaitFeedback')">
+                        <!-- Tasks will be dynamically added here -->
+                    </div>
+                </div>
             </div>
             <div class="task-column">
                 <h2>Done</h2>
+                <div class="column-container">
+                    <div id="Done" class="task-column" ondrop="moveTo(event, 'Done')" ondragover="allowDrop(event)"
+                        ondragenter="highlight('Done')" ondragleave="removeHighlight('Done')">
+                        <div class="no-tasks">No tasks Done</div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Task Columns to dynamically insert tasks -->
-        <div class="column-container">
-            <!-- "To Do" column -->
-            <div id="ToDo" class="task-column" ondrop="moveTo(event, 'ToDo')" ondragover="allowDrop(event)"
-                ondragenter="highlight('ToDo')" ondragleave="removeHighlight('ToDo')">
-                <div class="no-tasks">No tasks To do</div>
-            </div>
 
-            <!-- "In Progress" column -->
-            <div id="inProgress" class="task-column" ondrop="moveTo(event, 'inProgress')" ondragover="allowDrop(event)"
-                ondragenter="highlight('inProgress')" ondragleave="removeHighlight('inProgress')">
-                <!-- Tasks will be dynamically added here -->
-            </div>
+        <!-- "To Do" column -->
 
-            <!-- "Await Feedback" column -->
-            <div id="AwaitFeedback" class="task-column" ondrop="moveTo(event, 'AwaitFeedback')"
-                ondragover="allowDrop(event)" ondragenter="highlight('AwaitFeedback')"
-                ondragleave="removeHighlight('AwaitFeedback')">
-                <!-- Tasks will be dynamically added here -->
-            </div>
 
-            <!-- "Done" column -->
-            <div id="Done" class="task-column" ondrop="moveTo(event, 'Done')" ondragover="allowDrop(event)"
-                ondragenter="highlight('Done')" ondragleave="removeHighlight('Done')">
-                <div class="no-tasks">No tasks Done</div>
-            </div>
-        </div>
+        <!-- "In Progress" column -->
+
+
+        <!-- "Await Feedback" column -->
+
+
+        <!-- "Done" column -->
+
+
 
         <!-- Dialog for adding a task -->
         <div id="dialog" class="dialog-bg d-none" onclick="closeDialog()">
