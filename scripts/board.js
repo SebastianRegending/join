@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('./addtask.html')
             .then(response => response.text())
             .then(data => {
-                const dialogContent = document.getElementById('dialog-content');
+                let dialogContent = document.getElementById('dialog-content');
                 if (dialogContent) {
                     dialogContent.innerHTML = data;
 
                     // Hinzufügen der Schaltfläche zum Schließen des Dialogs
-                    const closeButton = document.createElement('div');
+                    let closeButton = document.createElement('div');
                     closeButton.innerHTML = `
                         <img class="close-popup" src="./assets/img/close.png" alt="close-img">
                     `;
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     loadScripts().then(() => {
                         loadContacts(); // Lädt Kontakte für das "Select contacts to assign"-Feld
 
-                        const createTaskButton = document.getElementById('create-task-btn');
+                        let createTaskButton = document.getElementById('create-task-btn');
                         if (createTaskButton) {
                             createTaskButton.removeEventListener('click', createTaskHandler);
                             createTaskButton.addEventListener('click', createTaskHandler);
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Schließt das Dialogfenster
     function closeDialog() {
-        const dialog = document.getElementById('dialog');
+        let dialog = document.getElementById('dialog');
         if (dialog) {
             dialog.classList.add('d-none');  // Dialog ausblenden
         }
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Funktion zum Anzeigen der Animation "Task added"
     function showTaskAddedAnimation() {
         return new Promise(resolve => {
-            const animationElement = document.getElementById('task-added-animation');
+            let animationElement = document.getElementById('task-added-animation');
             animationElement.classList.remove('d-none');  // Zeigt das Element an
             animationElement.classList.add('show');  // Startet die Animation
 
@@ -98,17 +98,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
-
 // Funktion zum Laden der Tasks und deren Darstellung im Board
 async function loadTasks() {
-    const URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
+    let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
 
     try {
         let response = await fetch(URL_tasks + ".json");
         let tasks = await response.json();
 
-        const columns = {
+        let columns = {
             'ToDo': document.getElementById('ToDo'),
             'InProgress': document.getElementById('inProgress'),
             'AwaitFeedback': document.getElementById('AwaitFeedback'),
@@ -119,11 +117,11 @@ async function loadTasks() {
         Object.keys(columns).forEach(key => columns[key].innerHTML = '');
 
         // Farben für Benutzer-Badges
-        const colors = ['#FF7A00', '#1FD7C1', '#462F8A', '#6e52ff', '#00bee8'];
+        let colors = ['#FF7A00', '#1FD7C1', '#462F8A', '#6e52ff', '#00bee8'];
 
         // Wiederverwendbare Funktion zum Abrufen der Initialen
         function getInitials(name) {
-            const nameParts = name.split(' ');
+            let nameParts = name.split(' ');
             return nameParts.map(part => part.charAt(0)).join('').toUpperCase();
         }
 
@@ -224,7 +222,7 @@ async function createNewTask() {
         subtasks: []
     };
 
-    const URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks.json";
+    let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks.json";
     try {
         let response = await fetch(URL_tasks, {
             method: "POST",
