@@ -5,10 +5,11 @@ body{
 }
 
 .help-container{
-    margin-top: 180px;
+    margin-top: 96px;
     margin-left: 328px;
     max-width: 1440px;
     margin-right: 96px;
+    padding: 64px 0 0 0;
 }
 
 .help-container h1{
@@ -26,6 +27,7 @@ ol > li::marker {
 li {
   position: relative;
   padding-left: 35px;
+  font-size: 16px;
 }
 
 li:before {
@@ -53,4 +55,82 @@ li:before {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@media(max-width: 1000px) {
+  .history-back-container {
+    height: fit-content;
+    
+  }
+
+  .help-container h1 {
+    font-size: 47px;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin: 0;
+    height: fit-content;
+  }
+
+  .privacy-policy-content {
+    margin: 160px 24px 0 260px;
+  }
+
+  .enjoy-using-join {
+    height: fit-content;
+    font-size: 30px;
+  }
+
+  li {
+    font-size: 16px;
+  }
+}
+
+@media(max-width: 650px) {
+
+  .help-container h1 {
+    font-size: 47px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  .help-container {
+    margin: 160px 24px 104px 24px;
+  }
+
+  li {
+    padding-left: 8px;
+  }
+
+}
+
+@media(max-width: 420px) {
+  .help-container h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 14px;
+}
+
+p {
+    font-size: 12px;
+}
+
+li {
+  font-size: 12px;
+  padding-left: 8px;
+}
 }

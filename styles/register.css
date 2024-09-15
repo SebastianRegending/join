@@ -53,7 +53,8 @@
     align-items: center;
     background-color: #F6F7F8;
     opacity: 0;  
-    transition: opacity 1.5s ease-in-out;  
+    transition: opacity 1.5s ease-in-out;
+    overflow: hidden;
 }
 
 #loginpage.show {
@@ -428,4 +429,56 @@ h1 {
 
 @keyframes LogoAni {
     100% {transform: scale(0.5) translate(-994px, -860px)}
+}
+
+@media (max-width: 650px) {
+    #registerform {
+        width: 396px;
+        height: 595px;
+        padding: 32px 0;
+    }
+
+    .input-field {
+        width: 364px;
+        height: 50px;
+    }
+
+    .small-icons-inputfield {
+        left: 160px;
+        top: -42px;
+    }
+
+    .h1-signup {
+        font-size: 47px;
+    }
+
+    #border-headline {
+        width: 88px;
+}
+
+.arrow-left-line {
+    left: -40px;
+}
+
+@media (max-width: 430px) {
+    #registerform {
+        width: 280px;
+}
+
+.input-field {
+    width: 250px;
+    height: 40px;
+}
+
+.small-icons-inputfield{
+    left: 100px;
+    top: -37px;
+}
+
+.arrow-left-line {
+    left: -10px;
+}
+
+}
+
 }
