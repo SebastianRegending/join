@@ -61,7 +61,7 @@ function createContactsCheckboxTemplate(n, i) {
             </div>
             <div>${IDs[i]['name']}
             </div> 
-            <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircle('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
+            <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}"  data-color="${IDs[i]['color']}" onclick="addCircle('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
       </label>
     `
 }
@@ -231,7 +231,8 @@ function getSelected() {
     let name = checkbox.value;
     let id = checkbox.getAttribute('data-id');
     let letter = checkbox.getAttribute('data-letter');
-    selectedData.push({ name: name, id: id, letter: letter });
+    let color = checkbox.getAttribute('data-color');
+    selectedData.push({ name: name, id: id, letter: letter, color: color });
   });
   return selectedData;
 }

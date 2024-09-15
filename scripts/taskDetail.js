@@ -11,7 +11,6 @@ function openPopUp(todoId) {
                 todoData.contacts = todoData.contacts || []; // Fallback auf leeres Array
                 todoData.subtasks = todoData.subtasks || []; // Fallback auf leeres Array
                 todoData.description = todoData.description || "No description available"; // Fallback auf Standardbeschreibung
-                
                 // PopUp-Inhalt mit den Task-Daten füllen
                 document.getElementById('pop-up-content').innerHTML = popUp(todoData, todoId);
                 document.getElementById('pop-up-task').classList.remove('d-none'); // Popup anzeigen

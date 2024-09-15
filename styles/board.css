@@ -743,3 +743,52 @@ gap: 16px;
     display: none;
 } 
 
+.circle-yellow {
+    background-color: #ffbb2b !important;
+}
+
+
+.circle-orange {
+    background-color: #ff7a00 !important;
+}
+
+
+.circle-turquoise {
+    background-color: #1fd7c1 !important;
+}
+
+
+.circle-purple {
+    background-color: #462f8a !important;
+}
+
+
+.circle-lightpurple {
+    background-color: #6e52ff !important;
+}
+
+
+.circle-blue {
+    background-color: #0038ff !important;
+}
+
+
+.circle-lightblue {
+    background-color: #00bee8 !important;
+}
+
+
+.circle-pink {
+    background-color: #fc71ff !important;
+}
+
+
+.circle-lightred {
+    background-color: #ff4646 !important;
+}
+
+
+.circle-green {
+    background-color: #33691e !important;
+}
+

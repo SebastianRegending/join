@@ -272,6 +272,27 @@ function createContactsCheckboxTemplate(n, i) {
   }
 
 
+  /**
+ * Creates a contacts-template
+ * 
+ * @param {number} - for loop, that are the letters
+ * @param {number} - for loop, that are the indexed of the contacts 
+ * @returns Contacts-Template in HTML with additional You
+ */
+function createContactsCheckboxTemplateYou(n, i) {
+  return /*html*/`
+      <label for="contacts${n}" class="contact-for-form">
+            <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
+            </div>
+            <div>${IDs[i]['name']}(You)
+            </div> 
+            <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircle('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
+      </label>
+    `
+}
+
+
+
 /**
  * Designs the subtasks input to focus-mode
  */

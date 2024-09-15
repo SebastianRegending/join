@@ -37,7 +37,7 @@ function generateTaskDetailsHTML(todoData, id) {
                     <div class="assignee-list">
                         ${contacts.map(contact => `
                         <div class="assignee-item">
-                            <div class="assignee-avatar" style="background-color: ${getRandomColor()}">
+                            <div class="assignee-avatar circle-${contact.color}">
                                 ${getInitials(contact.name)}
                             </div>
                             <span>${contact.name}</span>
