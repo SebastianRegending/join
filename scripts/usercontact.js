@@ -61,4 +61,4 @@ function jsonToArrayUser(json) {
       result.push(json[key]);
     });
     return result;
-  }
+}
