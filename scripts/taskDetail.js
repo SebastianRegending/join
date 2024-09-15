@@ -13,7 +13,7 @@ function openPopUp(todoId) {
                 todoData.description = todoData.description || "No description available"; // Fallback auf Standardbeschreibung
                 
                 // PopUp-Inhalt mit den Task-Daten füllen
-                document.getElementById('pop-up-content').innerHTML = popUp(todoData);
+                document.getElementById('pop-up-content').innerHTML = popUp(todoData, todoId);
                 document.getElementById('pop-up-task').classList.remove('d-none'); // Popup anzeigen
             }
         })
@@ -22,8 +22,8 @@ function openPopUp(todoId) {
         });
 }
 
-function popUp(todoData) {
-    return generateTaskDetailsHTML(todoData); // Verwende die Template-Funktion
+function popUp(todoData, todoId) {
+    return generateTaskDetailsHTML(todoData, todoId); // Verwende die Template-Funktion
 }
 
 

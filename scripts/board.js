@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     dialogContent.insertBefore(closeButton, dialogContent.firstChild);
                     document.getElementById('dialog').classList.remove('d-none');
-                    
+
                     // Verhindert, dass sich der Dialog schließt, wenn auf den Inhalt geklickt wird
                     document.getElementById('dialog-content').addEventListener('click', function (event) {
                         event.stopPropagation(); // Stoppt das Ereignis, damit es nicht den Dialog-Hintergrund erreicht
@@ -172,6 +172,17 @@ function generateTaskHTML(task, taskID) {
         </div>
     `;
 }
+
+
+async function deleteTask(id) {
+    let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
+    await fetch(`${URL_tasks}//${id}.json`, {
+        method: "DELETE"
+    });
+    closePopUp();
+    loadTasks();
+}
+
 
 function generateProgressHTML(task) {
     if (!task.subtasks || !Array.isArray(task.subtasks)) return '';
