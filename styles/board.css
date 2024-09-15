@@ -601,6 +601,10 @@ body{
         padding: 10px; 
     }
 
+    .task-column h2 {
+        width: 100%;
+    }
+
     .column-container {
         display: flex;
         flex-wrap: nowrap; 

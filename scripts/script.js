@@ -153,10 +153,11 @@ async function moveTo(event, columnId) {
         try {
             await updateTaskStatusInFirebase(taskId, newStatus);
         } catch (error) {
-            console.error('Error updating task status:', error);
+            // Handle error if needed
         }
     }
 }
+
 
 /**
  * Updates the task status in Firebase.
@@ -173,11 +174,11 @@ async function updateTaskStatusInFirebase(taskId, newStatus) {
             },
             body: JSON.stringify({ progress: newStatus })
         });
-        console.log(`Task ${taskId} updated to status: ${newStatus}`);
     } catch (error) {
-        console.error('Error updating task in Firebase:', error);
+        // Handle error if needed
     }
 }
+
 
 
 
