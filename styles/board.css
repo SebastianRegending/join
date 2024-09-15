@@ -17,6 +17,8 @@ body{
 
 .board-header h1{
     font-size: 62px;
+    margin-left: 10px;
+    margin-bottom: 0;
 }
 
 .task-input-container{
@@ -283,6 +285,10 @@ body{
 .card-description{
     font-size: 16px;
     color: #a8a8a8;
+    -webkit-box-orient: vertical;
+    /* overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word; */
 }
 
 .card-progress {

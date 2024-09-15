@@ -11,6 +11,7 @@
     <script src="./scripts/script.js"></script>
     <script src="./scripts/board.js"></script>
     <script src="./scripts/taskDetail.js"></script>
+    <script src="./scripts/templates.js"></script>
 
     <title>Join - Board</title>
 </head>
@@ -68,31 +69,15 @@
                     <div id="Done" class="task-column" ondrop="moveTo(event, 'Done')" ondragover="allowDrop(event)"
                         ondragenter="highlight('Done')" ondragleave="removeHighlight('Done')">
                         <div class="no-tasks">No tasks Done</div>
+                        <!-- "Done" column -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Task Columns to dynamically insert tasks -->
-
-        <!-- "To Do" column -->
-
-
-        <!-- "In Progress" column -->
-
-
-        <!-- "Await Feedback" column -->
-
-
-        <!-- "Done" column -->
-
-
-
         <!-- Dialog for adding a task -->
         <div id="dialog" class="dialog-bg d-none" onclick="closeDialog()">
             <div id="dialog-content" class="dialog">
-
-
 
                 <!-- HTML von addtask.html hier einfügen -->
                 <section class="fullpage">

@@ -98,108 +98,119 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Funktion zum Laden der Tasks und deren Darstellung im Board
+/// Hauptfunktion zum Laden der Tasks
 async function loadTasks() {
     let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
 
     try {
-        let response = await fetch(URL_tasks + ".json");
-        let tasks = await response.json();
+        let tasks = await fetchTasks(URL_tasks);
+        let columns = getColumns();
 
-        let columns = {
-            'ToDo': document.getElementById('ToDo'),
-            'InProgress': document.getElementById('inProgress'),
-            'AwaitFeedback': document.getElementById('AwaitFeedback'),
-            'Done': document.getElementById('Done')
-        };
+        resetColumns(columns); // Spalten leeren
 
-        // Spalten leeren, bevor neue Tasks hinzugefügt werden
-        Object.keys(columns).forEach(key => columns[key].innerHTML = '');
-
-        // Farben für Benutzer-Badges
-        let colors = ['#FF7A00', '#1FD7C1', '#462F8A', '#6e52ff', '#00bee8'];
-
-        // Wiederverwendbare Funktion zum Abrufen der Initialen
-        function getInitials(name) {
-            let nameParts = name.split(' ');
-            return nameParts.map(part => part.charAt(0)).join('').toUpperCase();
-        }
-
-        // Fügt Tasks in die entsprechenden Spalten ein
-        for (let taskID in tasks) {
+        Object.keys(tasks).forEach(taskID => {
             let task = tasks[taskID];
-
-            let progressHTML = '';
-            if (task.subtasks && Array.isArray(task.subtasks)) {
-                let totalSubtasks = task.subtasks.length;
-                let completedSubtasks = task.subtasks.filter(subtask => subtask.done).length;
-                let progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
-
-                progressHTML = `
-                    <div class="card-progress">
-                        <div class="progress-bar">
-                            <div class="progress" style="width: ${progressPercentage}%;"></div>
-                        </div>
-                        <p class="subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</p>
-                    </div>
-                `;
-            }
-
-            // Benutzer-Badges
-            let contactsHTML = '';
-            if (task.contacts) {
-                task.contacts.forEach((contact, index) => {
-                    let color = colors[index % colors.length];
-                    let initials = getInitials(contact.name);
-                    contactsHTML += `<span class="user-badge" style="background-color:${color}">${initials}</span>`;
-                });
-            }
-
-            // Klassifizierung nach Kategorie des Tasks
-            let labelClass = task.category === 'User Story' ? 'user-story-label' : 'technical-task-label';
-
-            let taskHTML = `
-                <div id="task-${taskID}" class="todo-card" draggable="true" ondragstart="startDragging(event)" onclick="openPopUp('${taskID}')">
-                    <div class="card-labels ${labelClass}">
-                        <span class="label">${task.category}</span>
-                    </div>
-
-                    <div class="card-content">
-                        <h3 class="card-title">${task.title}</h3>
-                        <p class="card-description">${task.description || 'No description available'}</p>
-                    </div>
-
-                    ${progressHTML}
-
-                    <div class="card-footer">
-                        <div class="card-users">
-                            ${contactsHTML}
-                        </div>
-                        <div class="priority">
-                            <span class="priority-symbol">
-                                <img src="./assets/img/priority-${task.prio}.png" alt="${task.prio}">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Task in die entsprechende Spalte einfügen
-            columns[task.progress.replace(/\s/g, '')]?.insertAdjacentHTML('beforeend', taskHTML);
-        }
-
-        // Falls keine Tasks in den Spalten sind, eine Nachricht anzeigen
-        Object.keys(columns).forEach(key => {
-            if (columns[key].innerHTML.trim() === '') {
-                let message = `No tasks ${key.replace(/([A-Z])/g, ' $1').trim()}`;
-                columns[key].innerHTML = `<div class="no-tasks">${message}</div>`;
-            }
+            let taskHTML = generateTaskHTML(task, taskID);
+            let columnKey = task.progress.replace(/\s/g, '');
+            columns[columnKey]?.insertAdjacentHTML('beforeend', taskHTML);
         });
+
+        handleEmptyColumns(columns); // Zeige Nachricht an, wenn Spalten leer sind
 
     } catch (error) {
         console.error('Error loading tasks:', error);
     }
 }
+
+// Funktion zum Abrufen der Tasks von der Datenbank
+async function fetchTasks(url) {
+    let response = await fetch(url + ".json");
+    return await response.json();
+}
+
+// Funktion, um die HTML-Elemente der Spalten zu erhalten
+function getColumns() {
+    return {
+        'ToDo': document.getElementById('ToDo'),
+        'InProgress': document.getElementById('inProgress'),
+        'AwaitFeedback': document.getElementById('AwaitFeedback'),
+        'Done': document.getElementById('Done')
+    };
+}
+
+// Funktion zum Leeren der Spalten
+function resetColumns(columns) {
+    Object.keys(columns).forEach(key => columns[key].innerHTML = '');
+}
+
+// Funktion zum Generieren der Task-HTML
+function generateTaskHTML(task, taskID) {
+    let progressHTML = generateProgressHTML(task);
+    let contactsHTML = generateContactsHTML(task.contacts);
+    let labelClass = task.category === 'User Story' ? 'user-story-label' : 'technical-task-label';
+
+    return `
+        <div id="task-${taskID}" class="todo-card" draggable="true" ondragstart="startDragging(event)" onclick="openPopUp('${taskID}')">
+            <div class="card-labels ${labelClass}">
+                <span class="label">${task.category}</span>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">${task.title}</h3>
+                <p class="card-description">${task.description || 'No description available'}</p>
+            </div>
+            ${progressHTML}
+            <div class="card-footer">
+                <div class="card-users">
+                    ${contactsHTML}
+                </div>
+                <div class="priority">
+                    <span class="priority-symbol">
+                        <img src="./assets/img/priority-${task.prio}.png" alt="${task.prio}">
+                    </span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function generateProgressHTML(task) {
+    if (!task.subtasks || !Array.isArray(task.subtasks)) return '';
+
+    let totalSubtasks = task.subtasks.length;
+    let completedSubtasks = task.subtasks.filter(subtask => subtask.done).length;
+    let progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
+
+    return generateProgressHTMLTemplate(completedSubtasks, totalSubtasks, progressPercentage);
+}
+
+
+// Funktion zum Generieren der Kontakt-Badges-HTML
+function generateContactsHTML(contacts = []) {
+    let colors = ['#FF7A00', '#1FD7C1', '#462F8A', '#6e52ff', '#00bee8'];
+
+    return contacts.map((contact, index) => {
+        let color = colors[index % colors.length];
+        let initials = getInitials(contact.name);
+        return `<span class="user-badge" style="background-color:${color}">${initials}</span>`;
+    }).join('');
+}
+
+// Funktion zum Abrufen der Initialen eines Namens
+function getInitials(name) {
+    let nameParts = name.split(' ');
+    return nameParts.map(part => part.charAt(0)).join('').toUpperCase();
+}
+
+// Funktion, um eine Nachricht anzuzeigen, wenn keine Tasks in einer Spalte sind
+function handleEmptyColumns(columns) {
+    Object.keys(columns).forEach(key => {
+        if (columns[key].innerHTML.trim() === '') {
+            let message = `No tasks ${key.replace(/([A-Z])/g, ' $1').trim()}`;
+            columns[key].innerHTML = `<div class="no-tasks">${message}</div>`;
+        }
+    });
+}
+
 
 // Funktion zum Erstellen eines neuen Tasks und Hinzufügen zum Board
 async function createNewTask() {
@@ -241,30 +252,20 @@ async function createNewTask() {
 }
 
 // Funktion, um den Task sofort im Board anzuzeigen
+
 function addTaskToBoard(task, taskID) {
-    let progressHTML = '';
-    if (task.subtasks && Array.isArray(task.subtasks)) {
-        let totalSubtasks = task.subtasks.length;
-        let completedSubtasks = task.subtasks.filter(subtask => subtask.done).length;
-        let progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
+    let totalSubtasks = task.subtasks.length;
+    let completedSubtasks = task.subtasks.filter(subtask => subtask.done === "true").length;
+    let progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
 
-        progressHTML = `
-            <div class="card-progress">
-                <div class="progress-bar">
-                    <div class="progress" style="width: ${progressPercentage}%;"></div>
-                </div>
-                <p class="subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</p>
+    let progressHTML = `
+        <div class="card-progress">
+            <div class="progress-bar">
+                <div class="progress" style="width: ${progressPercentage}%;"></div>
             </div>
-        `;
-    }
-
-    let contactsHTML = '';
-    if (task.contacts) {
-        task.contacts.forEach((contact) => {
-            let initials = getInitials(contact.name);
-            contactsHTML += `<span class="user-badge">${initials}</span>`;
-        });
-    }
+            <p class="subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</p>
+        </div>
+    `;
 
     let taskHTML = `
         <div id="task-${taskID}" class="todo-card" draggable="true" ondragstart="startDragging(event)">
@@ -278,7 +279,7 @@ function addTaskToBoard(task, taskID) {
             ${progressHTML}
             <div class="card-footer">
                 <div class="card-users">
-                    ${contactsHTML}
+                    ${generateContactsHTML(task.contacts)}
                 </div>
                 <div class="priority">
                     <span class="priority-symbol">
@@ -291,6 +292,7 @@ function addTaskToBoard(task, taskID) {
 
     document.getElementById('ToDo').insertAdjacentHTML('beforeend', taskHTML);
 }
+
 
 // Funktion, um die ausgewählten Kontakte zu erhalten
 function getSelectedContacts() {
