@@ -1,10 +1,15 @@
 function generateTaskDetailsHTML(todoData, id) {
     let contacts = todoData.contacts ? todoData.contacts : [];
+    contactIds = [];
+    for(let i = 0; i < contacts.length; i++){
+        contactIds.push(contacts[i]['name']);
+    }
     let subtasks = todoData.subtasks ? todoData.subtasks : [];
-
+    for(let i = 0; i < subtasks.length; i++){
+        subtasksEdit.push(subtasks[i]['title']);
+    }
     let taskTypeClass = todoData.category === 'User Story' ? 'user-story' :
-                        todoData.category === 'Technical Task' ? 'technical-task' : '';
-
+        todoData.category === 'Technical Task' ? 'technical-task' : '';
     return `
         <div id="task-details" class="task-details">
             <div class="task-header">
@@ -60,7 +65,7 @@ function generateTaskDetailsHTML(todoData, id) {
                     <span>Delete</span>
                 </div>
                 <div class="divider"></div>
-                <div class="btn-edit-task">
+                <div class="btn-edit-task" onclick="prepareEditTask('${id}', '${todoData.title}', '${todoData.description}', '${todoData.contacts}', '${todoData.deadline}', '${todoData.prio}', '${todoData.category}', '${subtasks}')">
                     <svg class="icon-edit-task" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z" fill="#2A3647"/>
                     </svg>
@@ -88,5 +93,68 @@ function generateProgressHTML(task) {
         </div>
     `;
 }
+
+
+function generateEditPage(id, title, description, contacts, deadline, prio, category, subtasks) {
+   
+    return `
+        <div id="task-details-edit" class="task-details">
+           <form>
+           <span>Title</span>
+            <input class="input-field" value="${title}">
+             <span>Description</span>
+            <textarea>${description}</textarea>
+              <span>Due date</span>
+            <input class="input-field" type="date" placeholder="dd/mm/yyyy" value="${deadline}" required>
+            <span>Priority</span>
+            <div class="flexed button-area-prio">
+                        
+                        <div class="prio-container" id="prio-urgent-edit" onclick="setPrioEdit('urgent')">
+                            Urgent<img id="prio-pic-urgent" src="./assets/img/urgent-icon.svg"></div>
+                            
+                            <div class="prio-container prio-active-medium" id="prio-medium-edit"
+                            onclick="setPrioEdit('medium')">Medium <img id="prio-pic-medium"
+                            src="./assets/img/medium-icon.svg"></div>
+                            
+                            <div class="prio-container" id="prio-low-edit" onclick="setPrioEdit('low')">Low <img
+                                id="prio-pic-low" src="./assets/img/low-icon.svg"></div>
+
+                    </div>
+
+ <span>Assigned to contacts</span>
+               <div class="multiselect">
+                        <div class="selectBox" onclick="showCheckboxes()">
+                            <select class="input-field-select">
+                                <option class="option-select">Select contacts to assign</option>
+                            </select>
+                            <div class="overSelect"></div>
+                        </div>
+                        <div id="checkboxes-edit">
+                        </div>
+                    </div>
+                    <div id="circle-area-assigned-contacts-edit">
+                  <div class="subtasks-area">  
+ <span>Subtasks</span>
+                    <div class="input-field-subtasks input-field-subtasks-smaller">
+                        <input id="subtasks" onfocus="openAddSubtask()" placeholder="Add new subtask">
+                        <div onclick="openAddSubtaskEdit()" id="add-button-icon-plus-edit" class="add-subtask"><img
+                                src="./assets/img/add.svg"></div>
+
+                        <div class="cancel-container">
+                            <div class="d-none" onclick="cancelAddSubtask()" id="add-button-icon-cancel-edit"><img
+                                    src="./assets/img/cancel.svg"></div>
+                        </div>
+
+                        <div onclick="addSubtaskEdit()" id="add-button-icon-check-edit" class="d-none"><img id="check"
+                                src="./assets/img/checkstandard.svg"></div>
+                    </div>
+
+                    <div class="flex-column" id="added-subtasks-edit"></div>
+                    </div>
+           </form>
+        </div>
+    `;
+}
+
 
 

@@ -626,3 +626,21 @@ body{
     width: 100%;
 }
 }
+
+
+
+#task-details-edit form{
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.subtasks-area{
+    display: flex;
+    flex-direction: column;
+}
+
+#checkboxes-edit{
+    display: none;
+} 
+
