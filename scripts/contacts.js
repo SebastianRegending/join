@@ -28,13 +28,12 @@ function prepareRenderContacts(responseToJson) {
     if (responseToJson) {
         contacts = jsonToArrayContacts(responseToJson);
         document.getElementById('contacts-alphabet-list').innerHTML = ``;
-        let n = 0;
-        while (n < contacts.length) {
+
+        for (let n = 0; n < contacts.length; n++) {
             IDs = jsonToArrayIDs(contacts[n]);
             let letterForCards = jsonToArrayIDs(contacts[n])[0]['initials'].charAt(0);
             IDs.sort((a, b) => a['name'].localeCompare(b['name']));
             renderContacts(letterForCards);
-            n++;
         }
     } else {
         document.getElementById('contacts-alphabet-list').innerHTML = ``;
@@ -48,9 +47,14 @@ function prepareRenderContacts(responseToJson) {
  * @param {string} letterForCards - First letter of the following contacts
  */
 function renderContacts(letterForCards) {
+    let compare = sessionStorage.getItem("userId");
     document.getElementById('contacts-alphabet-list').innerHTML += createLetterTemplate(letterForCards);
     for (let i = 0; i < IDs.length; i++) {
-        document.getElementById(`contacts-${letterForCards}-content`).innerHTML += createContactTemplate(i);
+        if (compare && compare == IDs[i]['userid']) {
+            document.getElementById(`contacts-${letterForCards}-content`).innerHTML += createContactTemplateYou(i);
+        } else {
+            document.getElementById(`contacts-${letterForCards}-content`).innerHTML += createContactTemplate(i);
+        }
         if (currentContact == IDs[i]['id']) {
             document.getElementById(IDs[i]['id']).classList.add('bg-dark-blue')
         }
@@ -156,7 +160,7 @@ function closeAddContact() {
     document.getElementById('add-contact-email').value = ``;
     document.getElementById('add-contact-phone').value = ``;
     document.getElementById("add-contact-dialog").classList.add('hide');
-    setTimeout(function(){document.getElementById('add-contact-dialog').classList.remove('show'); document.getElementById("add-contact-dialog").classList.add('d-none'); document.getElementById("add-contact-dialog").classList.remove('hide')}, 450);
+    setTimeout(function () { document.getElementById('add-contact-dialog').classList.remove('show'); document.getElementById("add-contact-dialog").classList.add('d-none'); document.getElementById("add-contact-dialog").classList.remove('hide') }, 450);
 }
 
 
@@ -215,7 +219,7 @@ async function prepareSubmitEditetContact() {
  * @param {*} path - new path for saving in database
  * @returns editet contact
  */
-async function submitEditetContact(name, email, phone, initialsForSaving, color, path){
+async function submitEditetContact(name, email, phone, initialsForSaving, color, path) {
     data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color });
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
@@ -240,7 +244,7 @@ function closeEditContact() {
 /**
  * Sets value of edit inputs to empty
  */
-function deleteEditContact(){
+function deleteEditContact() {
     document.getElementById('edit-contact-name').value = ``;
     document.getElementById('edit-contact-email').value = ``;
     document.getElementById('edit-contact-phone').value = ``;
@@ -280,7 +284,7 @@ async function prepareCreateContact(path = "") {
  * @param {string} path - path where it will be saved on database
  * @returns submittet contact
  */
-async function createContact(name, email, phone, initialsForSaving, color, tasks, path){
+async function createContact(name, email, phone, initialsForSaving, color, tasks, path) {
     data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color, tasks: tasks });
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
@@ -290,7 +294,7 @@ async function createContact(name, email, phone, initialsForSaving, color, tasks
         body: JSON.stringify(data)
     });
     document.getElementById('toaster-contact').classList.add('show');
-    setTimeout(function(){document.getElementById('toaster-contact').classList.remove('show');}, 2000);
+    setTimeout(function () { document.getElementById('toaster-contact').classList.remove('show'); }, 2000);
     loadContacts();
     return response;
 }
@@ -301,7 +305,7 @@ async function createContact(name, email, phone, initialsForSaving, color, tasks
  * 
  * @param {string} name - name of the contact that is used to create the initials
  */
-    function createInitials(name) {
+function createInitials(name) {
     let words = name.split(" ");
     initials = [];
     words.length = 2;
@@ -363,14 +367,14 @@ function createRandomNumbers() {
 /**
  * Opens choosen Contact Area via removing d-none
  */
-function openChooseResp(){
-    document.getElementById('choosen-contact').style.display="block"
+function openChooseResp() {
+    document.getElementById('choosen-contact').style.display = "block"
 }
 
 
 /**
  * Closes choosen Contact Area via adding d-none
  */
-function closeChooseResp(){
-    document.getElementById('choosen-contact').style.display="none"
+function closeChooseResp() {
+    document.getElementById('choosen-contact').style.display = "none"
 }

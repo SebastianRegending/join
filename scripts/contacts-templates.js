@@ -29,7 +29,28 @@ function createContactTemplate(i){
             <div class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
             </div>
             <div>
-                <div class="contact-card-names">${IDs[i]['name']}
+                <div id="name-area-${IDs[i]['id']}" class="contact-card-names">${IDs[i]['name']}
+                </div>
+                <a href='mailto:${IDs[i]['email']}'>${IDs[i]['email']}
+                </a>
+            </div>
+        </div>
+        `
+}
+
+/**
+ * Returns Contact-Template in HTML with additional YOU
+ * 
+ * @param {number} i - index of the for-loop that interates through the contacts
+ * @returns Contact-Template in HTML
+ */
+function createContactTemplateYou(i){
+    return /*html*/`
+        <div id="${IDs[i]['id']}" class="contact-datas" onclick="chooseContact(\'${IDs[i]['id']}\', \'${IDs[i]['name']} (YOU)\', \'${IDs[i]['email']}\', \'${IDs[i]['phone']}\', \'${IDs[i]['initials']}\', \'${IDs[i]['color']}\')">
+            <div class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
+            </div>
+            <div>
+                <div id="name-area-${IDs[i]['id']}" class="contact-card-names">${IDs[i]['name']}(You)
                 </div>
                 <a href='mailto:${IDs[i]['email']}'>${IDs[i]['email']}
                 </a>

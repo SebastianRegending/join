@@ -25,23 +25,25 @@ async function saveNewUser(path = "/users", data = {}) {
         body: JSON.stringify(data)
     });
     confirmPassword();
-    prepareCreateContactForUser(name, email);
-    return responseToJson = await response.json();
+    let newUserData = await response.json();
+    prepareCreateContactForUser(name, email, newUserData);
+    return responseToJson = newUserData;
 }
 
-async function prepareCreateContactForUser(name, email, path = "") {
+async function prepareCreateContactForUser(name, email, newUserData, path = "") {
     let letter = name.value.charAt(0).toUpperCase();
     path = `/letter${letter}`
     createInitials(name.value);
-    let initialsForSaving = initials.join('').toUpperCase();
+    let initialsForSaving = initialsForUser.join('').toUpperCase();
     let color = createColor();
     let tasks = [];
-    let response = await createContactForUser(name, email, initialsForSaving, color, tasks, path);
+    let newUserDataId = jsonToArrayUser(newUserData);
+    let response = await createContactForUser(name, email, newUserDataId, initialsForSaving, color, tasks, path);
     return responseToJson = await response.json();
 }
 
-async function createContactForUser(name, email, initialsForSaving, color, tasks, path){
-    data = ({ name: name.value, email: email.value, initials: initialsForSaving, color: color, tasks: tasks });
+async function createContactForUser(name, email, newUserData, initialsForSaving, color, tasks, path){
+    data = ({ name: name.value, email: email.value, userid: newUserData, initials: initialsForSaving, color: color, tasks: tasks });
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         header: {
@@ -75,11 +77,22 @@ async function loginUser(path = "/users") {
         window.location.href = 'summary.html';
         saveLogin();
         saveCheckBox();
+        saveUserId(user, responseToJson);
+        console.log(userId);
     } else {
         wrongEmailOrPassword();
         console.log("User nicht gefunden");
         return
     };
+}
+
+function saveUserId(user, responseToJson) {
+    let userIdKey = Object.entries(responseToJson).find(([_userid, userData]) => userData.email == user.email && userData.password == user.password);
+    if (userIdKey) {
+        let [userId] = userIdKey;
+        sessionStorage.setItem("userId", `${userId}`);
+    }
+
 }
 
 /**
@@ -212,7 +225,7 @@ function wrongEmailOrPassword() {
 }
 
 /**
- * starts the jion logo animation at the beginning
+ * starts the join logo animation at the beginning
  */
 function startLogoAnimation() {
     let animatedLogo = document.getElementById('animated-logo');
