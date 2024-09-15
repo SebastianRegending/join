@@ -11,10 +11,10 @@
     <link rel="icon" type="image/x-icon" href="./assets/img/join.png">
 
     <script src="./scripts/script.js"></script>
-    <script src="./scripts/login.js"></script>
     <script src="./scripts/register.js"></script>
     <script src="./scripts/contacts.js"></script>
     <script src="./scripts/summary.js"></script>
+    <script src="./scripts/usercontact.js"></script>
 
     <title>Join - Summary</title>
 </head>
@@ -28,22 +28,24 @@
                     <div id="join-360-headline">Join 360</div>
                     <div id="join-360-bordercontainer"></div>
                     <div id="join-360-slogan">Key Metrics at a Glance</div>
+                    <div id="join-360-bordercontainer-mobile" class="d-none"></div>
+                
                 </div>
 
                 <div id="summary">
                     <div id="summary-top">
-                        <div id="summary-todo" class="summary-top-style" onclick="navigateToBoard()">
+                        <div id="summary-todo-top" class="summary-top-style" onclick="navigateToBoard()">
                             <img id="summary-img-pencil" class="summary-img" src="./assets/img/pencil.png" alt="pencil">
                             <div class="summary-card-small">
-                                <div id="summary-todo" class="summary-small-number">1</div>
+                                <div id="summary-todo" class="summary-small-number"></div>
                                 <div class="summary-small-text">To-do</div>
                             </div>
                         </div>
-                        <div id="summary-done" class="summary-top-style" onclick="navigateToBoard()">
+                        <div id="summary-done-top" class="summary-top-style" onclick="navigateToBoard()">
                             <img class="summary-img" id="summary-img-completed" src="./assets/img/completed.png"
                                 alt="completed">
                             <div class="summary-card-small">
-                                <div id="summary-done" class="summary-small-number">1</div>
+                                <div id="summary-done" class="summary-small-number"></div>
                                 <div class="summary-small-text">Done</div>
                             </div>
                         </div>
@@ -73,13 +75,13 @@
                         </div>
                         <div class="summary-bottom-style" onclick="navigateToBoard()">
                             <div class="summary-bottom-content-style">
-                                <div id="summary-bottom-progress" class="summary-bottom-small-number">2</div>
+                                <div id="summary-bottom-progress" class="summary-bottom-small-number"></div>
                                 <div class="summary-bottom-small-text">Tasks in Progress</div>
                             </div>
                         </div>
                         <div class="summary-bottom-style" onclick="navigateToBoard()">
                             <div class="summary-bottom-content-style">
-                                <div id="summary-bottom-feedback" class="summary-bottom-small-number">2</div>
+                                <div id="summary-bottom-feedback" class="summary-bottom-small-number"></div>
                                 <div class="summary-bottom-small-text">Awaiting Feedback</div>
                             </div>
                         </div>

@@ -254,7 +254,6 @@ async function prepareCreateContact(path = "") {
     return responseToJson = await response.json();
 }
 
-
 /**
  * Submit the created contact to database
  * 
@@ -288,7 +287,7 @@ async function createContact(name, email, phone, initialsForSaving, color, tasks
  * 
  * @param {string} name - name of the contact that is used to create the initials
  */
-function createInitials(name) {
+    function createInitials(name) {
     let words = name.split(" ");
     initials = [];
     words.length = 2;
@@ -311,7 +310,6 @@ async function deleteContact(id, letter) {
     document.getElementById('choosen-contact-loading-area').innerHTML = ``;
     loadContacts();
 }
-
 
 /**
  * Create a string of a color to choose the css-class
