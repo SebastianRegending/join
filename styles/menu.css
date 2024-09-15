@@ -239,6 +239,18 @@ a {
 display: none;
 }
 
+@media screen and (max-width: 1600px){
+        .header h3 {
+        margin-left: 16px;
+        font-size: 16px;
+    }
+
+    .help-user-icons{
+        margin-right: 16px;
+    }
+}
+
+
 @media(max-width: 650px){
 
 .header {
