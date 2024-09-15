@@ -166,7 +166,7 @@ a {
     height: 1px;
     display: flex;
     justify-content: end;
-    z-index: 3;
+    z-index: 500;
     position: absolute;
     right: 10px;
 }
