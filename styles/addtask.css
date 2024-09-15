@@ -8,6 +8,7 @@ body {
   background-color: #F6F7F8;
 }
 
+
 h1 {
   margin-left: 272px;
 }
@@ -16,6 +17,7 @@ h1 {
 .fullpage {
   margin-top: 160px;
 }
+
 
 .fullpage h1 {
   font-size: 62px;
@@ -26,6 +28,7 @@ h1 {
   display: flex;
 }
 
+
 .button-area-prio {
   justify-content: space-between;
   margin-bottom: 32px;
@@ -33,6 +36,7 @@ h1 {
   padding: 0 !important;
   box-sizing: border-box !important;
 }
+
 
 .form-left-side {
   display: flex;
@@ -42,6 +46,7 @@ h1 {
   border-right: solid 1px #D1D1D1;
 }
 
+
 .form-left-side-help {
   display: flex;
   flex-direction: column;
@@ -49,16 +54,19 @@ h1 {
   margin: 24px 40px 24px 40px;
 }
 
+
 .form-right-side {
   width: 40%;
   display: flex;
   flex-direction: column;
 }
 
+
 .multiselect {
   width: 90% !important;
   box-sizing: border-box;
 }
+
 
 .selectBox {
   position: relative !important;
@@ -66,12 +74,14 @@ h1 {
   box-sizing: border-box;
 }
 
+
 .selectBox select {
   position: relative !important;
   width: 100%;
   font-weight: bold;
   box-sizing: border-box;
 }
+
 
 .overSelect {
   position: absolute;
@@ -81,6 +91,7 @@ h1 {
   top: 0;
   bottom: 0;
 }
+
 
 #checkboxes {
   display: none;
@@ -95,9 +106,11 @@ h1 {
   --sb-size: 6px;
 }
 
+
 #checkboxes label {
   display: block;
 }
+
 
 #checkboxes label:hover {
   background-color: #1e90ff;
@@ -108,19 +121,23 @@ h1 {
   width: var(--sb-size)
 }
 
+
 #checkboxes::-webkit-scrollbar-track {
   background: var(--sb-track-color);
   border-radius: 17px;
 }
+
 
 #checkboxes::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
   border-radius: 17px;
 }
 
+
 label {
   color: #2A3647;
 }
+
 
 .input-field {
   font-family: Inter;
@@ -137,15 +154,18 @@ label {
   box-sizing: border-box;
 }
 
+
 .input-field:focus {
   outline: none !important;
   border: 1px solid #007cee;
   box-shadow: 0 0 10px #719ECE;
 }
 
+
 .input-field::placeholder {
   color: #D1D1D1;
 }
+
 
 #input-description {
   width: 90%;
@@ -164,10 +184,12 @@ label {
   box-sizing: border-box;
 }
 
+
 #input-description::placeholder {
   color: #D1D1D1;
   font-family: Inter;
 }
+
 
 .prio-container {
   height: 56px;
@@ -182,42 +204,51 @@ label {
   font-weight: 400;
 }
 
+
 .prio-container:hover {
   cursor: pointer;
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.4);
   transition: transform 0.1s ease-in-out, 0.2s;
 }
 
+
 .prio-active-urgent {
   background-color: #ff3d00;
   color: white;
 }
 
+
 .prio-active-urgent img {
   filter: brightness(0) invert(1);
 }
+
 
 .prio-active-medium {
   background-color: #ffa800;
   color: white;
 }
 
+
 .prio-active-medium img {
   filter: brightness(0) invert(1);
 }
+
 
 .prio-active-low {
   background-color: #7ae229;
   color: white;
 }
 
+
 .prio-active-low img {
   filter: brightness(0) invert(1);
 }
 
+
 .red-letter {
   color: #ff8190;
 }
+
 
 .input-field-select {
   font-family: Inter;
@@ -233,25 +264,27 @@ label {
   margin: 4px 0;
 }
 
+
 option {
   float: right;
 }
+
 
 .input-field-select:focus {
   outline: none !important;
   border: 1px solid #007cee;
   box-shadow: 0 0 10px #719ECE;
-
 }
+
 
 .input-field-select::placeholder {
   color: #D1D1D1;
 }
 
+
 .overSelect {
   width: 100%;
   padding: 0 12px 0 21px;
-
 }
 
 
@@ -260,8 +293,8 @@ option {
   display: flex !important;
   align-items: center !important;
   margin-bottom: 8px;
-
 }
+
 
 .input-check {
   position: relative;
@@ -286,7 +319,6 @@ option {
 
 .submit-area-right {
   width: 40%;
-
   margin: 24px 0px 24px 0px;
 }
 
@@ -298,6 +330,7 @@ option {
   align-items: center;
   box-sizing: border-box;
 }
+
 
 .blue-btn {
   width: 214px;
@@ -317,11 +350,11 @@ option {
   margin-left: 24px;
 }
 
+
 .blue-btn:hover {
   background-color: #29ABE2;
   box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
 }
-
 
 
 .white-btn {
@@ -341,18 +374,18 @@ option {
   transition: 100ms linear;
 }
 
+
 .white-btn:hover {
   color: #29ABE2;
   border-color: #29ABE2;
   box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
+
 .white-btn:hover img {
   filter: invert(66%) sepia(29%) saturate(4458%) hue-rotate(165deg) brightness(93%) contrast(89%);
   transition: 100ms linear;
 }
-
-
 
 
 #subtasks {
@@ -366,13 +399,14 @@ option {
   align-items: center;
   justify-content: space-between;
   font-size: 21px;
-
 }
+
 
 #subtasks:focus {
   outline: none !important;
   border: 0px;
 }
+
 
 #subtasks::placeholder {
   color: #D1D1D1;
@@ -382,6 +416,7 @@ option {
 .d-none {
   display: none;
 }
+
 
 .input-field-subtasks {
   font-family: Inter;
@@ -399,14 +434,14 @@ option {
 
 .input-field-subtasks img:hover {
   cursor: pointer;
-
-
 }
+
 
 .flex-column {
   display: flex;
   flex-direction: column;
 }
+
 
 #add-button-icon-plus {
   border-radius: 50%;
@@ -416,10 +451,12 @@ option {
   padding: 12px;
 }
 
+
 #add-button-icon-plus:hover {
   background-color: #D1D1D1;
   cursor: pointer;
 }
+
 
 #add-button-icon-check {
   border-radius: 50%;
@@ -429,24 +466,27 @@ option {
   padding: 12px;
 }
 
+
 #add-button-icon-cancel:hover {
   background-color: #D1D1D1;
   cursor: pointer;
 }
 
+
 #category {
   width: 90%;
 }
+
 
 #circle-area-assigned-contacts {
   display: flex;
   padding-top: 16px;
 }
 
+
 .assigned-contacts {
   margin: 0 !important;
   padding: 0 !important;
-
 }
 
 
@@ -458,9 +498,11 @@ option {
   padding: 12px;
 }
 
+
 #deadline {
   display: block !important;
 }
+
 
 #deadline::placeholder {
   color: #D1D1D1 !important;
@@ -477,11 +519,11 @@ option {
 }
 
 
-
 #add-button-icon-check:hover {
   background-color: #D1D1D1;
   cursor: pointer;
 }
+
 
 .cancel-container {
   border-right: 1px solid #D1D1D1;
@@ -667,10 +709,12 @@ option {
   animation: slidein 0.75s, stay 1s 0.75s, slideout 0.75s 1.5s;
 }
 
+
 .red-letter-resp {
   display: none;
   font-size: 16px;
 }
+
 
 @keyframes slidein {
   from {
@@ -682,6 +726,7 @@ option {
   }
 }
 
+
 @keyframes stay {
   from {
     bottom: 50%;
@@ -691,6 +736,7 @@ option {
     bottom: 50%;
   }
 }
+
 
 @keyframes slideout {
   from {
@@ -710,18 +756,20 @@ option {
     height: 30px;
     width: 30px;
     display: flex;
-
     margin-right: 10px;
     color: white;
   }
+
 
   .input-check {
     margin-right: 40px;
   }
 
+
   .add-task-form {
     display: block;
   }
+
 
   .form-left-side {
     width: 90%;
@@ -729,19 +777,22 @@ option {
     border-right: none;
   }
 
+
   .form-left-side-help {
     display: none
   }
+
 
   .form-right-side {
     width: 90%;
     margin: 24px 40px 24px 40px;
   }
 
+
   .white-btn {
     display: none;
-
   }
+
 
   .submit-area-help-container {
     width: 90%;
@@ -749,14 +800,15 @@ option {
 
   }
 
+
   .red-letter-resp {
     display: block;
   }
 
+
   form {
     margin-bottom: 100px;
   }
-
 }
 
 
