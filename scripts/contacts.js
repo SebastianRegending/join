@@ -136,6 +136,9 @@ function chooseContact(id, name, email, phone, inits, color) {
  */
 function loadChoosenContact(id, name, email, phone, inits, color) {
     let letter = inits.charAt(0);
+    if (phone == "undefined"){
+        phone = "no number";
+    }
     document.getElementById('choosen-contact-loading-area').innerHTML = createChoosenContactTemplate(letter, id, name, email, phone, inits, color);
     if (window.innerWidth < 1001) {
         openChooseResp();
