@@ -108,7 +108,12 @@ function updateNoTasksMessage(container) {
  * @param {DragEvent} event - The drop event.
  * @param {string} columnId - The ID of the target column where the card will be moved.
  */
-function moveTo(event, columnId) {
+/**
+ * Moves the dragged task card to the specified column and updates the status in Firebase.
+ * @param {DragEvent} event - The drop event.
+ * @param {string} columnId - The ID of the target column where the card will be moved.
+ */
+async function moveTo(event, columnId) {
     event.preventDefault();
     let column = document.getElementById(columnId);
     let draggedElement = document.getElementById(event.dataTransfer.getData('text'));
@@ -123,8 +128,57 @@ function moveTo(event, columnId) {
         column.classList.remove('drag-area-highlight');
         updateNoTasksMessage(originalContainer);
         updateNoTasksMessage(column);
+        
+        // Get the task ID from the dragged element's ID
+        let taskId = draggedElement.id.replace('task-', '');
+        
+        // Map the columnId to the corresponding progress status
+        let newStatus = '';
+        switch (columnId) {
+            case 'ToDo':
+                newStatus = 'To Do';
+                break;
+            case 'inProgress':
+                newStatus = 'In Progress';
+                break;
+            case 'AwaitFeedback':
+                newStatus = 'Await Feedback';
+                break;
+            case 'Done':
+                newStatus = 'Done';
+                break;
+        }
+
+        // Update task status in Firebase
+        try {
+            await updateTaskStatusInFirebase(taskId, newStatus);
+        } catch (error) {
+            console.error('Error updating task status:', error);
+        }
     }
 }
+
+/**
+ * Updates the task status in Firebase.
+ * @param {string} taskId - The ID of the task to update.
+ * @param {string} newStatus - The new status to set for the task.
+ */
+async function updateTaskStatusInFirebase(taskId, newStatus) {
+    const URL_task = `https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks/${taskId}.json`;
+    try {
+        await fetch(URL_task, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ progress: newStatus })
+        });
+        console.log(`Task ${taskId} updated to status: ${newStatus}`);
+    } catch (error) {
+        console.error('Error updating task in Firebase:', error);
+    }
+}
+
 
 
 /**

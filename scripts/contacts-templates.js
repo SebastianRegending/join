@@ -6,7 +6,7 @@
  */
 function createLetterTemplate(letterForCards){
     return /*html*/`
-        <div>
+        <div class="help-width">
             <div class="contact-card-letter">
              ${letterForCards}
             </div>

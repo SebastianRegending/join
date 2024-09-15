@@ -23,6 +23,7 @@
         <div id="contacts-area">
             <div class="dialog-bg d-none" id="add-contact-dialog">
                 <div class="contact-dialog">
+                    <div class="close-dialog-resp" onclick="closeAddContact()"><img src="./assets/img/closedialogresp.svg" alt="close add contact"></div>
                     <div class="contact-dialog-logo-side">
                         <img class="dialog-logo" src="./assets/img/join.png" alt="join-logo">
                         <h2>Add contact</h2>
@@ -33,11 +34,11 @@
                     <div class="contact-dialog-edit-side">
                         <div class="add-contact-dialog-header"><img class="cancel-add-contact-dialog"
                                 onclick="closeAddContact()" src="./assets/img/cancel.svg" alt="cancel-icon"></div>
-                        <div class="flexed">
+                        <div class="flexed middle-area">
                             <div>
                                 <img src="./assets/img/profilepic.png" alt="profilepic">
                             </div>
-                            <div>
+                            <div class="form-container">
                                 <form class="contact-form"
                                     onsubmit="prepareCreateContact(); closeAddContact(); loadContacts(); return false">
                                     <input id="add-contact-name" class="input-field icon-small-person"
@@ -62,6 +63,7 @@
 
             <div class="dialog-bg d-none" id="edit-contact-dialog">
                 <div class="contact-dialog">
+                    <div class="close-dialog-resp" onclick="closeEditContact()"><img src="./assets/img/closedialogresp.svg" alt="close add contact"></div>
                     <div class="contact-dialog-logo-side">
                         <img class="dialog-logo" src="./assets/img/join.png" alt="join-logo">
                         <h2>Edit contact</h2>
@@ -71,7 +73,7 @@
                     <div class="contact-dialog-edit-side">
                         <div class="add-contact-dialog-header"><img class="cancel-add-contact-dialog"
                                 onclick="closeEditContact()" src="./assets/img/cancel.svg" alt="cancel-icon"></div>
-                        <div class="flexed">
+                        <div class="flexed middle-area">
                             <div id="edit-initials"></div>
                             <form id="edit-form" class="contact-form" onsubmit="prepareSubmitEditetContact(); return false">
                                 <input id="edit-contact-name" class="input-field icon-small-person"
@@ -82,7 +84,7 @@
                                 <input id="edit-contact-phone" class="input-field icon-small-call" required type="text"
                                     placeholder="Phone">
                                 <div class="button-area">
-                                    <div class="white-input-btn-edit" onclick="closeEditContact()">Delete</div>
+                                    <div class="white-input-btn-edit" onclick="deleteEditContact()">Delete</div>
                                     <button class="blue-btn-edit">Save<img src="./assets/img/check.svg"
                                             alt="check-icon"></button>
                                 </div>
@@ -98,11 +100,20 @@
             </div>
             <div id="contacts-alphabet-list">
             </div>
+            <div onclick="openAddContact()" class="add-contact-button-resp"><img src="./assets/img/person_add.svg" alt="add contact"></div>
         </div>
         <div id="choosen-contact">
             <div class="choosen-contact-headline">
                 <span>Contacts</span>
                 <img src="./assets/img/separator-blue.svg">Better with a team
+            </div>
+            <div class="arrow-back" onclick="closeChooseResp()"><img src="./assets/img/arrow_left.png" alt="back"></div>
+            <div class="choosen-contact-headline-resp-container ">
+                <div class="choosen-contact-headline-resp">
+                <span>Contacts</span>Better with a team
+                <img src="./assets/img/separator-blue.svg">
+                </div>
+                
             </div>
             <div id="choosen-contact-loading-area"></div>
         </div>
