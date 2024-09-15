@@ -467,11 +467,18 @@ body{
 }
 
 #dialog-content .add-task-form{
-    height: 600px;
+    height: 400px;
 }
 
 #dialog-content #input-description {
     height: 120px;
+}
+
+
+#dialog-content .headline-container h1{
+    margin: 0;
+    margin-bottom: 64px;
+    margin-left: 106px;
 }
 
 #dialog-content #checkboxes {
@@ -533,6 +540,13 @@ body{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
+}
+
+#dialog-content .add-task-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
 }
 
 
