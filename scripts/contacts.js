@@ -238,6 +238,17 @@ function closeEditContact() {
 
 
 /**
+ * Sets value of edit inputs to empty
+ */
+function deleteEditContact(){
+    document.getElementById('edit-contact-name').value = ``;
+    document.getElementById('edit-contact-email').value = ``;
+    document.getElementById('edit-contact-phone').value = ``;
+
+}
+
+
+/**
  * Defines some variables from the inputfields, to give them to the createContact function
  * 
  * @param {*} path 

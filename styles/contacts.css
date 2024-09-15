@@ -234,6 +234,7 @@ body {
     padding: 15px 24px 15px 24px;
     align-items: center;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 
@@ -524,11 +525,14 @@ body {
     border: solid 2px white;
     height: 42px;
     width: 42px;
+    min-height: 42px;
+    min-width: 42px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 40px;
     color: white;
+
 }
 
 
@@ -537,6 +541,8 @@ body {
     border: solid 3px white;
     height: 120px;
     width: 120px;
+    min-height: 120px;
+    min-width: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -708,6 +714,13 @@ body {
     display: none;
 }
 
+
+#choosen-contacts-name{
+    width: 90%;
+
+    overflow-wrap: break-word;
+}
+
 @keyframes slideintoaster {
     from {
         right: -100vw;
@@ -799,6 +812,15 @@ body {
 }
 
 @media(max-width: 1000px) {
+    .circle-big{
+        margin-right: 10px;
+        height: 80px;
+        width:80px;
+        min-height: 80px;
+        min-width:80px;
+        font-size: 27px;
+    }
+
 
     .close-dialog-resp{
         display: flex;
@@ -856,6 +878,23 @@ cursor: pointer;
     .blue-btn img {
         width: 15px;
         height: 11px;
+    }
+
+    .blue-btn-edit {
+        height: 51px;
+        font-size: 21px;
+        margin-top: 16px;
+    }
+
+    .blue-btn-edit img{
+        width: 15px;
+        height: 11px;
+    }
+
+    .white-input-btn-edit {
+        height: 51px;
+        font-size: 21px;
+        margin-top: 16px;
     }
 
 
@@ -964,13 +1003,20 @@ cursor: pointer;
         width: 100vw;
     }
 
+    #choosen-contacts-name{
+        font-size: 36px;
+    }
+
     .arrow-back {
         display: flex;
         width: 56px;
         height: 56px;
         align-items: center;
         justify-content: center;
-        margin-right: 32px;
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        margin-right: 0px;
         border-radius: 50%;
     }
 
@@ -1113,7 +1159,24 @@ width: 100vw;
         bottom: 0;
         left: 0;
         right: 0;
+        overflow: hidden;
     }
+}
+
+@media(max-width: 360px){
+.choosen-contact-headline-resp{
+    margin-top: 40px;
+}
+
+
+.contact-datas {
+    width: 240px;
+    height: 48px;
+    display: flex;
+    padding: 15px 24px 15px 24px;
+    align-items: center;
+    border-radius: 10px;
+}
 
 
 }
