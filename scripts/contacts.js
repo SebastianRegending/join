@@ -26,12 +26,12 @@ async function loadContacts() {
  */
 function prepareRenderContacts(responseToJson) {
     if (responseToJson) {
-        contacts = json2arrayContacts(responseToJson);
+        contacts = jsonToArrayContacts(responseToJson);
         document.getElementById('contacts-alphabet-list').innerHTML = ``;
         let n = 0;
         while (n < contacts.length) {
-            IDs = json2arrayIDs(contacts[n]);
-            let letterForCards = json2arrayIDs(contacts[n])[0]['initials'].charAt(0);
+            IDs = jsonToArrayIDs(contacts[n]);
+            let letterForCards = jsonToArrayIDs(contacts[n])[0]['initials'].charAt(0);
             IDs.sort((a, b) => a['name'].localeCompare(b['name']));
             renderContacts(letterForCards);
             n++;
@@ -64,7 +64,7 @@ function renderContacts(letterForCards) {
  * @param {*} json 
  * @returns array with all contacts
  */
-function json2arrayContacts(json) {
+function jsonToArrayContacts(json) {
     let result = [];
     let keys = Object.keys(json);
     keys.forEach(function (key) {
@@ -80,7 +80,7 @@ function json2arrayContacts(json) {
  * @param {json} json 
  * @returns unique ID, used by database
  */
-function json2arrayIDs(json) {
+function jsonToArrayIDs(json) {
     let result = [];
     let keys = Object.keys(json);
     keys.forEach(function (key) {
@@ -333,29 +333,8 @@ async function deleteContact(id, letter) {
  * @returns random color
  */
 function createColor() {
-    let color;
-    let colorNumber = createRandomNumbers();
-    if (colorNumber == 1) {
-        color = "yellow";
-    } else if (colorNumber == 2) {
-        color = "orange";
-    } else if (colorNumber == 3) {
-        color = "turquoise";
-    } else if (colorNumber == 4) {
-        color = "purple";
-    } else if (colorNumber == 5) {
-        color = "lightpurple";
-    } else if (colorNumber == 6) {
-        color = "blue";
-    } else if (colorNumber == 7) {
-        color = "lightblue";
-    } else if (colorNumber == 8) {
-        color = "pink";
-    } else if (colorNumber == 9) {
-        color = "lightred";
-    } else if (colorNumber == 10) {
-        color = "green";
-    };
+    let colorArray = ["yellow", "orange", "turquoise", "purple", "lightpurple", "blue", "lightblue", "pink", "lightred", "green"]
+    let color = colorArray[createRandomNumbers()]
     return color;
 }
 
@@ -372,7 +351,7 @@ function createRandomNumbers() {
     let n = randomNumbers.length - 1;
     let finalNumber = randomNumbers.length;
     while (n < finalNumber) {
-        let x = Math.floor((Math.random() * 10) + 1);
+        let x = Math.floor((Math.random() * 10));
         if (!randomNumbers.includes(x)) {
             randomNumbers.push(x);
             n++;

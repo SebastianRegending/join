@@ -32,10 +32,10 @@ function showCheckboxes() {
 async function loadContacts() {
   let response = await fetch(URL_contacts + ".json");
   let responseToJson = await response.json();
-  let contactsToConvertLetters = json2arrayContacts(responseToJson);
+  let contactsToConvertLetters = jsonToArrayContacts(responseToJson);
   let n = 0;
   while (n < contactsToConvertLetters.length) {
-    IDs = json2arrayIDs(contactsToConvertLetters[n])
+    IDs = jsonToArrayIDs(contactsToConvertLetters[n])
     for (let i = 0; i < IDs.length; i++) {
       document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplate(n, i);
     }
@@ -153,7 +153,7 @@ async function sumbitUploadTask(title, description, deadline, category, assigned
  * @param {*} json 
  * @returns array with all contacts
  */
-function json2arrayContacts(json) {
+function jsonToArrayContacts(json) {
   let result = [];
   let keys = Object.keys(json);
   keys.forEach(function (key) {
@@ -169,7 +169,7 @@ function json2arrayContacts(json) {
  * @param {json} json 
  * @returns unique ID, used by database
  */
-function json2arrayIDs(json) {
+function jsonToArrayIDs(json) {
   let result = [];
   let keys = Object.keys(json);
   keys.forEach(function (key) {
