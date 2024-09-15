@@ -33,13 +33,16 @@ async function loadContacts() {
   let response = await fetch(URL_contacts + ".json");
   let responseToJson = await response.json();
   let contactsToConvertLetters = jsonToArrayContacts(responseToJson);
-  let n = 0;
-  while (n < contactsToConvertLetters.length) {
+  let compare = sessionStorage.getItem("userId");
+  for (let n = 0; n < contactsToConvertLetters.length; n++) {
     IDs = jsonToArrayIDs(contactsToConvertLetters[n])
     for (let i = 0; i < IDs.length; i++) {
-      document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplate(n, i);
+      if (compare && compare == IDs[i]['userid']) {
+        document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplateYou(n, i);
+      } else {
+        document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplate(n, i);
+      }
     }
-    n++
   }
 }
 
@@ -65,6 +68,26 @@ function createContactsCheckboxTemplate(n, i) {
 
 
 /**
+ * Creates a contacts-template
+ * 
+ * @param {number} - for loop, that are the letters
+ * @param {number} - for loop, that are the indexed of the contacts 
+ * @returns Contacts-Template in HTML with additional You
+ */
+function createContactsCheckboxTemplateYou(n, i) {
+  return /*html*/`
+      <label for="contacts${n}" class="contact-for-form">
+            <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
+            </div>
+            <div>${IDs[i]['name']}(You)
+            </div> 
+            <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircle('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
+      </label>
+    `
+}
+
+
+/**
  * Creates an initials-circle to the circle-area-assigned-contacts, if it's checked
  * 
  * @param {string} color 
@@ -74,7 +97,7 @@ function createContactsCheckboxTemplate(n, i) {
 function addCircle(color, id, inits) {
   let check = document.getElementById(id);
   if (check.checked == true) {
-    checkedContactsCircles.push({"id": id, "color": color, "inits": inits});
+    checkedContactsCircles.push({ "id": id, "color": color, "inits": inits });
   } else {
     checkedContactsCircles.splice(checkedContactsCircles.findIndex(item => item.id === id), 1);
   }
@@ -134,7 +157,7 @@ async function uploadTask(title, description, deadline, category, assignedContac
  * @param {*} category 
  * @param {*} assignedContacts 
  */
-async function sumbitUploadTask(title, description, deadline, category, assignedContacts){
+async function sumbitUploadTask(title, description, deadline, category, assignedContacts) {
   data = ({ title: title.value, description: description.value, deadline: deadline.value, prio: prio, category: category.value, contacts: assignedContacts, subtasks: subtasks, progress: progress });
   let response = await fetch(URL_tasks + ".json", {
     method: "POST",
@@ -215,16 +238,16 @@ function getSelected() {
  */
 function addSubtask() {
   let subtask = document.getElementById('subtasks');
-  if (subtask.value){
-  let subtaskobject = {title: `${subtask.value}`, done: "false"};
-  subtasks.push(subtaskobject);
-  document.getElementById('added-subtasks').innerHTML = ``;
-  for (let i = 0; i < subtasks.length; i++) {
-    document.getElementById('added-subtasks').innerHTML += `<li>${subtasks[i]['title']}</li>`;
+  if (subtask.value) {
+    let subtaskobject = { title: `${subtask.value}`, done: "false" };
+    subtasks.push(subtaskobject);
+    document.getElementById('added-subtasks').innerHTML = ``;
+    for (let i = 0; i < subtasks.length; i++) {
+      document.getElementById('added-subtasks').innerHTML += `<li>${subtasks[i]['title']}</li>`;
+    }
+    document.getElementById('subtasks').value = ``;
+    cancelAddSubtask()
   }
-  document.getElementById('subtasks').value = ``;
-  cancelAddSubtask()
-}
 }
 
 
@@ -334,7 +357,7 @@ function clearTasks() {
 /**
  * Clears the Checkboxes-Inputs
  */
-function clearCheckboxes(){
+function clearCheckboxes() {
   let checkboxes = document.querySelectorAll('input[name="contacts"]:checked');
   checkboxes.forEach(el => el.checked = false);
   checkedContactsCircles = [];
@@ -347,7 +370,7 @@ function clearCheckboxes(){
  * 
  * @returns empty Category-Input
  */
-function emptyCategory(){
+function emptyCategory() {
   return /*html*/`
   <option value="" disabled selected hidden>Select your option</option>
   <option value="Technical Task">Technical Task</option>
@@ -361,7 +384,8 @@ function emptyCategory(){
 function launchToaster() {
   let x = document.getElementById("toaster-task")
   x.className = "show";
-  setTimeout(function() { x.className = x.className.replace("show", "");
-      window.location.href = 'board.html';
-   }, 2000);
+  setTimeout(function () {
+    x.className = x.className.replace("show", "");
+    window.location.href = 'board.html';
+  }, 2000);
 }
