@@ -33,7 +33,7 @@ async function saveNewUser(path = "/users", data = {}) {
 async function prepareCreateContactForUser(name, email, newUserData, path = "") {
     let letter = name.value.charAt(0).toUpperCase();
     path = `/letter${letter}`
-    createInitials(name.value);
+    createInitialsForUser(name.value);
     let initialsForSaving = initialsForUser.join('').toUpperCase();
     let color = createColor();
     let tasks = [];

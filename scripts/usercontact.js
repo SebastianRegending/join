@@ -46,7 +46,7 @@ function createRandomNumbers() {
  * 
  * @param {string} name - name of the contact that is used to create the initials
  */
-function createInitials(name) {
+function createInitialsForUser(name) {
     let words = name.split(" ");
     initialsForUser = [];
     words.length = 2;
