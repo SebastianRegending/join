@@ -21,7 +21,10 @@
 
     <section class="board-container">
         <div class="board-header">
-            <h1>Board</h1>
+            <div class="mobile">
+                <h1>Board</h1>
+                <button id="plus-mobile" style="display: none;" onclick="openDialog()">+</button>
+            </div>
             <div class="task-input-container">
                 <div class="task-input">
                     <input type="text" id="task-search-input" placeholder="Find Task" oninput="filterTasks()">

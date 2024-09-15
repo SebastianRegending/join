@@ -19,6 +19,7 @@ body{
     font-size: 62px;
     margin-left: 10px;
     margin-bottom: 0;
+            font-weight: 900
 }
 
 .task-input-container{
@@ -159,7 +160,7 @@ body{
 
 .task-column::-webkit-scrollbar-thumb {
     background-color: #cccccc; 
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 .task-column::-webkit-scrollbar-thumb:hover {
@@ -168,7 +169,7 @@ body{
 
 /* Styling des horizontalen Scrollbalkens */
 #ToDo::-webkit-scrollbar,
-#InProgress::-webkit-scrollbar,
+#inProgress::-webkit-scrollbar,
 #AwaitFeedback::-webkit-scrollbar,
 #Done::-webkit-scrollbar {
     height: 6px; /* Höhe des horizontalen Scrollbalkens */
@@ -177,7 +178,7 @@ body{
 
 /* Styling des Scrollbalken-Daumens */
 #ToDo::-webkit-scrollbar-thumb,
-#InProgress::-webkit-scrollbar-thumb,
+#inProgress::-webkit-scrollbar-thumb,
 #AwaitFeedback::-webkit-scrollbar-thumb,
 #Done::-webkit-scrollbar-thumb {
     background-color: #cccccc; 
@@ -187,7 +188,7 @@ body{
 
 /* Hover-Effekt für den Scrollbalken-Daumen */
 #ToDo::-webkit-scrollbar-thumb:hover,
-#InProgress::-webkit-scrollbar-thumb:hover,
+#inProgress::-webkit-scrollbar-thumb:hover,
 #AwaitFeedback::-webkit-scrollbar-thumb:hover,
 #Done::-webkit-scrollbar-thumb:hover {
     background-color: #aaaaaa; 
@@ -196,14 +197,14 @@ body{
 
 /* Hintergrund des Scrollbalkens (Track) */
 #ToDo::-webkit-scrollbar-track,
-#InProgress::-webkit-scrollbar-track,
+#inProgress::-webkit-scrollbar-track,
 #AwaitFeedback::-webkit-scrollbar-track,
 #Done::-webkit-scrollbar-track {
     background-color: #f0f0f0; 
     cursor: grab;
 }
 
-#ToDo:hover, #InProgress:hover, #AwaitFeedback:hover, #Done:hover {
+#ToDo:hover, #inProgress:hover, #AwaitFeedback:hover, #Done:hover {
     overflow: auto; 
 }
 
@@ -585,7 +586,27 @@ body{
     height: 24px;
 }
 
+#plus-mobile {
+    background-color: #2a3647;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 38px;
+    border-radius: 10px;
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+    border: none;
+    padding: 0; 
+}
 
+#plus-mobile:hover {
+    background-color: #29ABE2; 
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
 
 @media screen and (max-width: 1600px) {
     .task-board {
@@ -603,6 +624,8 @@ body{
 
     .task-column h2 {
         width: 100%;
+        font-size: 27px;
+        line-height: 32.4px;
     }
 
     .column-container {
@@ -615,7 +638,7 @@ body{
         box-sizing: border-box;
     }
 
-    #ToDo, #InProgress, #AwaitFeedback, #Done {
+    #ToDo, #inProgress, #AwaitFeedback, #Done {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -624,5 +647,67 @@ body{
     padding: 10px;
     box-sizing: border-box;
     width: 100%;
+    }
+
+    #plus-mobile {
+        display: inline !important; 
+    }
+
+    .add-task{
+        display: none;
+    }
+
+    .board-header{
+        flex-direction: column;
+    }
+
+    .mobile{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .board-header{
+        width: 100%;
+    }
+
+    .task-input-container{
+        width: 100%;
+    }
+
+    .task-input input{
+        width: 100%;
+    }
+
+    .task-input{
+        width: 100%;
+    }
+
+
+    .board-container{
+        margin-left: 236px;
+        margin-right: 8px
+    }
 }
+
+
+@media screen and (max-width: 650px){
+    .mobile h1{
+        font-size: 48px;
+    }
+
+    .board-container{
+        width: 90%;
+        margin-left: 0;
+        padding: 24px;
+        padding-bottom: 112px;
+    }
+
+    .board-header{
+        gap: 40px;
+        margin-bottom: 24px;
+    }
+
+
 }
