@@ -65,12 +65,44 @@ async function showInitialsForHeader() {
     }
 }
 
-async function getTasksFromFirebase(path = "/tasks") {
+async function getNumberOfTasks(path = "/tasks") {
     const response = await fetch(BASE_URL_USER + path + ".json");
     const data = await response.json();
     let UserTasksArray = Object.values(data);
     const taskLength = UserTasksArray.length;
     document.getElementById('summary-bottom-tasks').innerHTML = taskLength;
-    
-    
+    console.log(UserTasksArray);
+     
 }
+
+async function getProgressOfTasks() {
+    const URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
+    let response = await fetch(URL_tasks + ".json");
+        let tasks = await response.json();
+        let tasksInProgressToDo = 0;
+        let tasksInProgressInProgress = 0;
+        let tasksInProgressAwaitFeedback = 0;
+        let tasksInProgressDone = 0;
+    for (let taskID in tasks) {
+        let taskProgress = tasks[taskID]['progress'];
+        if (taskProgress == 'To Do') {
+            tasksInProgressToDo++;
+        }
+        if (taskProgress == 'In Progress') {
+            tasksInProgressInProgress++;
+        }
+        if (taskProgress == 'Await Feedback') {
+            tasksInProgressAwaitFeedback++;
+        }
+        if (taskProgress == 'Done') {
+            tasksInProgressDone++;
+        }
+    
+    }   
+    document.getElementById('summary-todo').innerHTML = tasksInProgressToDo;
+    document.getElementById('summary-done').innerHTML = tasksInProgressDone;
+    document.getElementById('summary-bottom-progress').innerHTML = tasksInProgressInProgress;
+    document.getElementById('summary-bottom-feedback').innerHTML = tasksInProgressAwaitFeedback;
+    }
+
+    

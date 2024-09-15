@@ -1,4 +1,5 @@
 const BASE_URL_USER = ('https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/');
+const BASE_URL = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts";
 
 let myLoginEmail = [];
 let myLoginPassword = [];
@@ -24,7 +25,34 @@ async function saveNewUser(path = "/users", data = {}) {
         body: JSON.stringify(data)
     });
     confirmPassword();
+    prepareCreateContactForUser(name, email);
     return responseToJson = await response.json();
+}
+
+async function prepareCreateContactForUser(name, email, path = "") {
+    let letter = name.value.charAt(0).toUpperCase();
+    path = `/letter${letter}`
+    createInitials(name.value);
+    let initialsForSaving = initials.join('').toUpperCase();
+    let color = createColor();
+    let tasks = [];
+    let response = await createContactForUser(name, email, initialsForSaving, color, tasks, path);
+    return responseToJson = await response.json();
+}
+
+async function createContactForUser(name, email, initialsForSaving, color, tasks, path){
+    data = ({ name: name.value, email: email.value, initials: initialsForSaving, color: color, tasks: tasks });
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "POST",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+    // document.getElementById('toaster-contact').classList.add('show');
+    // setTimeout(function(){document.getElementById('toaster-contact').classList.remove('show');}, 2000);
+    // loadContacts();
+    return response;
 }
 
 /**
@@ -43,6 +71,7 @@ async function loginUser(path = "/users") {
     if (user) {
         console.log("User gefunden");
         saveUserLoginNoRemember(user);
+        getUserForContacts(user);        
         window.location.href = 'summary.html';
         saveLogin();
         saveCheckBox();
@@ -81,8 +110,7 @@ function isChecked() {
         signInButton.disabled = false;
     } else {
         signInButton.disabled = true;
-    }
-        
+    }        
 }
 
 /**

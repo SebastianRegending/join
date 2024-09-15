@@ -1,16 +1,103 @@
-.legal-notice-container{
-    margin-top: 160px;
-    margin-left: 338px;
-    max-width: 1440px;
-    margin-right: 80px;
-    font-size: 20px;
+.legal-notice-container {
+  margin-top: 160px;
+  margin-left: 328px;
+  max-width: 1440px;
+  margin-right: 96px;
+  font-size: 20px;
 }
 
-.legal_notice_headline{
+.legal_notice_headline {
+  font-size: 60px;
+}
+
+.join-link {
+  color: #29abe2;
+  text-decoration: none;
+}
+
+.privacypolicy-container {
+  margin-top: 96px;
+}
+
+.privacy-policy-content {
+  margin: 160px 96px 0 328px;
+}
+
+.arrow-left-line {
+  margin: 0;
+  cursor: pointer;
+}
+
+.history-back-container {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-family: Inter-Bold;
     font-size: 60px;
 }
 
-.join-link{
-    color: #29ABE2;
-    text-decoration: none;
+h3 {
+    font-family: Inter-Bold;
+    font-size: 27px;
+}
+
+h4 {
+    font-family: Inter-Bold;
+    font-size: 20px;
+}
+
+p {
+    font-family: Inter;
+    font-size: 16px;
+}
+
+@media(max-width: 1000px) {
+  .history-back-container {
+    height: fit-content;
+    
+  }
+
+  h1 {
+    font-size: 47px;
+    margin: 0;
+  }
+
+  .privacy-policy-content {
+    margin: 160px 24px 0 260px;
+  }
+}
+
+@media(max-width: 650px) {
+
+  h1 {
+    font-size: 47px;
+  }
+
+  .privacy-policy-content {
+    margin: 160px 24px 104px 24px;
+  }
+
+}
+
+@media(max-width: 420px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 14px;
+}
+
+p {
+    font-size: 12px;
+}
 }

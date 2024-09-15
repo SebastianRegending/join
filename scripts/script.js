@@ -1,3 +1,8 @@
+function initLoginHTML() {
+    startLogoAnimation();
+    preFillForm();
+}
+
 async function initAddTaskHTML() {
     await includeHTML();
     loadContacts();
@@ -6,7 +11,8 @@ async function initAddTaskHTML() {
 
 async function initSummaryHTML() {
     await includeHTML();
-    getTasksFromFirebase();
+    await getNumberOfTasks();
+    await getProgressOfTasks();
     setDaytimeOnGreeting();
     setUsernameOnGreeting();
     showInitialsForHeader();
