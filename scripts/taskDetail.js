@@ -72,6 +72,7 @@ function closePopUp() {
     document.getElementById('pop-up-task').classList.add('d-none'); 
     subtasksEdit = [];
     contactIds = [];
+    checkedContactsCirclesEdit = [];
 }
 
 function updateTaskProgress(taskId) {

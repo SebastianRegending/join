@@ -2,6 +2,11 @@ let expanded = false;
 let prioEdit;
 let contactIds = [];
 let subtasksEdit = [];
+let checkedContactsCirclesEdit = [];
+let cat;
+let assignedContactsEdit = [];
+let progEdit;
+let currentId;
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -189,15 +194,25 @@ async function deleteTask(id) {
 }
 
 
-function prepareEditTask(id, title, description, contacts, deadline, prio, category, subtasks) {
+function prepareEditTask(id, title, description, contacts, deadline, prio, category, subtasks, progress) {
     loadContacts() ;
+    cat = category;
+    progEdit = progress;
+    currentId = id;
     document.getElementById('pop-up-content').innerHTML = generateEditPage(id, title, description, contacts, deadline, prio, category, subtasks);
     readPrioEdit(prio);
     for(let i = 0; i < subtasksEdit.length; i++){
     document.getElementById('added-subtasks-edit').innerHTML += `<div>${subtasksEdit[i]}</div>`;
-    console.log(contactIds);
+    }
+   
+    for(let i = 0 ; i < contactIds.length; i++){
+        document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${contactIds[i]['color']}">${contactIds[i]['initials']}</div>`
+        checkedContactsCirclesEdit.push({name: contactIds[i]['name'], color: contactIds[i]['color'], inits: contactIds[i]['initials']})
+        
+    }
+   
 }
-}
+
 
 
 async function loadContacts() {
@@ -266,7 +281,7 @@ function createContactsCheckboxTemplate(n, i) {
               </div>
               <div>${IDs[i]['name']}
               </div> 
-              <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircle('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
+              <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
         </label>
       `
   }
@@ -286,11 +301,49 @@ function createContactsCheckboxTemplateYou(n, i) {
             </div>
             <div>${IDs[i]['name']}(You)
             </div> 
-            <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircle('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
+            <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
       </label>
     `
 }
 
+
+function addCircleEdit(color, id, inits) {
+    let check = document.getElementById(id);
+    if (check.checked == true) {
+      checkedContactsCirclesEdit.push({ "id": id, "color": color, "inits": inits });
+    } else {
+      checkedContactsCirclesEdit.splice(checkedContactsCirclesEdit.findIndex(item => item.id === id), 1);
+    }
+    document.getElementById('circle-area-assigned-contacts-edit').innerHTML = ``;
+    if (checkedContactsCirclesEdit.length > 8) {
+      document.getElementById('circle-area-assigned-contacts-edit').innerHTML = `<div class="circle circle-lightblue">${checkedContactsCirclesEdit.length}</div>`
+    } else {
+      for (let i = 0; i < checkedContactsCirclesEdit.length; i++) {
+        document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${checkedContactsCirclesEdit[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCirclesEdit[i]['inits']}</div>`;
+      }
+    }
+  }
+
+
+  async function submitEditetTask(){
+    let title = document.getElementById('input-title-edit').value;
+    let description = document.getElementById('input-description-edit').value;
+    let deadline = document.getElementById('input-deadline-edit').value;
+    let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
+
+    data = ({ title: title, description: description, deadline: deadline, prio: prioEdit, category: cat, contacts: assignedContactsEdit, subtasks: subtasksEdit, progress: progEdit });
+
+    let response = await fetch(URL_tasks + currentId + ".json", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data)
+    });
+    return response;
+  }
+  
+  
 
 
 /**

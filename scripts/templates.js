@@ -2,7 +2,8 @@ function generateTaskDetailsHTML(todoData, id) {
     let contacts = todoData.contacts ? todoData.contacts : [];
     contactIds = [];
     for(let i = 0; i < contacts.length; i++){
-        contactIds.push(contacts[i]['name']);
+        let initials = getInitials(contacts[i]['name']);
+        contactIds.push({name: contacts[i]['name'], color: contacts[i]['color'], id: contacts[i]['id'], initials: initials});
     }
     let subtasks = todoData.subtasks ? todoData.subtasks : [];
     for(let i = 0; i < subtasks.length; i++){
@@ -65,7 +66,7 @@ function generateTaskDetailsHTML(todoData, id) {
                     <span>Delete</span>
                 </div>
                 <div class="divider"></div>
-                <div class="btn-edit-task" onclick="prepareEditTask('${id}', '${todoData.title}', '${todoData.description}', '${todoData.contacts}', '${todoData.deadline}', '${todoData.prio}', '${todoData.category}', '${subtasks}')">
+                <div class="btn-edit-task" onclick="prepareEditTask('${id}', '${todoData.title}', '${todoData.description}', '${todoData.contacts}', '${todoData.deadline}', '${todoData.prio}', '${todoData.category}', '${subtasks}', '${todoData.progress}')">
                     <svg class="icon-edit-task" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z" fill="#2A3647"/>
                     </svg>
@@ -99,13 +100,13 @@ function generateEditPage(id, title, description, contacts, deadline, prio, cate
    
     return `
         <div id="task-details-edit" class="task-details">
-           <form>
+           <form onsubmit="submitEditetTask()">
            <span>Title</span>
-            <input class="input-field" value="${title}">
+            <input id="input-title-edit" class="input-field" value="${title}">
              <span>Description</span>
-            <textarea>${description}</textarea>
+            <textarea id="input-description-edit">${description}</textarea>
               <span>Due date</span>
-            <input class="input-field" type="date" placeholder="dd/mm/yyyy" value="${deadline}" required>
+            <input id="input-deadline-edit" class="input-field" type="date" placeholder="dd/mm/yyyy" value="${deadline}" required>
             <span>Priority</span>
             <div class="flexed button-area-prio">
                         
@@ -133,6 +134,7 @@ function generateEditPage(id, title, description, contacts, deadline, prio, cate
                         </div>
                     </div>
                     <div id="circle-area-assigned-contacts-edit">
+                    </div>
                   <div class="subtasks-area">  
  <span>Subtasks</span>
                     <div class="input-field-subtasks input-field-subtasks-smaller">
@@ -151,6 +153,7 @@ function generateEditPage(id, title, description, contacts, deadline, prio, cate
 
                     <div class="flex-column" id="added-subtasks-edit"></div>
                     </div>
+                    <button>OK <img src="./assets/img/checkstandard.svg"></button>
            </form>
         </div>
     `;
