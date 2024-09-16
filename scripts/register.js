@@ -1,5 +1,4 @@
 const BASE_URL_USER = ('https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/');
-const BASE_URL = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts";
 
 let myLoginEmail = [];
 let myLoginPassword = [];
@@ -148,7 +147,7 @@ function launchToasterAndRedirect() {
     x.className = "show";
     setTimeout(function() { x.className = x.className.replace("show", "");
         window.location.href = 'login.html';
-     }, 4000);
+     }, 3000);
 }
 
 /**

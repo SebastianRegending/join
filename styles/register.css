@@ -21,7 +21,6 @@
     justify-content: center;
     align-items: center;
     z-index: 4;
-
     position: fixed;
     top: 0;
     left: 0;
@@ -477,6 +476,20 @@ h1 {
 
 .arrow-left-line {
     left: -10px;
+}
+
+#animated-logo-container {
+    background-color: #2A3647;
+}
+
+#animated-logo {
+    display: none;
+}
+
+#animated-logo-mobile {
+    display: block !important;
+    width: 100px;
+    height: 121px;
 }
 
 }

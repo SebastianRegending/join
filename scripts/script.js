@@ -16,6 +16,7 @@ async function initSummaryHTML() {
     setDaytimeOnGreeting();
     setUsernameOnGreeting();
     showInitialsForHeader();
+    getDeadlineDate();
 }
 
 async function initBoardHTML() {

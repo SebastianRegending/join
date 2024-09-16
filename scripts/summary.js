@@ -1,4 +1,5 @@
 let initialsSummary = [];
+let futureTasks = [];
 
 /**
  * switch to board
@@ -70,9 +71,7 @@ async function getNumberOfTasks(path = "/tasks") {
     const data = await response.json();
     let UserTasksArray = Object.values(data);
     const taskLength = UserTasksArray.length;
-    document.getElementById('summary-bottom-tasks').innerHTML = taskLength;
-    console.log(UserTasksArray);
-     
+    document.getElementById('summary-bottom-tasks').innerHTML = taskLength;     
 }
 
 async function getProgressOfTasks() {
@@ -83,8 +82,10 @@ async function getProgressOfTasks() {
         let tasksInProgressInProgress = 0;
         let tasksInProgressAwaitFeedback = 0;
         let tasksInProgressDone = 0;
+        let tasksPrio = 0;
     for (let taskID in tasks) {
         let taskProgress = tasks[taskID]['progress'];
+        let taskPrio = tasks[taskID]['prio'];
         if (taskProgress == 'To Do') {
             tasksInProgressToDo++;
         }
@@ -97,12 +98,45 @@ async function getProgressOfTasks() {
         if (taskProgress == 'Done') {
             tasksInProgressDone++;
         }
-    
+        if (taskPrio == 'urgent') {
+            tasksPrio++;
+        }    
     }   
     document.getElementById('summary-todo').innerHTML = tasksInProgressToDo;
     document.getElementById('summary-done').innerHTML = tasksInProgressDone;
     document.getElementById('summary-bottom-progress').innerHTML = tasksInProgressInProgress;
     document.getElementById('summary-bottom-feedback').innerHTML = tasksInProgressAwaitFeedback;
+    document.getElementById('summary-urgent-change-number').innerHTML = tasksPrio;
     }
 
-    
+async function getDeadlineDate(path = "/tasks") {
+    const response = await fetch(BASE_URL_USER + path + ".json");
+    const data = await response.json();
+    let tasksDeadlineArray = Object.values(data);
+    for (let s = 0; s < tasksDeadlineArray.length; s++) {
+        const tasksDeadline = tasksDeadlineArray[s]['deadline'];
+        futureTasks.push(tasksDeadline);
+        // console.log(futureTasks);
+        findClosestDate(futureTasks);
+}    
+}
+
+function findClosestDate(futureTasks) {
+    const now = new Date();
+    let closestDate = null;
+    let minDifference = Infinity;
+    for (const dateStr of futureTasks) {
+        const date = new Date(dateStr);
+        const difference = Math.abs(date - now);
+        if (date > now) {
+        if (difference < minDifference) {
+            minDifference = difference;
+            closestDate = date;
+        }
+    }
+}
+    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+    const europeanDate = closestDate.toLocaleDateString("de-DE", options);
+    console.log(closestDate);
+    document.getElementById('summary-urgent-right-date').innerHTML = europeanDate;
+}
