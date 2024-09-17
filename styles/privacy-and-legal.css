@@ -76,10 +76,12 @@ p {
 
   .privacy-policy-content {
     margin: 160px 24px 0 260px;
+    padding: 0;
   }
 
   .legal-notice-container {
     margin: 160px 24px 0 260px;
+    padding: 0;
   }
 
 @media(max-width: 650px) {

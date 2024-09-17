@@ -44,7 +44,7 @@ body {
     width: 274px;
     height: 334px;
     transform-origin: top left;
-    animation-fill-mode: forwards; 
+    animation-fill-mode: forwards;
 }
 
 #loginpage {
@@ -536,8 +536,9 @@ h1 {
 
 #animated-logo-mobile {
     display: block !important;
-    width: 64px;
-    height: 78px;
+    width: 160px;
+    height: 200px;
+    transform-origin: 80% -40%;
 }
 
 #loginbuttons {
@@ -551,7 +552,5 @@ h1 {
     width: 180px;
     height: 51px;
 }
-
 }
-
 }
