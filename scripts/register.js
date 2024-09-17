@@ -245,4 +245,24 @@ function startLogoAnimation() {
     }, 800);
 }
 
+function startLogoAnimationMobile() {
+    let animatedLogo = document.getElementById('animated-logo-mobile');
+    let animatedLogoContainer = document.getElementById('animated-logo-container');
+    let loginPage = document.getElementById('loginpage');
+
+    function applyStyles(element, styles, delay) {
+        setTimeout(() => {
+            Object.assign(element.style, styles);
+        }, delay);
+    }
+
+    applyStyles(animatedLogo, { animation: "logoShrinkAndMove 1s forwards" }, 500);
+    setTimeout(() => {
+        loginPage.classList.replace('hidden', 'show');
+        animatedLogoContainer.style.backgroundColor = 'transparent';
+        animatedLogoContainer.classList.add('logo-behind');
+    }, 800);
+}
+
+
 

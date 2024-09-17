@@ -5,6 +5,10 @@
     margin: 0 auto;
 }
 
+body {
+    overflow: hidden;
+}
+
 .d-none {
     display: none !important;
 } 
@@ -75,7 +79,7 @@
 .logo-behind {
     z-index: 0;
     position: absolute;
-    pointer-events: none; 
+    pointer-events: none;
 }
 
 h1 {
@@ -247,6 +251,7 @@ h1 {
     font-size: 16px;
     cursor: pointer;
     transition: 100ms linear;
+    margin: 0;
 }
 
 #input-btn-small:hover {
@@ -307,6 +312,7 @@ h1 {
     background-color: white;
     padding: 48px 88px;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    margin: 200px 0 0 0;
 }
 
 #msgBox {
@@ -355,7 +361,20 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 180px 950px;
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    display: flex !important;
+}
+
+#joinuser-mobile {
+    width: 280px;
+    height: 50px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    display: none !important;
 }
 
 #toaster {
@@ -426,12 +445,20 @@ h1 {
     to { bottom: -74px; }
 }
 
-@keyframes LogoAni {
-    100% {transform: scale(0.5) translate(-994px, -860px)}
+@media (max-width: 830px){
+    #animated-logo {
+        margin: 0 0 0 60px;
+    }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 680px) {
     #registerform {
+        width: 396px;
+        height: 595px;
+        padding: 32px 0;
+    }
+
+    #loginform {
         width: 396px;
         height: 595px;
         padding: 32px 0;
@@ -459,9 +486,30 @@ h1 {
     left: -40px;
 }
 
+#joinuser {
+    display: none !important;
+}
+
+#joinuser-mobile {
+    display: flex !important;
+    margin: 56px 0 0 0;
+}
+
+#privacy-legal {
+    margin: 64px 0 24px 0;
+}
+
+#animated-logo {
+    margin: 0 0 0 140px;
+}
+
 @media (max-width: 430px) {
     #registerform {
         width: 280px;
+}
+
+#loginform {
+    width: 280px;
 }
 
 .input-field {
@@ -488,8 +536,20 @@ h1 {
 
 #animated-logo-mobile {
     display: block !important;
-    width: 100px;
-    height: 121px;
+    width: 64px;
+    height: 78px;
+}
+
+#loginbuttons {
+    width: 180px;
+    height: 123px;
+    flex-direction: column;
+    gap: 21px;
+}
+
+#input-btn {
+    width: 180px;
+    height: 51px;
 }
 
 }

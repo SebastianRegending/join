@@ -116,7 +116,6 @@ async function getDeadlineDate(path = "/tasks") {
     for (let s = 0; s < tasksDeadlineArray.length; s++) {
         const tasksDeadline = tasksDeadlineArray[s]['deadline'];
         futureTasks.push(tasksDeadline);
-        // console.log(futureTasks);
         findClosestDate(futureTasks);
 }    
 }

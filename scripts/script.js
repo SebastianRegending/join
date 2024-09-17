@@ -1,5 +1,6 @@
 function initLoginHTML() {
     startLogoAnimation();
+    startLogoAnimationMobile();
     preFillForm();
 }
 
