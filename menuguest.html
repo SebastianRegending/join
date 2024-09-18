@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/menu.css" />
+    <link rel="stylesheet" href="./styles/summary.css" />
+    <link rel="icon" type="image/x-icon" href="./assets/img/join.png" />
+    <script src="./scripts/script.js" defer></script>
+    <script src="./scripts/summary.js" defer></script>
+    <title>Join</title>
+  </head>
+  <body>
+    <sidebar class="menu-container">
+      <div class="join-logo">
+        <img src="./assets/img/join.png" alt="join-logo" />
+      </div>
+      <div class="menu-links">
+        <a href="login.html" class="menu-item">
+          <img src="./assets/img/summary.png" alt="" />
+          <span>Summary</span>
+        </a>
+        <a href="login.html" class="menu-item">
+          <img src="./assets/img/add_task.png" alt="" />
+          <span>Add Task</span>
+        </a>
+        <a href="login.html" class="menu-item">
+          <img src="./assets/img/board.png" alt="" />
+          <span>Board</span>
+        </a>
+        <a href="login.html" class="menu-item">
+          <img src="./assets/img/contacts.png" alt="" />
+          <span>Contacts</span>
+        </a>
+      </div>
+      <div class="legal-links">
+        <a href="login.html">Privacy Policy</a>
+        <a href="login.html">Legal Notice</a>
+      </div>
+    </sidebar>
+    <div class="menu-container-resp">
+      <div class="menu-links">
+        <a href="login.html" class="menu-item">
+          <img src="./assets/img/summary.png" alt="" />
+          <span>Summary</span>
+        </a>
+        <a href="login.html" class="menu-item">
+          <img src="./assets/img/add_task.png" alt="" />
+          <span>Add Task</span>
+        </a>
+        <a href="login.html" class="menu-item">
+          <img src="./assets/img/board.png" alt="" />
+          <span>Board</span>
+        </a>
+        <a href="login.html" class="menu-item">
+          <img src="./assets/img/contacts.png" alt="" />
+          <span>Contacts</span>
+        </a>
+      </div>
+    </div>
+    <header class="header">
+      <h3>Kanban Project Management Tool</h3>
+      <img class="logo-resp" src="./assets/img/Capa2.png" alt="join-logo" />
+      <div class="help-user-icons">
+        <a href="login.html">
+          <img class="help-icon" src="./assets/img/help.png" alt="help-icon" />
+        </a>
+        <div class="initials-header-border" onclick="logOutButton()">
+          <div id="initials-header">G</div>
+        </div>
+      </div>
+    </header>
+    <div id="logout-container" class="d-none">
+      <div id="logout-menu">
+        <button class="logout-menu-btn" onclick="backToLogin()">
+          Legal Notice
+        </button>
+        <button class="logout-menu-btn" onclick="backToLogin()">
+          Privacy Policy
+        </button>
+        <button class="logout-menu-btn" onclick="logOutUser()">Log out</button>
+      </div>
+    </div>
+  </body>
+</html>
