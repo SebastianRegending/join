@@ -12,7 +12,7 @@ function navigateToBoard() {
  * set the Daytime on Greeting after Login from User
  */
 function setDaytimeOnGreeting() {
-    let myDate = new Date();    
+    let myDate = new Date();
     let hrs = myDate.getHours();
     let greet;
     if (hrs < 12)
@@ -30,10 +30,10 @@ function setDaytimeOnGreeting() {
 async function setUsernameOnGreeting() {
     const response = await fetch(BASE_URL_USER + "/users.json");
     const data = await response.json();
-    let UserKeys = Object.values(data);      
+    let UserKeys = Object.values(data);
     let userEmail = JSON.parse(localStorage.getItem('email'));
     for (let i = 0; i < UserKeys.length; i++) {
-        const currentUser = UserKeys[i];     
+        const currentUser = UserKeys[i];
         if (currentUser.email == userEmail) {
             document.getElementById('username-greeting').innerHTML = currentUser.name;
             createInitialsForHeader(currentUser.name);
@@ -47,6 +47,11 @@ async function setUsernameOnGreeting() {
     }
 }
 
+/**
+ * create Initials from the Userlogin for the header button
+ * 
+ * @param {string} name - name of the user that is used to create the initials
+ */
 function createInitialsForHeader(name) {
     let words = name.split(" ");
     initialsSummary = [];
@@ -55,6 +60,9 @@ function createInitialsForHeader(name) {
     sessionStorage.setItem('Initials', JSON.stringify(initialsSummary));
 }
 
+/**
+ * show the Initials from the logged in User in the header button 
+ */
 async function showInitialsForHeader() {
     await setUsernameOnGreeting();
     let initialsHeader = JSON.parse(sessionStorage.getItem('Initials'));
@@ -66,23 +74,31 @@ async function showInitialsForHeader() {
     }
 }
 
+/**
+ * count the number of tasks in database and shows the number on the website
+ * 
+ * @param {json} path - path to the saved tasks in database
+ */
 async function getNumberOfTasks(path = "/tasks") {
     const response = await fetch(BASE_URL_USER + path + ".json");
     const data = await response.json();
     let UserTasksArray = Object.values(data);
     const taskLength = UserTasksArray.length;
-    document.getElementById('summary-bottom-tasks').innerHTML = taskLength;     
+    document.getElementById('summary-bottom-tasks').innerHTML = taskLength;
 }
 
+/**
+ * get the status of every task in database and shows the number of tasks on the website
+ */
 async function getProgressOfTasks() {
     const URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
     let response = await fetch(URL_tasks + ".json");
-        let tasks = await response.json();
-        let tasksInProgressToDo = 0;
-        let tasksInProgressInProgress = 0;
-        let tasksInProgressAwaitFeedback = 0;
-        let tasksInProgressDone = 0;
-        let tasksPrio = 0;
+    let tasks = await response.json();
+    let tasksInProgressToDo = 0;
+    let tasksInProgressInProgress = 0;
+    let tasksInProgressAwaitFeedback = 0;
+    let tasksInProgressDone = 0;
+    let tasksPrio = 0;
     for (let taskID in tasks) {
         let taskProgress = tasks[taskID]['progress'];
         let taskPrio = tasks[taskID]['prio'];
@@ -100,15 +116,20 @@ async function getProgressOfTasks() {
         }
         if (taskPrio == 'urgent') {
             tasksPrio++;
-        }    
-    }   
+        }
+    }
     document.getElementById('summary-todo').innerHTML = tasksInProgressToDo;
     document.getElementById('summary-done').innerHTML = tasksInProgressDone;
     document.getElementById('summary-bottom-progress').innerHTML = tasksInProgressInProgress;
     document.getElementById('summary-bottom-feedback').innerHTML = tasksInProgressAwaitFeedback;
     document.getElementById('summary-urgent-change-number').innerHTML = tasksPrio;
-    }
+}
 
+/**
+ * get the dates of all tasks in database
+ * 
+ * @param {json} path - path to the saved tasks in database
+ */
 async function getDeadlineDate(path = "/tasks") {
     const response = await fetch(BASE_URL_USER + path + ".json");
     const data = await response.json();
@@ -117,9 +138,14 @@ async function getDeadlineDate(path = "/tasks") {
         const tasksDeadline = tasksDeadlineArray[s]['deadline'];
         futureTasks.push(tasksDeadline);
         findClosestDate(futureTasks);
-}    
+    }
 }
 
+/**
+ * find the task with the closest deadline and show the date on the website
+ *
+ * @param {*} futureTasks 
+ */
 function findClosestDate(futureTasks) {
     const now = new Date();
     let closestDate = null;
@@ -128,12 +154,12 @@ function findClosestDate(futureTasks) {
         const date = new Date(dateStr);
         const difference = Math.abs(date - now);
         if (date > now) {
-        if (difference < minDifference) {
-            minDifference = difference;
-            closestDate = date;
+            if (difference < minDifference) {
+                minDifference = difference;
+                closestDate = date;
+            }
         }
     }
-}
     const options = { year: "numeric", month: "2-digit", day: "2-digit" };
     const europeanDate = closestDate.toLocaleDateString("de-DE", options);
     console.log(closestDate);
