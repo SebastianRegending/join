@@ -4,7 +4,6 @@ let expanded = false;
 let URL_contacts = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts";
 let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
 let prio = "medium";
-let contactsArray = [];
 let subtasks = [];
 let taskID = [];
 let checkedContactsCircles = [];

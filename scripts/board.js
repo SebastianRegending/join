@@ -1,15 +1,3 @@
-let expandedEdit = false;
-let prioEdit;
-let contactIds = [];
-let subtasksEdit = [];
-let checkedContactsCirclesEdit = [];
-let cat;
-let assignedContactsEdit = [];
-let assignedContactsEditObjects = [];
-let progEdit;
-let currentId;
-let allContacts = [];
-
 document.addEventListener('DOMContentLoaded', function () {
 
     // Öffnet das Dialogfenster zum Hinzufügen eines neuen Tasks
@@ -110,25 +98,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-    /**
- * Loads the contacts from database to the Checkbox-Input
- */
+
 async function loadContacts() {
-  let response = await fetch(URL_contacts + ".json");
-  let responseToJson = await response.json();
-  let contactsToConvertLetters = jsonToArrayContacts(responseToJson);
-  let compare = sessionStorage.getItem("userId");
-  for (let n = 0; n < contactsToConvertLetters.length; n++) {
-    IDs = jsonToArrayIDs(contactsToConvertLetters[n])
-    for (let i = 0; i < IDs.length; i++) {
-      if (compare && compare == IDs[i]['userid']) {
-        document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplateYou(n, i);
-      } else {
-        document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplate(n, i);
+    let URL_contacts = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts"
+    let response = await fetch(URL_contacts + ".json");
+    let responseToJson = await response.json();
+    let contactsToConvertLetters = jsonToArrayContacts(responseToJson);
+    let compare = sessionStorage.getItem("userId");
+    for (let n = 0; n < contactsToConvertLetters.length; n++) {
+      IDs = jsonToArrayIDs(contactsToConvertLetters[n])
+      for (let i = 0; i < IDs.length; i++) {
+        if (compare && compare == IDs[i]['userid']) {
+          document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplateYou(n, i);
+        } else {
+          document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplate(n, i);
+        }
       }
     }
   }
-}
+
 
 /// Hauptfunktion zum Laden der Tasks
 async function loadTasks() {
@@ -192,7 +180,7 @@ function generateTaskHTML(task, taskID) {
             </div>
             ${progressHTML}
             <div class="card-footer">
-                <div class="card-users">
+                <div id="actual-users" class="card-users">
                     ${contactsHTML}
                 </div>
                 <div class="priority">
@@ -204,75 +192,6 @@ function generateTaskHTML(task, taskID) {
         </div>
     `;
 }
-
-
-async function deleteTask(id) {
-    let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
-    await fetch(`${URL_tasks}/${id}.json`, {
-        method: "DELETE"
-    });
-    closePopUp();
-    loadTasks();
-}
-
-
-async function prepareEditTask(id, title, description, contacts, deadline, prio, category, subtasks, progress) {
-    await initAssignedContacts(id);
-    loadContactsEdit();
-    cat = category;
-    progEdit = progress;
-    currentId = id;
-    document.getElementById('pop-up-content').innerHTML = generateEditPage(id, title, description, contacts, deadline, prio, category, subtasks);
-    readPrioEdit(prio);
-    for(let i = 0; i < subtasksEdit.length; i++){
-    document.getElementById('added-subtasks-edit').innerHTML += `<div>${subtasksEdit[i]}</div>`;
-    }
-    
-   
-    // for(let i = 0 ; i < contactIds.length; i++){
-    //     document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${contactIds[i]['color']}">${contactIds[i]['initials']}</div>`
-    //     checkedContactsCirclesEdit.push({name: contactIds[i]['name'], color: contactIds[i]['color'], inits: contactIds[i]['initials'], id: contactIds[i]['id']});
-        
-    // }
-   
-}
-
-
-
-
-async function initAssignedContacts(id){
-    let response = await fetch (`https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks/${id}.json`);
-    let responseToJson = await response.json();
-    let contactsArray = responseToJson.contacts || [];
-
-    for(let i = 0; i < contactsArray.length; i++){
-        assignedContactsEdit.push(contactsArray[i]['id']);
-    }
-
-}
-
-
-
-
-
-
-async function loadContacts() {
-    let URL_contacts = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts"
-    let response = await fetch(URL_contacts + ".json");
-    let responseToJson = await response.json();
-    let contactsToConvertLetters = jsonToArrayContacts(responseToJson);
-    let compare = sessionStorage.getItem("userId");
-    for (let n = 0; n < contactsToConvertLetters.length; n++) {
-      IDs = jsonToArrayIDs(contactsToConvertLetters[n])
-      for (let i = 0; i < IDs.length; i++) {
-        if (compare && compare == IDs[i]['userid']) {
-          document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplateYou(n, i);
-        } else {
-          document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplate(n, i);
-        }
-      }
-    }
-  }
 
 
   /**
@@ -324,7 +243,7 @@ function createContactsCheckboxTemplate(n, i) {
               </div>
               <div>${IDs[i]['name']}
               </div> 
-              <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>        
+              <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" data-color="${IDs[i]['color']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>        
         </label>
     `;
 }
@@ -346,175 +265,23 @@ function createContactsCheckboxTemplateYou(n, i) {
             </div>
             <div>${IDs[i]['name']}(You)
             </div> 
-            <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>
+            <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" data-color="${IDs[i]['color']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>
         </label>
     `;
 }
 
 
-async function loadContactsEdit() {
-    allContacts = [];
-    let URL_contacts = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts";
-    let response = await fetch(URL_contacts + ".json");
-    let responseToJson = await response.json();
-    let contactsToConvertLetters = jsonToArrayContacts(responseToJson);
-    let compare = sessionStorage.getItem("userId");
-    for (let n = 0; n < contactsToConvertLetters.length; n++) {
-        IDs = jsonToArrayIDs(contactsToConvertLetters[n]);
-        for (let i = 0; i < IDs.length; i++) {
-            if (compare && compare == IDs[i]['userid']) {
-                document.getElementById('checkboxes-edit').innerHTML += createContactsCheckboxTemplateYou(n, i);
-            } else {
-                document.getElementById('checkboxes-edit').innerHTML += createContactsCheckboxTemplate(n, i);
-            }
-            allContacts.push(IDs[i]);
-        }
-    }
-    for (let i = 0; i < assignedContactsEdit.length; i++) {
-        let objectContact = allContacts.find(e => e.id == assignedContactsEdit[i]);
-        assignedContactsEditObjects.push(objectContact);
-    }
-    document.getElementById('circle-area-assigned-contacts-edit').innerHTML = '';
-    if (assignedContactsEditObjects.length > 8) {
-        document.getElementById('circle-area-assigned-contacts-edit').innerHTML = `<div class="circle circle-lightblue">${assignedContactsEditObjects.length}</div>`;
-    } else {
-        for (let i = 0; i < assignedContactsEditObjects.length; i++) {
-            document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${assignedContactsEditObjects[i]['color']} assigned-contacts z${i + 1}">${assignedContactsEditObjects[i]['initials']}</div>`;
-        }
-    }
-}
-
-
-function addCircleEdit(color, contactId, inits, id) {
-
-    document.getElementById('circle-area-assigned-contacts-edit').innerHTML = ``;
-
-    let check = document.getElementById(contactId);
-
-    if (check.checked == true) {
-        assignedContactsEditObjects.push({ "id": id, "color": color, "initials": inits });
-    } else {
-        assignedContactsEditObjects.splice(assignedContactsEditObjects.findIndex(item => item.id === id), 1);
-    }
-    document.getElementById('circle-area-assigned-contacts-edit').innerHTML = ``;
-    if (assignedContactsEditObjects.length > 8) {
-      document.getElementById('circle-area-assigned-contacts-edit').innerHTML = `<div class="circle circle-lightblue">${assignedContactsEditObjects.length}</div>`
-    } else {
-      for (let i = 0; i < assignedContactsEditObjects.length; i++) {
-        document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${assignedContactsEditObjects[i]['color']} assigned-contacts z${i + 1}">${assignedContactsEditObjects[i]['initials']}</div>`;
-      }
-    }
-}
-  
-
-
-  async function submitEditetTask(){
-    let title = document.getElementById('input-title-edit').value;
-    let description = document.getElementById('input-description-edit').value;
-    let deadline = document.getElementById('input-deadline-edit').value;
-    let assignedContactsForUpdate = getSelectedEdit();
-    let URL_tasksput = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
-    let neededId = currentId;
-    data = ({ title: title, description: description, deadline: deadline, prio: prioEdit, category: cat, contacts: assignedContactsForUpdate, subtasks: subtasksEdit, progress: progEdit });
-
-    let response = await fetch(`${URL_tasksput}/${neededId}.json`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data)
-    });
-    return response;
-  }
-
-  /**
- * Searches for selected checkboxes and pushs them in an array
- * 
- * @returns selected checkboxes
- */
-function getSelectedEdit() {
-    let checkboxes = document.querySelectorAll('input[name="contactsedit"]:checked');
-    let selectedData = [];
-  
-    checkboxes.forEach((checkbox) => {
-      let name = checkbox.value;
-      let id = checkbox.getAttribute('data-id');
-      let letter = checkbox.getAttribute('data-letter');
-      let color = checkbox.getAttribute('data-color');
-      selectedData.push({ name: name, id: id, letter: letter, color: color });
-    });
-    return selectedData;
-  }
-
-
-/**
- * Designs the subtasks input to focus-mode
- */
-function openAddSubtaskEdit() {
-    document.getElementById('add-button-icon-plus-edit').classList.add('d-none');
-    document.getElementById('add-button-icon-cancel-edit').classList.remove('d-none');
-    document.getElementById('add-button-icon-check-edit').classList.remove('d-none');
-    document.getElementById('subtasks').focus();
-  }
-
-
-function setPrioEdit(priority){
-    prioEdit = priority;
-    readPrioEdit(priority);
-}
-
-
-function readPrioEdit(prio){
-    if (prio == "urgent"){
-        colorPrioUrgentEdit();
-    } else if(prio == "medium"){
-        colorPrioMediumEdit();
-    } else if(prio == "low"){
-        colorPrioLowEdit();
-    }
-}
-
-
-function showCheckboxes() {
-    let checkboxes = document.getElementById("checkboxes-edit");
-    if (!expandedEdit) {
+  function showCheckboxes() {
+    let checkboxes = document.getElementById("checkboxes");
+    if (!expanded) {
       checkboxes.style.display = "block";
-      expandedEdit = true;
+      expanded = true;
     } else {
       checkboxes.style.display = "none";
-      expandedEdit = false;
+      expanded = false;
     }
   }
 
-
-/**
- * Colors the urgent-area and uncolors the other areas
- */
-function colorPrioUrgentEdit() {
-    document.getElementById('prio-urgent-edit').classList.add('prio-active-urgent');
-    document.getElementById('prio-medium-edit').classList.remove('prio-active-medium');
-    document.getElementById('prio-low-edit').classList.remove('prio-active-low');
-  }
-  
-  
-  /**
-   * Colors the medium-area and uncolors the other areas
-   */
-  function colorPrioMediumEdit() {
-    document.getElementById('prio-urgent-edit').classList.remove('prio-active-urgent');
-    document.getElementById('prio-medium-edit').classList.add('prio-active-medium');
-    document.getElementById('prio-low-edit').classList.remove('prio-active-low');
-  }
-  
-  
-  /**
-   * Colors the low-area and uncolors the other areas
-   */
-  function colorPrioLowEdit() {
-    document.getElementById('prio-urgent-edit').classList.remove('prio-active-urgent');
-    document.getElementById('prio-medium-edit').classList.remove('prio-active-medium');
-    document.getElementById('prio-low-edit').classList.add('prio-active-low');
-  }
 
 function generateProgressHTML(task) {
     if (!task.subtasks || !Array.isArray(task.subtasks)) return '';
@@ -570,7 +337,6 @@ async function createNewTask() {
     let deadline = document.getElementById('deadline').value;
     let category = document.getElementById('category').value;
     let assignedContacts = getSelectedContacts(); // Ausgewählte Kontakte bekommen
-
     if (!title || !category) {
         alert("Title and category are required!");
         return;

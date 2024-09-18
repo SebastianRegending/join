@@ -1,35 +1,40 @@
-body{
+body {
     background-color: #F6F7F8;
 }
 
-.board-container{
+.board-container {
     margin-top: 160px;
     margin-left: 338px;
     max-width: 1440px;
     margin-right: 80px;
 }
 
-.board-header{
+.board-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.board-header h1{
+#input-deadline-edit {
+    display: block !important;
+}
+
+
+.board-header h1 {
     font-size: 62px;
     margin-left: 10px;
     margin-bottom: 0;
-            font-weight: 900
+    font-weight: 900
 }
 
-.task-input-container{
+.task-input-container {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
 
-.add-task{
+.add-task {
     width: 160px;
     height: 48px;
     border-radius: 10px;
@@ -41,10 +46,10 @@ body{
     border: none;
 }
 
-.add-task:hover{
-    background-color:#29ABE2;
+.add-task:hover {
+    background-color: #29ABE2;
     cursor: pointer;
-   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.4);
     transition: transform 0.1s ease-in-out, 0.2s;
 }
 
@@ -60,20 +65,20 @@ body{
     border-radius: 10px;
     height: 32px;
     width: 280px;
-    border: 1px solid #A8A8A8; 
-    padding-right: 60px; 
-    font-size: 24px; 
-     transition: border-color 0.2s ease-in-out;
+    border: 1px solid #A8A8A8;
+    padding-right: 60px;
+    font-size: 24px;
+    transition: border-color 0.2s ease-in-out;
 }
 
 .task-input input:focus {
-    border: 2px solid #29ABE2; 
-    outline: none; 
+    border: 2px solid #29ABE2;
+    outline: none;
 }
 
 .task-input input::placeholder {
-    font-size: 24px; 
-    color: #A8A8A8; 
+    font-size: 24px;
+    color: #A8A8A8;
 }
 
 /* Lupe und Separator im Input-Feld */
@@ -83,9 +88,9 @@ body{
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    width: 24px;  
-    height: 24px; 
-    background-image: url('../assets/img/magnifier.svg'); 
+    width: 24px;
+    height: 24px;
+    background-image: url('../assets/img/magnifier.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -93,7 +98,7 @@ body{
 
 
 .search-button:hover {
-    background-image: url('../assets/img/magnifier-hover.svg'); 
+    background-image: url('../assets/img/magnifier-hover.svg');
 }
 
 
@@ -105,7 +110,7 @@ body{
     transform: translateY(-50%);
     width: 24px;
     height: 24px;
-    background-image: url('../assets/img/magnifier.svg'); 
+    background-image: url('../assets/img/magnifier.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -119,14 +124,14 @@ body{
 .task-input::after {
     content: "";
     position: absolute;
-    right: 40px; 
+    right: 40px;
     top: 8px;
     bottom: 8px;
     width: 1px;
-    background-color: #A8A8A8; 
+    background-color: #A8A8A8;
 }
 
-.no-tasks{
+.no-tasks {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,9 +153,9 @@ body{
 
 .task-column {
     overflow-y: auto;
-    padding: 10px; 
-    padding-right: 20px; 
-    box-sizing: border-box; /
+    padding: 10px;
+    padding-right: 20px;
+    box-sizing: border-box;/
 }
 
 
@@ -159,12 +164,12 @@ body{
 }
 
 .task-column::-webkit-scrollbar-thumb {
-    background-color: #cccccc; 
+    background-color: #cccccc;
     border-radius: 6px;
 }
 
 .task-column::-webkit-scrollbar-thumb:hover {
-    background-color: #aaaaaa; 
+    background-color: #aaaaaa;
 }
 
 /* Styling des horizontalen Scrollbalkens */
@@ -172,7 +177,8 @@ body{
 #inProgress::-webkit-scrollbar,
 #AwaitFeedback::-webkit-scrollbar,
 #Done::-webkit-scrollbar {
-    height: 6px; /* Höhe des horizontalen Scrollbalkens */
+    height: 6px;
+    /* Höhe des horizontalen Scrollbalkens */
     cursor: grab;
 }
 
@@ -181,8 +187,8 @@ body{
 #inProgress::-webkit-scrollbar-thumb,
 #AwaitFeedback::-webkit-scrollbar-thumb,
 #Done::-webkit-scrollbar-thumb {
-    background-color: #cccccc; 
-    border-radius: 4px; 
+    background-color: #cccccc;
+    border-radius: 4px;
     cursor: grab;
 }
 
@@ -191,7 +197,7 @@ body{
 #inProgress::-webkit-scrollbar-thumb:hover,
 #AwaitFeedback::-webkit-scrollbar-thumb:hover,
 #Done::-webkit-scrollbar-thumb:hover {
-    background-color: #aaaaaa; 
+    background-color: #aaaaaa;
     cursor: grab;
 }
 
@@ -200,12 +206,15 @@ body{
 #inProgress::-webkit-scrollbar-track,
 #AwaitFeedback::-webkit-scrollbar-track,
 #Done::-webkit-scrollbar-track {
-    background-color: #f0f0f0; 
+    background-color: #f0f0f0;
     cursor: grab;
 }
 
-#ToDo:hover, #inProgress:hover, #AwaitFeedback:hover, #Done:hover {
-    overflow: auto; 
+#ToDo:hover,
+#inProgress:hover,
+#AwaitFeedback:hover,
+#Done:hover {
+    overflow: auto;
 }
 
 .task-column h2 {
@@ -228,8 +237,8 @@ body{
     padding: 2px;
     font-size: 20px;
     cursor: pointer;
-    transition: transform 0.1s ease-in-out, 0.2s; 
-    margin-left: 10px; 
+    transition: transform 0.1s ease-in-out, 0.2s;
+    margin-left: 10px;
 }
 
 .task-column h2 span:hover {
@@ -238,11 +247,11 @@ body{
 }
 
 .task-column h2 span:active {
-    transform: translateX(5px); 
-    transition: transform 0.1s ease-out; 
+    transform: translateX(5px);
+    transition: transform 0.1s ease-out;
 }
 
-.todo-card{
+.todo-card {
     width: 212px;
     height: fit-content;
     background-color: #ffffff;
@@ -252,17 +261,18 @@ body{
     margin-bottom: 16px;
 }
 
-.todo-card:hover{
+.todo-card:hover {
     cursor: pointer;
 }
 
 /* Hintergrundfarbe für User Story Label */
 .user-story-label {
-    background-color: #0038FF; /* Farbe für User Story */
+    background-color: #0038FF;
+    /* Farbe für User Story */
     border-radius: 8px;
     padding: 4px 16px;
     color: whitesmoke;
-   display: inline-block;
+    display: inline-block;
 }
 
 /* Hintergrundfarbe für Technical Task Label */
@@ -274,7 +284,7 @@ body{
     display: inline-block;
 }
 
-.technical-task{
+.technical-task {
     background-color: #1FD7C1;
     border-radius: 8px;
     padding: 4px 16px;
@@ -283,15 +293,15 @@ body{
 
 }
 
-.card-description{
+.card-description {
     font-size: 16px;
     color: #a8a8a8;
     width: 212px;
-    display: -webkit-box;         
-    -webkit-box-orient: vertical;    
-    -webkit-line-clamp: 3;            
-    overflow: hidden;                 
-    line-height: 1.5;                 
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    line-height: 1.5;
     max-height: calc(1.5em * 3);
 }
 
@@ -305,17 +315,17 @@ body{
 
 .progress-bar {
     width: 120px;
-    height: 8px;  
-    background-color: #F4F4F4; 
-    border-radius: 8px; 
-    overflow: hidden; 
+    height: 8px;
+    background-color: #F4F4F4;
+    border-radius: 8px;
+    overflow: hidden;
     position: relative;
 }
 
 .progress {
     width: 64px;
-    height: 8px; 
-    background-color: #4589FF; 
+    height: 8px;
+    background-color: #4589FF;
 }
 
 .subtasks {
@@ -323,16 +333,16 @@ body{
     font-size: 12px;
 }
 
-.priority-symbol img{
-   padding: 10px 18px;
-   width: 32px;
+.priority-symbol img {
+    padding: 10px 18px;
+    width: 32px;
 }
 
-.card-footer{
+.card-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px; 
+    gap: 10px;
     margin-top: 24px;
 
 }
@@ -345,38 +355,38 @@ body{
 .user-badge {
     width: 32px;
     height: 32px;
-    border-radius: 50%; 
+    border-radius: 50%;
     border: 1px solid #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 12px;
-    color: #ffffff; 
+    color: #ffffff;
     margin-left: -10px;
 }
 
 .drag-area-highlight {
     border: 1px dashed #42526E;
-    min-height: 50px; 
+    min-height: 50px;
     border-radius: 10px;
 }
 
-#ToDo{
+#ToDo {
     width: 280px;
     height: 100%
 }
 
-#inProgress{
+#inProgress {
     width: 280px;
     height: 100%
 }
 
-#AwaitFeedback{
+#AwaitFeedback {
     width: 280px;
     height: 100%
 }
 
-#Done{
+#Done {
     width: 280px;
     height: 100%
 }
@@ -391,10 +401,21 @@ body{
 /* CSS-Animationen für das Dragging */
 
 @keyframes elasticDrop {
-    0% { transform: scale(1.1); }
-    60% { transform: scale(0.9); }
-    80% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1.1);
+    }
+
+    60% {
+        transform: scale(0.9);
+    }
+
+    80% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .todo-card.elastic {
@@ -427,32 +448,32 @@ body{
     border-radius: 30px;
     position: relative;
     transform: translateX(100%);
-    opacity: 0; 
-    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out; 
+    opacity: 0;
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
     justify-content: center;
     align-items: center;
 }
 
 .dialog.show {
-    transform: translateX(0); 
-    opacity: 1; 
+    transform: translateX(0);
+    opacity: 1;
 }
 
 .d-none {
     display: none;
 }
 
-.close-popup{
-     position: absolute;
+.close-popup {
+    position: absolute;
     top: 80px;
-    right: 208px; 
+    right: 208px;
     width: 32px;
     height: 32px;
     cursor: pointer;
     transition: transform 0.7s ease-in-out, 0.2s;
 }
 
-.close-popup:hover{
+.close-popup:hover {
     border-radius: 50%;
     background: #d1d1d1;
 }
@@ -461,7 +482,7 @@ body{
     margin: 20px;
 }
 
-#dialog-content .fullpage h1{
+#dialog-content .fullpage h1 {
     margin-bottom: 0;
 }
 
@@ -469,7 +490,7 @@ body{
     margin-top: 0;
 }
 
-#dialog-content .add-task-form{
+#dialog-content .add-task-form {
     height: 400px;
 }
 
@@ -478,35 +499,35 @@ body{
 }
 
 
-#dialog-content .headline-container h1{
+#dialog-content .headline-container h1 {
     margin: 0;
     margin-bottom: 64px;
     margin-left: 106px;
 }
 
 #dialog-content #checkboxes {
-  display: none;
-  position: absolute;
-  z-index: 10;
-  border: 1px #dadada solid;
-  height: 150px;
-  width: 475px; 
-  background-color: white;
-  overflow-y: auto;
-      border-radius: 0 0 10px 10px;
+    display: none;
+    position: absolute;
+    z-index: 10;
+    border: 1px #dadada solid;
+    height: 150px;
+    width: 475px;
+    background-color: white;
+    overflow-y: auto;
+    border-radius: 0 0 10px 10px;
 }
 
 #dialog-content .selectBox {
-  position: relative; 
-  width: 475px; 
+    position: relative;
+    width: 475px;
 }
 
 #dialog-content #checkboxes label {
     display: flex;
     align-items: center;
     padding: 2px 0;
-    cursor: pointer; 
-    user-select: none; 
+    cursor: pointer;
+    user-select: none;
     width: 100%;
 
     font-family: Inter, sans-serif;
@@ -517,35 +538,35 @@ body{
 
 
 #dialog-content input[type="checkbox"] {
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #2A3647; 
-  border-radius: 4px; 
-  position: relative;
-  cursor: pointer;
-  background-color: white; 
-  margin-right: 10px;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #2A3647;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    background-color: white;
+    margin-right: 10px;
 }
 
 
 #dialog-content input[type="checkbox"]:checked {
-  background-color: #2A3647; 
-  border-color: #2A3647; 
+    background-color: #2A3647;
+    border-color: #2A3647;
 }
 
 
 #dialog-content input[type="checkbox"]:checked::before {
-  content: '✓'; 
-  font-size: 14px;
-  color: white; 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
+    content: '✓';
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#dialog-content .add-task-form{
+#dialog-content .add-task-form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -556,13 +577,15 @@ body{
 @keyframes taskAddedAnimation {
 
     0% {
-        transform: translateY(0); 
+        transform: translateY(0);
         opacity: 0;
     }
+
     20% {
-        transform: translateY(0); 
+        transform: translateY(0);
         opacity: 1;
     }
+
     100% {
         transform: translateY(-50vh);
         opacity: 1;
@@ -572,7 +595,7 @@ body{
 /* Die Task-Added-Animation */
 .task-added-animation {
     position: fixed;
-    bottom: -180px;  
+    bottom: -180px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #2a3647;
@@ -582,13 +605,13 @@ body{
     border-radius: 10px;
     text-align: center;
     z-index: 1000;
-    opacity: 0;  
+    opacity: 0;
     visibility: hidden;
     transition: visibility 0.3s ease;
-    
+
     display: flex;
     justify-content: space-around;
-    align-items:center;
+    align-items: center;
     width: 230px;
     padding: 8px;
 }
@@ -598,7 +621,7 @@ body{
     animation: taskAddedAnimation 2s ease-in-out;
 }
 
-.task-added-animation img{
+.task-added-animation img {
     width: 24px;
     height: 24px;
 }
@@ -616,11 +639,11 @@ body{
     width: 40px;
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
     border: none;
-    padding: 0; 
+    padding: 0;
 }
 
 #plus-mobile:hover {
-    background-color: #29ABE2; 
+    background-color: #29ABE2;
     box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.4);
     cursor: pointer;
 }
@@ -628,15 +651,15 @@ body{
 @media screen and (max-width: 1600px) {
     .task-board {
         display: flex;
-        flex-direction: column; 
-        align-items: flex-start; 
-        gap: 20px; 
-        width: 100%; 
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        width: 100%;
     }
 
     .task-column {
-        width: 100%; 
-        padding: 10px; 
+        width: 100%;
+        padding: 10px;
     }
 
     .task-column h2 {
@@ -647,81 +670,84 @@ body{
 
     .column-container {
         display: flex;
-        flex-wrap: nowrap; 
-        overflow-x: auto; 
-        gap: 16px; 
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 16px;
         height: auto;
         padding: 10px;
         box-sizing: border-box;
     }
 
-    #ToDo, #inProgress, #AwaitFeedback, #Done {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow: hidden;
-    gap: 16px;
-    padding: 10px;
-    box-sizing: border-box;
-    width: 100%;
+    #ToDo,
+    #inProgress,
+    #AwaitFeedback,
+    #Done {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        gap: 16px;
+        padding: 10px;
+        box-sizing: border-box;
+        width: 100%;
     }
 
     #plus-mobile {
-        display: inline !important; 
+        display: inline !important;
     }
 
-    .add-task{
+    .add-task {
         display: none;
     }
 
-    .board-header{
+    .board-header {
         flex-direction: column;
     }
 
-    .mobile{
+    .mobile {
         display: flex;
         align-items: center;
         width: 100%;
         justify-content: space-between;
     }
 
-    .board-header{
+    .board-header {
         width: 100%;
     }
 
-    .task-input-container{
+    .task-input-container {
         width: 100%;
     }
 
-    .task-input input{
+    .task-input input {
         width: 100%;
     }
 
-    .task-input{
+    .task-input {
         width: 100%;
     }
 
 
-    .board-container{
+    .board-container {
         margin-left: 236px;
         margin-right: 8px
     }
 }
 
 
-@media screen and (max-width: 650px){
-    .mobile h1{
+@media screen and (max-width: 650px) {
+    .mobile h1 {
         font-size: 48px;
     }
 
-    .board-container{
+    .board-container {
         width: 90%;
         margin-left: 0;
         padding: 24px;
         padding-bottom: 112px;
     }
 
-    .board-header{
+    .board-header {
         gap: 40px;
         margin-bottom: 24px;
     }
@@ -731,15 +757,25 @@ body{
 
 
 
-#task-details-edit form{
+/* #task-details-edit form{
 display: flex;
 flex-direction: column;
 gap: 16px;
-}
+} */
 
-.subtasks-area{
+.subtasks-area {
     display: flex;
     flex-direction: column;
+    margin-top: 32px;
+}
+
+#task-details-edit {
+    overflow: auto;
+    height: 80vh;
+
+    --sb-track-color: #ffffff;
+    --sb-thumb-color: #a8a8a8;
+    --sb-size: 6px;
 }
 
 #checkboxes-edit {
@@ -753,45 +789,90 @@ gap: 16px;
     --sb-track-color: #ffffff;
     --sb-thumb-color: #a8a8a8;
     --sb-size: 6px;
-  }
-  
-  
-  #checkboxes-edit label {
+}
+
+
+#checkboxes-edit label {
     display: block;
-  }
-  
-  
-  #checkboxes-edit label:hover {
+}
+
+
+#checkboxes-edit label:hover {
     background-color: #1e90ff;
-  }
-  
-  
-  #checkboxes-edit::-webkit-scrollbar {
+}
+
+
+#task-details-edit::-webkit-scrollbar {
     width: var(--sb-size)
-  }
-  
-  
-  #checkboxes-edit::-webkit-scrollbar-track {
+}
+
+
+#task-details-edit::-webkit-scrollbar-track {
     background: var(--sb-track-color);
     border-radius: 17px;
-  }
-  
-  
-  #checkboxes-edit::-webkit-scrollbar-thumb {
+}
+
+
+#task-details-edit::-webkit-scrollbar-thumb {
     background: var(--sb-thumb-color);
     border-radius: 17px;
-  }
-#pop-up-content{
-    height:75vh;
-    overflow: auto;
-    background-color: white;
 }
-  #edit-form{
-    height: 90%;
-    
- }
 
-  textarea {
+
+#pop-up-content-edit-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.cancel-cross {
+    border-radius: 50%;
+    padding: 12px;
+
+}
+
+.cancel-cross:hover {
+    cursor: pointer;
+    background-color: #D1D1D1;
+
+}
+
+.right-align {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#pop-up-content-edit::-webkit-scrollbar {
+    width: var(--sb-size)
+}
+
+#pop-up-content-edit:-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 17px;
+}
+
+#pop-up-content-edit::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 17px;
+}
+
+#pop-up-content-edit {
+    background-color: white;
+    border-radius: 16px;
+    padding-right: 16px;
+}
+
+
+textarea {
     width: 90%;
     height: 90px;
     border: 1px solid #D1D1D1;
@@ -807,7 +888,77 @@ gap: 16px;
     resize: none;
     word-break: keep-all;
     box-sizing: border-box;
-  }
+}
+
+#subtasks-edit {
+    font-family: Inter;
+    width: 90%;
+    height: 48px;
+    border: none;
+    border-radius: 10px;
+    padding: 0 12px 0 21px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 21px;
+}
+
+
+#subtasks-edit:focus {
+    outline: none !important;
+    border: 0px;
+}
+
+
+#subtasks-edit::placeholder {
+    color: #D1D1D1;
+}
+
+#add-button-icon-plus-edit {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+
+#add-button-icon-plus-edit:hover {
+    background-color: #D1D1D1;
+    cursor: pointer;
+}
+
+
+#add-button-icon-check-edit {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+
+#add-button-icon-cancel-edit:hover {
+    background-color: #D1D1D1;
+    cursor: pointer;
+}
+
+#add-button-icon-cancel-edit {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+
+}
+
 
 .circle-yellow {
     background-color: #ffbb2b !important;
@@ -858,7 +1009,6 @@ gap: 16px;
     background-color: #33691e !important;
 }
 
-#circle-area-assigned-contacts-edit{
+#circle-area-assigned-contacts-edit {
     display: flex;
 }
-
