@@ -622,6 +622,10 @@ option {
   background-color: #33691e !important;
 }
 
+.circle-grey{
+  background-color: #D1D1D1 !important;
+}
+
 
 .z1 {
   z-index: 1;
