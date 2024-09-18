@@ -75,7 +75,7 @@ async function createContactForUser(name, email, newUserData, initialsForSaving,
 }
 
 /**
- * checks the values from input, compares the data with the database and log in the user
+ * checks the values from input
  * 
  * @param {*} path 
  * @returns 
@@ -87,18 +87,22 @@ async function loginUser(path = "/users") {
     let email = document.getElementById('emaillogin');
     let password = document.getElementById('passwordlogin');
     let user = UserKeys.find(u => u.email == email.value && u.password == password.value);
+    loginUserCheck(user);
+}
+
+/** 
+ * compares the data with the database and log in the user
+*/
+function loginUserCheck(user) {
     if (user) {
-        console.log("User gefunden");
         saveUserLoginNoRemember(user);
         getUserForContacts(user);
         window.location.href = 'summary.html';
         saveLogin();
         saveCheckBox();
         saveUserId(user, responseToJson);
-        console.log(userId);
     } else {
         wrongEmailOrPassword();
-        console.log("User nicht gefunden");
         return
     };
 }
@@ -256,13 +260,11 @@ function startLogoAnimation() {
     let animatedLogo = document.getElementById('animated-logo');
     let animatedLogoContainer = document.getElementById('animated-logo-container');
     let loginPage = document.getElementById('loginpage');
-
     function applyStyles(element, styles, delay) {
         setTimeout(() => {
             Object.assign(element.style, styles);
         }, delay);
     }
-
     applyStyles(animatedLogo, { animation: "logoShrinkAndMove 1s forwards" }, 500);
     setTimeout(() => {
         loginPage.classList.replace('hidden', 'show');
@@ -278,7 +280,6 @@ function startLogoAnimationMobile() {
     let animatedLogo = document.getElementById('animated-logo-mobile');
     let animatedLogoContainer = document.getElementById('animated-logo-container');
     let loginPage = document.getElementById('loginpage');
-
     function applyStyles(element, styles, delay) {
         setTimeout(() => {
             Object.assign(element.style, styles);
