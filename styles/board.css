@@ -1002,8 +1002,11 @@ body {
     justify-content: center;
     align-items: center;
 
-
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+#pop-up-content{
+    height: 78vh;
 }
 
 .cancel-cross {
