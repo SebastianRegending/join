@@ -291,7 +291,7 @@ header h3{
     position: fixed;
     bottom: 0;
     overflow: hidden;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .menu-item {
@@ -327,5 +327,7 @@ header h3{
 .help-icon{
     display: none;
 }
+
+
 
 }
