@@ -66,6 +66,7 @@ li:before {
   .help-container h1 {
     font-size: 47px;
     margin: 0;
+    padding: 0;
   }
 
   h2 {
@@ -90,7 +91,7 @@ li:before {
 
 @media(max-width: 650px) {
 
-  .help-container h1 {
+  h1 {
     font-size: 47px;
   }
 
@@ -100,6 +101,7 @@ li:before {
 
   .help-container {
     margin: 160px 24px 104px 24px;
+      padding: 0;
   }
 
   li {
@@ -109,8 +111,12 @@ li:before {
 }
 
 @media(max-width: 420px) {
-  .help-container h1 {
+  .h1 {
     font-size: 28px;
+  }
+
+  .help-container {
+    padding: 0;
   }
 
   h2 {

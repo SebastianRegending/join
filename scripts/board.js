@@ -110,6 +110,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+    /**
+ * Loads the contacts from database to the Checkbox-Input
+ */
+async function loadContacts() {
+  let response = await fetch(URL_contacts + ".json");
+  let responseToJson = await response.json();
+  let contactsToConvertLetters = jsonToArrayContacts(responseToJson);
+  let compare = sessionStorage.getItem("userId");
+  for (let n = 0; n < contactsToConvertLetters.length; n++) {
+    IDs = jsonToArrayIDs(contactsToConvertLetters[n])
+    for (let i = 0; i < IDs.length; i++) {
+      if (compare && compare == IDs[i]['userid']) {
+        document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplateYou(n, i);
+      } else {
+        document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplate(n, i);
+      }
+    }
+  }
+}
+
 /// Hauptfunktion zum Laden der Tasks
 async function loadTasks() {
     let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
@@ -510,13 +530,21 @@ function generateProgressHTML(task) {
 // Funktion zum Generieren der Kontakt-Badges-HTML
 function generateContactsHTML(contacts = []) {
     let colors = ['#FF7A00', '#1FD7C1', '#462F8A', '#6e52ff', '#00bee8'];
-
-    return contacts.map((contact, index) => {
+    let displayedContacts = contacts.slice(0, 4);
+    let remainingContacts = contacts.length - 4; 
+    let badgesHTML = displayedContacts.map((contact, index) => {
         let color = colors[index % colors.length];
         let initials = getInitials(contact.name);
         return `<span class="user-badge" style="background-color:${color}">${initials}</span>`;
     }).join('');
+
+    if (remainingContacts > 0) {
+        badgesHTML += `<span class="user-badge" style="background-color: #A8A8A8">+${remainingContacts}</span>`;
+    }
+
+    return badgesHTML;
 }
+
 
 // Funktion zum Abrufen der Initialen eines Namens
 function getInitials(name) {
