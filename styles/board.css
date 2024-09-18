@@ -50,7 +50,6 @@ body {
     justify-content: center;
 }
 
-<<<<<<< HEAD
 .add-task span {
     margin-left: 5px;
 }
@@ -58,10 +57,6 @@ body {
 
 .add-task:hover{
     background-color:#29ABE2;
-=======
-.add-task:hover {
-    background-color: #29ABE2;
->>>>>>> d7ead3ae7bfb12d981bca70541a359ecd375eb55
     cursor: pointer;
     box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.4);
     transition: transform 0.1s ease-in-out, 0.2s;
@@ -525,20 +520,15 @@ body {
     z-index: 10;
     border: 1px #dadada solid;
     height: 150px;
-    width: 475px;
+    width: 35%;
     background-color: white;
     overflow-y: auto;
     border-radius: 0 0 10px 10px;
 }
 
 #dialog-content .selectBox {
-<<<<<<< HEAD
   position: relative; 
   width: 100%; 
-=======
-    position: relative;
-    width: 475px;
->>>>>>> d7ead3ae7bfb12d981bca70541a359ecd375eb55
 }
 
 #dialog-content #checkboxes label {
@@ -731,8 +721,23 @@ body {
     }
 
     .add-task {
+        width: 48px;
+        height: 48px;
+        padding: 8px;
+    }
+
+    .add-task span {
         display: none;
-    } 
+    }
+
+    .add-task::before{
+        content: '+';
+        font-size: 24px;
+        display: block;
+        margin: 0 auto;
+        line-height: 48px;
+        text-align: center;
+    }
 
     .board-header {
         flex-direction: column;
@@ -766,6 +771,146 @@ body {
         margin-left: 236px;
         margin-right: 8px
     }
+
+    #dialog-content .close-popup{
+        right: 100px;
+    }
+}
+
+
+@media screen and (max-width: 1460px){
+    #dialog-content .prio-container{
+        font-size: 14px;
+        gap: 2px;
+    }
+    
+    #dialog-content .add-task-form .input-field .input-field-select{
+        font-size: 14px;
+    }
+
+    #dialog-content .blue-btn{
+        font-size: 16px;
+    }
+
+    #dialog-content .white-btn{
+        font-size: 16px;
+    }
+
+    #dialog-content .fullpage h1{
+        font-size: 46px;
+    }
+
+    #dialog-content .headline-container h1{
+        margin-left: 56px;
+    }
+
+        #dialog-content .close-popup{
+        top: 40px;
+    }
+
+    #dialog-content .input-field{
+        font-size: 14px;
+    }
+
+    #dialog-content #input-description{
+        font-size: 14px;
+    }
+
+    #dialog-content .input-field-select{
+        font-size: 14px;
+    }
+
+    #dialog-content #subtasks {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1060px){
+ .dialog{
+        width: 80vw;
+    }
+
+    #dialog-content .input-field {
+        width: 90%;
+    }
+
+    #dialog-content #input-description {
+        width: 90%;
+    }
+
+    #dialog-content .multiSelect{
+        width: 90%;
+    }
+
+    #dialog-content .selectBox {
+        width: 100%;
+    }
+
+    #dialog-content .form-left-side{
+        border-right: solid 1px #D1D1D1;
+    }
+
+    #dialog-content .contact-for-form div{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1000px){
+
+    #dialog-content .form-left-side{
+        border-right: solid 1px #D1D1D1;
+        margin: 24px 0 24px 8px;
+    }
+
+    #dialog-content .from-right-side{
+        margin: 24px 0px 24px 40px;
+    }
+
+    #dialog-content .headline-container h1{
+        margin-left: 8px;
+    }
+
+    #dialog-content .white-btn{
+        display: inline;
+        width: 100px;
+    height: 48px;
+    display: flex;
+    color: #2A3647;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2A3647;
+    border-radius: 8px;
+    background-color: white;
+    font-family: Inter-Bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 100ms linear;
+    }
+
+    #dialog-content .white-btn:hover {
+    color: #29ABE2;
+    border-color: #29ABE2;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+#dialog-content .white-btn:hover img {
+  filter: invert(66%) sepia(29%) saturate(4458%) hue-rotate(165deg) brightness(93%) contrast(89%);
+  transition: 100ms linear;
+}
+
+#dialog-content .blue-btn{
+    width: 180px;
+    height: 48px;
+}
+
+#dialog-content .red-letter-resp{
+    margin-right: 100px;
+}
+
+#dialog-content .submit-area-help-container{
+    justify-content: right;
+}
 }
 
 
@@ -789,13 +934,6 @@ body {
 
 }
 
-
-
-/* #task-details-edit form{
-display: flex;
-flex-direction: column;
-gap: 16px;
-} */
 
 .subtasks-area {
     display: flex;
