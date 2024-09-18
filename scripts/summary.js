@@ -32,6 +32,15 @@ async function setUsernameOnGreeting() {
     const data = await response.json();
     let UserKeys = Object.values(data);
     let userEmail = JSON.parse(localStorage.getItem('email'));
+    showUsernameOnGreeting(UserKeys, userEmail);
+}
+
+/**
+ * shows the username on greeting
+ * 
+ * @retuns
+ */
+    function showUsernameOnGreeting(UserKeys, userEmail) {
     for (let i = 0; i < UserKeys.length; i++) {
         const currentUser = UserKeys[i];
         if (currentUser.email == userEmail) {
@@ -88,7 +97,7 @@ async function getNumberOfTasks(path = "/tasks") {
 }
 
 /**
- * get the status of every task in database and shows the number of tasks on the website
+ * get the status of every task in database
  */
 async function getProgressOfTasks() {
     const URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
@@ -99,6 +108,20 @@ async function getProgressOfTasks() {
     let tasksInProgressAwaitFeedback = 0;
     let tasksInProgressDone = 0;
     let tasksPrio = 0;
+    calculateProgressOfTasks(tasks, tasksInProgressToDo, tasksInProgressInProgress, tasksInProgressAwaitFeedback, tasksInProgressDone, tasksPrio);
+}
+
+/**
+ * calculates the number of every task in every category
+ * 
+ * @param {number} tasks 
+ * @param {number} tasksInProgressToDo 
+ * @param {number} tasksInProgressInProgress 
+ * @param {number} tasksInProgressAwaitFeedback 
+ * @param {number} tasksInProgressDone 
+ * @param {number} tasksPrio 
+ */
+function calculateProgressOfTasks (tasks, tasksInProgressToDo, tasksInProgressInProgress, tasksInProgressAwaitFeedback, tasksInProgressDone, tasksPrio) {
     for (let taskID in tasks) {
         let taskProgress = tasks[taskID]['progress'];
         let taskPrio = tasks[taskID]['prio'];
@@ -118,6 +141,19 @@ async function getProgressOfTasks() {
             tasksPrio++;
         }
     }
+    showProgressOfTasks(tasksInProgressToDo, tasksInProgressDone, tasksInProgressInProgress, tasksInProgressAwaitFeedback, tasksPrio);
+}
+
+/**
+ * shows numbers of every task in every category on the website
+ * 
+ * @param {number} tasksInProgressToDo 
+ * @param {number} tasksInProgressDone 
+ * @param {number} tasksInProgressInProgress 
+ * @param {number} tasksInProgressAwaitFeedback 
+ * @param {number} tasksPrio 
+ */
+function showProgressOfTasks(tasksInProgressToDo, tasksInProgressDone, tasksInProgressInProgress, tasksInProgressAwaitFeedback, tasksPrio) {
     document.getElementById('summary-todo').innerHTML = tasksInProgressToDo;
     document.getElementById('summary-done').innerHTML = tasksInProgressDone;
     document.getElementById('summary-bottom-progress').innerHTML = tasksInProgressInProgress;
@@ -160,8 +196,16 @@ function findClosestDate(futureTasks) {
             }
         }
     }
+    showClosestDate(closestDate);
+}
+
+/**
+ * shows the date of the closest task on the website
+ * 
+ * @param {date} closestDate 
+ */
+function showClosestDate(closestDate) {
     const options = { year: "numeric", month: "2-digit", day: "2-digit" };
     const europeanDate = closestDate.toLocaleDateString("de-DE", options);
-    console.log(closestDate);
     document.getElementById('summary-urgent-right-date').innerHTML = europeanDate;
 }

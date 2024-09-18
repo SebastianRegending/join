@@ -3,10 +3,31 @@ body {
 }
 
 .board-container {
-    margin-top: 160px;
+    margin-top: 96px;
+    padding-top: 64px;
     margin-left: 338px;
     max-width: 1440px;
     margin-right: 80px;
+    overflow-y: auto;
+    --sb-track-color: #ffffff;
+    --sb-thumb-color: #a8a8a8;
+    --sb-size: 6px;
+
+}
+
+.board-container::-webkit-scrollbar {
+  width: var(--sb-size)
+}
+
+
+.board-container::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 17px;
+}
+
+.board-container::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 17px;
 }
 
 .board-header {
@@ -500,7 +521,7 @@ body {
 }
 
 #dialog-content .add-task-form {
-    height: 400px;
+    height: 380px;
 }
 
 #dialog-content #input-description {
@@ -672,6 +693,25 @@ body {
     cursor: pointer;
 }
 
+@media screen and (max-width: 1800px) {
+    .dialog{
+        height: 80vh;
+
+    }
+    #dialog-content .add-task-form {
+    height: 310px;
+    }
+
+    #dialog-content .headline-container h1 {
+    margin-bottom: 40px;
+    }
+
+    .close-popup{
+        right: 120px;
+        top: 40px;
+    }
+}
+
 @media screen and (max-width: 1600px) {
     .task-board {
         display: flex;
@@ -777,7 +817,6 @@ body {
     }
 }
 
-
 @media screen and (max-width: 1460px){
     #dialog-content .prio-container{
         font-size: 14px;
@@ -826,7 +865,11 @@ body {
 }
 
 @media screen and (max-width: 1060px){
- .dialog{
+    #dialog-content form{
+        margin-bottom: 0;
+    }
+
+    .dialog{
         width: 80vw;
     }
 
@@ -856,7 +899,6 @@ body {
 }
 
 @media screen and (max-width: 1000px){
-
     #dialog-content .form-left-side{
         border-right: solid 1px #D1D1D1;
         margin: 24px 0 24px 8px;
@@ -873,18 +915,18 @@ body {
     #dialog-content .white-btn{
         display: inline;
         width: 100px;
-    height: 48px;
-    display: flex;
-    color: #2A3647;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #2A3647;
-    border-radius: 8px;
-    background-color: white;
-    font-family: Inter-Bold;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 100ms linear;
+        height: 48px;
+        display: flex;
+        color: #2A3647;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #2A3647;
+        border-radius: 8px;
+        background-color: white;
+        font-family: Inter-Bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 100ms linear;
     }
 
     #dialog-content .white-btn:hover {
@@ -931,7 +973,11 @@ body {
         margin-bottom: 24px;
     }
 
-
+    .dialog{
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
 }
 
 

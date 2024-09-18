@@ -15,7 +15,8 @@ h1 {
 
 
 .fullpage {
-  margin-top: 160px;
+  margin-top: 96px;
+  padding: 64px 0 0 0;
   height: calc(100vh - 160px);
   overflow: auto;
 
