@@ -73,6 +73,8 @@ function closePopUp() {
     subtasksEdit = [];
     contactIds = [];
     checkedContactsCirclesEdit = [];
+    assignedContactsEdit = [];
+    assignedContactsEditObjects = [];
 }
 
 function updateTaskProgress(taskId) {

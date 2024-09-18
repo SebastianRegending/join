@@ -100,7 +100,7 @@ function generateEditPage(id, title, description, contacts, deadline, prio, cate
    
     return `
         <div id="task-details-edit" class="task-details">
-           <form onsubmit="submitEditetTask()">
+           <form id="editform"  onsubmit="submitEditetTask(); return false;">
            <span>Title</span>
             <input id="input-title-edit" class="input-field" value="${title}">
              <span>Description</span>

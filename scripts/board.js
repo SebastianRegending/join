@@ -1,12 +1,14 @@
-let expanded = false;
+let expandedEdit = false;
 let prioEdit;
 let contactIds = [];
 let subtasksEdit = [];
 let checkedContactsCirclesEdit = [];
 let cat;
 let assignedContactsEdit = [];
+let assignedContactsEditObjects = [];
 let progEdit;
 let currentId;
+let allContacts = [];
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -194,8 +196,9 @@ async function deleteTask(id) {
 }
 
 
-function prepareEditTask(id, title, description, contacts, deadline, prio, category, subtasks, progress) {
-    loadContacts() ;
+async function prepareEditTask(id, title, description, contacts, deadline, prio, category, subtasks, progress) {
+    await initAssignedContacts(id);
+    loadContactsEdit();
     cat = category;
     progEdit = progress;
     currentId = id;
@@ -204,14 +207,32 @@ function prepareEditTask(id, title, description, contacts, deadline, prio, categ
     for(let i = 0; i < subtasksEdit.length; i++){
     document.getElementById('added-subtasks-edit').innerHTML += `<div>${subtasksEdit[i]}</div>`;
     }
+    
    
-    for(let i = 0 ; i < contactIds.length; i++){
-        document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${contactIds[i]['color']}">${contactIds[i]['initials']}</div>`
-        checkedContactsCirclesEdit.push({name: contactIds[i]['name'], color: contactIds[i]['color'], inits: contactIds[i]['initials']})
+    // for(let i = 0 ; i < contactIds.length; i++){
+    //     document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${contactIds[i]['color']}">${contactIds[i]['initials']}</div>`
+    //     checkedContactsCirclesEdit.push({name: contactIds[i]['name'], color: contactIds[i]['color'], inits: contactIds[i]['initials'], id: contactIds[i]['id']});
         
-    }
+    // }
    
 }
+
+
+
+
+async function initAssignedContacts(id){
+    let response = await fetch (`https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks/${id}.json`);
+    let responseToJson = await response.json();
+    let contactsArray = responseToJson.contacts || [];
+
+    for(let i = 0; i < contactsArray.length; i++){
+        assignedContactsEdit.push(contactsArray[i]['id']);
+    }
+
+}
+
+
+
 
 
 
@@ -225,9 +246,9 @@ async function loadContacts() {
       IDs = jsonToArrayIDs(contactsToConvertLetters[n])
       for (let i = 0; i < IDs.length; i++) {
         if (compare && compare == IDs[i]['userid']) {
-          document.getElementById('checkboxes-edit').innerHTML += createContactsCheckboxTemplateYou(n, i);
+          document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplateYou(n, i);
         } else {
-          document.getElementById('checkboxes-edit').innerHTML += createContactsCheckboxTemplate(n, i);
+          document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplate(n, i);
         }
       }
     }
@@ -275,16 +296,18 @@ function jsonToArrayIDs(json) {
  * @returns Contacts-Template in HTML
  */
 function createContactsCheckboxTemplate(n, i) {
+    let isChecked = assignedContactsEdit.includes(IDs[i]['id']) ? 'checked' : '';
+    
     return /*html*/`
         <label for="contacts${n}" class="contact-for-form">
               <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
               </div>
               <div>${IDs[i]['name']}
               </div> 
-              <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
+              <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>        
         </label>
-      `
-  }
+    `;
+}
 
 
   /**
@@ -295,45 +318,86 @@ function createContactsCheckboxTemplate(n, i) {
  * @returns Contacts-Template in HTML with additional You
  */
 function createContactsCheckboxTemplateYou(n, i) {
-  return /*html*/`
-      <label for="contacts${n}" class="contact-for-form">
+    let isChecked = assignedContactsEdit.includes(IDs[i]['id']) ? 'checked' : '';
+
+    return /*html*/`
+        <label for="contacts${n}" class="contact-for-form">
             <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
             </div>
             <div>${IDs[i]['name']}(You)
             </div> 
-            <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
-      </label>
-    `
+            <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>
+        </label>
+    `;
 }
 
 
-function addCircleEdit(color, id, inits) {
-    let check = document.getElementById(id);
-    if (check.checked == true) {
-      checkedContactsCirclesEdit.push({ "id": id, "color": color, "inits": inits });
+async function loadContactsEdit() {
+    allContacts = [];
+    let URL_contacts = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts";
+    let response = await fetch(URL_contacts + ".json");
+    let responseToJson = await response.json();
+    let contactsToConvertLetters = jsonToArrayContacts(responseToJson);
+    let compare = sessionStorage.getItem("userId");
+    for (let n = 0; n < contactsToConvertLetters.length; n++) {
+        IDs = jsonToArrayIDs(contactsToConvertLetters[n]);
+        for (let i = 0; i < IDs.length; i++) {
+            if (compare && compare == IDs[i]['userid']) {
+                document.getElementById('checkboxes-edit').innerHTML += createContactsCheckboxTemplateYou(n, i);
+            } else {
+                document.getElementById('checkboxes-edit').innerHTML += createContactsCheckboxTemplate(n, i);
+            }
+            allContacts.push(IDs[i]);
+        }
+    }
+    for (let i = 0; i < assignedContactsEdit.length; i++) {
+        let objectContact = allContacts.find(e => e.id == assignedContactsEdit[i]);
+        assignedContactsEditObjects.push(objectContact);
+    }
+    document.getElementById('circle-area-assigned-contacts-edit').innerHTML = '';
+    if (assignedContactsEditObjects.length > 8) {
+        document.getElementById('circle-area-assigned-contacts-edit').innerHTML = `<div class="circle circle-lightblue">${assignedContactsEditObjects.length}</div>`;
     } else {
-      checkedContactsCirclesEdit.splice(checkedContactsCirclesEdit.findIndex(item => item.id === id), 1);
+        for (let i = 0; i < assignedContactsEditObjects.length; i++) {
+            document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${assignedContactsEditObjects[i]['color']} assigned-contacts z${i + 1}">${assignedContactsEditObjects[i]['initials']}</div>`;
+        }
+    }
+}
+
+
+function addCircleEdit(color, contactId, inits, id) {
+
+    document.getElementById('circle-area-assigned-contacts-edit').innerHTML = ``;
+
+    let check = document.getElementById(contactId);
+
+    if (check.checked == true) {
+        assignedContactsEditObjects.push({ "id": id, "color": color, "initials": inits });
+    } else {
+        assignedContactsEditObjects.splice(assignedContactsEditObjects.findIndex(item => item.id === id), 1);
     }
     document.getElementById('circle-area-assigned-contacts-edit').innerHTML = ``;
-    if (checkedContactsCirclesEdit.length > 8) {
-      document.getElementById('circle-area-assigned-contacts-edit').innerHTML = `<div class="circle circle-lightblue">${checkedContactsCirclesEdit.length}</div>`
+    if (assignedContactsEditObjects.length > 8) {
+      document.getElementById('circle-area-assigned-contacts-edit').innerHTML = `<div class="circle circle-lightblue">${assignedContactsEditObjects.length}</div>`
     } else {
-      for (let i = 0; i < checkedContactsCirclesEdit.length; i++) {
-        document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${checkedContactsCirclesEdit[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCirclesEdit[i]['inits']}</div>`;
+      for (let i = 0; i < assignedContactsEditObjects.length; i++) {
+        document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${assignedContactsEditObjects[i]['color']} assigned-contacts z${i + 1}">${assignedContactsEditObjects[i]['initials']}</div>`;
       }
     }
-  }
+}
+  
 
 
   async function submitEditetTask(){
     let title = document.getElementById('input-title-edit').value;
     let description = document.getElementById('input-description-edit').value;
     let deadline = document.getElementById('input-deadline-edit').value;
-    let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
+    let assignedContactsForUpdate = getSelectedEdit();
+    let URL_tasksput = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
+    let neededId = currentId;
+    data = ({ title: title, description: description, deadline: deadline, prio: prioEdit, category: cat, contacts: assignedContactsForUpdate, subtasks: subtasksEdit, progress: progEdit });
 
-    data = ({ title: title, description: description, deadline: deadline, prio: prioEdit, category: cat, contacts: assignedContactsEdit, subtasks: subtasksEdit, progress: progEdit });
-
-    let response = await fetch(URL_tasks + currentId + ".json", {
+    let response = await fetch(`${URL_tasksput}/${neededId}.json`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -342,8 +406,25 @@ function addCircleEdit(color, id, inits) {
     });
     return response;
   }
+
+  /**
+ * Searches for selected checkboxes and pushs them in an array
+ * 
+ * @returns selected checkboxes
+ */
+function getSelectedEdit() {
+    let checkboxes = document.querySelectorAll('input[name="contactsedit"]:checked');
+    let selectedData = [];
   
-  
+    checkboxes.forEach((checkbox) => {
+      let name = checkbox.value;
+      let id = checkbox.getAttribute('data-id');
+      let letter = checkbox.getAttribute('data-letter');
+      let color = checkbox.getAttribute('data-color');
+      selectedData.push({ name: name, id: id, letter: letter, color: color });
+    });
+    return selectedData;
+  }
 
 
 /**
@@ -376,12 +457,12 @@ function readPrioEdit(prio){
 
 function showCheckboxes() {
     let checkboxes = document.getElementById("checkboxes-edit");
-    if (!expanded) {
+    if (!expandedEdit) {
       checkboxes.style.display = "block";
-      expanded = true;
+      expandedEdit = true;
     } else {
       checkboxes.style.display = "none";
-      expanded = false;
+      expandedEdit = false;
     }
   }
 
