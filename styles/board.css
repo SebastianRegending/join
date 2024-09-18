@@ -944,7 +944,8 @@ body {
 #task-details-edit {
     overflow: auto;
     height: 80vh;
-
+    box-shadow: none;
+    
     --sb-track-color: #ffffff;
     --sb-thumb-color: #a8a8a8;
     --sb-size: 6px;
@@ -990,6 +991,15 @@ body {
     border-radius: 17px;
 }
 
+#pop-up-content-edit{
+    height: 95vh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+}
+
 
 #pop-up-content-edit-container {
     position: absolute;
@@ -1023,25 +1033,7 @@ body {
     justify-content: flex-end;
 }
 
-#pop-up-content-edit::-webkit-scrollbar {
-    width: var(--sb-size)
-}
 
-#pop-up-content-edit:-webkit-scrollbar-track {
-    background: var(--sb-track-color);
-    border-radius: 17px;
-}
-
-#pop-up-content-edit::-webkit-scrollbar-thumb {
-    background: var(--sb-thumb-color);
-    border-radius: 17px;
-}
-
-#pop-up-content-edit {
-    background-color: white;
-    border-radius: 16px;
-    padding-right: 16px;
-}
 
 
 textarea {
