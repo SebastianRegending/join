@@ -1,7 +1,13 @@
+
+function setProgress(x){
+    progress = x;
+    openDialog();
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // Öffnet das Dialogfenster zum Hinzufügen eines neuen Tasks
-    function openDialog() {
+   function openDialog() {
         fetch('./addtask.html')
             .then(response => response.text())
             .then(data => {
@@ -23,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('dialog-content').addEventListener('click', function (event) {
                         event.stopPropagation(); // Stoppt das Ereignis, damit es nicht den Dialog-Hintergrund erreicht
                     });
-
+                    
                     // Lädt das zusätzliche Skript und die Kontakte, nachdem das Dialogfenster geöffnet wurde
                     loadScripts().then(() => {
                         loadContacts(); // Lädt Kontakte für das "Select contacts to assign"-Feld

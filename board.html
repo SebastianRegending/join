@@ -39,7 +39,7 @@
         </div>
         <div class="task-board">
             <div class="task-column">
-                <h2>To Do <span onclick="openDialog('ToDo')">+</span></h2>
+                <h2>To Do <span onclick="setProgress('To Do')">+</span></h2>
                 <div class="column-container">
                     <div id="ToDo" class="task-column" ondrop="moveTo(event, 'ToDo')" ondragover="allowDrop(event)"
                         ondragenter="highlight('ToDo')" ondragleave="removeHighlight('ToDo')">
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="task-column">
-                <h2>In Progress <span onclick="openDialog('InProgress')">+</span></h2>
+                <h2>In Progress <span onclick="setProgress('In Progress')">+</span></h2>
                 <div class="column-container">
                     <div id="inProgress" class="task-column" ondrop="moveTo(event, 'inProgress')"
                         ondragover="allowDrop(event)" ondragenter="highlight('inProgress')"
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="task-column">
-                <h2>Await Feedback <span onclick="openDialog('AwaitFeedback')">+</span></h2>
+                <h2>Await Feedback <span onclick="setProgress('Await Feedback')">+</span></h2>
                 <div class="column-container">
                     <div id="AwaitFeedback" class="task-column" ondrop="moveTo(event, 'AwaitFeedback')"
                         ondragover="allowDrop(event)" ondragenter="highlight('AwaitFeedback')"
