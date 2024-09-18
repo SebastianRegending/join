@@ -59,8 +59,11 @@ async function prepareEditTask(id, title, description, contacts, deadline, prio,
         assignedContactsEditObjects.push(objectContact);
     }
     document.getElementById('circle-area-assigned-contacts-edit').innerHTML = '';
-    if (assignedContactsEditObjects.length > 8) {
-        document.getElementById('circle-area-assigned-contacts-edit').innerHTML = `<div class="circle circle-lightblue">${assignedContactsEditObjects.length}</div>`;
+    if (assignedContactsEditObjects.length > 6) {
+      for (let i = 0; i < 6; i++) {
+        document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${assignedContactsEditObjects[i]['color']} assigned-contacts z${i + 1}">${assignedContactsEditObjects[i]['initials']}</div>`;
+      }
+      document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-grey assigned-contacts z${7}">+${assignedContactsEditObjects.length - 6}</div>`
     } else {
         for (let i = 0; i < assignedContactsEditObjects.length; i++) {
             document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${assignedContactsEditObjects[i]['color']} assigned-contacts z${i + 1}">${assignedContactsEditObjects[i]['initials']}</div>`;
