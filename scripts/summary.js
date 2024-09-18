@@ -144,7 +144,7 @@ async function getDeadlineDate(path = "/tasks") {
 /**
  * find the task with the closest deadline and show the date on the website
  *
- * @param {*} futureTasks 
+ * @param {string} futureTasks
  */
 function findClosestDate(futureTasks) {
     const now = new Date();

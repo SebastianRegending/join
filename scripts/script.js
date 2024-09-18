@@ -72,6 +72,14 @@ async function initHelpHTML() {
 }
 
 /**
+ * initializes the function on body onload at summaryguest.html
+ */
+async function initGuestSummaryHTML() {
+    await includeHTML();
+    setDaytimeOnGreeting();
+}
+
+/**
  * Includes HTML content from external files into the current document.
  * Elements with the attribute `w3-include-html` will have their content replaced by the fetched HTML.
  */
