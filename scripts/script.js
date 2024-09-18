@@ -1,15 +1,24 @@
+/**
+ * initializes the function on body onload at login.html
+ */
 function initLoginHTML() {
     startLogoAnimation();
     startLogoAnimationMobile();
     preFillForm();
 }
 
+/**
+ * initializes the function on body onload at addtask.html
+ */
 async function initAddTaskHTML() {
     await includeHTML();
     loadContacts();
     setInitialsForHeader();
 }
 
+/**
+ * initializes the function on body onload at summary.html
+ */
 async function initSummaryHTML() {
     await includeHTML();
     await getNumberOfTasks();
@@ -20,28 +29,43 @@ async function initSummaryHTML() {
     getDeadlineDate();
 }
 
+/**
+ * initializes the function on body onload at board.html
+ */
 async function initBoardHTML() {
     await includeHTML();
     loadTasks();
     setInitialsForHeader();
 }
 
+/**
+ * initializes the function on body onload at contacts.html
+ */
 async function initContactsHTML() {
     await includeHTML();
     loadContacts();
     setInitialsForHeader();
 }
 
+/**
+ * initializes the function on body onload at privacypolicy.html
+ */
 async function initPrivacyPolicyHTML() {
     await includeHTML();
     setInitialsForHeader();
 }
 
+/**
+ * initializes the function on body onload at legalnotice.html
+ */
 async function initLegalNoticeHTML() {
     await includeHTML();
     setInitialsForHeader();
 }
 
+/**
+ * initializes the function on body onload at help.html
+ */
 async function initHelpHTML() {
     await includeHTML();
     setInitialsForHeader();
@@ -126,14 +150,14 @@ async function moveTo(event, columnId) {
         draggedElement.classList.remove('dragging');
         draggedElement.classList.add('elastic');
         setTimeout(() => draggedElement.classList.remove('elastic'), 600);
-        
+
         column.classList.remove('drag-area-highlight');
         updateNoTasksMessage(originalContainer);
         updateNoTasksMessage(column);
-        
+
         // Get the task ID from the dragged element's ID
         let taskId = draggedElement.id.replace('task-', '');
-        
+
         // Map the columnId to the corresponding progress status
         let newStatus = '';
         switch (columnId) {
@@ -220,9 +244,9 @@ function removeHighlight(columnId) {
 function openDialog(text) {
     let dialog = document.getElementById('dialog');
     let dialogBox = dialog.querySelector('.dialog');
-    
+
     dialog.classList.remove('d-none');
-    
+
     setTimeout(() => {
         dialogBox.classList.add('show');
     }, 10);
@@ -235,9 +259,9 @@ function openDialog(text) {
 function closeDialog() {
     let dialog = document.getElementById('dialog');
     let dialogBox = dialog.querySelector('.dialog');
-    
+
     dialogBox.classList.remove('show');
-    
+
     setTimeout(() => {
         dialog.classList.add('d-none');
     }, 500);
@@ -295,6 +319,9 @@ function addActiveClass() {
     });
 }
 
+/**
+ * set the initials for the header button from logged in user from session storage
+ */
 function setInitialsForHeader() {
     let initialsHeader = JSON.parse(sessionStorage.getItem('Initials'));
     if (initialsHeader) {

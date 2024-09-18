@@ -1,27 +1,27 @@
-body{
-    background-color: #F6F7F8;
-    font-size: 20px;
-    line-height: 24px;
+body {
+  background-color: #f6f7f8;
+  font-size: 20px;
+  line-height: 24px;
 }
 
-.help-container{
-    margin-top: 96px;
-    margin-left: 328px;
-    max-width: 1440px;
-    margin-right: 96px;
-    padding: 64px 0 0 0;
+.help-container {
+  margin-top: 96px;
+  margin-left: 328px;
+  max-width: 1440px;
+  margin-right: 96px;
+  padding: 64px 0 0 0;
 }
 
-.help-container h1{
-    font-size: 60px;
+.help-container h1 {
+  font-size: 60px;
 }
 
 li {
-    margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 ol > li::marker {
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 li {
@@ -34,14 +34,14 @@ li:before {
   position: absolute;
 }
 
-.enjoy-using-join{
-    margin-bottom: 64px;
+.enjoy-using-join {
+  margin-bottom: 64px;
 }
 
-.help-icon:hover{
+.help-icon:hover {
   width: 40px;
   height: 40px;
-  transition: transform 0.1s ease-in-out, 0.2s; 
+  transition: transform 0.1s ease-in-out, 0.2s;
 }
 
 .arrow-left-line {
@@ -50,17 +50,16 @@ li:before {
 }
 
 .history-back-container {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@media(max-width: 1000px) {
+@media (max-width: 1000px) {
   .history-back-container {
     height: fit-content;
-    
   }
 
   .help-container h1 {
@@ -89,8 +88,7 @@ li:before {
   }
 }
 
-@media(max-width: 650px) {
-
+@media (max-width: 650px) {
   h1 {
     font-size: 47px;
   }
@@ -101,16 +99,15 @@ li:before {
 
   .help-container {
     margin: 160px 24px 104px 24px;
-      padding: 0;
+    padding: 0;
   }
 
   li {
     padding-left: 8px;
   }
-
 }
 
-@media(max-width: 420px) {
+@media (max-width: 420px) {
   .h1 {
     font-size: 28px;
   }
@@ -125,18 +122,18 @@ li:before {
 
   h3 {
     font-size: 18px;
-}
+  }
 
-h4 {
+  h4 {
     font-size: 14px;
-}
+  }
 
-p {
+  p {
     font-size: 12px;
-}
+  }
 
-li {
-  font-size: 12px;
-  padding-left: 8px;
-}
+  li {
+    font-size: 12px;
+    padding-left: 8px;
+  }
 }

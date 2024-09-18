@@ -1,56 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join - Login</title>
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/assets.css">
-    <link rel="stylesheet" href="./styles/fonts.css">
-    <link rel="stylesheet" href="./styles/register.css">
-    <link rel="icon" type="image/x-icon" href="./assets/img/join.png">
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/assets.css" />
+    <link rel="stylesheet" href="./styles/fonts.css" />
+    <link rel="stylesheet" href="./styles/register.css" />
+    <link rel="icon" type="image/x-icon" href="./assets/img/join.png" />
     <script src="./scripts/register.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/usercontact.js"></script>
-
-</head>
-
-<body onload="initLoginHTML()">
+  </head>
+  <body onload="initLoginHTML()">
     <div id="animated-logo-container">
-        <img id="animated-logo" src="./assets/img/Capa2.png">
-        <img id="animated-logo-mobile" src="./assets/img/Capa-mobile.png" class="d-none">
+      <img id="animated-logo" src="./assets/img/Capa2.png" />
+      <img
+        id="animated-logo-mobile"
+        src="./assets/img/Capa-mobile.png"
+        class="d-none"
+      />
     </div>
     <main id="loginpage" class="hidden">
-        <div id="joinuser">Not a Join User?
-            <button id="input-btn-small" onclick="goToSignUp()">Sign up</button>
+      <div id="joinuser">
+        Not a Join User?
+        <button id="input-btn-small" onclick="goToSignUp()">Sign up</button>
+      </div>
+      <form id="loginform" onsubmit="loginUser(); return false;">
+        <div id="signup-headline">
+          <h1>Log in</h1>
+          <div id="border-headline"></div>
         </div>
-        <form id="loginform" onsubmit="loginUser(); return false;">
-            <div id="signup-headline">
-                <h1>Log in</h1>
-                <div id="border-headline"></div>
-            </div>
-            <input id="emaillogin" class="input-field" type="email" placeholder="Email" required>
-            <img class="small-icons-inputfield" src="./assets/img/mail.png" alt="mail">
-            <input id="passwordlogin" class="input-field" type="password" placeholder="Password" required>
-            <img class="small-icons-inputfield" src="./assets/img/lock.png" alt="lock">
-            <div id="rememberme">
-                <input id="rememberme-checkbox" class="checkbutton" type="checkbox">Remember me
-            </div>
-            <div id="loginbuttons">
-                <button id="input-btn">Log in</button>
-                <button id="guest-input-btn" onclick="location.href='summaryguest.html';">Guest Log in</button>
-            </div>
-        </form>
-        <div id="joinuser-mobile">Not a Join User?
-            <button id="input-btn-small" onclick="goToSignUp()">Sign up</button>
+        <input
+          id="emaillogin"
+          class="input-field"
+          type="email"
+          placeholder="Email"
+          required
+        />
+        <img
+          class="small-icons-inputfield"
+          src="./assets/img/mail.png"
+          alt="mail"
+        />
+        <input
+          id="passwordlogin"
+          class="input-field"
+          type="password"
+          placeholder="Password"
+          required
+        />
+        <img
+          class="small-icons-inputfield"
+          src="./assets/img/lock.png"
+          alt="lock"
+        />
+        <div id="rememberme">
+          <input
+            id="rememberme-checkbox"
+            class="checkbutton"
+            type="checkbox"
+          />Remember me
         </div>
-        <div id="wrongEmailOrPassword">Wrong Email or Password</div>
-        <div id="privacy-legal">
-            <a href="privacypolicy.html">Privacy Policy</a>
-            <a href="legalnotice.html">Legal Notice</a>
+        <div id="loginbuttons">
+          <button id="input-btn">Log in</button>
+          <button
+            id="guest-input-btn"
+            onclick="location.href='summaryguest.html';"
+          >
+            Guest Log in
+          </button>
         </div>
+      </form>
+      <div id="joinuser-mobile">
+        Not a Join User?
+        <button id="input-btn-small" onclick="goToSignUp()">Sign up</button>
+      </div>
+      <div id="wrongEmailOrPassword">Wrong Email or Password</div>
+      <div id="privacy-legal">
+        <a href="privacypolicy.html">Privacy Policy</a>
+        <a href="legalnotice.html">Legal Notice</a>
+      </div>
     </main>
-</body>
-
+  </body>
 </html>

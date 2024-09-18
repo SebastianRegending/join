@@ -7,8 +7,8 @@ let myName = [];
 /**
  * saves the user in the database on signup
  * 
- * @param {*} path 
- * @param {*} data 
+ * @param {json} path 
+ * @param {json} data 
  * @returns 
  */
 async function saveNewUser(path = "/users", data = {}) {
@@ -29,6 +29,15 @@ async function saveNewUser(path = "/users", data = {}) {
     return responseToJson = newUserData;
 }
 
+/**
+ * prepares the contact for logged in user
+ * 
+ * @param {string} name 
+ * @param {string} email 
+ * @param {string} newUserData 
+ * @param {string} path 
+ * @returns 
+ */
 async function prepareCreateContactForUser(name, email, newUserData, path = "") {
     let letter = name.value.charAt(0).toUpperCase();
     path = `/letter${letter}`
@@ -41,7 +50,19 @@ async function prepareCreateContactForUser(name, email, newUserData, path = "") 
     return responseToJson = await response.json();
 }
 
-async function createContactForUser(name, email, newUserData, initialsForSaving, color, tasks, path){
+/**
+ * creates contact for logged in user
+ * 
+ * @param {string} name 
+ * @param {string} email 
+ * @param {string} newUserData 
+ * @param {string} initialsForSaving 
+ * @param {string} color 
+ * @param {string} tasks 
+ * @param {json} path 
+ * @returns 
+ */
+async function createContactForUser(name, email, newUserData, initialsForSaving, color, tasks, path) {
     data = ({ name: name.value, email: email.value, userid: newUserData, initials: initialsForSaving, color: color, tasks: tasks });
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
@@ -50,9 +71,6 @@ async function createContactForUser(name, email, newUserData, initialsForSaving,
         },
         body: JSON.stringify(data)
     });
-    // document.getElementById('toaster-contact').classList.add('show');
-    // setTimeout(function(){document.getElementById('toaster-contact').classList.remove('show');}, 2000);
-    // loadContacts();
     return response;
 }
 
@@ -72,7 +90,7 @@ async function loginUser(path = "/users") {
     if (user) {
         console.log("User gefunden");
         saveUserLoginNoRemember(user);
-        getUserForContacts(user);        
+        getUserForContacts(user);
         window.location.href = 'summary.html';
         saveLogin();
         saveCheckBox();
@@ -85,6 +103,12 @@ async function loginUser(path = "/users") {
     };
 }
 
+/**
+ * get the user id from logged in user and save it to the session storage
+ * 
+ * @param {string} user 
+ * @param {json} responseToJson 
+ */
 function saveUserId(user, responseToJson) {
     let userIdKey = Object.entries(responseToJson).find(([_userid, userData]) => userData.email == user.email && userData.password == user.password);
     if (userIdKey) {
@@ -118,11 +142,11 @@ function confirmPassword() {
 function isChecked() {
     let isChecked = document.getElementById('checkbox').checked;
     let signInButton = document.getElementById('input-btn');
-    if(isChecked){
+    if (isChecked) {
         signInButton.disabled = false;
     } else {
         signInButton.disabled = true;
-    }        
+    }
 }
 
 /**
@@ -145,9 +169,10 @@ function backToLogin() {
 function launchToasterAndRedirect() {
     let x = document.getElementById("toaster")
     x.className = "show";
-    setTimeout(function() { x.className = x.className.replace("show", "");
+    setTimeout(function () {
+        x.className = x.className.replace("show", "");
         window.location.href = 'login.html';
-     }, 3000);
+    }, 3000);
 }
 
 /**
@@ -156,18 +181,18 @@ function launchToasterAndRedirect() {
 function saveLogin() {
     let isChecked = document.getElementById('rememberme-checkbox').checked;
     let inputEmail = document.getElementById('emaillogin');
-    let inputPassword = document.getElementById('passwordlogin');    
+    let inputPassword = document.getElementById('passwordlogin');
     if (isChecked) {
-    if(inputEmail.value != '') {
-        myLoginEmail.push(inputEmail.value)
+        if (inputEmail.value != '') {
+            myLoginEmail.push(inputEmail.value)
+        }
+        if (inputPassword.value != '') {
+            myLoginPassword.push(inputPassword.value)
+        }
+    } else {
+        localStorage.clear();
     }
-    if(inputPassword.value != '') {
-        myLoginPassword.push(inputPassword.value)
-    }
-} else {
-    localStorage.clear();
-}
-saveToLocalStorage();
+    saveToLocalStorage();
 }
 
 /**
@@ -186,17 +211,17 @@ function saveUserLoginNoRemember(user) {
  */
 function saveToLocalStorage() {
     localStorage.setItem('email', JSON.stringify(myLoginEmail));
-    localStorage.setItem('password', JSON.stringify(myLoginPassword)); 
-    }
+    localStorage.setItem('password', JSON.stringify(myLoginPassword));
+}
 
-    /**
-     * pre fills the login form if the remember me checkbox at the login form is active
-     */
+/**
+ * pre fills the login form if the remember me checkbox at the login form is active
+ */
 function preFillForm() {
     let email = JSON.parse(localStorage.getItem('email'));
-    let password = JSON.parse(localStorage.getItem('password'));   
+    let password = JSON.parse(localStorage.getItem('password'));
     if (email) {
-        document.getElementById('emaillogin').value = email; 
+        document.getElementById('emaillogin').value = email;
     }
     if (password) {
         document.getElementById('passwordlogin').value = password;
@@ -209,8 +234,8 @@ function preFillForm() {
  * saves the status of the remember me checkbox in localstorage
  */
 function saveCheckBox() {
-	let checkbox = document.getElementById("rememberme-checkbox");
-    localStorage.setItem("rememberme-checkbox", checkbox.checked);  
+    let checkbox = document.getElementById("rememberme-checkbox");
+    localStorage.setItem("rememberme-checkbox", checkbox.checked);
 }
 
 /**
@@ -219,8 +244,9 @@ function saveCheckBox() {
 function wrongEmailOrPassword() {
     let x = document.getElementById("wrongEmailOrPassword")
     x.className = "show";
-    setTimeout(function() { x.className = x.className.replace("show", "");
-     }, 4000);
+    setTimeout(function () {
+        x.className = x.className.replace("show", "");
+    }, 4000);
 }
 
 /**
@@ -245,6 +271,9 @@ function startLogoAnimation() {
     }, 800);
 }
 
+/**
+ * starts the join logo animation at the beginning for the mobile version
+ */
 function startLogoAnimationMobile() {
     let animatedLogo = document.getElementById('animated-logo-mobile');
     let animatedLogoContainer = document.getElementById('animated-logo-container');
