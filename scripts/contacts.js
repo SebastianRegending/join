@@ -381,3 +381,22 @@ function openChooseResp() {
 function closeChooseResp() {
     document.getElementById('choosen-contact').style.display = "none"
 }
+
+function startLogoAnimation() {
+    let animatedLogo = document.getElementById('animated-logo');
+    let animatedLogoContainer = document.getElementById('animated-logo-container');
+    let loginPage = document.getElementById('loginpage');
+
+    function applyStyles(element, styles, delay) {
+        setTimeout(() => {
+            Object.assign(element.style, styles);
+        }, delay);
+    }
+
+    applyStyles(animatedLogo, { animation: "logoShrinkAndMove 1s forwards" }, 500);
+    setTimeout(() => {
+        loginPage.classList.replace('hidden', 'show');
+        animatedLogoContainer.style.backgroundColor = 'transparent';
+        animatedLogoContainer.classList.add('logo-behind');
+    }, 800);
+}

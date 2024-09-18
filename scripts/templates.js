@@ -7,11 +7,13 @@ function generateTaskDetailsHTML(todoData, id) {
     }
     let subtasks = todoData.subtasks ? todoData.subtasks : [];
     for(let i = 0; i < subtasks.length; i++){
-        subtasksEdit.push(subtasks[i]['title']);
+        subtasksEdit.push({"title": subtasks[i]['title'], "done": subtasks[i]['done']});
     }
+
     let taskTypeClass = todoData.category === 'User Story' ? 'user-story' :
         todoData.category === 'Technical Task' ? 'technical-task' : '';
     return `
+                
         <div id="task-details" class="task-details">
             <div class="task-header">
                 <div class="task-type ${taskTypeClass}">
@@ -100,7 +102,8 @@ function generateEditPage(id, title, description, contacts, deadline, prio, cate
    
     return `
         <div id="task-details-edit" class="task-details">
-           <form onsubmit="submitEditetTask()">
+        <div class="right-align" onclick="closePopUpEdit()"><img class="cancel-cross" src="./assets/img/cancel.svg""></div>
+           <form id="editform"  onsubmit="submitEditetTask(); return false;">
            <span>Title</span>
             <input id="input-title-edit" class="input-field" value="${title}">
              <span>Description</span>
@@ -124,7 +127,7 @@ function generateEditPage(id, title, description, contacts, deadline, prio, cate
 
  <span>Assigned to contacts</span>
                <div class="multiselect">
-                        <div class="selectBox" onclick="showCheckboxes()">
+                        <div class="selectBox" onclick="showCheckboxesEdit()">
                             <select class="input-field-select">
                                 <option class="option-select">Select contacts to assign</option>
                             </select>
@@ -138,12 +141,12 @@ function generateEditPage(id, title, description, contacts, deadline, prio, cate
                   <div class="subtasks-area">  
  <span>Subtasks</span>
                     <div class="input-field-subtasks input-field-subtasks-smaller">
-                        <input id="subtasks" onfocus="openAddSubtask()" placeholder="Add new subtask">
+                        <input id="subtasks-edit" onfocus="openAddSubtaskEdit()" placeholder="Add new subtask">
                         <div onclick="openAddSubtaskEdit()" id="add-button-icon-plus-edit" class="add-subtask"><img
                                 src="./assets/img/add.svg"></div>
 
                         <div class="cancel-container">
-                            <div class="d-none" onclick="cancelAddSubtask()" id="add-button-icon-cancel-edit"><img
+                            <div class="d-none" onclick="cancelAddSubtaskEdit()" id="add-button-icon-cancel-edit"><img
                                     src="./assets/img/cancel.svg"></div>
                         </div>
 
@@ -153,7 +156,9 @@ function generateEditPage(id, title, description, contacts, deadline, prio, cate
 
                     <div class="flex-column" id="added-subtasks-edit"></div>
                     </div>
-                    <button>OK <img src="./assets/img/checkstandard.svg"></button>
+                    <div class="centered">
+                    <button class="blue-btn">OK <img src="./assets/img/check.svg"></button>
+                    <div>
            </form>
         </div>
     `;

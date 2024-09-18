@@ -4,7 +4,6 @@ let expanded = false;
 let URL_contacts = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts";
 let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
 let prio = "medium";
-let contactsArray = [];
 let subtasks = [];
 let taskID = [];
 let checkedContactsCircles = [];
@@ -102,8 +101,11 @@ function addCircle(color, id, inits) {
     checkedContactsCircles.splice(checkedContactsCircles.findIndex(item => item.id === id), 1);
   }
   document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
-  if (checkedContactsCircles.length > 8) {
-    document.getElementById('circle-area-assigned-contacts').innerHTML = `<div class="circle circle-lightblue">${checkedContactsCircles.length}</div>`
+  if (checkedContactsCircles.length > 6) {
+    for (let i = 0; i < 6; i++) {
+      document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCircles[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCircles[i]['inits']}</div>`;
+    }
+    document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-grey assigned-contacts z${7}">+${checkedContactsCircles.length-6}</div>`
   } else {
     for (let i = 0; i < checkedContactsCircles.length; i++) {
       document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCircles[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCircles[i]['inits']}</div>`;

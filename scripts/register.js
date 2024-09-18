@@ -255,7 +255,6 @@ function startLogoAnimationMobile() {
             Object.assign(element.style, styles);
         }, delay);
     }
-
     applyStyles(animatedLogo, { animation: "logoShrinkAndMove 1s forwards" }, 500);
     setTimeout(() => {
         loginPage.classList.replace('hidden', 'show');
@@ -263,6 +262,3 @@ function startLogoAnimationMobile() {
         animatedLogoContainer.classList.add('logo-behind');
     }, 800);
 }
-
-
-
