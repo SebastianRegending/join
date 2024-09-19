@@ -1,17 +1,16 @@
-let contacts = [];
-let IDs;
-let expanded = false;
-let URL_contacts = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts";
-let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
-let prio = "medium";
-let subtasks = [];
-let taskID = [];
-let checkedContactsCircles = [];
-let progress;
+let IDsDialog;
+let expandedDialog = false;
+let URL_contactsDialog = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts";
+let URL_tasksdialog = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
+let prioDialog = "medium";
+let subtasksDialog = [];
+let taskIDDialog = [];
+let checkedContactsCirclesDialog = [];
+let progressDialog;
 
 
 function openDialogAddTask(newProgress){
-    progress = newProgress;
+    progressDialog = newProgress;
     document.getElementById('addTaskDialog').classList.remove('d-none');
 }
 
@@ -25,12 +24,12 @@ function closeDialogAddTask(){
  */
 function showCheckboxesDialog() {
   let checkboxes = document.getElementById("checkboxes");
-  if (!expanded) {
+  if (!expandedDialog) {
     checkboxes.style.display = "block";
-    expanded = true;
+    expandedDialog = true;
   } else {
     checkboxes.style.display = "none";
-    expanded = false;
+    expandedDialog = false;
   }
 }
 
@@ -39,14 +38,14 @@ function showCheckboxesDialog() {
  * Loads the contacts from database to the Checkbox-Input
  */
 async function loadContactsDialog() {
-  let response = await fetch(URL_contacts + ".json");
+  let response = await fetch(URL_contactsDialog + ".json");
   let responseToJson = await response.json();
   let contactsToConvertLetters = jsonToArrayContacts(responseToJson);
   let compare = sessionStorage.getItem("userId");
   for (let n = 0; n < contactsToConvertLetters.length; n++) {
-    IDs = jsonToArrayIDs(contactsToConvertLetters[n])
-    for (let i = 0; i < IDs.length; i++) {
-      if (compare && compare == IDs[i]['userid']) {
+    IDsDialog = jsonToArrayIDs(contactsToConvertLetters[n])
+    for (let i = 0; i < IDsDialog.length; i++) {
+      if (compare && compare == IDsDialog[i]['userid']) {
         document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplateYou(n, i);
       } else {
         document.getElementById('checkboxes').innerHTML += createContactsCheckboxTemplate(n, i);
@@ -66,11 +65,11 @@ async function loadContactsDialog() {
 function createContactsCheckboxTemplate(n, i) {
   return /*html*/`
       <label for="contacts${n}" class="contact-for-form">
-            <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
+            <div id="contact-${n}-circle" class="circle circle-${IDsDialog[i]['color']}">${IDsDialog[i]['initials']}
             </div>
-            <div>${IDs[i]['name']}
+            <div>${IDsDialog[i]['name']}
             </div> 
-            <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}"  data-color="${IDs[i]['color']}" onclick="addCircle('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
+            <input class="input-check" type="checkbox" name="contacts" value="${IDsDialog[i]['name']}" id="contact-${n}${i}" data-letter="${IDsDialog[i]['initials'].charAt(0)}" data-id="${IDsDialog[i]['id']}"  data-color="${IDsDialog[i]['color']}" onclick="addCircle('${IDsDialog[i]['color']}', 'contact-${n}${i}', '${IDsDialog[i]['initials']}')"/>
       </label>
     `
 }
@@ -86,11 +85,11 @@ function createContactsCheckboxTemplate(n, i) {
 function createContactsCheckboxTemplateYou(n, i) {
   return /*html*/`
       <label for="contacts${n}" class="contact-for-form">
-            <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
+            <div id="contact-${n}-circle" class="circle circle-${IDsDialog[i]['color']}">${IDsDialog[i]['initials']}
             </div>
-            <div>${IDs[i]['name']}(You)
+            <div>${IDsDialog[i]['name']}(You)
             </div> 
-            <input class="input-check" type="checkbox" name="contacts" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" onclick="addCircle('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}')"/>
+            <input class="input-check" type="checkbox" name="contacts" value="${IDsDialog[i]['name']}" id="contact-${n}${i}" data-letter="${IDsDialog[i]['initials'].charAt(0)}" data-id="${IDsDialog[i]['id']}" onclick="addCircle('${IDsDialog[i]['color']}', 'contact-${n}${i}', '${IDsDialog[i]['initials']}')"/>
       </label>
     `
 }
@@ -106,19 +105,19 @@ function createContactsCheckboxTemplateYou(n, i) {
 function addCircle(color, id, inits) {
   let check = document.getElementById(id);
   if (check.checked == true) {
-    checkedContactsCircles.push({ "id": id, "color": color, "inits": inits });
+    checkedContactsCirclesDialog.push({ "id": id, "color": color, "inits": inits });
   } else {
-    checkedContactsCircles.splice(checkedContactsCircles.findIndex(item => item.id === id), 1);
+    checkedContactsCirclesDialog.splice(checkedContactsCirclesDialog.findIndex(item => item.id === id), 1);
   }
   document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
-  if (checkedContactsCircles.length > 6) {
+  if (checkedContactsCirclesDialog.length > 6) {
     for (let i = 0; i < 6; i++) {
-      document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCircles[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCircles[i]['inits']}</div>`;
+      document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCirclesDialog[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCirclesDialog[i]['inits']}</div>`;
     }
-    document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-grey assigned-contacts z${7}">+${checkedContactsCircles.length-6}</div>`
+    document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-grey assigned-contacts z${7}">+${checkedContactsCirclesDialog.length-6}</div>`
   } else {
-    for (let i = 0; i < checkedContactsCircles.length; i++) {
-      document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCircles[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCircles[i]['inits']}</div>`;
+    for (let i = 0; i < checkedContactsCirclesDialog.length; i++) {
+      document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCirclesDialog[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCirclesDialog[i]['inits']}</div>`;
     }
   }
 }
@@ -157,10 +156,10 @@ async function uploadTask(title, description, deadline, category, assignedContac
   let responseToJson = await response.json();
   if (responseToJson['tasks']) {
     responseToJson['tasks'].forEach(task => {
-      taskID.push(task);
+      taskIDDialog.push(task);
     });
   }
-  taskID.push(responseToJson['name']);
+  taskIDDialog.push(responseToJson['name']);
   return responseToJson;
 }
 
@@ -175,8 +174,8 @@ async function uploadTask(title, description, deadline, category, assignedContac
  * @param {*} assignedContacts 
  */
 async function sumbitUploadTask(title, description, deadline, category, assignedContacts) {
-  data = ({ title: title.value, description: description.value, deadline: deadline.value, prio: prio, category: category.value, contacts: assignedContacts, subtasks: subtasks, progress: progress });
-  let response = await fetch(URL_tasks + ".json", {
+  data = ({ title: title.value, description: description.value, deadline: deadline.value, prio: prioDialog, category: category.value, contacts: assignedContacts, subtasks: subtasksDialog, progress: progressDialog });
+  let response = await fetch(URL_tasksdialog + ".json", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -227,7 +226,7 @@ function jsonToArrayIDs(json) {
  * @param {string} priority 
  */
 function setPrio(priority) {
-  prio = priority;
+  prioDialog = priority;
 }
 
 
@@ -258,10 +257,10 @@ function addSubtask() {
   let subtask = document.getElementById('subtasks');
   if (subtask.value) {
     let subtaskobject = { title: `${subtask.value}`, done: "false" };
-    subtasks.push(subtaskobject);
+    subtasksDialog.push(subtaskobject);
     document.getElementById('added-subtasks').innerHTML = ``;
-    for (let i = 0; i < subtasks.length; i++) {
-      document.getElementById('added-subtasks').innerHTML += `<li>${subtasks[i]['title']}</li>`;
+    for (let i = 0; i < subtasksDialog.length; i++) {
+      document.getElementById('added-subtasks').innerHTML += `<li>${subtasksDialog[i]['title']}</li>`;
     }
     document.getElementById('subtasks').value = ``;
     cancelAddSubtask()
@@ -328,7 +327,7 @@ function cancelAddSubtask() {
 async function updateContactsTask(assignedContacts) {
   for (let contact of assignedContacts) {
     let path = `/letter${contact['letter']}/${contact['id']}`;
-    let response = await fetch(URL_contacts + path + ".json");
+    let response = await fetch(URL_contactsDialog + path + ".json");
     let responseToJson = await response.json();
     uploadNewData(responseToJson, path)
   }
@@ -343,9 +342,9 @@ async function updateContactsTask(assignedContacts) {
  * @returns 
  */
 async function uploadNewData(dataForUpdate, path) {
-  let data = ({ name: dataForUpdate['name'], email: dataForUpdate['email'], phone: dataForUpdate['phone'], initials: dataForUpdate['initials'], color: dataForUpdate['color'], tasks: taskID });
+  let data = ({ name: dataForUpdate['name'], email: dataForUpdate['email'], phone: dataForUpdate['phone'], initials: dataForUpdate['initials'], color: dataForUpdate['color'], tasks: taskIDDialog });
 
-  let response = await fetch(URL_contacts + path + ".json", {
+  let response = await fetch(URL_contactsDialog + path + ".json", {
     method: "PUT",
     header: {
       "Content-Type": "application/json",
@@ -362,13 +361,13 @@ function clearTasks() {
   clearCheckboxes()
   document.getElementById('deadline').value = ``;
   colorPrioMedium();
-  prio = "medium";
+  prioDialog = "medium";
   document.getElementById('category').innerHTML = emptyCategory();
   document.getElementById('subtasks').innerHTML = ``;
   document.getElementById('subtasks').value = ``;
   cancelAddSubtask();
   document.getElementById('added-subtasks').innerHTML = ``;
-  subtasks = [];
+  subtasksDialog = [];
 }
 
 
@@ -378,7 +377,7 @@ function clearTasks() {
 function clearCheckboxes() {
   let checkboxes = document.querySelectorAll('input[name="contacts"]:checked');
   checkboxes.forEach(el => el.checked = false);
-  checkedContactsCircles = [];
+  checkedContactsCirclesDialog = [];
   document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
 }
 

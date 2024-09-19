@@ -1,9 +1,3 @@
-
-function setProgress(x){
-    progress = x;
-    openDialog();
-}
-
 document.addEventListener('DOMContentLoaded', function () {
 
     // Öffnet das Dialogfenster zum Hinzufügen eines neuen Tasks

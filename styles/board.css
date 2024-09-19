@@ -1226,7 +1226,15 @@ textarea {
     display: flex;
 }
 
+#addTaskDialog{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
 
 #addTaskDialog form{
+    padding: 40px;
+    border-radius: 16px;
     background-color: white;
 }
