@@ -1,4 +1,3 @@
-let contacts = [];
 let IDs;
 let expanded = false;
 let URL_contacts = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/contacts";

@@ -14,7 +14,7 @@ function openDialogAddTask(newProgress){
     document.getElementById('addTaskDialog').classList.remove('d-none');
 }
 
-function closeDialogAddTask(){
+function cancelDialogAddTask(){
     document.getElementById('addTaskDialog').classList.add('d-none');
 }
 
@@ -137,7 +137,7 @@ async function addTask() {
   await updateContactsTask(assignedContacts);
   clearTasks();
   launchToaster();
-  closeDialogAddTask();
+  cancelDialogAddTask();
 }
 
 

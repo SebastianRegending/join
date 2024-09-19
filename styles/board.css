@@ -3,8 +3,8 @@ body {
 }
 
 .board-container {
-    margin-top: 96px;
-    padding-top: 64px;
+    margin-top: 96px !important;
+    padding-top: 64px !important;
     margin-left: 338px;
     max-width: 1440px;
     margin-right: 80px;
@@ -458,8 +458,8 @@ body {
 /* DIALOG */
 
 .dialog-bg {
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    z-index: 100;
     position: fixed;
     left: 0;
     right: 0;
@@ -468,7 +468,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  }
 
 .dialog {
     height: 70vh;
@@ -1230,6 +1230,7 @@ textarea {
 display: flex;
 align-items: center;
 justify-content: center;
+z-index: 101;
 }
 
 
@@ -1237,4 +1238,28 @@ justify-content: center;
     padding: 40px;
     border-radius: 16px;
     background-color: white;
-}
+    
+ }
+
+ #add-task-form-content{
+    margin: 0;
+    
+ }
+
+ #add-button-icon-cancel-dialog{
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1002;
+ }
+
+ #add-button-icon-cancel-dialog img{
+padding: 12px;
+border-radius: 50%;
+ }
+
+ #add-button-icon-cancel-dialog img:hover{
+    cursor: pointer;
+    background-color: #D1D1D1;
+
+ }
+

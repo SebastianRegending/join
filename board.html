@@ -22,9 +22,10 @@
     <div w3-include-html="./menu.html"></div>
     <section class="board-container">
         <div id="addTaskDialog" class="dialog-bg d-none">
-
-            <form onsubmit="addTask(); return false">
-                <div class="add-task-form">
+            <form class="form-content" onsubmit="addTask(); return false">
+                <div class="" onclick="cancelDialogAddTask()" id="add-button-icon-cancel-dialog"><img
+                    src="./assets/img/cancel.svg"></div>
+                <div id="add-task-form-content" class="add-task-form">
                     <div class="form-left-side">
                         <label for="input-title">Title<span class="red-letter">*</span></label>
                         <input class="input-field" id="input-title" required type="text" placeholder="Enter a title">
