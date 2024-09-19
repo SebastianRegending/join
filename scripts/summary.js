@@ -1,6 +1,5 @@
 let initialsSummary = [];
 let futureTasks = [];
-let hasAnimationPlayed = false;
 
 /**
  * switch to board
@@ -222,17 +221,15 @@ function setZIndex() {
     contentSummaryRightMobile.style.zIndex = -1;
 }
 
-
 /**
  * starts the greeting animation on mobile devices
  */
 function greetingOnMobile() {
-    const hasAnimationPlayed = localStorage.getItem('animationPlayed');
-    
+    const hasAnimationPlayed = localStorage.getItem('animationPlayed');    
     if (!hasAnimationPlayed) {
-        localStorage.setItem('animationPlayed', 'true'); // Speichere den Status der Animation im lokalen Speicher
+        localStorage.setItem('animationPlayed', 'true');
         setTimeout(setZIndex, 3200);
     } else {
-        setZIndex(); // Setze den z-index sofort, wenn die Animation bereits abgespielt wurde
+        setZIndex();
     }
 }
