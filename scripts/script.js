@@ -79,6 +79,7 @@ async function initHelpHTML() {
 async function initGuestSummaryHTML() {
     await includeHTML();
     setDaytimeOnGreeting();
+    greetingOnMobile();
 }
 
 /**
