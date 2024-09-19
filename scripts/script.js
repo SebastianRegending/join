@@ -36,6 +36,7 @@ async function initSummaryHTML() {
 async function initBoardHTML() {
     await includeHTML();
     loadTasks();
+    loadContactsDialog();
     setInitialsForHeader();
 }
 

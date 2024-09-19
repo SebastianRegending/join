@@ -1225,3 +1225,8 @@ textarea {
 #circle-area-assigned-contacts-edit {
     display: flex;
 }
+
+
+#addTaskDialog form{
+    background-color: white;
+}
