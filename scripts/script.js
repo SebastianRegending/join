@@ -25,6 +25,7 @@ async function initSummaryHTML() {
     await getProgressOfTasks();
     setDaytimeOnGreeting();
     setUsernameOnGreeting();
+    greetingOnMobile();
     showInitialsForHeader();
     getDeadlineDate();
 }

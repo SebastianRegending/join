@@ -1,5 +1,6 @@
 let initialsSummary = [];
 let futureTasks = [];
+let hasAnimationPlayed = false;
 
 /**
  * switch to board
@@ -22,6 +23,7 @@ function setDaytimeOnGreeting() {
     else if (hrs >= 17 && hrs <= 24)
         greet = 'Good Evening,';
     document.getElementById('daytime-greeting').innerHTML = greet;
+    document.getElementById('daytime-greeting-mobile').innerHTML = greet;
 }
 
 /**
@@ -45,11 +47,13 @@ async function setUsernameOnGreeting() {
         const currentUser = UserKeys[i];
         if (currentUser.email == userEmail) {
             document.getElementById('username-greeting').innerHTML = currentUser.name;
+            document.getElementById('username-greeting-mobile').innerHTML = currentUser.name;
             createInitialsForHeader(currentUser.name);
             return;
         } else {
             let userNameNoRemember = JSON.parse(sessionStorage.getItem('name'));
             document.getElementById('username-greeting').innerHTML = userNameNoRemember;
+            document.getElementById('username-greeting-mobile').innerHTML = userNameNoRemember;
             createInitialsForHeader(userNameNoRemember);
             return;
         }
@@ -193,10 +197,10 @@ function findClosestDate(futureTasks) {
             if (difference < minDifference) {
                 minDifference = difference;
                 closestDate = date;
+                showClosestDate(closestDate);
             }
         }
     }
-    showClosestDate(closestDate);
 }
 
 /**
@@ -208,4 +212,27 @@ function showClosestDate(closestDate) {
     const options = { year: "numeric", month: "2-digit", day: "2-digit" };
     const europeanDate = closestDate.toLocaleDateString("de-DE", options);
     document.getElementById('summary-urgent-right-date').innerHTML = europeanDate;
+}
+
+/**
+ * set z-index for the greeting animation on mobile devices
+ */
+function setZIndex() {
+    const contentSummaryRightMobile = document.getElementById("content-summary-right-mobile");
+    contentSummaryRightMobile.style.zIndex = -1;
+}
+
+
+/**
+ * starts the greeting animation on mobile devices
+ */
+function greetingOnMobile() {
+    const hasAnimationPlayed = localStorage.getItem('animationPlayed');
+    
+    if (!hasAnimationPlayed) {
+        localStorage.setItem('animationPlayed', 'true'); // Speichere den Status der Animation im lokalen Speicher
+        setTimeout(setZIndex, 3200);
+    } else {
+        setZIndex(); // Setze den z-index sofort, wenn die Animation bereits abgespielt wurde
+    }
 }

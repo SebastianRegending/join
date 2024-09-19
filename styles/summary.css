@@ -27,6 +27,21 @@ body {
   margin: 380px 0 0 0;
 }
 
+#content-summary-right-mobile {
+  width: 100%;
+  height: 100vh;
+  background-color: #f6f7f8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5000;
+  animation: mobileGreeting 3s 1.25s 1 forwards;
+}
+
 #join-360 {
   width: 625px;
   height: 73px;
@@ -53,6 +68,16 @@ body {
   margin: 0;
 }
 
+#personal-greeting-mobile {
+  width: 100%;
+  height: 136px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
 #daytime-greeting {
   width: 338px;
   height: 56px;
@@ -62,6 +87,18 @@ body {
   margin: 0;
 }
 
+#daytime-greeting-mobile {
+  width: 338px;
+  height: 56px;
+  font-family: Inter-Medium;
+  font-size: 47px;
+  color: #2a3647;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #username-greeting {
   width: 100%;
   height: 77px;
@@ -69,6 +106,18 @@ body {
   font-size: 64px;
   color: #29abe2;
   margin: 0;
+}
+
+#username-greeting-mobile {
+  width: 100%;
+  height: 77px;
+  font-family: Inter-Bold;
+  font-size: 64px;
+  color: #29abe2;
+  margin: 0;
+  display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #join-360-headline {
@@ -318,6 +367,15 @@ body {
   #content-summary-right {
     display: none !important;
   }
+
+  #content-summary-right-mobile {
+    display: flex !important;
+  }
+
+  @keyframes mobileGreeting {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
 }
 
 @media (max-width: 1000px) {
@@ -447,6 +505,11 @@ body {
   #summary {
     margin: 40px 24px;
   }
+
+  #username-greeting-mobile {
+    height: fit-content;
+    text-align: center;
+  }
 }
 
 @media (max-width: 430px) {
@@ -561,5 +624,13 @@ body {
 
   #join-360-bordercontainer-mobile {
     display: flex !important;
+  }
+
+  #daytime-greeting-mobile {
+    font-size: 32px;
+  }
+
+  #username-greeting-mobile {
+    font-size: 32px;
   }
 }
