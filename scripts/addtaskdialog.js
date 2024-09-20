@@ -135,9 +135,9 @@ async function addTask() {
   let category = document.getElementById('category');
 
   await uploadTask(title, description, deadline, category, assignedContacts);
+  launchToaster();
   await updateContactsTask(assignedContacts);
   clearTasks();
-  launchToaster();
   cancelDialogAddTask();
 }
 
@@ -400,7 +400,7 @@ function emptyCategory() {
  * Gives User-Feedback
  */
 function launchToaster() {
-  let x = document.getElementById("toaster-task")
+  let x = document.getElementById("toaster-task-board")
   x.className = "show";
   setTimeout(function () {
     x.className = x.className.replace("show", "");

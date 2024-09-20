@@ -23,17 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('dialog-content').addEventListener('click', function (event) {
                         event.stopPropagation(); // Stoppt das Ereignis, damit es nicht den Dialog-Hintergrund erreicht
                     });
-                    
-                    // Lädt das zusätzliche Skript und die Kontakte, nachdem das Dialogfenster geöffnet wurde
-                    loadScripts().then(() => {
-                        loadContacts(); // Lädt Kontakte für das "Select contacts to assign"-Feld
 
-                        let createTaskButton = document.getElementById('create-task-btn');
-                        if (createTaskButton) {
-                            createTaskButton.removeEventListener('click', createTaskHandler);
-                            createTaskButton.addEventListener('click', createTaskHandler);
-                        }
-                    });
                 }
             })
             .catch(error => {

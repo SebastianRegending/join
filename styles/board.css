@@ -1263,3 +1263,30 @@ border-radius: 50%;
 
  }
 
+ #toaster-task-board {
+    visibility: hidden;
+    width: 312px;
+    height: 74px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A3647;
+    font-size: 20px;
+    color: white;
+    position: fixed;
+    z-index: 5000;
+    left: 50%;
+    gap: 24px;
+    bottom: -74px;
+    transform: translateX(-50%);
+  }
+  
+  
+  #toaster-task-board.show {
+    visibility: visible;
+    animation: slidein 0.75s, stay 1s 0.75s, slideout 0.75s 1.5s;
+  }
+
