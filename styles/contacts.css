@@ -1021,6 +1021,11 @@ body {
         border-radius: 50%;
     }
 
+    .arrow-left-line {
+        width: 32px;
+        height: 32px;
+    }
+
     .arrow-back:hover {
         cursor: pointer;
         background-color: #d1d1d1;
