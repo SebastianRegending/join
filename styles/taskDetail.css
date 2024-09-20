@@ -41,7 +41,9 @@
     padding: 4px 24px;
     gap: 10px;
     border-radius: 10px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .task-type span {
