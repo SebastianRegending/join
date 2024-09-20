@@ -929,11 +929,6 @@ body {
     .dialog-bg {
         background-color: rgba(0, 0, 0, 0.2) !important;
         z-index: 100;
-        /* position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0; */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1021,14 +1016,11 @@ justify-content: space-between;
 gap: 0px;
     
     }
-
     .card-description {
         width: 100%;
         overflow: hidden;
 
-    }
-    
-
+    }  
     .todo-card {
         width: 200px;
         height: fit-content;
