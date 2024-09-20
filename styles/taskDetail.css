@@ -165,10 +165,7 @@
 /* Footer */
 .task-footer {
     display: flex;
-    gap: 8px;
-    position: absolute;
-    bottom: 3%;
-    right: 40px;
+    gap: 20px;
 }
 
 .btn-delete-task,
@@ -214,5 +211,20 @@
     width: 1px;
     height: 100%;
     background-color: #ccc;
+}
+
+@media (max-width: 650px) {
+    .task-details {
+        padding: 24px 16px;
+    }
+
+    .task-type span {
+        font-size: 20px;
+    }
+
+    .btn-delete-task,
+.btn-edit-task {
+    padding: 5px 8px;
+}
 }
 

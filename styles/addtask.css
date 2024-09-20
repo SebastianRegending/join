@@ -70,6 +70,14 @@ h1 {
   border-right: solid 1px #D1D1D1;
 }
 
+.form-left-side-board {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 24px 40px 24px 40px;
+  border-right: solid 1px #D1D1D1;
+}
+
 
 .form-left-side-help {
   display: flex;
@@ -786,6 +794,22 @@ option {
 
 @media (max-width: 1000px) {
 
+  #addTaskDialog form {
+    padding: 10px;
+    overflow-x: hidden;
+  }
+
+  .submit-area-help-container-board {
+    width: 86%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+  .form-right-side-board {
+    width: 100%;
+  }
+
   .circle {
     border-radius: 50%;
     height: 30px;
@@ -811,6 +835,13 @@ option {
     margin: 24px 40px 24px 40px;
     border-right: none;
   }
+
+  .form-left-side-board {
+    width: 90%;
+    margin: 24px 40px 24px 40px;
+    border-right: none;
+  }
+
 
 
   .form-left-side-help {
@@ -852,6 +883,11 @@ option {
     font-size: 16px;
   }
 
+  #pop-up-content {
+    width: 90vw;
+  }
+
+
   .form-right-side {
     width: 100%;
     margin: 24px 40px 24px 10px;
@@ -862,6 +898,17 @@ option {
     margin: 120px 40px 24px 10px;
   }
 
+  .form-left-side-board {
+    width: 100%;
+    margin: 0 40px 24px 10px;
+  }
+
+  .submit-area-help-container-board {
+    width: 93%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   .input-field-select {
     font-size: 16px !important;

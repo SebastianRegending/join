@@ -22,11 +22,11 @@
     <div w3-include-html="./menu.html"></div>
     <section class="board-container">
         <div id="addTaskDialog" class="dialog-bg d-none">
-            <form class="form-content" onsubmit="addTask(); return false">
+            <form class="form-content-board" onsubmit="addTask(); return false">
                 <div class="" onclick="cancelDialogAddTask()" id="add-button-icon-cancel-dialog"><img
                     src="./assets/img/cancel.svg"></div>
                 <div id="add-task-form-content" class="add-task-form">
-                    <div class="form-left-side">
+                    <div class="form-left-side-board">
                         <label for="input-title">Title<span class="red-letter">*</span></label>
                         <input class="input-field" id="input-title" required type="text" placeholder="Enter a title">
                         <label for="input-description">Description</label>
@@ -87,14 +87,14 @@
                         <div class="flex-column" id="added-subtasks"></div>
                     </div>
                 </div>
-                <div class="add-task-form">
+                <div class="add-task-form-board">
                     <div class="form-left-side-help">
                         <span><span class="red-letter">*</span>This field is required</span>
                     </div>
-                    <div class="form-right-side">
+                    <div class="form-right-side-board">
     
                         <div class="submit-area-right"></div>
-                        <div class="flexed submit-area-help-container">
+                        <div class="flexed submit-area-help-container-board">
                             <span class="red-letter-resp"><span class="red-letter">*</span>This field is required</span>
                             <div class="white-btn" onclick="clearTasks()">Clear <img src="./assets/img/cancel.svg"></div>
                             <button class="blue-btn">Create Task<img src="./assets/img/check.svg"></button>
