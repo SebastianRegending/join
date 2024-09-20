@@ -8,6 +8,8 @@ body {
     margin-left: 338px;
     max-width: 1440px;
     margin-right: 80px;
+    height: 100vh;
+
     overflow-y: auto;
     --sb-track-color: #ffffff;
     --sb-thumb-color: #a8a8a8;
@@ -418,7 +420,8 @@ body {
 
 #Done {
     width: 280px;
-    height: 100%
+    height: 100%;
+    margin-bottom: 200px;
 }
 
 .column-container {
@@ -719,6 +722,7 @@ body {
         align-items: flex-start;
         gap: 20px;
         width: 100%;
+        margin-bottom: 200px;
     }
 
     .task-column {
@@ -744,12 +748,24 @@ body {
 
     #ToDo,
     #inProgress,
-    #AwaitFeedback,
+    #AwaitFeedback{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        gap: 16px;
+        padding: 10px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+
     #Done {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         overflow: hidden;
+        margin-bottom: 300px;
         gap: 16px;
         padding: 10px;
         box-sizing: border-box;
@@ -809,7 +825,7 @@ body {
 
     .board-container {
         margin-left: 236px;
-        margin-right: 8px
+        margin-right: 8px;
     }
 
     #dialog-content .close-popup{
@@ -904,6 +920,38 @@ body {
         margin: 24px 0 24px 8px;
     }
 
+    .dialog-bg {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        z-index: 100;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+
+    #addTaskDialog{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        }
+
+        #addTaskDialog form{
+            height: 80%;
+            width: 80%;
+            margin-top: 96px;
+            border-radius: 16px;
+            background-color: white;
+           }
+        
+
     #dialog-content .from-right-side{
         margin: 24px 0px 24px 40px;
     }
@@ -961,8 +1009,32 @@ body {
         font-size: 48px;
     }
 
+    .card-footer {
+width: 100%;
+justify-content: space-between;
+gap: 0px;
+    
+    }
+
+    .card-description {
+        width: 100%;
+        overflow: hidden;
+
+    }
+    
+
+    .todo-card {
+        width: 200px;
+        height: fit-content;
+        background-color: #ffffff;
+        border-radius: 24px;
+        padding: 16px;
+        box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+        margin-bottom: 16px;
+    }
+
     .board-container {
-        width: 90%;
+        width: 85%;
         margin-left: 0;
         padding: 24px;
         padding-bottom: 112px;
@@ -978,6 +1050,9 @@ body {
         height: 100vh;
         border-radius: 0;
     }
+#done{
+    margin-bottom: 300px;
+}
 }
 
 
@@ -1230,7 +1305,7 @@ textarea {
 display: flex;
 align-items: center;
 justify-content: center;
-z-index: 101;
+z-index: 5001;
 }
 
 
@@ -1238,8 +1313,27 @@ z-index: 101;
     padding: 40px;
     border-radius: 16px;
     background-color: white;
-    
+    overflow: auto;
+
+    --sb-track-color: #ffffff;
+    --sb-thumb-color: #a8a8a8;
+    --sb-size: 6px;
  }
+
+ #addTaskDialog form::-webkit-scrollbar {
+    width: var(--sb-size)
+  }
+  
+  #addTaskDialog form::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 17px;
+  }
+  
+  
+  #addTaskDialog form::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 17px;
+  }
 
  #add-task-form-content{
     margin: 0;
