@@ -54,16 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
         closeDialog();  // Schließt den Dialog, wenn auf den Hintergrund geklickt wurde
     });
 
-    // Funktion zum Laden des zusätzlichen Skripts `addtask.js`
-    function loadScripts() {
-        return new Promise((resolve, reject) => {
-            let script = document.createElement('script');
-            script.src = './scripts/addtask.js';
-            script.onload = resolve;
-            script.onerror = reject;
-            document.body.appendChild(script);
-        });
-    }
+
+
 
     // Fügt den Event Listener für das Öffnen des Dialogs hinzu
     document.querySelector('.add-task').addEventListener('click', openDialog);
@@ -296,13 +288,11 @@ function generateProgressHTML(task) {
 
 // Funktion zum Generieren der Kontakt-Badges-HTML
 function generateContactsHTML(contacts = []) {
-    let colors = ['#FF7A00', '#1FD7C1', '#462F8A', '#6e52ff', '#00bee8'];
     let displayedContacts = contacts.slice(0, 4);
     let remainingContacts = contacts.length - 4; 
-    let badgesHTML = displayedContacts.map((contact, index) => {
-        let color = colors[index % colors.length];
+    let badgesHTML = displayedContacts.map((contact) => {
         let initials = getInitials(contact.name);
-        return `<span class="user-badge" style="background-color:${color}">${initials}</span>`;
+        return `<span class="user-badge circle-${contact.color}">${initials}</span>`;
     }).join('');
 
     if (remainingContacts > 0) {

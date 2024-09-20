@@ -16,6 +16,7 @@ function openDialogAddTask(newProgress){
 
 function cancelDialogAddTask(){
     document.getElementById('addTaskDialog').classList.add('d-none');
+    document.getElementById('dialog').classList.add('d-none');
 }
 
 
