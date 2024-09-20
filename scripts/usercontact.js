@@ -11,9 +11,9 @@ function getUserForContacts(user) {
  * 
  * @returns random color
  */
-function createColor() {
+function createColorUser() {
     let colorArray = ["yellow", "orange", "turquoise", "purple", "lightpurple", "blue", "lightblue", "pink", "lightred", "green"]
-    let color = colorArray[createRandomNumbers()]
+    let color = colorArray[createRandomNumbersUser()]
     return color;
 }
 
@@ -23,9 +23,9 @@ function createColor() {
  * 
  * @returns random color-Number
  */
-function createRandomNumbers() {
+function createRandomNumbersUser() {
     if (randomNumbersForUser.length > 9) {
-        randomNumbers = [];
+        randomNumbersForUser = [];
     }
     let n = randomNumbersForUser.length - 1;
     let finalNumber = randomNumbersForUser.length;

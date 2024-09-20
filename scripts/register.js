@@ -43,7 +43,7 @@ async function prepareCreateContactForUser(name, email, newUserData, path = "") 
     path = `/letter${letter}`
     createInitialsForUser(name.value);
     let initialsForSaving = initialsForUser.join('').toUpperCase();
-    let color = createColor();
+    let color = createColorUser();
     let tasks = [];
     let newUserDataId = jsonToArrayUser(newUserData);
     let response = await createContactForUser(name, email, newUserDataId, initialsForSaving, color, tasks, path);
