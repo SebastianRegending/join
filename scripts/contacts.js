@@ -354,7 +354,7 @@ function createRandomNumbers() {
         randomNumbers = [];
     }
     let n = randomNumbers.length - 1;
-    let finalNumber = randomNumbers.length;
+    let finalNumber = n + 1;
     while (n < finalNumber) {
         let x = Math.floor((Math.random() * 10));
         if (!randomNumbers.includes(x)) {

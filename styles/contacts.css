@@ -1010,8 +1010,8 @@ body {
 
     .arrow-back {
         display: flex;
-        width: 56px;
-        height: 56px;
+        width: 32px;
+        height: 32px;
         align-items: center;
         justify-content: center;
         position: fixed;
@@ -1019,6 +1019,11 @@ body {
         right: 20px;
         margin-right: 0px;
         border-radius: 50%;
+    }
+
+    .arrow-left-line {
+        width: 32px;
+        height: 32px;
     }
 
     .arrow-back:hover {

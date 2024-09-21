@@ -526,6 +526,12 @@ body {
     height: 380px;
 }
 
+.add-task-form-board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #dialog-content #input-description {
     height: 120px;
 }
@@ -904,7 +910,7 @@ body {
         width: 100%;
     }
 
-    #dialog-content .form-left-side{
+    #dialog-content .form-left-side-board{
         border-right: solid 1px #D1D1D1;
     }
 
@@ -914,7 +920,7 @@ body {
 }
 
 @media screen and (max-width: 1000px){
-    #dialog-content .form-left-side{
+    #dialog-content .form-left-side-board{
         border-right: solid 1px #D1D1D1;
         margin: 24px 0 24px 8px;
     }
@@ -922,11 +928,6 @@ body {
     .dialog-bg {
         background-color: rgba(0, 0, 0, 0.2) !important;
         z-index: 100;
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1014,14 +1015,11 @@ justify-content: space-between;
 gap: 0px;
     
     }
-
     .card-description {
         width: 100%;
         overflow: hidden;
 
-    }
-    
-
+    }  
     .todo-card {
         width: 200px;
         height: fit-content;
@@ -1035,7 +1033,7 @@ gap: 0px;
     .board-container {
         width: 85%;
         margin-left: 0;
-        padding: 24px;
+        padding: 20px;
         padding-bottom: 112px;
     }
 
@@ -1049,6 +1047,11 @@ gap: 0px;
         height: 100vh;
         border-radius: 0;
     }
+
+    .form-left-side-board {
+        margin: 0 40px 24px 10px;
+        }
+
 #done{
     margin-bottom: 300px;
 }
