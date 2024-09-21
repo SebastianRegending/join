@@ -151,28 +151,7 @@ function generateTaskHTML(task, taskID) {
     let contactsHTML = generateContactsHTML(task.contacts);
     let labelClass = task.category === 'User Story' ? 'user-story-label' : 'technical-task-label';
 
-    return `
-        <div id="task-${taskID}" class="todo-card" draggable="true" ondragstart="startDragging(event)" onclick="openPopUp('${taskID}')">
-            <div class="card-labels ${labelClass}">
-                <span class="label">${task.category}</span>
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">${task.title}</h3>
-                <p class="card-description">${task.description || 'No description available'}</p>
-            </div>
-            ${progressHTML}
-            <div class="card-footer">
-                <div id="actual-users" class="card-users">
-                    ${contactsHTML}
-                </div>
-                <div class="priority">
-                    <span class="priority-symbol">
-                        <img src="./assets/img/priority-${task.prio}.png" alt="${task.prio}">
-                    </span>
-                </div>
-            </div>
-        </div>
-    `;
+    return taskTemplate(task, taskID, progressHTML, contactsHTML, labelClass);
 }
 
 
