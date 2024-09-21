@@ -39,6 +39,7 @@ function showCheckboxesDialog() {
  * Loads the contacts from database to the Checkbox-Input
  */
 async function loadContactsDialog() {
+  IDsDialog = [];
   let response = await fetch(URL_contactsDialog + ".json");
   let responseToJson = await response.json();
   let contactsToConvertLetters = jsonToArrayContacts(responseToJson);

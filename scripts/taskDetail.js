@@ -1,5 +1,5 @@
 function openPopUp(todoId) {
-    // Hier wird die spezifische Task-ID verwendet, um die Daten aus Firebase abzurufen
+      // Hier wird die spezifische Task-ID verwendet, um die Daten aus Firebase abzurufen
     fetch(`https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks/${todoId}.json`)
         .then(response => response.json())
         .then(todoData => {
@@ -22,6 +22,7 @@ function openPopUp(todoId) {
 }
 
 function popUp(todoData, todoId) {
+    IDsEdit = todoData.contacts;
     return generateTaskDetailsHTML(todoData, todoId); // Verwende die Template-Funktion
 }
 
