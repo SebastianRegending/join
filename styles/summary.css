@@ -61,7 +61,7 @@ body {
 
 #personal-greeting {
   width: 100%;
-  height: 136px;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,8 +79,8 @@ body {
 }
 
 #daytime-greeting {
-  width: 338px;
-  height: 56px;
+  width: 100%;
+  height: fit-content;
   font-family: Inter-Medium;
   font-size: 47px;
   color: #2a3647;
@@ -101,7 +101,7 @@ body {
 
 #username-greeting {
   width: 100%;
-  height: 77px;
+  height: fit-content;
   font-family: Inter-Bold;
   font-size: 64px;
   color: #29abe2;
