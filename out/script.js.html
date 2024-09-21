@@ -27,6 +27,90 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
+ * initializes the function on body onload at login.html
+ */
+function initLoginHTML() {
+    startLogoAnimation();
+    startLogoAnimationMobile();
+    preFillForm();
+}
+
+/**
+ * initializes the function on body onload at addtask.html
+ */
+async function initAddTaskHTML() {
+    await includeHTML();
+    loadContacts();
+    setInitialsForHeader();
+}
+
+/**
+ * initializes the function on body onload at summary.html
+ */
+async function initSummaryHTML() {
+    await includeHTML();
+    await getNumberOfTasks();
+    await getProgressOfTasks();
+    setDaytimeOnGreeting();
+    setUsernameOnGreeting();
+    greetingOnMobile();
+    showInitialsForHeader();
+    getDeadlineDate();
+}
+
+/**
+ * initializes the function on body onload at board.html
+ */
+async function initBoardHTML() {
+    await includeHTML();
+    loadTasks();
+    loadContactsDialog();
+    setInitialsForHeader();
+}
+
+/**
+ * initializes the function on body onload at contacts.html
+ */
+async function initContactsHTML() {
+    await includeHTML();
+    loadContacts();
+    setInitialsForHeader();
+}
+
+/**
+ * initializes the function on body onload at privacypolicy.html
+ */
+async function initPrivacyPolicyHTML() {
+    await includeHTML();
+    setInitialsForHeader();
+}
+
+/**
+ * initializes the function on body onload at legalnotice.html
+ */
+async function initLegalNoticeHTML() {
+    await includeHTML();
+    setInitialsForHeader();
+}
+
+/**
+ * initializes the function on body onload at help.html
+ */
+async function initHelpHTML() {
+    await includeHTML();
+    setInitialsForHeader();
+}
+
+/**
+ * initializes the function on body onload at summaryguest.html
+ */
+async function initGuestSummaryHTML() {
+    await includeHTML();
+    setDaytimeOnGreeting();
+    greetingOnMobile();
+}
+
+/**
  * Includes HTML content from external files into the current document.
  * Elements with the attribute `w3-include-html` will have their content replaced by the fetched HTML.
  */
@@ -38,11 +122,14 @@ async function includeHTML() {
         let resp = await fetch(file);
         if (resp.ok) {
             element.innerHTML = await resp.text();
-        } 
+        }
     }
+    // Führe hier das Script aus, sobald die Inhalte eingefügt wurden
+    addActiveClass();
 }
 
 let currentDraggedElement;
+
 
 /**
  * Initiates the drag operation for a task card.
@@ -54,6 +141,7 @@ function startDragging(event) {
     currentDraggedElement.classList.add('dragging');
 }
 
+
 /**
  * Allows the drop operation by preventing the default behavior.
  * @param {DragEvent} event - The drag event.
@@ -61,6 +149,7 @@ function startDragging(event) {
 function allowDrop(event) {
     event.preventDefault();
 }
+
 
 /**
  * Updates the "No tasks" message visibility based on the presence of tasks in the column.
@@ -78,12 +167,18 @@ function updateNoTasksMessage(container) {
     }
 }
 
+
 /**
  * Moves the dragged task card to the specified column.
  * @param {DragEvent} event - The drop event.
  * @param {string} columnId - The ID of the target column where the card will be moved.
  */
-function moveTo(event, columnId) {
+/**
+ * Moves the dragged task card to the specified column and updates the status in Firebase.
+ * @param {DragEvent} event - The drop event.
+ * @param {string} columnId - The ID of the target column where the card will be moved.
+ */
+async function moveTo(event, columnId) {
     event.preventDefault();
     let column = document.getElementById(columnId);
     let draggedElement = document.getElementById(event.dataTransfer.getData('text'));
@@ -94,12 +189,63 @@ function moveTo(event, columnId) {
         draggedElement.classList.remove('dragging');
         draggedElement.classList.add('elastic');
         setTimeout(() => draggedElement.classList.remove('elastic'), 600);
-        
+
         column.classList.remove('drag-area-highlight');
         updateNoTasksMessage(originalContainer);
         updateNoTasksMessage(column);
+
+        // Get the task ID from the dragged element's ID
+        let taskId = draggedElement.id.replace('task-', '');
+
+        // Map the columnId to the corresponding progress status
+        let newStatus = '';
+        switch (columnId) {
+            case 'ToDo':
+                newStatus = 'To Do';
+                break;
+            case 'inProgress':
+                newStatus = 'In Progress';
+                break;
+            case 'AwaitFeedback':
+                newStatus = 'Await Feedback';
+                break;
+            case 'Done':
+                newStatus = 'Done';
+                break;
+        }
+
+        // Update task status in Firebase
+        try {
+            await updateTaskStatusInFirebase(taskId, newStatus);
+        } catch (error) {
+            // Handle error if needed
+        }
     }
 }
+
+
+/**
+ * Updates the task status in Firebase.
+ * @param {string} taskId - The ID of the task to update.
+ * @param {string} newStatus - The new status to set for the task.
+ */
+async function updateTaskStatusInFirebase(taskId, newStatus) {
+    const URL_task = `https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks/${taskId}.json`;
+    try {
+        await fetch(URL_task, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ progress: newStatus })
+        });
+    } catch (error) {
+        // Handle error if needed
+    }
+}
+
+
+
 
 /**
  * Toggles the highlight state for a task column.
@@ -111,6 +257,7 @@ function toggleHighlight(columnId, highlight = true) {
     column.classList.toggle('drag-area-highlight', highlight);
 }
 
+
 /**
  * Highlights the target task column during a drag operation.
  * @param {string} columnId - The ID of the column to highlight.
@@ -118,6 +265,7 @@ function toggleHighlight(columnId, highlight = true) {
 function highlight(columnId) {
     toggleHighlight(columnId, true);
 }
+
 
 /**
  * Removes the highlight from the target task column.
@@ -127,6 +275,7 @@ function removeHighlight(columnId) {
     toggleHighlight(columnId, false);
 }
 
+
 /**
  * Opens the dialog window with a sliding animation from right to left.
  * @param {string} text - The text content to display in the dialog.
@@ -134,15 +283,14 @@ function removeHighlight(columnId) {
 function openDialog(text) {
     let dialog = document.getElementById('dialog');
     let dialogBox = dialog.querySelector('.dialog');
-    
+
     dialog.classList.remove('d-none');
-    
+
     setTimeout(() => {
         dialogBox.classList.add('show');
     }, 10);
-    
-    document.getElementById('dialog-message').innerHTML = text;
 }
+
 
 /**
  * Closes the dialog window with a sliding animation.
@@ -150,14 +298,78 @@ function openDialog(text) {
 function closeDialog() {
     let dialog = document.getElementById('dialog');
     let dialogBox = dialog.querySelector('.dialog');
-    
+
     dialogBox.classList.remove('show');
-    
+
     setTimeout(() => {
         dialog.classList.add('d-none');
     }, 500);
 }
-</code></pre>
+
+/**
+ * toggles the log out menu show/hide
+ */
+function logOutButton() {
+    document.getElementById('logout-container').classList.toggle('d-none');
+}
+
+/**
+ * logs the user out and delete the datas from local and session storage
+ */
+function logOutUser() {
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = 'login.html';
+}
+
+/**
+ * switch to legalnotice
+ */
+function legalNotice() {
+    window.location.href = 'legalnotice.html';
+}
+
+/**
+ * switch to privacypolicy
+ */
+function privacyPolicy() {
+    window.location.href = 'privacypolicy.html';
+}
+
+
+/**
+ * Finds the current page path and compares it with the href attributes of links that have the 'menu-item' class.
+ * Adds the 'active' class to the matching menu item to visually highlight it.
+ *
+ * @function addActiveClass
+ * @returns {void} Adds the 'active' class to the matching menu item.
+ */
+function addActiveClass() {
+    let currentPath = window.location.pathname.split('/').pop();
+
+    document.querySelectorAll('.menu-item').forEach(item => {
+        let hrefPath = item.getAttribute('href').split('/').pop();
+
+        if (currentPath === hrefPath) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+}
+
+/**
+ * set the initials for the header button from logged in user from session storage
+ */
+function setInitialsForHeader() {
+    let initialsHeader = JSON.parse(sessionStorage.getItem('Initials'));
+    if (initialsHeader) {
+        let firstInitial = initialsHeader[0];
+        let secondInitial = initialsHeader[1];
+        let combinedInitials = firstInitial + (secondInitial ? secondInitial : '');
+        document.getElementById('initials-header').innerHTML = combinedInitials;
+    }
+}</code></pre>
         </article>
     </section>
 
@@ -167,13 +379,13 @@ function closeDialog() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#closeDialog">closeDialog</a></li><li><a href="global.html#highlight">highlight</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#openDialog">openDialog</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#toggleHighlight">toggleHighlight</a></li><li><a href="global.html#updateNoTasksMessage">updateNoTasksMessage</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addActiveClass">addActiveClass</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#closeDialog">closeDialog</a></li><li><a href="global.html#highlight">highlight</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#initAddTaskHTML">initAddTaskHTML</a></li><li><a href="global.html#initBoardHTML">initBoardHTML</a></li><li><a href="global.html#initContactsHTML">initContactsHTML</a></li><li><a href="global.html#initGuestSummaryHTML">initGuestSummaryHTML</a></li><li><a href="global.html#initHelpHTML">initHelpHTML</a></li><li><a href="global.html#initLegalNoticeHTML">initLegalNoticeHTML</a></li><li><a href="global.html#initLoginHTML">initLoginHTML</a></li><li><a href="global.html#initPrivacyPolicyHTML">initPrivacyPolicyHTML</a></li><li><a href="global.html#initSummaryHTML">initSummaryHTML</a></li><li><a href="global.html#legalNotice">legalNotice</a></li><li><a href="global.html#logOutButton">logOutButton</a></li><li><a href="global.html#logOutUser">logOutUser</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#openDialog">openDialog</a></li><li><a href="global.html#privacyPolicy">privacyPolicy</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#setInitialsForHeader">setInitialsForHeader</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#toggleHighlight">toggleHighlight</a></li><li><a href="global.html#updateNoTasksMessage">updateNoTasksMessage</a></li><li><a href="global.html#updateTaskStatusInFirebase">updateTaskStatusInFirebase</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Sep 01 2024 16:06:47 GMT+0200 (Mitteleuropäische Sommerzeit)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sat Sep 21 2024 12:34:33 GMT+0200 (Mitteleuropäische Sommerzeit)
 </footer>
 
 <script> prettyPrint(); </script>

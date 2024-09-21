@@ -102,7 +102,6 @@ async function includeHTML() {
 
 let currentDraggedElement;
 
-
 /**
  * Initiates the drag operation for a task card.
  * @param {DragEvent} event - The drag event.
@@ -113,7 +112,6 @@ function startDragging(event) {
     currentDraggedElement.classList.add('dragging');
 }
 
-
 /**
  * Allows the drop operation by preventing the default behavior.
  * @param {DragEvent} event - The drag event.
@@ -121,7 +119,6 @@ function startDragging(event) {
 function allowDrop(event) {
     event.preventDefault();
 }
-
 
 /**
  * Updates the "No tasks" message visibility based on the presence of tasks in the column.
@@ -139,12 +136,6 @@ function updateNoTasksMessage(container) {
     }
 }
 
-
-/**
- * Moves the dragged task card to the specified column.
- * @param {DragEvent} event - The drop event.
- * @param {string} columnId - The ID of the target column where the card will be moved.
- */
 /**
  * Moves the dragged task card to the specified column and updates the status in Firebase.
  * @param {DragEvent} event - The drop event.
@@ -195,7 +186,6 @@ async function moveTo(event, columnId) {
     }
 }
 
-
 /**
  * Updates the task status in Firebase.
  * @param {string} taskId - The ID of the task to update.
@@ -216,9 +206,6 @@ async function updateTaskStatusInFirebase(taskId, newStatus) {
     }
 }
 
-
-
-
 /**
  * Toggles the highlight state for a task column.
  * @param {string} columnId - The ID of the column to highlight or remove the highlight.
@@ -229,7 +216,6 @@ function toggleHighlight(columnId, highlight = true) {
     column.classList.toggle('drag-area-highlight', highlight);
 }
 
-
 /**
  * Highlights the target task column during a drag operation.
  * @param {string} columnId - The ID of the column to highlight.
@@ -238,7 +224,6 @@ function highlight(columnId) {
     toggleHighlight(columnId, true);
 }
 
-
 /**
  * Removes the highlight from the target task column.
  * @param {string} columnId - The ID of the column to remove the highlight.
@@ -246,7 +231,6 @@ function highlight(columnId) {
 function removeHighlight(columnId) {
     toggleHighlight(columnId, false);
 }
-
 
 /**
  * Opens the dialog window with a sliding animation from right to left.
@@ -262,7 +246,6 @@ function openDialog(text) {
         dialogBox.classList.add('show');
     }, 10);
 }
-
 
 /**
  * Closes the dialog window with a sliding animation.
@@ -307,7 +290,6 @@ function legalNotice() {
 function privacyPolicy() {
     window.location.href = 'privacypolicy.html';
 }
-
 
 /**
  * Finds the current page path and compares it with the href attributes of links that have the 'menu-item' class.

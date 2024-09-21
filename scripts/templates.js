@@ -190,3 +190,75 @@ function taskTemplate(task, taskID, progressHTML, contactsHTML, labelClass) {
     `;
 }
 
+function getContactsCheckboxTemplate(n, i, isChecked, IDs) {
+    return `
+        <label for="contacts${n}" class="contact-for-form">
+              <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
+              </div>
+              <div>${IDs[i]['name']}
+              </div> 
+              <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" data-color="${IDs[i]['color']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>        
+        </label>
+    `;
+}
+
+function getContactTemplate(n, i, IDs, isChecked) {
+    return `
+        <label for="contacts${n}" class="contact-for-form">
+            <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
+            </div>
+            <div>${IDs[i]['name']}
+            </div> 
+            <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" data-color="${IDs[i]['color']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>        
+        </label>
+    `;
+}
+
+function getContactTemplateYou(n, i, IDs, isChecked) {
+    return `
+        <label for="contacts${n}" class="contact-for-form">
+            <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
+            </div>
+            <div>${IDs[i]['name']}(You)
+            </div> 
+            <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" data-color="${IDs[i]['color']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>        
+        </label>
+    `;
+}
+
+function getProgressHTML(completedSubtasks, totalSubtasks) {
+    let progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
+    return `
+        <div class="card-progress">
+            <div class="progress-bar">
+                <div class="progress" style="width: ${progressPercentage}%;"></div>
+            </div>
+            <p class="subtasks">${completedSubtasks}/${totalSubtasks} Subtasks</p>
+        </div>
+    `;
+}
+
+function getTaskHTML(task, taskID, progressHTML) {
+    return `
+        <div id="task-${taskID}" class="todo-card" draggable="true" ondragstart="startDragging(event)">
+            <div class="card-labels ${task.category === 'User Story' ? 'user-story-label' : 'technical-task-label'}">
+                <span class="label">${task.category}</span>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">${task.title}</h3>
+                <p class="card-description">${task.description || 'No description available'}</p>
+            </div>
+            ${progressHTML}
+            <div class="card-footer">
+                <div class="card-users">
+                    ${generateContactsHTML(task.contacts)}
+                </div>
+                <div class="priority">
+                    <span class="priority-symbol">
+                        <img src="./assets/img/priority-${task.prio}.png" alt="${task.prio}">
+                    </span>
+                </div>
+            </div>
+        </div>
+    `;
+}
