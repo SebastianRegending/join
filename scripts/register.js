@@ -96,7 +96,6 @@ async function loginUser(path = "/users") {
 function loginUserCheck(user) {
     if (user) {
         saveUserLoginNoRemember(user);
-        getUserForContacts(user);
         window.location.href = 'summary.html';
         saveLogin();
         saveCheckBox();

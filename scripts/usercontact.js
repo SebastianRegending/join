@@ -2,9 +2,6 @@ let initialsForUser = [];
 let randomNumbersForUser = [];
 let userCompare
 
-function getUserForContacts(user) {
-    console.log(user);
-}
 
 /**
  * Create a string of a color to choose the css-class
