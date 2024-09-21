@@ -124,7 +124,6 @@ async function addTask() {
   let category = document.getElementById('category');
 
   await uploadTask(title, description, deadline, category, assignedContacts);
-  await updateContactsTask(assignedContacts);
   clearTasks();
   launchToaster();
 }
@@ -305,42 +304,6 @@ function cancelAddSubtask() {
   document.getElementById('add-button-icon-plus').classList.remove('d-none');
   document.getElementById('add-button-icon-cancel').classList.add('d-none');
   document.getElementById('add-button-icon-check').classList.add('d-none');
-}
-
-
-/**
- * Prepares the update for the contacts in database, that are assigned to a task
- * 
- * @param {array} assignedContacts 
- */
-async function updateContactsTask(assignedContacts) {
-  for (let contact of assignedContacts) {
-    let path = `/letter${contact['letter']}/${contact['id']}`;
-    let response = await fetch(URL_contacts + path + ".json");
-    let responseToJson = await response.json();
-    uploadNewData(responseToJson, path)
-  }
-}
-
-
-/**
- * Uploads the task for to a contact
- * 
- * @param {json} dataForUpdate - JSON of the contact that will be updatet
- * @param {string} path - path where to save in database
- * @returns 
- */
-async function uploadNewData(dataForUpdate, path) {
-  let data = ({ name: dataForUpdate['name'], email: dataForUpdate['email'], phone: dataForUpdate['phone'], initials: dataForUpdate['initials'], color: dataForUpdate['color'], tasks: taskID });
-
-  let response = await fetch(URL_contacts + path + ".json", {
-    method: "PUT",
-    header: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data)
-  });
-  return responseToJson = await response.json();
 }
 
 
