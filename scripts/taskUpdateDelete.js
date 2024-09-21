@@ -315,8 +315,10 @@ async function submitEditetTask() {
     },
     body: JSON.stringify(data)
   });
+  assignedContacts = [];
   closePopUpEdit();
   loadTasks();
+  location.reload();
   return response;
 }
 

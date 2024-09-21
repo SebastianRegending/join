@@ -183,6 +183,7 @@ async function sumbitUploadTask(title, description, deadline, category, assigned
     },
     body: JSON.stringify(data)
   });
+  assignedContacts = [];
   return response;
 }
 
