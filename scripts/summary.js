@@ -9,6 +9,13 @@ function navigateToBoard() {
 }
 
 /**
+ * switch to guest board
+ */
+function navigateToBoardGuest() {
+    window.location.href = 'boardguest.html'
+}
+
+/**
  * set the Daytime on Greeting after Login from User
  */
 function setDaytimeOnGreeting() {
@@ -83,6 +90,17 @@ async function showInitialsForHeader() {
         let secondInitial = initialsHeader[1];
         let combinedInitials = firstInitial + (secondInitial ? secondInitial : '');
         document.getElementById('initials-header').innerHTML = combinedInitials;
+    }
+}
+
+/**
+ * set guest initial for header
+ */
+function showInitialsForHeaderGuest() {
+    let initialsHeader = JSON.parse(sessionStorage.getItem('Initials'));
+    if (initialsHeader) {
+        let firstInitial = initialsHeader[0];
+        document.getElementById('initials-header').innerHTML = firstInitial;
     }
 }
 

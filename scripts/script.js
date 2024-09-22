@@ -79,6 +79,7 @@ async function initHelpHTML() {
 async function initGuestSummaryHTML() {
     await includeHTML();
     setDaytimeOnGreeting();
+    showInitialsForHeaderGuest();
     greetingOnMobile();
 }
 
@@ -285,10 +286,24 @@ function legalNotice() {
 }
 
 /**
+ * switch to guest legalnotice
+ */
+function legalNoticeGuest() {
+window.location.href = 'legalnoticeguest.html';
+}
+
+/**
  * switch to privacypolicy
  */
 function privacyPolicy() {
     window.location.href = 'privacypolicy.html';
+}
+
+/**
+ * switch to guest privacypolicy
+ */
+function privacyPolicyGuest() {
+    window.location.href = 'privacypolicyguest.html';
 }
 
 /**

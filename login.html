@@ -29,7 +29,7 @@
       </div>
       <form id="loginform" onsubmit="loginUser(); return false;">
         <div id="signup-headline">
-          <h1>Log in</h1>
+          <h1 class="h1-login">Log in</h1>
           <div id="border-headline"></div>
         </div>
         <input
@@ -67,7 +67,7 @@
           <button id="input-btn">Log in</button>
           <button
             id="guest-input-btn"
-            onclick="location.href='summaryguest.html';"
+            onclick="loginGuest()"
           >
             Guest Log in
           </button>

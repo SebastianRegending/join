@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/board.css">
+    <link rel="stylesheet" href="./styles/taskDetail.css">
+    <link rel="stylesheet" href="./styles/addtask.css">
+    <link rel="icon" type="image/x-icon" href="./assets/img/join.png">
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/board.js"></script>
+    <script src="./scripts/taskDetail.js"></script>
+    <script src="./scripts/templates.js"></script>
+    <script src="./scripts/taskUpdateDelete.js"></script>
+    <script src="./scripts/addtaskdialog.js"></script>
+
+    <title>Join - Board</title>
+</head>
+
+<body onload="initBoardHTML()">
+    <div w3-include-html="./menuguest.html"></div>
+    <section class="board-container">
+        <div id="addTaskDialog" class="dialog-bg d-none">
+            <form class="form-content-board" onsubmit="addTask(); return false">
+                <div class="" onclick="cancelDialogAddTask()" id="add-button-icon-cancel-dialog"><img
+                    src="./assets/img/cancel.svg"></div>
+                <div id="add-task-form-content" class="add-task-form">
+                    <div class="form-left-side-board">
+                        <label for="input-title">Title<span class="red-letter">*</span></label>
+                        <input class="input-field" id="input-title" required type="text" placeholder="Enter a title">
+                        <label for="input-description">Description</label>
+                        <textarea id="input-description" placeholder="Enter a Description"></textarea>
+                        <label>Assigned to</label>
+                        <div class="multiselect">
+                            <div class="selectBox" onclick="showCheckboxesDialog()">
+                                <select class="input-field-select">
+                                    <option class="option-select">Select contacts to assign</option>
+                                </select>
+                                <div class="overSelect"></div>
+                            </div>
+                            <div id="checkboxes">
+                            </div>
+                        </div>
+                        <div id="circle-area-assigned-contacts">
+                            
+                        </div>
+                    </div>
+                    <div class="form-right-side">
+                        <label for="deadline">Due date<span class="red-letter">*</span></label>
+                        <input class="input-field" type="date" placeholder="dd/mm/yyyy" id="deadline" required>
+                        <span>Prio</span>
+                        <div class="flexed button-area-prio">
+                            
+                            <div class="prio-container" id="prio-urgent" onclick="setPrio('urgent'); colorPrioUrgent()">
+                                Urgent<img id="prio-pic-urgent" src="./assets/img/urgent-icon.svg"></div>
+                                
+                                <div class="prio-container prio-active-medium" id="prio-medium"
+                                onclick="setPrio('medium'); colorPrioMedium()">Medium <img id="prio-pic-medium"
+                                src="./assets/img/medium-icon.svg"></div>
+                                
+                                <div class="prio-container" id="prio-low" onclick="setPrio('low'); colorPrioLow()">Low <img
+                                    id="prio-pic-low" src="./assets/img/low-icon.svg"></div>
+    
+                        </div>
+                        <label for="category">Category<span class="red-letter">*</span></label>
+                        <select class="input-field" name="category" id="category" required>
+                            <option value="" disabled selected hidden>Select your option</option>
+                            <option value="Technical Task">Technical Task</option>
+                            <option value="User Story">User Story</option>
+                        </select>
+                        <label for="subtasks">Subtasks</label>
+                        <div class="input-field-subtasks input-field-subtasks-smaller">
+                            <input id="subtasks" onfocus="openAddSubtask()" placeholder="Add new subtask">
+                            <div onclick="openAddSubtask()" id="add-button-icon-plus" class="add-subtask"><img
+                                    src="./assets/img/add.svg"></div>
+    
+                            <div class="cancel-container">
+                                <div class="d-none" onclick="cancelAddSubtask()" id="add-button-icon-cancel"><img
+                                        src="./assets/img/cancel.svg"></div>
+                            </div>
+    
+                            <div onclick="addSubtask()" id="add-button-icon-check" class="d-none"><img id="check"
+                                    src="./assets/img/checkstandard.svg"></div>
+                        </div>
+    
+                        <div class="flex-column" id="added-subtasks"></div>
+                    </div>
+                </div>
+                <div class="add-task-form-board">
+                    <div class="form-left-side-help">
+                        <span><span class="red-letter">*</span>This field is required</span>
+                    </div>
+                    <div class="form-right-side-board">
+    
+                        <div class="submit-area-right"></div>
+                        <div class="flexed submit-area-help-container-board">
+                            <span class="red-letter-resp"><span class="red-letter">*</span>This field is required</span>
+                            <div class="white-btn" onclick="clearTasks()">Clear <img src="./assets/img/cancel.svg"></div>
+                            <button class="blue-btn">Create Task<img src="./assets/img/check.svg"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="board-header">
+            <div class="mobile">
+                <h1>Board</h1>
+            </div>
+            <div class="task-input-container">
+                <div class="task-input">
+                    <input type="text" id="task-search-input" placeholder="Find Task" oninput="filterTasks()">
+                    <button class="search-button" onclick="searchFunction()"></button>
+                </div>
+
+                <button class="add-task" onclick="openDialogAddTask('To Do')"><span>Add task</span> <span>+</span></button>
+            </div>
+
+        </div>
+        <div id="pop-up-content-edit-container" class="dialog-popup d-none">
+            <div id="pop-up-content-edit"></div>
+        </div>
+        <div class="task-board">
+            <div class="task-column">
+                <h2>To Do <span tabindex="0" onclick="openDialogAddTask('To Do')">+</span></h2>
+                <div class="column-container">
+                    <div id="ToDo" class="task-column" ondrop="moveTo(event, 'ToDo')" ondragover="allowDrop(event)"
+                        ondragenter="highlight('ToDo')" ondragleave="removeHighlight('ToDo')">
+                        <div class="no-tasks">No tasks To do</div>
+                    </div>
+                </div>
+            </div>
+            <div class="task-column">
+                <h2>In Progress <span onclick="openDialogAddTask('In Progress')">+</span></h2>
+                <div class="column-container">
+                    <div id="inProgress" class="task-column" ondrop="moveTo(event, 'inProgress')"
+                        ondragover="allowDrop(event)" ondragenter="highlight('inProgress')"
+                        ondragleave="removeHighlight('inProgress')">
+                        <!-- Tasks will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+            <div class="task-column">
+                <h2>Await Feedback <span onclick="openDialogAddTask('Await Feedback')">+</span></h2>
+                <div class="column-container">
+                    <div id="AwaitFeedback" class="task-column" ondrop="moveTo(event, 'AwaitFeedback')"
+                        ondragover="allowDrop(event)" ondragenter="highlight('AwaitFeedback')"
+                        ondragleave="removeHighlight('AwaitFeedback')">
+                        <!-- Tasks will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+            <div class="task-column">
+                <h2>Done</h2>
+                <div class="column-container">
+                    <div id="Done" class="task-column" ondrop="moveTo(event, 'Done')" ondragover="allowDrop(event)"
+                        ondragenter="highlight('Done')" ondragleave="removeHighlight('Done')">
+                        <div class="no-tasks">No tasks Done</div>
+                        <!-- "Done" column -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dialog for adding a task -->
+        <div id="dialog" class="dialog-bg d-none" onclick="closeDialog()">
+            <div id="dialog-content" class="dialog">
+
+                <!-- HTML von addtask.html hier einfügen -->
+                <section class="fullpage">
+                    <h1>Add Task</h1>
+                    <form onsubmit="addTask(); return false">
+                        <div class="add-task-form">
+                            <div class="form-left-side">
+                                <label for="input-title">Title<span class="red-letter">*</span></label>
+                                <input class="input-field" id="input-title" required type="text"
+                                    placeholder="Enter a title">
+                                <label for="input-description">Description</label>
+                                <textarea id="input-description" placeholder="Enter a Description"></textarea>
+                                <label>Assigned to</label>
+                                <div class="multiselect">
+                                    <div class="selectBox" onclick="showCheckboxes()">
+                                        <select class="input-field-select">
+                                            <option class="option-select">Select contacts to assign</option>
+                                        </select>
+                                        <div class="overSelect"></div>
+                                    </div>
+                                    <div id="checkboxes"></div>
+                                </div>
+                                <div id="circle-area-assigned-contacts"></div>
+                            </div>
+                            <div class="form-right-side">
+                                <label for="deadline">Due date<span class="red-letter">*</span></label>
+                                <input class="input-field" type="date" placeholder="dd/mm/yyyy" id="deadline" required>
+                                <span>Prio</span>
+                                <div class="flexed button-area-prio">
+                                    <div class="prio-container" id="prio-urgent"
+                                        onclick="setPrio('urgent'); colorPrioUrgent()">
+                                        Urgent<img id="prio-pic-urgent" src="./assets/img/urgent-icon.svg">
+                                    </div>
+                                    <div class="prio-container prio-active-medium" id="prio-medium"
+                                        onclick="setPrio('medium'); colorPrioMedium()">
+                                        Medium <img id="prio-pic-medium" src="./assets/img/medium-icon.svg">
+                                    </div>
+                                    <div class="prio-container" id="prio-low" onclick="setPrio('low'); colorPrioLow()">
+                                        Low <img id="prio-pic-low" src="./assets/img/low-icon.svg">
+                                    </div>
+                                </div>
+                                <label for="category">Category<span class="red-letter">*</span></label>
+                                <select class="input-field" name="category" id="category" required>
+                                    <option value="" disabled selected hidden>Select your option</option>
+                                    <option value="Technical Task">Technical Task</option>
+                                    <option value="User Story">User Story</option>
+                                </select>
+                                <label for="subtasks">Subtasks</label>
+                                <div class="input-field-subtasks input-field-subtasks-smaller">
+                                    <input id="subtasks" onfocus="openAddSubtask()" placeholder="Add new subtask">
+                                    <div onclick="openAddSubtask()" id="add-button-icon-plus" class="add-subtask">
+                                        <img src="./assets/img/add.svg">
+                                    </div>
+                                    <div class="cancel-container">
+                                        <div class="d-none" onclick="cancelAddSubtask()" id="add-button-icon-cancel">
+                                            <img src="./assets/img/cancel.svg">
+                                        </div>
+                                    </div>
+                                    <div onclick="addSubtask()" id="add-button-icon-check" class="d-none">
+                                        <img id="check" src="./assets/img/checkstandard.svg">
+                                    </div>
+                                </div>
+                                <div class="flex-column" id="added-subtasks"></div>
+                            </div>
+                        </div>
+                        <div class="add-task-form">
+                            <div class="form-left-side-help">
+                                <span><span class="red-letter">*</span>This field is required</span>
+                            </div>
+                            <div class="form-right-side">
+                                <div class="submit-area-right"></div>
+                                <div class="flexed submit-area-help-container">
+                                    <span class="red-letter-resp"><span class="red-letter">*</span>This field is
+                                        required</span>
+                                    <div class="white-btn" onclick="clearTasks()">Clear <img
+                                            src="./assets/img/cancel.svg"></div>
+                                    <button class="blue-btn">Create Task<img src="./assets/img/check.svg"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+
+
+            </div>
+        </div>
+
+        <div id="task-added-animation" class="task-added-animation d-none">
+            <p>Task added to board</p>
+            <img src="./assets/img/board.png" alt="board-icon">
+        </div>
+
+
+        <!-- Dialog for task details -->
+        <div id="pop-up-task" class="dialog-bg d-none" onclick="closePopUpIfOutside(event)">
+            <div id="pop-up-content" class="dialog-popup">
+
+            </div>
+        </div>
+
+    </section>
+    <div id="toaster-task-board">Task added to board <img src="./assets/img/board.svg"></div>
+</body>
+
+</html>

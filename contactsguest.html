@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join - Contacts</title>
+    <link rel="stylesheet" href="./styles/menu.css">
+    <link rel="stylesheet" href="./styles/contacts.css">
+    <link rel="icon" type="image/x-icon" href="./assets/img/join.png">
+
+
+    <script src="./scripts/contacts.js"></script>
+    <script src="./scripts/contacts-templates.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/usercontact.js"></script>
+
+</head>
+
+<body onload="initContactsHTML()">
+    <div w3-include-html="./menuguest.html">
+    </div>
+    <section class="contact-page">
+        <div id="contacts-area">
+            <div class="dialog-bg d-none" id="add-contact-dialog">
+                <div class="contact-dialog">
+                    <div class="close-dialog-resp" onclick="closeAddContact()"><img src="./assets/img/closedialogresp.svg" alt="close add contact"></div>
+                    <div class="contact-dialog-logo-side">
+                        <img class="dialog-logo" src="./assets/img/join.png" alt="join-logo">
+                        <h2>Add contact</h2>
+                        <span>Tasks are better with a team!</span>
+                        <div class="dialog-separator"></div>
+
+                    </div>
+                    <div class="contact-dialog-edit-side">
+                        <div class="add-contact-dialog-header"><img class="cancel-add-contact-dialog"
+                                onclick="closeAddContact()" src="./assets/img/cancel.svg" alt="cancel-icon"></div>
+                        <div class="flexed middle-area">
+                            <div>
+                                <img src="./assets/img/profilepic.png" alt="profilepic">
+                            </div>
+                            <div class="form-container">
+                                <form class="contact-form"
+                                    onsubmit="prepareCreateContact(); closeAddContact(); loadContacts(); return false">
+                                    <input id="add-contact-name" class="input-field icon-small-person"
+                                        pattern="[A-Za-z\s]{0,50}" required
+                                        title="Pleace Enter Alphabet Characters Only" type="text" placeholder="Name">
+                                    <input id="add-contact-email" class="input-field icon-small-mail" required
+                                        type="text" placeholder="Email">
+                                    <input id="add-contact-phone" class="input-field icon-small-call" required
+                                        type="text" placeholder="Phone">
+                                    <div class="button-area">
+                                        <div class="white-input-btn" onclick="closeAddContact()">Cancel <img
+                                                src="./assets/img/cancel.svg" alt="cancel-icon"></div>
+                                        <button class="blue-btn">Create Contact<img src="./assets/img/check.svg"
+                                                alt="check-icon"></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dialog-bg d-none" id="edit-contact-dialog">
+                <div class="contact-dialog">
+                    <div class="close-dialog-resp" onclick="closeEditContact()"><img src="./assets/img/closedialogresp.svg" alt="close add contact"></div>
+                    <div class="contact-dialog-logo-side">
+                        <img class="dialog-logo" src="./assets/img/join.png" alt="join-logo">
+                        <h2>Edit contact</h2>
+                        <div class="dialog-separator"></div>
+
+                    </div>
+                    <div class="contact-dialog-edit-side">
+                        <div class="add-contact-dialog-header"><img class="cancel-add-contact-dialog"
+                                onclick="closeEditContact()" src="./assets/img/cancel.svg" alt="cancel-icon"></div>
+                        <div class="flexed middle-area">
+                            <div id="edit-initials"></div>
+                            <form id="edit-form" class="contact-form" onsubmit="prepareSubmitEditetContact(); return false">
+                                <input id="edit-contact-name" class="input-field icon-small-person"
+                                    pattern="[A-Za-z\s]{0,50}" required title="Pleace Enter Alphabet Characters Only"
+                                    type="text" placeholder="Name">
+                                <input id="edit-contact-email" class="input-field icon-small-mail" required type="text"
+                                    placeholder="Email">
+                                <input id="edit-contact-phone" class="input-field icon-small-call" required type="text"
+                                    placeholder="Phone">
+                                <div class="button-area">
+                                    <div class="white-input-btn-edit" onclick="deleteEditContact()">Delete</div>
+                                    <button class="blue-btn-edit">Save<img src="./assets/img/check.svg"
+                                            alt="check-icon"></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-contact-button blue-btn" onclick="openAddContact()">
+                <span>Add new contact</span>
+                <img src="./assets/img/person_add.svg">
+            </div>
+            <div id="contacts-alphabet-list">
+            </div>
+            <div onclick="openAddContact()" class="add-contact-button-resp"><img src="./assets/img/person_add.svg" alt="add contact"></div>
+        </div>
+        <div id="choosen-contact">
+            <div class="choosen-contact-headline">
+                <span>Contacts</span>
+                <img src="./assets/img/separator-blue.svg">Better with a team
+            </div>
+            <div class="arrow-back" onclick="closeChooseResp()"><img class="arrow-left-line" src="./assets/img/arrow_left.png" alt="back"></div>
+            <div class="choosen-contact-headline-resp-container ">
+                <div class="choosen-contact-headline-resp">
+                <span>Contacts</span>Better with a team
+                <img src="./assets/img/separator-blue.svg">
+                </div>
+                
+            </div>
+            <div id="choosen-contact-loading-area"></div>
+        </div>
+    </section>
+    <div id="toaster-contact">Contact successfully created</div>
+
+</body>
+
+</html>

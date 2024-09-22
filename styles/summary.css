@@ -8,7 +8,7 @@ body {
   width: 100%;
   height: calc(100vh - 96px);
   display: flex;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #content-summary-left {

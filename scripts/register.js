@@ -86,7 +86,7 @@ async function loginUser(path = "/users") {
     let UserKeys = Object.values(responseToJson);
     let email = document.getElementById('emaillogin');
     let password = document.getElementById('passwordlogin');
-    let user = UserKeys.find(u => u.email == email.value && u.password == password.value);
+    let user = UserKeys.find(u => u.email === email.value && u.password === password.value && password.value.length === u.password.length);
     loginUserCheck(user);
 }
 
@@ -104,6 +104,15 @@ function loginUserCheck(user) {
         wrongEmailOrPassword();
         return
     };
+}
+
+/**
+ * Guest Login and Initial for Header
+ */
+function loginGuest() {
+    sessionStorage.setItem('Initials', JSON.stringify('G'));
+    window.location.href = 'summaryguest.html';
+    showInitialsForHeaderGuest();
 }
 
 /**

@@ -5,10 +5,6 @@
   margin: 0 auto;
 }
 
-body {
-  overflow: hidden;
-}
-
 .d-none {
   display: none !important;
 }
@@ -92,6 +88,18 @@ h1 {
 }
 
 .h1-signup {
+  width: 315px;
+  height: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 61px;
+  margin: 0 32px 0 0;
+  font-family: Inter-Bold;
+}
+
+.h1-login {
   width: 315px;
   height: 74px;
   display: flex;
@@ -457,6 +465,14 @@ h1 {
   #animated-logo {
     margin: 0 0 0 60px;
   }
+
+  #joinuser {
+    margin: 24px 0 0 0;
+  }
+
+  #privacy-legal {
+    margin: 24px 0 0 0;
+  }
 }
 
 @media (max-width: 680px) {
@@ -477,6 +493,14 @@ h1 {
     height: 50px;
   }
 
+  .input-field:user-valid {
+    border: 1px solid green;
+  }
+
+  .input-field:user-invalid {
+    border: 1px solid red;
+  }
+
   .small-icons-inputfield {
     left: 160px;
     top: -42px;
@@ -484,6 +508,11 @@ h1 {
 
   .h1-signup {
     font-size: 47px;
+  }
+
+  .h1-login {
+    font-size: 47px;
+    margin: 0;
   }
 
   #border-headline {
@@ -504,7 +533,7 @@ h1 {
   }
 
   #privacy-legal {
-    margin: 64px 0 24px 0;
+    margin: 12px 0 24px 0;
   }
 
   #animated-logo {
@@ -518,6 +547,8 @@ h1 {
 
   #loginform {
     width: 280px;
+    padding: 12px;
+    margin: 12px;
   }
 
   .input-field {
