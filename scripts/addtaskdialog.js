@@ -66,7 +66,7 @@ async function loadContactsDialog() {
  */
 function createContactsCheckboxTemplate(n, i) {
   return /*html*/`
-      <label for="contacts${n}" class="contact-for-form">
+      <label for="contact-${n}${i}" class="contact-for-form">
             <div id="contact-${n}-circle" class="circle circle-${IDsDialog[i]['color']}">${IDsDialog[i]['initials']}
             </div>
             <div>${IDsDialog[i]['name']}

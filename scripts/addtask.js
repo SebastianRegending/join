@@ -54,7 +54,7 @@ async function loadContacts() {
  */
 function createContactsCheckboxTemplate(n, i) {
   return /*html*/`
-      <label for="contacts${n}" class="contact-for-form">
+      <label for="contact-${n}${i}" class="contact-for-form">
             <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
             </div>
             <div>${IDs[i]['name']}
@@ -252,6 +252,10 @@ function addSubtask() {
   }
 }
 
+
+/**
+ * Renders the global array subtasks into the div
+ */
 function renderAddedSubtasks(){
   document.getElementById('added-subtasks').innerHTML = ``;
     for (let i = 0; i < subtasks.length; i++) {
@@ -277,6 +281,10 @@ renderAddedSubtasks();
 }
 
 
+/**
+ * Prepares the choosen subtask divs to edit it
+ * @param {} i 
+ */
 function prepareEditSubtask(i){
 let oldSubtask = document.getElementById(`subtask${i}`);
 // oldSubtask.innerHTML = ``;
@@ -294,6 +302,10 @@ document.getElementById(`new-subtask-for-edit-${i}`).addEventListener('blur', fu
 }
 
 
+/**
+ * Confirms the editing and changes the array
+ * @param {} i 
+ */
 function confirmEditSubtask(i){
 subtasks.splice(i, 1, {"title": document.getElementById(`new-subtask-for-edit-${i}`).value, "done": "false"});
 renderAddedSubtasks();
