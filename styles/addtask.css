@@ -881,3 +881,53 @@ option {
     width: calc(100vw - 7px);
   }
 }
+
+
+.subtask-help-outer-container{
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 16px;
+  padding: 4px 12px 4px 12px;
+}
+
+
+.edit-images-area-subtasks{
+  visibility: hidden;
+  display: flex;
+  gap: 10px;
+}
+
+
+.edit-images-area-subtasks img:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+
+.subtask-help-outer-container:hover{
+  background-color: #d1d1d1;;
+}
+
+.subtask-help-outer-container:hover .edit-images-area-subtasks{
+  visibility: visible;
+  
+  color: grey;
+}
+
+.check-subtask{
+  display: none;
+}
+
+.subtask-edit-input{
+  border: none;
+  background-color: white;
+  outline: none;
+
+}
+
+.choosen-input{
+background-color: white !important;
+border-radius: 0px;
+border-bottom: solid 1px #29abe2;
+}

@@ -246,13 +246,57 @@ function addSubtask() {
   if (subtask.value) {
     let subtaskobject = { title: `${subtask.value}`, done: "false" };
     subtasks.push(subtaskobject);
-    document.getElementById('added-subtasks').innerHTML = ``;
-    for (let i = 0; i < subtasks.length; i++) {
-      document.getElementById('added-subtasks').innerHTML += `<li>${subtasks[i]['title']}</li>`;
-    }
+    renderAddedSubtasks();
     document.getElementById('subtasks').value = ``;
     cancelAddSubtask()
   }
+}
+
+function renderAddedSubtasks(){
+  document.getElementById('added-subtasks').innerHTML = ``;
+    for (let i = 0; i < subtasks.length; i++) {
+      document.getElementById('added-subtasks').innerHTML += `<div id="outer-container-${i}" class="subtask-help-outer-container">
+                                                                <li id="subtask${i}" class="subtask-help-inner-container">${subtasks[i]['title']}</li>
+                                                                <div id="edit-images-${i}" class="edit-images-area-subtasks">
+                                                                    <div><img id="pen-${i}" onclick="prepareEditSubtask('${i}')"src="./assets/img/subtaskedit.svg"></div>|
+                                                                    <div><img id="trash-${i}" onclick="deleteSubtask('${i}')" src="./assets/img/subtaskdelete.svg"></div>
+                                                                </div> 
+                                                              </div>`;
+    }
+}
+
+
+/**
+ * Deletes one added subtask from preparing
+ * 
+ * @param {number} i 
+ */
+function deleteSubtask(i){
+subtasks.splice(i, 1);
+renderAddedSubtasks();
+}
+
+
+function prepareEditSubtask(i){
+let oldSubtask = document.getElementById(`subtask${i}`);
+// oldSubtask.innerHTML = ``;
+oldSubtask.innerHTML = `<input class="subtask-edit-input" id="new-subtask-for-edit-${i}" value="${oldSubtask.innerText}">`;
+document.getElementById(`edit-images-${i}`).innerHTML = `<div><img id="trash-${i}" onmousedown="deleteSubtask('${i}')" src="./assets/img/subtaskdelete.svg"></div>
+                                                          |
+                                                          <div><img id="check-${i}" onmousedown="confirmEditSubtask('${i}')" src="./assets/img/subtaskcheck.svg"></div>`
+
+document.getElementById(`outer-container-${i}`).classList.add('choosen-input');
+document.getElementById(`new-subtask-for-edit-${i}`).focus();
+document.getElementById(`new-subtask-for-edit-${i}`).addEventListener('blur', function() {
+  renderAddedSubtasks();
+  ;
+});
+}
+
+
+function confirmEditSubtask(i){
+subtasks.splice(i, 1, {"title": document.getElementById(`new-subtask-for-edit-${i}`).value, "done": "false"});
+renderAddedSubtasks();
 }
 
 
