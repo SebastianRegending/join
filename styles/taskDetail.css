@@ -78,8 +78,8 @@
 .task-title {
   font-size: 47px;
   font-weight: 700;
-  line-height: 56.4px;
   text-align: left;
+  margin-bottom: 16px;
 }
 
 .task-description {
@@ -225,5 +225,9 @@
   .btn-delete-task,
   .btn-edit-task {
     padding: 5px 8px;
+  }
+
+  .assignee-list{
+    gap: 0;
   }
 }
