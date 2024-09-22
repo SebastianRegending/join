@@ -9,14 +9,18 @@ let checkedContactsCirclesDialog = [];
 let progressDialog;
 
 
-function openDialogAddTask(newProgress){
-    progressDialog = newProgress;
-    document.getElementById('addTaskDialog').classList.remove('d-none');
+function openDialogAddTask(newProgress) {
+  progressDialog = newProgress;
+  document.getElementById('addTaskDialog').classList.remove('d-none');
 }
 
-function cancelDialogAddTask(){
-    document.getElementById('addTaskDialog').classList.add('d-none');
-    document.getElementById('dialog').classList.add('d-none');
+function cancelDialogAddTask() {
+  clearTasks();
+  document.getElementById('addTaskDialog').classList.add('d-none');
+  document.getElementById('dialog').classList.add('d-none');
+  checkedContactsCirclesDialog = [];
+  document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
+
 }
 
 
@@ -28,9 +32,26 @@ function showCheckboxesDialog() {
   if (!expandedDialog) {
     checkboxes.style.display = "block";
     expandedDialog = true;
+    document.addEventListener('click', closeDropdownOnClickOutside);
   } else {
     checkboxes.style.display = "none";
     expandedDialog = false;
+    document.removeEventListener('click', closeDropdownOnClickOutside);
+  }
+}
+
+
+/**
+ * Closes the Dropdown Menu
+ * @param {*} event 
+ */
+function closeDropdownOnClickOutside(event) {
+  let checkboxes = document.getElementById("checkboxes");
+  let selectBox = document.querySelector(".selectBox");
+  if (!selectBox.contains(event.target) && !checkboxes.contains(event.target)) {
+    checkboxes.style.display = "none";
+    expanded = false;
+    document.removeEventListener('click', closeDropdownOnClickOutside);
   }
 }
 
@@ -116,7 +137,7 @@ function addCircle(color, id, inits) {
     for (let i = 0; i < 6; i++) {
       document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCirclesDialog[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCirclesDialog[i]['inits']}</div>`;
     }
-    document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-grey assigned-contacts z${7}">+${checkedContactsCirclesDialog.length-6}</div>`
+    document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-grey assigned-contacts z${7}">+${checkedContactsCirclesDialog.length - 6}</div>`
   } else {
     for (let i = 0; i < checkedContactsCirclesDialog.length; i++) {
       document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCirclesDialog[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCirclesDialog[i]['inits']}</div>`;
@@ -260,13 +281,68 @@ function addSubtask() {
   if (subtask.value) {
     let subtaskobject = { title: `${subtask.value}`, done: "false" };
     subtasksDialog.push(subtaskobject);
-    document.getElementById('added-subtasks').innerHTML = ``;
-    for (let i = 0; i < subtasksDialog.length; i++) {
-      document.getElementById('added-subtasks').innerHTML += `<li>${subtasksDialog[i]['title']}</li>`;
-    }
+    renderAddedSubtasks();
     document.getElementById('subtasks').value = ``;
     cancelAddSubtask()
   }
+}
+
+/**
+ * Renders the global array subtasks into the div
+ */
+function renderAddedSubtasks(){
+  document.getElementById('added-subtasks').innerHTML = ``;
+    for (let i = 0; i < subtasksDialog.length; i++) {
+      document.getElementById('added-subtasks').innerHTML += `<div id="outer-container-${i}" class="subtask-help-outer-container">
+                                                                <li id="subtask${i}" class="subtask-help-inner-container">${subtasksDialog[i]['title']}</li>
+                                                                <div id="edit-images-${i}" class="edit-images-area-subtasks">
+                                                                    <div><img id="pen-${i}" onclick="prepareEditSubtask('${i}')"src="./assets/img/subtaskedit.svg"></div>|
+                                                                    <div><img id="trash-${i}" onclick="deleteSubtask('${i}')" src="./assets/img/subtaskdelete.svg"></div>
+                                                                </div> 
+                                                              </div>`;
+    }
+}
+
+
+/**
+ * Deletes one added subtask from preparing
+ * 
+ * @param {number} i 
+ */
+function deleteSubtask(i){
+subtasksDialog.splice(i, 1);
+renderAddedSubtasks();
+}
+
+
+/**
+ * Prepares the choosen subtask divs to edit it
+ * @param {} i 
+ */
+function prepareEditSubtask(i){
+let oldSubtask = document.getElementById(`subtask${i}`);
+// oldSubtask.innerHTML = ``;
+oldSubtask.innerHTML = `<input class="subtask-edit-input" id="new-subtask-for-edit-${i}" value="${oldSubtask.innerText}">`;
+document.getElementById(`edit-images-${i}`).innerHTML = `<div><img id="trash-${i}" onmousedown="deleteSubtask('${i}')" src="./assets/img/subtaskdelete.svg"></div>
+                                                          |
+                                                          <div><img id="check-${i}" onmousedown="confirmEditSubtask('${i}')" src="./assets/img/subtaskcheck.svg"></div>`
+
+document.getElementById(`outer-container-${i}`).classList.add('choosen-input');
+document.getElementById(`new-subtask-for-edit-${i}`).focus();
+document.getElementById(`new-subtask-for-edit-${i}`).addEventListener('blur', function() {
+  renderAddedSubtasks();
+  ;
+});
+}
+
+
+/**
+ * Confirms the editing and changes the array
+ * @param {} i 
+ */
+function confirmEditSubtask(i){
+subtasksDialog.splice(i, 1, {"title": document.getElementById(`new-subtask-for-edit-${i}`).value, "done": "false"});
+renderAddedSubtasks();
 }
 
 

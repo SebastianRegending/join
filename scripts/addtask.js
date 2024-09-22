@@ -17,9 +17,26 @@ function showCheckboxes() {
   if (!expanded) {
     checkboxes.style.display = "block";
     expanded = true;
+    document.addEventListener('click', closeDropdownOnClickOutside);
   } else {
     checkboxes.style.display = "none";
     expanded = false;
+    document.removeEventListener('click', closeDropdownOnClickOutside);
+  }
+}
+
+
+/**
+ * Closes the Dropdown Menu
+ * @param {*} event 
+ */
+function closeDropdownOnClickOutside(event) {
+  let checkboxes = document.getElementById("checkboxes");
+  let selectBox = document.querySelector(".selectBox");
+  if (!selectBox.contains(event.target) && !checkboxes.contains(event.target)) {
+      checkboxes.style.display = "none";
+      expanded = false;
+      document.removeEventListener('click', closeDropdownOnClickOutside);
   }
 }
 
