@@ -785,6 +785,7 @@ body {
         width: 48px;
         height: 48px;
         padding: 8px;
+        margin-right: 10px;
     }
 
     .add-task span {
@@ -821,6 +822,7 @@ body {
 
     .task-input input {
         width: 100%;
+        margin-left: 10px;
     }
 
     .task-input {
@@ -951,7 +953,34 @@ body {
             background-color: white;
            }
         
+          #task-details .task-title{
+            font-size: 32px;
+           }
 
+           #task-details .task-due-date{
+            font-size: 16px;
+           }
+
+           #task-details .task-due-date span{
+            font-size: 16px;
+           }
+
+            #task-details .task-priority{
+            font-size: 16px;
+           }
+
+            #task-details .task-priority p{
+            font-size: 16px;
+           }
+
+            #task-details .task-type span{
+            font-size: 16px;
+           }
+
+           #task-details .task-type{
+            padding: 4px 8px;
+           }
+        
     #dialog-content .from-right-side{
         margin: 24px 0px 24px 40px;
     }

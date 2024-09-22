@@ -288,7 +288,6 @@ async function createNewTask() {
     }
 }
 
-
 /**
  * Adds a new task to the task board.
  * 

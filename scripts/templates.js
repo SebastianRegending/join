@@ -1,3 +1,9 @@
+/**
+ * Generates the HTML for the task details popup.
+ * @param {Object} todoData - The task data object.
+ * @param {string} id - The ID of the task.
+ * @returns {string} The generated HTML for the task details.
+*/
 function generateTaskDetailsHTML(todoData, id) {
     let contacts = todoData.contacts ? todoData.contacts : [];
     contactIds = [];
@@ -13,7 +19,6 @@ function generateTaskDetailsHTML(todoData, id) {
     let taskTypeClass = todoData.category === 'User Story' ? 'user-story' :
         todoData.category === 'Technical Task' ? 'technical-task' : '';
     return `
-                
         <div id="task-details" class="task-details">
             <div class="task-header">
                 <div class="task-type ${taskTypeClass}">
@@ -79,7 +84,11 @@ function generateTaskDetailsHTML(todoData, id) {
     `;
 }
 
-
+/**
+ * Generates HTML for displaying the progress of a task based on subtasks.
+ * @param {Object} task - The task object containing subtasks.
+ * @returns {string} The generated HTML representing the progress bar.
+ */
 function generateProgressHTML(task) {
     if (!task.subtasks || !Array.isArray(task.subtasks)) return '';
 
@@ -97,74 +106,103 @@ function generateProgressHTML(task) {
     `;
 }
 
-
+/**
+ * Generates the HTML for editing a task.
+ * @param {string} id - The ID of the task.
+ * @param {string} title - The title of the task.
+ * @param {string} description - The description of the task.
+ * @param {Array} contacts - The contacts assigned to the task.
+ * @param {string} deadline - The deadline for the task.
+ * @param {string} prio - The priority of the task.
+ * @param {string} category - The category of the task.
+ * @param {Array} subtasks - The subtasks of the task.
+ * @returns {string} The generated HTML for the task edit form.
+ */
 function generateEditPage(id, title, description, contacts, deadline, prio, category, subtasks) {
    
     return `
         <div id="task-details-edit" class="task-details">
-        <div class="right-align" onclick="closePopUpEdit()"><img class="cancel-cross" src="./assets/img/cancel.svg""></div>
-           <form id="editform"  onsubmit="submitEditetTask(); return false;">
-           <span>Title</span>
-            <input id="input-title-edit" class="input-field" value="${title}">
-             <span>Description</span>
-            <textarea id="input-description-edit">${description}</textarea>
-              <span>Due date</span>
-            <input id="input-deadline-edit" class="input-field" type="date" placeholder="dd/mm/yyyy" value="${deadline}" required>
-            <span>Priority</span>
-            <div class="flexed button-area-prio">
-                        
-                        <div class="prio-container" id="prio-urgent-edit" onclick="setPrioEdit('urgent')">
-                            Urgent<img id="prio-pic-urgent" src="./assets/img/urgent-icon.svg"></div>
-                            
-                            <div class="prio-container prio-active-medium" id="prio-medium-edit"
-                            onclick="setPrioEdit('medium')">Medium <img id="prio-pic-medium"
-                            src="./assets/img/medium-icon.svg"></div>
-                            
-                            <div class="prio-container" id="prio-low-edit" onclick="setPrioEdit('low')">Low <img
-                                id="prio-pic-low" src="./assets/img/low-icon.svg"></div>
+            <div class="right-align" onclick="closePopUpEdit()">
+                <img class="cancel-cross" src="./assets/img/cancel.svg">
+            </div>
+            <form id="editform" onsubmit="submitEditetTask(); return false;">
+                <span>Title</span>
+                <input id="input-title-edit" class="input-field" value="${title}">
 
+                <span>Description</span>
+                <textarea id="input-description-edit">${description}</textarea>
+
+                <span>Due date</span>
+                <input id="input-deadline-edit" class="input-field" type="date" placeholder="dd/mm/yyyy" value="${deadline}" required>
+
+                <span>Priority</span>
+                <div class="flexed button-area-prio">
+                    <div class="prio-container" id="prio-urgent-edit" onclick="setPrioEdit('urgent')">
+                        Urgent
+                        <img id="prio-pic-urgent" src="./assets/img/urgent-icon.svg">
                     </div>
 
- <span>Assigned to contacts</span>
-               <div class="multiselect">
-                        <div class="selectBox" onclick="showCheckboxesEdit()">
-                            <select class="input-field-select">
-                                <option class="option-select">Select contacts to assign</option>
-                            </select>
-                            <div class="overSelect"></div>
-                        </div>
-                        <div id="checkboxes-edit">
-                        </div>
+                    <div class="prio-container prio-active-medium" id="prio-medium-edit" onclick="setPrioEdit('medium')">
+                        Medium
+                        <img id="prio-pic-medium" src="./assets/img/medium-icon.svg">
                     </div>
-                    <div id="circle-area-assigned-contacts-edit">
+
+                    <div class="prio-container" id="prio-low-edit" onclick="setPrioEdit('low')">
+                        Low
+                        <img id="prio-pic-low" src="./assets/img/low-icon.svg">
                     </div>
-                  <div class="subtasks-area">  
- <span>Subtasks</span>
+                </div>
+
+                <span>Assigned to contacts</span>
+                <div class="multiselect">
+                    <div class="selectBox" onclick="showCheckboxesEdit()">
+                        <select class="input-field-select">
+                            <option class="option-select">Select contacts to assign</option>
+                        </select>
+                        <div class="overSelect"></div>
+                    </div>
+                    <div id="checkboxes-edit"></div>
+                </div>
+                <div id="circle-area-assigned-contacts-edit"></div>
+
+                <div class="subtasks-area">
+                    <span>Subtasks</span>
                     <div class="input-field-subtasks input-field-subtasks-smaller">
                         <input id="subtasks-edit" onfocus="openAddSubtaskEdit()" placeholder="Add new subtask">
-                        <div onclick="openAddSubtaskEdit()" id="add-button-icon-plus-edit" class="add-subtask"><img
-                                src="./assets/img/add.svg"></div>
-
-                        <div class="cancel-container">
-                            <div class="d-none" onclick="cancelAddSubtaskEdit()" id="add-button-icon-cancel-edit"><img
-                                    src="./assets/img/cancel.svg"></div>
+                        <div onclick="openAddSubtaskEdit()" id="add-button-icon-plus-edit" class="add-subtask">
+                            <img src="./assets/img/add.svg">
                         </div>
-
-                        <div onclick="addSubtaskEdit()" id="add-button-icon-check-edit" class="d-none"><img id="check"
-                                src="./assets/img/checkstandard.svg"></div>
+                        <div class="cancel-container">
+                            <div class="d-none" onclick="cancelAddSubtaskEdit()" id="add-button-icon-cancel-edit">
+                                <img src="./assets/img/cancel.svg">
+                            </div>
+                        </div>
+                        <div onclick="addSubtaskEdit()" id="add-button-icon-check-edit" class="d-none">
+                            <img id="check" src="./assets/img/checkstandard.svg">
+                        </div>
                     </div>
-
                     <div class="flex-column" id="added-subtasks-edit"></div>
-                    </div>
-                    <div class="centered">
-                    <button class="blue-btn">OK <img src="./assets/img/check.svg"></button>
-                    <div>
-           </form>
+                </div>
+
+                <div class="centered">
+                    <button class="blue-btn">OK
+                        <img src="./assets/img/check.svg">
+                    </button>
+                </div>
+            </form>
         </div>
-    `;
+`;
 }
 
-
+/**
+ * Generates a task card template.
+ * @param {Object} task - The task object.
+ * @param {string} taskID - The ID of the task.
+ * @param {string} progressHTML - The HTML for the task's progress.
+ * @param {string} contactsHTML - The HTML for the task's contacts.
+ * @param {string} labelClass - The class for the task label (based on category).
+ * @returns {string} The generated HTML for the task card.
+ */
 function taskTemplate(task, taskID, progressHTML, contactsHTML, labelClass) {
     return `
         <div id="task-${taskID}" class="todo-card" draggable="true" ondragstart="startDragging(event)" onclick="openPopUp('${taskID}')">
@@ -190,6 +228,14 @@ function taskTemplate(task, taskID, progressHTML, contactsHTML, labelClass) {
     `;
 }
 
+/**
+ * Generates a contact checkbox template for assigning contacts to a task.
+ * @param {number} n - The index of the contact.
+ * @param {number} i - The index within the contacts list.
+ * @param {boolean} isChecked - Indicates if the checkbox is checked.
+ * @param {Array} IDs - Array of contact IDs and data.
+ * @returns {string} The generated HTML for the contact checkbox.
+ */
 function getContactsCheckboxTemplate(n, i, isChecked, IDs) {
     return `
         <label for="contacts${n}" class="contact-for-form">
@@ -202,6 +248,14 @@ function getContactsCheckboxTemplate(n, i, isChecked, IDs) {
     `;
 }
 
+/**
+ * Generates a contact template for displaying contacts in a task.
+ * @param {number} n - The index of the contact.
+ * @param {number} i - The index within the contacts list.
+ * @param {Array} IDs - Array of contact IDs and data.
+ * @param {boolean} isChecked - Indicates if the checkbox is checked.
+ * @returns {string} The generated HTML for the contact.
+ */
 function getContactTemplate(n, i, IDs, isChecked) {
     return `
         <label for="contacts${n}" class="contact-for-form">
@@ -214,6 +268,14 @@ function getContactTemplate(n, i, IDs, isChecked) {
     `;
 }
 
+/**
+ * Generates a contact template with "You" label for the current user.
+ * @param {number} n - The index of the contact.
+ * @param {number} i - The index within the contacts list.
+ * @param {Array} IDs - Array of contact IDs and data.
+ * @param {boolean} isChecked - Indicates if the checkbox is checked.
+ * @returns {string} The generated HTML for the current user's contact.
+ */
 function getContactTemplateYou(n, i, IDs, isChecked) {
     return `
         <label for="contacts${n}" class="contact-for-form">
@@ -226,6 +288,12 @@ function getContactTemplateYou(n, i, IDs, isChecked) {
     `;
 }
 
+/**
+ * Generates a progress bar HTML for tasks.
+ * @param {number} completedSubtasks - Number of completed subtasks.
+ * @param {number} totalSubtasks - Total number of subtasks.
+ * @returns {string} The generated HTML for the progress bar.
+ */
 function getProgressHTML(completedSubtasks, totalSubtasks) {
     let progressPercentage = totalSubtasks > 0 ? (completedSubtasks / totalSubtasks) * 100 : 0;
     return `
@@ -238,6 +306,13 @@ function getProgressHTML(completedSubtasks, totalSubtasks) {
     `;
 }
 
+/**
+ * Generates HTML for a task with progress and contact details.
+ * @param {Object} task - The task object.
+ * @param {string} taskID - The ID of the task.
+ * @param {string} progressHTML - The HTML for the task's progress.
+ * @returns {string} The generated HTML for the task.
+ */
 function getTaskHTML(task, taskID, progressHTML) {
     return `
         <div id="task-${taskID}" class="todo-card" draggable="true" ondragstart="startDragging(event)">
