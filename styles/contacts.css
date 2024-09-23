@@ -302,6 +302,8 @@ body {
 #edit-initials {
     width: 120px;
     height: 120px;
+    min-width: 120px;
+    min-height: 120px;
     background-color: grey;
     border-radius: 50%;
     display: flex;
