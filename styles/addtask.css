@@ -320,6 +320,7 @@ option {
   justify-content: flex-end;
   align-items: center;
   box-sizing: border-box;
+  margin-bottom: 40px;
 }
 
 .blue-btn {
@@ -889,7 +890,9 @@ option {
   justify-content: space-between;
   border-radius: 16px;
   padding: 4px 12px 4px 12px;
-}
+  display: flex;
+  align-items: center;
+ }
 
 
 .edit-images-area-subtasks{
@@ -906,8 +909,9 @@ option {
 
 
 .subtask-help-outer-container:hover{
-  background-color: #d1d1d1;;
+  background-color: #d1d1d1;
 }
+
 
 .subtask-help-outer-container:hover .edit-images-area-subtasks{
   visibility: visible;
@@ -923,11 +927,18 @@ option {
   border: none;
   background-color: white;
   outline: none;
-
-}
+  width:100%;
+  
+ }
 
 .choosen-input{
 background-color: white !important;
 border-radius: 0px;
 border-bottom: solid 1px #29abe2;
+}
+
+.subtask-help-inner-container{
+  width: 100%;
+overflow: hidden;
+white-space: nowrap;
 }

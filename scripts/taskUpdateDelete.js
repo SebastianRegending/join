@@ -50,8 +50,72 @@ async function prepareEditTask(id, title, description, contacts, deadline, prio,
   document.getElementById('pop-up-content-edit').innerHTML = generateEditPage(id, title, description, contacts, deadline, prio, category, subtasks);
   setPrioEdit(prio);
   for (let i = 0; i < subtasksEdit.length; i++) {
-    document.getElementById('added-subtasks-edit').innerHTML += `<li>${subtasksEdit[i]['title']}</li>`;
+    document.getElementById('added-subtasks-edit').innerHTML += `<div id="outer-container-${i}" class="subtask-help-outer-container">
+                                                                <li id="subtask-edit${i}" class="subtask-help-inner-container">${subtasksEdit[i]['title']}</li>
+                                                                <div id="edit-images-${i}" class="edit-images-area-subtasks">
+                                                                    <div><img id="pen-${i}" onclick="prepareEditSubtaskEdit('${i}')"src="./assets/img/subtaskedit.svg"></div>|
+                                                                    <div><img id="trash-${i}" onclick="deleteSubtaskEdit('${i}')" src="./assets/img/subtaskdelete.svg"></div>
+                                                                </div> 
+                                                              </div>`;
   }
+}
+
+
+/**
+ * Deletes one added subtask from preparing
+ * 
+ * @param {number} i 
+ */
+function deleteSubtaskEdit(i){
+  subtasksEdit.splice(i, 1);
+  renderAddedSubtasksEdit();
+  }
+  
+  
+  /**
+   * Prepares the choosen subtask divs to edit it
+   * @param {} i 
+   */
+  function prepareEditSubtaskEdit(i){
+  let oldSubtask = document.getElementById(`subtask-edit${i}`);
+  // oldSubtask.innerHTML = ``;
+  oldSubtask.innerHTML = `<input class="subtask-edit-input" id="new-subtask-for-edit-${i}" value="${oldSubtask.innerText}">`;
+  document.getElementById(`edit-images-${i}`).innerHTML = `<div><img id="trash-${i}" onmousedown="deleteSubtaskEdit('${i}')" src="./assets/img/subtaskdelete.svg"></div>
+                                                            |
+                                                            <div><img id="check-${i}" onmousedown="confirmEditSubtaskEdit('${i}')" src="./assets/img/subtaskcheck.svg"></div>`
+  
+  document.getElementById(`outer-container-${i}`).classList.add('choosen-input');
+  document.getElementById(`new-subtask-for-edit-${i}`).focus();
+  document.getElementById(`new-subtask-for-edit-${i}`).addEventListener('blur', function() {
+    renderAddedSubtasksEdit();
+  });
+  }
+  
+  
+  /**
+   * Confirms the editing and changes the array
+   * @param {} i 
+   */
+  function confirmEditSubtaskEdit(i){
+  subtasksEdit.splice(i, 1, {"title": document.getElementById(`new-subtask-for-edit-${i}`).value, "done": "false"});
+  renderAddedSubtasksEdit();
+  }
+
+
+  /**
+ * Renders the global array subtasks into the div
+ */
+function renderAddedSubtasksEdit(){
+  document.getElementById('added-subtasks-edit').innerHTML = ``;
+    for (let i = 0; i < subtasksEdit.length; i++) {
+      document.getElementById('added-subtasks-edit').innerHTML += `<div id="outer-container-${i}" class="subtask-help-outer-container">
+                                                                <li id="subtask-edit${i}" class="subtask-help-inner-container">${subtasksEdit[i]['title']}</li>
+                                                                <div id="edit-images-${i}" class="edit-images-area-subtasks">
+                                                                    <div><img id="pen-${i}" onclick="prepareEditSubtaskEdit('${i}')"src="./assets/img/subtaskedit.svg"></div>|
+                                                                    <div><img id="trash-${i}" onclick="deleteSubtaskEdit('${i}')" src="./assets/img/subtaskdelete.svg"></div>
+                                                                </div> 
+                                                              </div>`;
+    }
 }
 
 
@@ -276,9 +340,10 @@ function addSubtaskEdit() {
     let subtaskobject = { title: `${subtask.value}`, done: "false" };
     subtasksEdit.push(subtaskobject);
     document.getElementById('added-subtasks-edit').innerHTML = ``;
-    for (let i = 0; i < subtasksEdit.length; i++) {
-      document.getElementById('added-subtasks-edit').innerHTML += `<li>${subtasksEdit[i]['title']}</li>`;
-    }
+    renderAddedSubtasksEdit();
+    // for (let i = 0; i < subtasksEdit.length; i++) {
+    //   document.getElementById('added-subtasks-edit').innerHTML += `<li>${subtasksEdit[i]['title']}</li>`;
+    // }
     document.getElementById('subtasks-edit').value = ``;
     cancelAddSubtaskEdit()
   }
