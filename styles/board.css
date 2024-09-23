@@ -210,7 +210,6 @@ body {
 #AwaitFeedback::-webkit-scrollbar,
 #Done::-webkit-scrollbar {
     height: 6px;
-    /* Höhe des horizontalen Scrollbalkens */
     cursor: grab;
 }
 
