@@ -193,7 +193,9 @@ function generateContactsHTML(contacts = []) {
     let badgesHTML = displayedContacts.map((contact) => {
         let initials = getInitials(contact.name);
         return `<span class="user-badge circle-${contact.color}">${initials}</span>`;
+        
     }).join('');
+    
 
     if (remainingContacts > 0) {
         badgesHTML += `<span class="user-badge" style="background-color: #A8A8A8">+${remainingContacts}</span>`;

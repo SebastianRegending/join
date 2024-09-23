@@ -1,3 +1,5 @@
+let checkedContactsCircles = [];
+
 /**
  * Generates the HTML for the task details popup.
  * @param {Object} todoData - The task data object.
@@ -267,12 +269,12 @@ function taskTemplate(task, taskID, progressHTML, contactsHTML, labelClass) {
  */
 function getContactsCheckboxTemplate(n, i, isChecked, IDs) {
     return `
-        <label for="contacts${n}" class="contact-for-form">
+        <label for="contactadd-${n}${i}" class="contact-for-form">
               <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
               </div>
               <div>${IDs[i]['name']}
               </div> 
-              <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" data-color="${IDs[i]['color']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>        
+              <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" data-color="${IDs[i]['color']}" onclick="addCircleDialog('${contact['color']}', 'contactadd-${n}${i}', '${contact['initials']}', '${contact['id']}', '${contact['letter']}', '${contact['name']}')">        
         </label>
     `;
 }
@@ -287,15 +289,52 @@ function getContactsCheckboxTemplate(n, i, isChecked, IDs) {
  */
 function getContactTemplate(n, i, IDs, isChecked) {
     return `
-        <label for="contacts${n}" class="contact-for-form">
-            <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
+        <label for="contactadd-${n}${i}" class="contact-for-form">
+            <div id="contactadd-${n}${i}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
             </div>
             <div>${IDs[i]['name']}
             </div> 
-            <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" data-color="${IDs[i]['color']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>        
+            <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contactadd-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" data-color="${IDs[i]['color']}" onclick="addCircleDialog('${contact['color']}', 'contactadd-${n}${i}', '${contact['initials']}', '${contact['id']}', '${contact['letter']}', '${contact['name']}')"/>        
         </label>
     `;
 }
+
+
+/**
+ * Checks the Checkboxes and adds circles
+ * 
+ * @param {*} color 
+ * @param {*} contactId 
+ * @param {*} inits 
+ * @param {*} id 
+ */
+  /**
+   * Creates an initials-circle to the circle-area-assigned-contacts, if it's checked
+   * 
+   * @param {string} color 
+   * @param {string} id 
+   * @param {string} inits 
+   */
+  function addCircleDialog(color, id, inits) {
+    let check = document.getElementById(id);
+    if (check.checked == true) {
+      checkedContactsCircles.push({ "id": id, "color": color, "inits": inits });
+    } else {
+      checkedContactsCircles.splice(checkedContactsCircles.findIndex(item => item.id === id), 1);
+    }
+    document.getElementById('circle-area-assigned-contacts-dialog').innerHTML = ``;
+    if (checkedContactsCircles.length > 6) {
+      for (let i = 0; i < 6; i++) {
+        document.getElementById('circle-area-assigned-contacts-dialog').innerHTML += `<div class="circle circle-${checkedContactsCircles[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCircles[i]['inits']}</div>`;
+      }
+      document.getElementById('circle-area-assigned-contacts-dialog').innerHTML += `<div class="circle circle-grey assigned-contacts z${7}">+${checkedContactsCircles.length-6}</div>`
+    } else {
+      for (let i = 0; i < checkedContactsCircles.length; i++) {
+        document.getElementById('circle-area-assigned-contacts-dialog').innerHTML += `<div class="circle circle-${checkedContactsCircles[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCircles[i]['inits']}</div>`;
+      }
+    }
+  }
+  
 
 /**
  * Generates a contact template with "You" label for the current user.
@@ -307,12 +346,12 @@ function getContactTemplate(n, i, IDs, isChecked) {
  */
 function getContactTemplateYou(n, i, IDs, isChecked) {
     return `
-        <label for="contacts${n}" class="contact-for-form">
-            <div id="contact-${n}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
+        <label for="contactadd-${n}${i}" class="contact-for-form">
+            <div id="contactadd-${n}${i}-circle" class="circle circle-${IDs[i]['color']}">${IDs[i]['initials']}
             </div>
             <div>${IDs[i]['name']}(You)
             </div> 
-            <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contact-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" data-color="${IDs[i]['color']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contact-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>        
+            <input class="input-check" type="checkbox" name="contactsedit" value="${IDs[i]['name']}" id="contactadd-${n}${i}" data-letter="${IDs[i]['initials'].charAt(0)}" data-id="${IDs[i]['id']}" data-color="${IDs[i]['color']}" onclick="addCircleEdit('${IDs[i]['color']}', 'contactadd-${n}${i}', '${IDs[i]['initials']}', '${IDs[i]['id']}')" ${isChecked}/>        
         </label>
     `;
 }

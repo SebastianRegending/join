@@ -93,7 +93,7 @@ function createContactsCheckboxTemplate(n, i) {
             </div>
             <div>${IDsDialog[i]['name']}
             </div> 
-            <input class="input-check" type="checkbox" name="contacts" value="${IDsDialog[i]['name']}" id="contact-editing-${n}${i}" data-letter="${IDsDialog[i]['initials'].charAt(0)}" data-id="${IDsDialog[i]['id']}"  data-color="${IDsDialog[i]['color']}" onclick="addCircle('${IDsDialog[i]['color']}', 'contact-${n}${i}', '${IDsDialog[i]['initials']}')"/>
+            <input class="input-check" type="checkbox" name="contacts" value="${IDsDialog[i]['name']}" id="contact-editing-${n}${i}" data-letter="${IDsDialog[i]['initials'].charAt(0)}" data-id="${IDsDialog[i]['id']}"  data-color="${IDsDialog[i]['color']}" onclick="addCircleDialog('${IDsDialog[i]['color']}', 'contact-editing-${n}${i}', '${IDsDialog[i]['initials']}')"/>
       </label>
     `
 }
@@ -113,7 +113,7 @@ function createContactsCheckboxTemplateYou(n, i) {
             </div>
             <div>${IDsDialog[i]['name']}(You)
             </div> 
-            <input class="input-check" type="checkbox" name="contacts" value="${IDsDialog[i]['name']}" id="contact-editing-${n}${i}" data-letter="${IDsDialog[i]['initials'].charAt(0)}" data-id="${IDsDialog[i]['id']}" onclick="addCircle('${IDsDialog[i]['color']}', 'contact-${n}${i}', '${IDsDialog[i]['initials']}')"/>
+            <input class="input-check" type="checkbox" name="contacts" value="${IDsDialog[i]['name']}" id="contact-editing-${n}${i}" data-letter="${IDsDialog[i]['initials'].charAt(0)}" data-id="${IDsDialog[i]['id']}" onclick="addCircleDialog('${IDsDialog[i]['color']}', 'contact-editing-${n}${i}', '${IDsDialog[i]['initials']}')"/>
       </label>
     `
 }
@@ -126,7 +126,7 @@ function createContactsCheckboxTemplateYou(n, i) {
  * @param {string} id 
  * @param {string} inits 
  */
-function addCircle(color, id, inits) {
+function addCircle(color, id, inits, uniqueId) {
   let check = document.getElementById(id);
   if (check.checked == true) {
     checkedContactsCirclesDialog.push({ "id": id, "color": color, "inits": inits });

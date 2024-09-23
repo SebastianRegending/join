@@ -1498,3 +1498,8 @@ border-radius: 50%;
     animation: slidein 0.75s, stay 1s 0.75s, slideout 0.75s 1.5s;
   }
 
+
+  #circle-area-assigned-contacts-dialog{
+    display: flex;
+  }
+
