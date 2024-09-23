@@ -262,6 +262,9 @@ function wrongEmailOrPassword() {
     }, 4000);
 }
 
+/**
+ * shows a toaster if the passwords are not the same
+ */
 function wrongPasswordAtSignUp() {
     let x = document.getElementById("wrongPasswordAtSignUp")
     x.className = "show";
