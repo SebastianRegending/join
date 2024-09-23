@@ -96,6 +96,7 @@ function closePopUpIfOutside(event) {
  */
 function closePopUp() {
     document.getElementById('pop-up-task').classList.add('d-none');
+    subtasksEdit = [];
 }
 
 /**
