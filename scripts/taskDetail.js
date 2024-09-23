@@ -38,9 +38,11 @@ function popUp(todoData, todoId) {
  * @param {number} subtaskIndex - The index of the subtask within the task's subtasks array.
  * @param {string} currentStatus - The current status of the subtask ("true" for completed, "false" for not completed).
  */
-function toggleSubtaskStatus(taskId, subtaskIndex, currentStatus) {
+async function toggleSubtaskStatus(taskId, subtaskIndex, currentStatus) {
+    let response = await fetch (`https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks/${taskId}/subtasks/${subtaskIndex}.json`);
+    let responseToJson = await response.json();
+    currentStatus = responseToJson['done'];
     let newStatus = currentStatus === "true" ? "false" : "true";
-
     fetch(`https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks/${taskId}/subtasks/${subtaskIndex}.json`, {
         method: "PATCH",
         headers: {

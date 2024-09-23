@@ -8,7 +8,6 @@ let letterForEditing;
 let randomNumbers = [];
 let tasks = [];
 
-
 /**
  * Loads the saved contacts from the database and converts it into a JSON
  */
@@ -17,7 +16,6 @@ async function loadContacts() {
     let responseToJson = await response.json();
     prepareRenderContacts(responseToJson);
 }
-
 
 /**
  * Makes the global variable contacts an array with all contacts, empties the contacts area, makes the global variable IDs the current prepared letter-IDs
@@ -40,7 +38,6 @@ function prepareRenderContacts(responseToJson) {
     }
 }
 
-
 /**
  * Add an HTML-Template to the letter-headline and the following contacts, add bg-dark-blue css class to the current choosen contact
  * 
@@ -61,7 +58,6 @@ function renderContacts(letterForCards) {
     }
 }
 
-
 /**
  * Converts the contact-JSON into an array with all contacts as an object
  * 
@@ -76,7 +72,6 @@ function jsonToArrayContacts(json) {
     });
     return result;
 }
-
 
 /**
  * Extracts the unique IDs
@@ -94,7 +89,6 @@ function jsonToArrayIDs(json) {
     });
     return result;
 }
-
 
 /**
  * Defines the variable oldContact to compare it with the global variable currentContact, to decide what templates has to change the color
@@ -123,7 +117,6 @@ function chooseContact(id, name, email, phone, inits, color) {
     loadContacts();
 }
 
-
 /**
  * defines the variable letter and loads the template into the choosen-contact-loading-area
  * 
@@ -145,7 +138,6 @@ function loadChoosenContact(id, name, email, phone, inits, color) {
     }
 }
 
-
 /**
  * Open Dialog
  */
@@ -153,7 +145,6 @@ function openAddContact() {
     document.getElementById('add-contact-dialog').classList.remove('d-none');
     document.getElementById('add-contact-dialog').classList.add('show');
 }
-
 
 /**
  * Close Dialog
@@ -165,7 +156,6 @@ function closeAddContact() {
     document.getElementById("add-contact-dialog").classList.add('hide');
     setTimeout(function () { document.getElementById('add-contact-dialog').classList.remove('show'); document.getElementById("add-contact-dialog").classList.add('d-none'); document.getElementById("add-contact-dialog").classList.remove('hide') }, 450);
 }
-
 
 /**
  * Puts the datas from the choosen contact in the inputfields and opens the dialog for editing. Set the global variables IdForEditing and letterForEditing to the current contact, to prepare later functions
@@ -189,7 +179,6 @@ function openEditContact(id, letter, name, email, phone, inits, color) {
     letterForEditing = letter;
 }
 
-
 /**
  * Defines some variables from the inputfields, to give them to the submit function, closes the dialog
  * 
@@ -209,7 +198,6 @@ async function prepareSubmitEditetContact() {
     closeEditContact();
     return responseToJson = await response.json();
 }
-
 
 /**
  * Submit the editet contact to database
@@ -234,7 +222,6 @@ async function submitEditetContact(name, email, phone, initialsForSaving, color,
     return response;
 }
 
-
 /**
  * Close Dialog
  */
@@ -242,7 +229,6 @@ function closeEditContact() {
     document.getElementById("edit-contact-dialog").classList.add('d-none');
     document.getElementById('edit-initials').removeAttribute("class");
 }
-
 
 /**
  * Sets value of edit inputs to empty
@@ -253,7 +239,6 @@ function deleteEditContact() {
     document.getElementById('edit-contact-phone').value = ``;
 
 }
-
 
 /**
  * Defines some variables from the inputfields, to give them to the createContact function
@@ -302,7 +287,6 @@ async function createContact(name, email, phone, initialsForSaving, color, tasks
     return response;
 }
 
-
 /**
  * Creates initials with maximum two letters
  * 
@@ -314,7 +298,6 @@ function createInitials(name) {
     words.length = 2;
     words.forEach((element) => initials.push(element.charAt(0)));
 }
-
 
 /**
  * Delete a contact im database
@@ -343,7 +326,6 @@ function createColor() {
     return color;
 }
 
-
 /**
  * Creates a random Number, that will decide what color the circle gets
  * 
@@ -366,14 +348,12 @@ function createRandomNumbers() {
     return colorNumber;
 }
 
-
 /**
  * Opens choosen Contact Area via removing d-none
  */
 function openChooseResp() {
     document.getElementById('choosen-contact').style.display = "block"
 }
-
 
 /**
  * Closes choosen Contact Area via adding d-none

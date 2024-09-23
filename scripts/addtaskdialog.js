@@ -14,6 +14,7 @@ function openDialogAddTask(newProgress) {
   document.getElementById('addTaskDialog').classList.remove('d-none');
 }
 
+
 function cancelDialogAddTask() {
   clearTasks();
   document.getElementById('addTaskDialog').classList.add('d-none');
@@ -87,12 +88,12 @@ async function loadContactsDialog() {
  */
 function createContactsCheckboxTemplate(n, i) {
   return /*html*/`
-      <label for="contact-${n}${i}" class="contact-for-form">
+      <label for="contact-editing-${n}${i}" class="contact-for-form">
             <div id="contact-${n}-circle" class="circle circle-${IDsDialog[i]['color']}">${IDsDialog[i]['initials']}
             </div>
             <div>${IDsDialog[i]['name']}
             </div> 
-            <input class="input-check" type="checkbox" name="contacts" value="${IDsDialog[i]['name']}" id="contact-${n}${i}" data-letter="${IDsDialog[i]['initials'].charAt(0)}" data-id="${IDsDialog[i]['id']}"  data-color="${IDsDialog[i]['color']}" onclick="addCircle('${IDsDialog[i]['color']}', 'contact-${n}${i}', '${IDsDialog[i]['initials']}')"/>
+            <input class="input-check" type="checkbox" name="contacts" value="${IDsDialog[i]['name']}" id="contact-editing-${n}${i}" data-letter="${IDsDialog[i]['initials'].charAt(0)}" data-id="${IDsDialog[i]['id']}"  data-color="${IDsDialog[i]['color']}" onclick="addCircle('${IDsDialog[i]['color']}', 'contact-${n}${i}', '${IDsDialog[i]['initials']}')"/>
       </label>
     `
 }
@@ -107,12 +108,12 @@ function createContactsCheckboxTemplate(n, i) {
  */
 function createContactsCheckboxTemplateYou(n, i) {
   return /*html*/`
-      <label for="contacts${n}" class="contact-for-form">
+      <label for="contact-editing-${n}${i}" class="contact-for-form">
             <div id="contact-${n}-circle" class="circle circle-${IDsDialog[i]['color']}">${IDsDialog[i]['initials']}
             </div>
             <div>${IDsDialog[i]['name']}(You)
             </div> 
-            <input class="input-check" type="checkbox" name="contacts" value="${IDsDialog[i]['name']}" id="contact-${n}${i}" data-letter="${IDsDialog[i]['initials'].charAt(0)}" data-id="${IDsDialog[i]['id']}" onclick="addCircle('${IDsDialog[i]['color']}', 'contact-${n}${i}', '${IDsDialog[i]['initials']}')"/>
+            <input class="input-check" type="checkbox" name="contacts" value="${IDsDialog[i]['name']}" id="contact-editing-${n}${i}" data-letter="${IDsDialog[i]['initials'].charAt(0)}" data-id="${IDsDialog[i]['id']}" onclick="addCircle('${IDsDialog[i]['color']}', 'contact-${n}${i}', '${IDsDialog[i]['initials']}')"/>
       </label>
     `
 }

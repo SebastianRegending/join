@@ -148,7 +148,7 @@ function createContactsCheckboxTemplateEdit(i) {
   let contact = allContacts[i];
   let isChecked = assignedContactsEdit.includes(contact.id) ? 'checked' : '';
   return `
-      <label for="contacts-${contact['id']}" class="contact-for-form">
+      <label for="contact-${contact['id']}" class="contact-for-form">
             <div id="contact-${contact['id']}-circle" class="circle circle-${contact['color']}">${contact['initials']}</div>
             <div>${contact['name']}</div> 
             <input class="input-check" type="checkbox" name="contacts" value="${contact['name']}" id="contact-${contact['id']}" data-letter="${contact['initials'].charAt(0)}" data-id="${contact['id']}" data-color="${contact['color']}" onclick="addCircleEdit('${contact['color']}', 'contact-${contact['id']}', '${contact['initials']}', '${contact['id']}', '${contact['letter']}', '${contact['name']}')" ${isChecked}/>
@@ -171,7 +171,6 @@ function createContactsCheckboxTemplateYouEdit(i) {
 function prepareCircleArea() {
   for (let i = 0; i < assignedContactsEdit.length; i++) {
     let objectContact = allContacts.find(e => e.id == assignedContactsEdit[i]);
-    console.log(objectContact)
     assignedContactsEditObjects.push(objectContact);
   }
   document.getElementById('circle-area-assigned-contacts-edit').innerHTML = '';
@@ -211,23 +210,23 @@ async function initAssignedContacts(id) {
  * @param {*} id 
  */
 function addCircleEdit(color, contactId, inits, id, letter, name) {
-  console.log(color, contactId, inits, id)
-  document.getElementById('circle-area-assigned-contacts-edit').innerHTML = ``;
   let check = document.getElementById(contactId);
-  if (check.checked == true) {
-    assignedContactsEditObjects.push({ "id": id, "color": color, "initials": inits, "letter": letter, "name": name });
-  } else {
-    assignedContactsEditObjects.splice(assignedContactsEditObjects.findIndex(item => item.id === id), 1);
-  }
-  document.getElementById('circle-area-assigned-contacts-edit').innerHTML = ``;
-  if (assignedContactsEditObjects.length > 6) {
-    for (let i = 0; i < 6; i++) {
-      document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${assignedContactsEditObjects[i]['color']} assigned-contacts z${i + 1}">${assignedContactsEditObjects[i]['initials']}</div>`;
+  if (check) { 
+    if (check.checked == true) {
+      assignedContactsEditObjects.push({ "id": id, "color": color, "initials": inits, "letter": letter, "name": name });
+    } else {
+      assignedContactsEditObjects.splice(assignedContactsEditObjects.findIndex(item => item.id === id), 1);
     }
-    document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-grey assigned-contacts z${7}">+${assignedContactsEditObjects.length - 6}</div>`
-  } else {
-    for (let i = 0; i < assignedContactsEditObjects.length; i++) {
-      document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${assignedContactsEditObjects[i]['color']} assigned-contacts z${i + 1}">${assignedContactsEditObjects[i]['initials']}</div>`;
+    document.getElementById('circle-area-assigned-contacts-edit').innerHTML = ``;
+    if (assignedContactsEditObjects.length > 6) {
+      for (let i = 0; i < 6; i++) {
+        document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${assignedContactsEditObjects[i]['color']} assigned-contacts z${i + 1}">${assignedContactsEditObjects[i]['initials']}</div>`;
+      }
+      document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-grey assigned-contacts z${7}">+${assignedContactsEditObjects.length - 6}</div>`
+    } else {
+      for (let i = 0; i < assignedContactsEditObjects.length; i++) {
+        document.getElementById('circle-area-assigned-contacts-edit').innerHTML += `<div class="circle circle-${assignedContactsEditObjects[i]['color']} assigned-contacts z${i + 1}">${assignedContactsEditObjects[i]['initials']}</div>`;
+      }
     }
   }
 }
