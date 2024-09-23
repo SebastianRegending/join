@@ -12,7 +12,9 @@ function openPopUp(todoId) {
                 todoData.contacts = todoData.contacts || [];
                 todoData.subtasks = todoData.subtasks || [];
                 todoData.description = todoData.description || "No description available";
-                document.getElementById('pop-up-content').innerHTML = popUp(todoData, todoId);
+                
+                let taskDetailsHTML = processTaskDetails(todoData, todoId);
+                document.getElementById('pop-up-content').innerHTML = taskDetailsHTML;
                 document.getElementById('pop-up-task').classList.remove('d-none');
             }
         })
