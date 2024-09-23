@@ -1117,9 +1117,9 @@ body {
     }
 
     .card-footer {
-width: 100%;
-justify-content: space-between;
-gap: 0px;
+        width: 100%;
+        justify-content: space-between;
+        gap: 0px;
     
     }
     .card-description {
@@ -1159,9 +1159,13 @@ gap: 0px;
         margin: 0 40px 24px 10px;
         }
 
-#done{
-    margin-bottom: 300px;
-}
+    #done{
+        margin-bottom: 300px;
+    }
+
+    #task-details .assignee-item{
+        padding: 4px 8px;
+    }
 }
 
 @media screen and (min-width: 650px){
