@@ -8,12 +8,10 @@ let taskIDDialog = [];
 let checkedContactsCirclesDialog = [];
 let progressDialog;
 
-
 function openDialogAddTask(newProgress) {
   progressDialog = newProgress;
   document.getElementById('addTaskDialog').classList.remove('d-none');
 }
-
 
 function cancelDialogAddTask() {
   clearTasks();
@@ -23,7 +21,6 @@ function cancelDialogAddTask() {
   document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
 
 }
-
 
 /**
  * Checks if the input is expanded and shows the checkboxes if it is
@@ -41,7 +38,6 @@ function showCheckboxesDialog() {
   }
 }
 
-
 /**
  * Closes the Dropdown Menu
  * @param {*} event 
@@ -55,7 +51,6 @@ function closeDropdownOnClickOutside(event) {
     document.removeEventListener('click', closeDropdownOnClickOutside);
   }
 }
-
 
 /**
  * Loads the contacts from database to the Checkbox-Input
@@ -78,7 +73,6 @@ async function loadContactsDialog() {
   }
 }
 
-
 /**
  * Creates a contacts-template
  * 
@@ -98,7 +92,6 @@ function createContactsCheckboxTemplate(n, i) {
     `
 }
 
-
 /**
  * Creates a contacts-template
  * 
@@ -117,7 +110,6 @@ function createContactsCheckboxTemplateYou(n, i) {
       </label>
     `
 }
-
 
 /**
  * Creates an initials-circle to the circle-area-assigned-contacts, if it's checked
@@ -146,7 +138,6 @@ function addCircle(color, id, inits) {
   }
 }
 
-
 /**
  * Prepares a task with the necessary parameters
  */
@@ -162,7 +153,6 @@ async function addTask() {
   clearTasks();
   cancelDialogAddTask();
 }
-
 
 /**
  * Prepares the task for upload and returns its id
@@ -186,7 +176,6 @@ async function uploadTask(title, description, deadline, category, assignedContac
   return responseToJson;
 }
 
-
 /**
  * Uploads the task to database
  * 
@@ -209,7 +198,6 @@ async function sumbitUploadTask(title, description, deadline, category, assigned
   return response;
 }
 
-
 /**
  * Converts the contact-JSON into an array with all contacts as an object
  * 
@@ -224,7 +212,6 @@ function jsonToArrayContacts(json) {
   });
   return result;
 }
-
 
 /**
  * Extracts the unique IDs
