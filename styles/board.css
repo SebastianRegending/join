@@ -1160,6 +1160,12 @@ gap: 0px;
 }
 }
 
+@media screen and (min-width: 650px){
+    .dropdown-container{
+        display: none;
+    }
+}
+
 
 .subtasks-area {
     display: flex;

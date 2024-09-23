@@ -211,7 +211,7 @@ function taskTemplate(task, taskID, progressHTML, contactsHTML, labelClass) {
                     <span class="label">${task.category}</span>
                 </div>
                 <!-- Hier füge das Dropdown-Menü hinzu -->
-                <div>
+                <div class="dropdown-container">
                     <div onclick="event.stopPropagation(); openDropdownForTask('task-${taskID}'); toggleDropdown(this);" class="dropdown">
                         <div id="myDropdown" class="dropdown-content">
                             <a href="javascript:void(0)" onclick="moveTaskToColumn('ToDo')">To Do</a>
