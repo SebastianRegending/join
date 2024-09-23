@@ -143,6 +143,7 @@ function confirmPassword() {
         if (form.password.value === form.confirm_password.value) {
             launchToasterAndRedirect();
         } else {
+            wrongPasswordAtSignUp();
             return
         }
     }
@@ -260,6 +261,15 @@ function wrongEmailOrPassword() {
         x.className = x.className.replace("show", "");
     }, 4000);
 }
+
+function wrongPasswordAtSignUp() {
+    let x = document.getElementById("wrongPasswordAtSignUp")
+    x.className = "show";
+    setTimeout(function () {
+        x.className = x.className.replace("show", "");
+    }, 4000);
+}
+
 
 /**
  * starts the join logo animation at the beginning

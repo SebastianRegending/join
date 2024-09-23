@@ -180,6 +180,14 @@ h1 {
   margin: 4px 0;
 }
 
+input:invalid:not(:placeholder-shown) {
+  border: 1px solid red !important;
+}
+
+input:valid:not(:placeholder-shown) {
+  border: 1px solid green !important;
+}
+
 .small-icons-inputfield {
   width: 24px;
   height: 24px;
@@ -434,6 +442,32 @@ h1 {
   animation: slidein 0.75s, stay 1.5s 0.75s, slideout 1s 2s;
 }
 
+#wrongPasswordAtSignUp {
+  visibility: hidden;
+  width: 350px;
+  height: 74px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 0px 25px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2a3647;
+  font-size: 20px;
+  color: white;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: -74px;
+  transform: translateX(-50%);
+}
+
+#wrongPasswordAtSignUp.show {
+  visibility: visible;
+  animation: slidein 0.75s, stay 1.5s 0.75s, slideout 1s 2s;
+}
+
 @keyframes slidein {
   from {
     bottom: -74px;
@@ -488,17 +522,9 @@ h1 {
     padding: 32px 0;
   }
 
-  .input-field {
+  .input-field{
     width: 364px;
     height: 50px;
-  }
-
-  .input-field:user-valid {
-    border: 1px solid green;
-  }
-
-  .input-field:user-invalid {
-    border: 1px solid red;
   }
 
   .small-icons-inputfield {
