@@ -97,7 +97,6 @@ async function includeHTML() {
             element.innerHTML = await resp.text();
         }
     }
-    // Führe hier das Script aus, sobald die Inhalte eingefügt wurden
     addActiveClass();
 }
 
@@ -138,14 +137,14 @@ function updateNoTasksMessage(container) {
 }
 
 /**
- * Moves the dragged task card to the specified column and updates the status in Firebase.
- * @param {DragEvent} event - The drop event.
- * @param {string} columnId - The ID of the target column where the card will be moved.
+ * Moves the dragged element to the specified column and updates the DOM accordingly.
+ * 
+ * @function moveElementToColumn
+ * @param {HTMLElement} draggedElement - The task element being moved.
+ * @param {string} columnId - The ID of the column to which the task is being moved.
  */
-async function moveTo(event, columnId) {
-    event.preventDefault();
+function moveElementToColumn(draggedElement, columnId) {
     let column = document.getElementById(columnId);
-    let draggedElement = document.getElementById(event.dataTransfer.getData('text'));
 
     if (draggedElement && column) {
         let originalContainer = draggedElement.parentElement;
@@ -157,33 +156,66 @@ async function moveTo(event, columnId) {
         column.classList.remove('drag-area-highlight');
         updateNoTasksMessage(originalContainer);
         updateNoTasksMessage(column);
+    }
+}
 
-        // Get the task ID from the dragged element's ID
-        let taskId = draggedElement.id.replace('task-', '');
+/**
+ * Updates the task status in Firebase based on the column it was moved to.
+ * 
+ * @async
+ * @function updateTaskStatus
+ * @param {string} columnId - The ID of the column to which the task is moved.
+ * @param {HTMLElement} draggedElement - The task element whose status is being updated.
+ * @returns {Promise<void>} - A promise that resolves when the task status is updated in Firebase.
+ */
+async function updateTaskStatus(columnId, draggedElement) {
+    let taskId = draggedElement.id.replace('task-', '');
+    let newStatus = '';
 
-        // Map the columnId to the corresponding progress status
-        let newStatus = '';
-        switch (columnId) {
-            case 'ToDo':
-                newStatus = 'To Do';
-                break;
-            case 'inProgress':
-                newStatus = 'In Progress';
-                break;
-            case 'AwaitFeedback':
-                newStatus = 'Await Feedback';
-                break;
-            case 'Done':
-                newStatus = 'Done';
-                break;
-        }
+    switch (columnId) {
+        case 'ToDo':
+            newStatus = 'To Do';
+            break;
+        case 'inProgress':
+            newStatus = 'In Progress';
+            break;
+        case 'AwaitFeedback':
+            newStatus = 'Await Feedback';
+            break;
+        case 'Done':
+            newStatus = 'Done';
+            break;
+    }
 
-        // Update task status in Firebase
-        try {
-            await updateTaskStatusInFirebase(taskId, newStatus);
-        } catch (error) {
-            // Handle error if needed
-        }
+    try {
+        await updateTaskStatusInFirebase(taskId, newStatus);
+    } catch (error) {
+        console.error('Error updating task status:', error);
+    }
+}
+
+/**
+ * Handles the drag-and-drop action, moves the task element to the new column,
+ * and triggers a status update in Firebase.
+ * 
+ * @async
+ * @function moveTo
+ * @param {Event} event - The drag event triggered by the user.
+ * @param {string} columnId - The ID of the column to which the task is being moved.
+ * @returns {Promise<void>} - A promise that resolves when the task is moved and status is updated.
+ */
+async function moveTo(event, columnId) {
+    let draggedElement;
+    if (event && event.preventDefault) {
+        event.preventDefault();
+        draggedElement = document.getElementById(event.dataTransfer.getData('text'));
+    } else {
+        draggedElement = document.querySelector('.todo-card.active');
+    }
+
+    if (draggedElement) {
+        moveElementToColumn(draggedElement, columnId);
+        await updateTaskStatus(columnId, draggedElement);
     }
 }
 
@@ -338,4 +370,15 @@ function setInitialsForHeader() {
         let combinedInitials = firstInitial + (secondInitial ? secondInitial : '');
         document.getElementById('initials-header').innerHTML = combinedInitials;
     }
+}
+
+/**
+ * Toggles the visibility of the dropdown content associated with the specified element.
+ * 
+ * @function toggleDropdown
+ * @param {HTMLElement} element - The element that contains the dropdown content.
+ */
+function toggleDropdown(element) {
+    let dropdownContent = element.querySelector('.dropdown-content');
+    dropdownContent.classList.toggle('show');
 }

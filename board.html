@@ -24,7 +24,7 @@
         <div id="addTaskDialog" class="dialog-bg d-none">
             <form class="form-content-board" onsubmit="addTask(); return false">
                 <div class="" onclick="cancelDialogAddTask()" id="add-button-icon-cancel-dialog"><img
-                    src="./assets/img/cancel.svg"></div>
+                        src="./assets/img/cancel.svg"></div>
                 <div id="add-task-form-content" class="add-task-form">
                     <div class="form-left-side-board">
                         <label for="input-title">Title<span class="red-letter">*</span></label>
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div id="circle-area-assigned-contacts">
-                            
+
                         </div>
                     </div>
                     <div class="form-right-side">
@@ -51,17 +51,17 @@
                         <input class="input-field" type="date" placeholder="dd/mm/yyyy" id="deadline" required>
                         <span>Prio</span>
                         <div class="flexed button-area-prio">
-                            
+
                             <div class="prio-container" id="prio-urgent" onclick="setPrio('urgent'); colorPrioUrgent()">
                                 Urgent<img id="prio-pic-urgent" src="./assets/img/urgent-icon.svg"></div>
-                                
-                                <div class="prio-container prio-active-medium" id="prio-medium"
+
+                            <div class="prio-container prio-active-medium" id="prio-medium"
                                 onclick="setPrio('medium'); colorPrioMedium()">Medium <img id="prio-pic-medium"
-                                src="./assets/img/medium-icon.svg"></div>
-                                
-                                <div class="prio-container" id="prio-low" onclick="setPrio('low'); colorPrioLow()">Low <img
+                                    src="./assets/img/medium-icon.svg"></div>
+
+                            <div class="prio-container" id="prio-low" onclick="setPrio('low'); colorPrioLow()">Low <img
                                     id="prio-pic-low" src="./assets/img/low-icon.svg"></div>
-    
+
                         </div>
                         <label for="category">Category<span class="red-letter">*</span></label>
                         <select class="input-field" name="category" id="category" required>
@@ -74,16 +74,16 @@
                             <input id="subtasks" onfocus="openAddSubtask()" placeholder="Add new subtask">
                             <div onclick="openAddSubtask()" id="add-button-icon-plus" class="add-subtask"><img
                                     src="./assets/img/add.svg"></div>
-    
+
                             <div class="cancel-container">
                                 <div class="d-none" onclick="cancelAddSubtask()" id="add-button-icon-cancel"><img
                                         src="./assets/img/cancel.svg"></div>
                             </div>
-    
+
                             <div onclick="addSubtask()" id="add-button-icon-check" class="d-none"><img id="check"
                                     src="./assets/img/checkstandard.svg"></div>
                         </div>
-    
+
                         <div class="flex-column" id="added-subtasks"></div>
                     </div>
                 </div>
@@ -92,11 +92,12 @@
                         <span><span class="red-letter">*</span>This field is required</span>
                     </div>
                     <div class="form-right-side-board">
-    
+
                         <div class="submit-area-right"></div>
                         <div class="flexed submit-area-help-container-board">
                             <span class="red-letter-resp"><span class="red-letter">*</span>This field is required</span>
-                            <div class="white-btn" onclick="clearTasks()">Clear <img src="./assets/img/cancel.svg"></div>
+                            <div class="white-btn" onclick="clearTasks()">Clear <img src="./assets/img/cancel.svg">
+                            </div>
                             <button class="blue-btn">Create Task<img src="./assets/img/check.svg"></button>
                         </div>
                     </div>
@@ -113,7 +114,8 @@
                     <button class="search-button" onclick="searchFunction()"></button>
                 </div>
 
-                <button class="add-task" onclick="openDialogAddTask('To Do')"><span>Add task</span> <span>+</span></button>
+                <button class="add-task" onclick="openDialogAddTask('To Do')"><span>Add task</span>
+                    <span>+</span></button>
             </div>
 
         </div>
@@ -247,9 +249,6 @@
                         </div>
                     </form>
                 </section>
-
-
-
             </div>
         </div>
 
@@ -268,6 +267,10 @@
 
     </section>
     <div id="toaster-task-board">Task added to board <img src="./assets/img/board.svg"></div>
+
+    <div id="logout-container" class="d-none"></div>
+
+    </div>
 </body>
 
 </html>

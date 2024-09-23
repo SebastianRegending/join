@@ -206,8 +206,21 @@ function generateEditPage(id, title, description, contacts, deadline, prio, cate
 function taskTemplate(task, taskID, progressHTML, contactsHTML, labelClass) {
     return `
         <div id="task-${taskID}" class="todo-card" draggable="true" ondragstart="startDragging(event)" onclick="openPopUp('${taskID}')">
-            <div class="card-labels ${labelClass}">
-                <span class="label">${task.category}</span>
+            <div class="card-header">
+                <div class="card-labels ${labelClass}">
+                    <span class="label">${task.category}</span>
+                </div>
+                <!-- Hier füge das Dropdown-Menü hinzu -->
+                <div>
+                    <div onclick="event.stopPropagation(); openDropdownForTask('task-${taskID}'); toggleDropdown(this);" class="dropdown">
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="javascript:void(0)" onclick="moveTaskToColumn('ToDo')">To Do</a>
+                            <a href="javascript:void(0)" onclick="moveTaskToColumn('inProgress')">In Progress</a>
+                            <a href="javascript:void(0)" onclick="moveTaskToColumn('AwaitFeedback')">Await Feedback</a>
+                            <a href="javascript:void(0)" onclick="moveTaskToColumn('Done')">Done</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="card-content">
                 <h3 class="card-title">${task.title}</h3>
@@ -227,6 +240,8 @@ function taskTemplate(task, taskID, progressHTML, contactsHTML, labelClass) {
         </div>
     `;
 }
+
+
 
 /**
  * Generates a contact checkbox template for assigning contacts to a task.

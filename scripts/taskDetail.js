@@ -126,3 +126,29 @@ function updateTaskProgress(taskId) {
         })
         .catch(error => {});
 }
+
+/**
+ * Moves the currently selected task to the specified column.
+ * 
+ * @function moveTaskToColumn
+ * @param {string} columnId - The ID of the column to which the task should be moved.
+ */
+function moveTaskToColumn(columnId) {
+    let currentTask = document.querySelector('.todo-card.active'); // Currently selected card
+    if (currentTask) {
+        moveTo({ dataTransfer: { getData: () => currentTask.id } }, columnId);
+    }
+}
+
+/**
+ * Opens the dropdown for the specified task by making it the active task.
+ * 
+ * @function openDropdownForTask
+ * @param {string} taskId - The ID of the task for which the dropdown should be opened.
+ */
+function openDropdownForTask(taskId) {
+    let task = document.getElementById(taskId);
+    document.querySelectorAll('.todo-card').forEach(t => t.classList.remove('active'));
+    task.classList.add('active');
+}
+
