@@ -15,7 +15,7 @@
   </head>
   <body>
     <main id="registerpage">
-      <form id="registerform" onsubmit="saveNewUser(); return false;">
+      <form id="registerform" onsubmit="saveNewUser(); launchToasterAndRedirect(); return false;">
         <div id="signup-headline">
           <h1 class="h1-signup">
             <img
@@ -32,6 +32,7 @@
           type="text"
           placeholder="Name"
           required
+          minlength="3"
           oninput="validateName()"
         />
         <img
@@ -95,7 +96,7 @@
             >Privacy policy</a
           >
         </div>
-        <button id="input-btn" disabled onclick="confirmPassword()">
+        <button id="input-btn" disabled>
           Sign up
         </button>
       </form>

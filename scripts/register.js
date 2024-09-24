@@ -23,7 +23,7 @@ async function saveNewUser(path = "/users", data = {}) {
         },
         body: JSON.stringify(data)
     });
-    confirmPassword();
+    // confirmPassword();
     let newUserData = await response.json();
     prepareCreateContactForUser(name, email, newUserData);
     return responseToJson = newUserData;
@@ -135,19 +135,17 @@ function saveUserId(user, responseToJson) {
  * 
  * @returns 
  */
-function confirmPassword() {
-    let form = document.getElementById('registerform');
-    if (form.password.value == '' || form.confirm_password.value == '') {
-        return
-    } else {
-        if (form.password.value === form.confirm_password.value) {
-            launchToasterAndRedirect();
-        } else {
-            wrongPasswordAtSignUp();
-            return
-        }
-    }
-}
+// function confirmPassword() {
+//     let form = document.getElementById('registerform');
+//     if (form.password.value == '' || form.confirm_password.value == '') {
+//         return
+//     } else {
+//         if (form.password.value === form.confirm_password.value) {
+//         } else {
+//             return
+//         }
+//     }
+// }
 
 /**
  * checks if the checkbox at the signup form is active and enable the sign in button
@@ -263,18 +261,6 @@ function wrongEmailOrPassword() {
 }
 
 /**
- * shows a toaster if the passwords are not the same
- */
-function wrongPasswordAtSignUp() {
-    let x = document.getElementById("wrongPasswordAtSignUp")
-    x.className = "show";
-    setTimeout(function () {
-        x.className = x.className.replace("show", "");
-    }, 4000);
-}
-
-
-/**
  * starts the join logo animation at the beginning
  */
 function startLogoAnimation() {
@@ -314,6 +300,9 @@ function startLogoAnimationMobile() {
     }, 800);
 }
 
+/**
+ * validates name on sign up
+ */
 function validateName() {
     document.getElementById('name').addEventListener('input', function(e) {
         let name = e.target.value;
@@ -323,25 +312,27 @@ function validateName() {
         } else {
           e.target.setCustomValidity('Please enter name and use letters only');
         }
-      });
-      console.log(email);
-      
+      });      
     }
 
+/**
+ * validates email on sign up
+ */
 function validateEmail() {
 document.getElementById('email').addEventListener('input', function(e) {
     let email = e.target.value;
-    let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let pattern = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
     if (email.match(pattern)) {
       e.target.setCustomValidity('');
     } else {
       e.target.setCustomValidity('Please enter a valid email address. Example: user@example.de');
     }
-  });
-  console.log(email);
-  
+  }); 
 }
 
+/**
+ * validates password match on sign up
+ */
 function validatePasswordMatch() {
     const password = document.getElementById('password');
 const confirm = document.getElementById('confirm_password');
