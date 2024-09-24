@@ -9,13 +9,16 @@ let checkedContactsCirclesDialog = [];
 let progressDialog;
 
 function openDialogAddTask(newProgress) {
+
   progressDialog = newProgress;
   document.getElementById('addTaskDialog').classList.remove('d-none');
 }
 
 function cancelDialogAddTask() {
   clearTasks();
+  checkedContactsCircles = [];
   document.getElementById('addTaskDialog').classList.add('d-none');
+  document.getElementById('circle-area-assigned-contacts-dialog'). innerHTML = ``;
   document.getElementById('dialog').classList.add('d-none');
   checkedContactsCirclesDialog = [];
   document.getElementById('circle-area-assigned-contacts').innerHTML = ``;

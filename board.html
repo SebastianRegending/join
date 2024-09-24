@@ -138,7 +138,6 @@
                     <div id="inProgress" class="task-column" ondrop="moveTo(event, 'inProgress')"
                         ondragover="allowDrop(event)" ondragenter="highlight('inProgress')"
                         ondragleave="removeHighlight('inProgress')">
-                        <!-- Tasks will be dynamically added here -->
                     </div>
                 </div>
             </div>
@@ -148,7 +147,6 @@
                     <div id="AwaitFeedback" class="task-column" ondrop="moveTo(event, 'AwaitFeedback')"
                         ondragover="allowDrop(event)" ondragenter="highlight('AwaitFeedback')"
                         ondragleave="removeHighlight('AwaitFeedback')">
-                        <!-- Tasks will be dynamically added here -->
                     </div>
                 </div>
             </div>
@@ -158,18 +156,15 @@
                     <div id="Done" class="task-column" ondrop="moveTo(event, 'Done')" ondragover="allowDrop(event)"
                         ondragenter="highlight('Done')" ondragleave="removeHighlight('Done')">
                         <div class="no-tasks">No tasks Done</div>
-                        <!-- "Done" column -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Dialog for adding a task -->
-        <div id="dialog" class="dialog-bg d-none" onclick="closeDialog()">
+          <div id="dialog" class="dialog-bg d-none" onclick="closeDialog()">
             <div id="dialog-content" class="dialog">
 
-                <!-- HTML von addtask.html hier einfügen -->
-                <section class="fullpage">
+                   <section class="fullpage">
                     <h1>Add Task</h1>
                     <form onsubmit="addTask(); return false">
                         <div class="add-task-form">
@@ -258,7 +253,6 @@
         </div>
 
 
-        <!-- Dialog for task details -->
         <div id="pop-up-task" class="dialog-bg d-none" onclick="closePopUpIfOutside(event)">
             <div id="pop-up-content" class="dialog-popup">
 

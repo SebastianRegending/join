@@ -16,9 +16,9 @@
     <script src="./scripts/usercontact.js"></script>
     <title>Join - Summary</title>
   </head>
-  <body onload="initGuestSummaryHTML()">
+  <body onload="initSummaryHTML()">
     <section class="summary-container">
-      <div w3-include-html="menuguest.html"></div>
+      <div w3-include-html="menu.html"></div>
       <div id="content-summary-left">
         <div id="join-360">
           <div id="join-360-headline">Join 360</div>
@@ -31,7 +31,7 @@
             <div
               id="summary-todo-top"
               class="summary-top-style"
-              onclick="navigateToBoardGuest()"
+              onclick="navigateToBoard()"
             >
               <img
                 id="summary-img-pencil"
@@ -40,14 +40,14 @@
                 alt="pencil"
               />
               <div class="summary-card-small">
-                <div id="summary-todo" class="summary-small-number">3</div>
+                <div id="summary-todo" class="summary-small-number"></div>
                 <div class="summary-small-text">To-do</div>
               </div>
             </div>
             <div
               id="summary-done-top"
               class="summary-top-style"
-              onclick="navigateToBoardGuest()"
+              onclick="navigateToBoard()"
             >
               <img
                 class="summary-img"
@@ -56,12 +56,12 @@
                 alt="completed"
               />
               <div class="summary-card-small">
-                <div id="summary-done" class="summary-small-number">2</div>
+                <div id="summary-done" class="summary-small-number"></div>
                 <div class="summary-small-text">Done</div>
               </div>
             </div>
           </div>
-          <div id="summary-urgent" onclick="navigateToBoardGuest()">
+          <div id="summary-urgent" onclick="navigateToBoard()">
             <div id="summary-urgent-left">
               <img
                 id="summary-urgent-change-img"
@@ -73,41 +73,41 @@
                 <div
                   id="summary-urgent-change-number"
                   class="summary-small-number"
-                >1</div>
+                ></div>
                 <div class="summary-small-text">Urgent</div>
               </div>
             </div>
             <div id="summary-urgent-border"></div>
             <div id="summary-urgent-right">
-              <div id="summary-urgent-right-date">4.10.2024</div>
+              <div id="summary-urgent-right-date"></div>
               <div class="summary-urgent-right-deadline">Upcoming Deadline</div>
             </div>
           </div>
-          <div id="summary-bottom" onclick="navigateToBoardGuest()">
+          <div id="summary-bottom" onclick="navigateToBoard()">
             <div id="summary-tasksinboard" class="summary-bottom-style">
               <div class="summary-bottom-content-style">
                 <div
                   id="summary-bottom-tasks"
                   class="summary-bottom-small-number"
-                >7</div>
+                ></div>
                 <div class="summary-bottom-small-text">Tasks in Board</div>
               </div>
             </div>
-            <div class="summary-bottom-style" onclick="navigateToBoardGuest()">
+            <div class="summary-bottom-style" onclick="navigateToBoard()">
               <div class="summary-bottom-content-style">
                 <div
                   id="summary-bottom-progress"
                   class="summary-bottom-small-number"
-                >2</div>
+                ></div>
                 <div class="summary-bottom-small-text">Tasks in Progress</div>
               </div>
             </div>
-            <div class="summary-bottom-style" onclick="navigateToBoardGuest()">
+            <div class="summary-bottom-style" onclick="navigateToBoard()">
               <div class="summary-bottom-content-style">
                 <div
                   id="summary-bottom-feedback"
                   class="summary-bottom-small-number"
-                >2</div>
+                ></div>
                 <div class="summary-bottom-small-text">Awaiting Feedback</div>
               </div>
             </div>
@@ -117,16 +117,15 @@
       <aside id="content-summary-right">
         <div id="personal-greeting">
           <div id="daytime-greeting"></div>
-          <div id="username-greeting">Guest</div>
+          <div id="username-greeting"></div>
         </div>
       </aside>
       <div id="content-summary-right-mobile" class="d-none">
         <div id="personal-greeting-mobile">
           <div id="daytime-greeting-mobile"></div>
-          <div id="username-greeting-mobile">Guest</div>
+          <div id="username-greeting-mobile"></div>
         </div>
       </div>
     </section>
   </body>
 </html>
-
