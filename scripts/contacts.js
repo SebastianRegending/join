@@ -176,7 +176,7 @@ function openEditContact(id, letter, name, email, phone, inits, color) {
     document.getElementById('edit-initials').classList.add(`circle-${color}`);
     document.getElementById('edit-initials').innerHTML = inits;;
     IdForEditing = id;
-    letterForEditing = letter;
+    letterForEditing = name.trim().charAt(0);
 }
 
 /**
@@ -250,9 +250,9 @@ async function prepareCreateContact(path = "") {
     let name = document.getElementById('add-contact-name');
     let email = document.getElementById('add-contact-email');
     let phone = document.getElementById('add-contact-phone');
-    let letter = name.value.charAt(0).toUpperCase();
+    let letter = name.value.trim().charAt(0).toUpperCase();
     path = `/letter${letter}`
-    createInitials(name.value);
+    createInitials(name.value.trim());
     let initialsForSaving = initials.join('').toUpperCase();
     let color = createColor();
     let tasks = [];
@@ -273,7 +273,7 @@ async function prepareCreateContact(path = "") {
  * @returns submittet contact
  */
 async function createContact(name, email, phone, initialsForSaving, color, tasks, path) {
-    data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color, tasks: tasks });
+    data = ({ name: name.value.trim(), email: email.value, phone: phone.value, initials: initialsForSaving, color: color, tasks: tasks });
     let response = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         header: {
