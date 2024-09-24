@@ -50,6 +50,7 @@ body {
 .button-area {
     display: flex;
     gap: 24px;
+    margin-top: 24px;
 }
 
 
@@ -1191,4 +1192,56 @@ body {
     }
 
 
+}
+
+#add-contact-name{
+    margin-bottom: 0 !important;
+}
+
+#add-contact-email{
+    margin-top: 24px;
+    margin-bottom: 0 !important;
+}
+
+#add-contact-phone{
+    margin-top: 24px;
+    margin-bottom: 0 !important;
+}
+
+#edit-contact-name{
+    margin-bottom: 0 !important;
+}
+
+#edit-contact-email{
+    margin-top: 24px;
+    margin-bottom: 0 !important;
+}
+
+#edit-contact-phone{
+    margin-top: 24px;
+    margin-bottom: 0 !important;
+}
+
+#add-contact-name-info{
+    height: 8px;
+}
+
+#add-contact-email-info{
+    height: 8px;
+}
+
+#add-contact-phone-info{
+    height: 8px;
+}
+
+.v-hidden{
+    visibility: hidden;
+}
+
+.red-letters{
+    color: red;
+}
+
+.green-letters{
+    color: green;
 }

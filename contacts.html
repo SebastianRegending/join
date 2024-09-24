@@ -18,7 +18,7 @@
 
 </head>
 
-<body onload="initContactsHTML()">
+<body onload="initContactsHTML(); initInputs()">
     <div w3-include-html="./menu.html">
     </div>
     <section class="contact-page">
@@ -44,12 +44,15 @@
                                 <form class="contact-form"
                                     onsubmit="validateForm(); return false">
                                     <input id="add-contact-name" class="input-field icon-small-person"
-                                        pattern="[A-Za-z\s]{0,50}" required
+                                        pattern="[A-Za-z\s]{0,50}"
                                         title="Pleace Enter Alphabet Characters Only" type="text" placeholder="Name">
-                                    <input id="add-contact-email" class="input-field icon-small-mail" required
+                                        <div id="add-contact-name-info" class="v-hidden">Please enter letters only! (min 3, max 20)</div>
+                                    <input id="add-contact-email" class="input-field icon-small-mail"
                                         type="text" placeholder="Email">
-                                    <input id="add-contact-phone" class="input-field icon-small-call" required
+                                        <div id="add-contact-email-info" class="v-hidden">Please use a valid mailadress (jan@example.de)</div>
+                                    <input id="add-contact-phone" class="input-field icon-small-call"
                                         type="text" placeholder="Phone">
+                                        <div id="add-contact-phone-info" class="v-hidden">Please use numbers and / only!</div>
                                     <div class="button-area">
                                         <div class="white-input-btn" onclick="closeAddContact()">Cancel <img
                                                 src="./assets/img/cancel.svg" alt="cancel-icon"></div>
@@ -79,12 +82,15 @@
                             <div id="edit-initials"></div>
                             <form id="edit-form" class="contact-form" onsubmit="validateFormEdit(); return false">
                                 <input id="edit-contact-name" class="input-field icon-small-person"
-                                    pattern="[A-Za-z\s]{0,50}" required title="Pleace Enter Alphabet Characters Only"
+                                    pattern="[A-Za-z\s]{0,50}" title="Pleace Enter Alphabet Characters Only"
                                     type="text" placeholder="Name">
-                                <input id="edit-contact-email" class="input-field icon-small-mail" required type="text"
+                                    <div id="add-contact-name-info-edit" class="v-hidden">Please enter letters only! (min 3, max 20)</div>
+                                <input id="edit-contact-email" class="input-field icon-small-mail" type="text"
                                     placeholder="Email">
-                                <input id="edit-contact-phone" class="input-field icon-small-call" required type="text"
+                                    <div id="add-contact-email-info-edit" class="v-hidden">Please use a valid mailadress (jan@example.de)</div>
+                                <input id="edit-contact-phone" class="input-field icon-small-call" type="text"
                                     placeholder="Phone">
+                                    <div id="add-contact-phone-info-edit" class="v-hidden">Please use numbers and / only!</div>
                                 <div class="button-area">
                                     <div class="white-input-btn-edit" onclick="deleteEditContact()">Delete</div>
                                     <button class="blue-btn-edit">Save<img src="./assets/img/check.svg"
