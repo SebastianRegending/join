@@ -23,7 +23,6 @@ async function saveNewUser(path = "/users", data = {}) {
         },
         body: JSON.stringify(data)
     });
-    // confirmPassword();
     let newUserData = await response.json();
     prepareCreateContactForUser(name, email, newUserData);
     return responseToJson = newUserData;
@@ -129,23 +128,6 @@ function saveUserId(user, responseToJson) {
     }
 
 }
-
-/**
- * checks the password of to input fields to confirm the password
- * 
- * @returns 
- */
-// function confirmPassword() {
-//     let form = document.getElementById('registerform');
-//     if (form.password.value == '' || form.confirm_password.value == '') {
-//         return
-//     } else {
-//         if (form.password.value === form.confirm_password.value) {
-//         } else {
-//             return
-//         }
-//     }
-// }
 
 /**
  * checks if the checkbox at the signup form is active and enable the sign in button
