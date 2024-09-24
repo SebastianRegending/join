@@ -313,11 +313,27 @@ function showCheckboxesEdit() {
   if (!expandedEdit) {
     checkboxes.style.display = "block";
     expandedEdit = true;
+    setTimeout(() => {
+      document.addEventListener('click', closeDropdownOnClickOutsideEdit);
+    }, 100);
   } else {
     checkboxes.style.display = "none";
     expandedEdit = false;
+    document.removeEventListener('click', closeDropdownOnClickOutsideEdit);
   }
 }
+
+
+function closeDropdownOnClickOutsideEdit(event) {
+  let checkboxes = document.getElementById("checkboxes-edit");
+  let selectBox = document.querySelector(".selectBox");
+  if (!selectBox.contains(event.target) && !checkboxes.contains(event.target)) {
+      checkboxes.style.display = "none";
+      expanded = false;
+      document.removeEventListener('click', closeDropdownOnClickOutsideEdit);
+  }
+}
+  
 
 
 /**
