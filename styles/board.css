@@ -465,7 +465,9 @@ body {
     animation: elasticDrop 0.4s ease-in-out;
 }
 
-
+#pop-up-task{
+    z-index: 9999;
+}
 
 
 /* DIALOG */
@@ -569,6 +571,10 @@ body {
 #dialog-content .selectBox {
   position: relative; 
   width: 100%; 
+}
+
+#task-details .subtask-item{
+    font-size: 20px;
 }
 
 #dialog-content #checkboxes label {
@@ -1107,12 +1113,20 @@ body {
 #dialog-content .submit-area-help-container{
     justify-content: right;
 }
+
+#task-details .subtask-item{
+    font-size: 16px;
+}
 }
 
 
 @media screen and (max-width: 650px) {
     .mobile h1 {
         font-size: 48px;
+    }
+
+    #task-search-input::placeholder{
+        font-size: 16px;
     }
 
     .card-footer {
@@ -1152,6 +1166,15 @@ body {
         width: 100vw;
         height: 100vh;
         border-radius: 0;
+    }
+
+    .task-input input{
+        height: 24px;
+    }
+
+    .add-task{
+        width: 40px;
+        height: 40px;
     }
 
     .form-left-side-board {
