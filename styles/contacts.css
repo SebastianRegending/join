@@ -1233,6 +1233,13 @@ right: 0;
         bottom: 90px;
     }
 
+    #options-dialog{
+        position: fixed;
+        bottom: 82px;
+        right: 30px;
+        z-index: 200;
+    }
+
     .options-button-resp {
         bottom: 90px;
     }
