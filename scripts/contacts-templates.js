@@ -4,7 +4,7 @@
  * @param {string} letterForCards - First letter of the following contacts
  * @returns Letter-Template in HTML
  */
-function createLetterTemplate(letterForCards){
+function createLetterTemplate(letterForCards) {
     return /*html*/`
         <div class="help-width">
             <div class="contact-card-letter">
@@ -104,6 +104,15 @@ function createChoosenContactTemplate(letter, id, name, email, phone, inits, col
                 </a>
             </div>
         </div>
+        <div id="options-dialog" class="edit-area-field-resp-container d-none">
+             <div class="edit-area-field-resp-help-container">
+                    <div class="edit-area-field-resp" onclick="openEditContact('${id}', '${letter}', '${name}', '${email}', '${phone}', '${inits}', '${color}')"><img src="./assets/img/edit.svg" alt="edit-icon">Edit</div>
+                    <div class="edit-area-field-resp" onclick="deleteContact('${id}', '${letter}')"><img src="./assets/img/delete.svg" alt="delete-icon">Delete</div>
+            </div>
+
+        </div>
+        <div onclick="openOptions()" class="options-button-resp"><img src="./assets/img/more_vert.svg" alt="contacts options"></div>
+        <div id="bg-small-dialog" class="d-none"></div>
     `
-    
-    }
+
+}
