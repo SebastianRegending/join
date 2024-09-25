@@ -180,13 +180,13 @@ h1 {
   margin: 4px 0;
 }
 
-#registerform input:invalid:not(:placeholder-shown) {
+/* #registerform input:invalid:not(:placeholder-shown) {
   border: 1px solid red !important;
 }
 
 #registerform input:valid:not(:placeholder-shown) {
   border: 1px solid green !important;
-}
+} */
 
 .small-icons-inputfield {
   width: 24px;
@@ -617,4 +617,48 @@ h1 {
     width: 180px;
     height: 51px;
   }
+}
+
+#name{
+  background: url("../assets/img/person.png") no-repeat;
+  background-size: 30px;
+  background-position: 95%;
+}
+
+#email{
+  background: url("../assets/img/mail.png") no-repeat;
+  background-size: 30px;
+  background-position: 95%;
+}
+
+#password{
+  background: url("../assets/img/lock.png") no-repeat;
+  background-size: 30px;
+  background-position: 95%;
+}
+
+#confirm_password{
+  background: url("../assets/img/lock.png") no-repeat;
+  background-size: 30px;
+  background-position: 95%;
+}
+
+.v-hidden{
+  visibility: hidden;
+}
+
+.red-letters{
+  color: red;
+}
+
+.green-letters{
+  color: green;
+}
+
+.red-border{
+  border: 1px solid red !important;
+}
+
+.green-border{
+  border: 1px solid green !important;
 }

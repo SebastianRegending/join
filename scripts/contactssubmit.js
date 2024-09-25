@@ -22,7 +22,7 @@ function initInputName() {
 
     document.getElementById('add-contact-name').addEventListener("input", function (e) {
         let lettersForName = document.getElementById('add-contact-name').value;
-        if (lettersForName.length > 3 && lettersForName.length < 20 && /^[A-Za-z]+$/.test(lettersForName)) {
+        if (lettersForName.length > 2 && lettersForName.length < 20 && /^[A-Za-z ]+$/.test(lettersForName)) {
             document.getElementById('add-contact-name-info').classList.remove("red-letters");
             document.getElementById('add-contact-name-info').classList.add("green-letters");
         } else {
@@ -73,7 +73,7 @@ function initInputPhone() {
     document.getElementById('add-contact-phone').addEventListener("input", function (e) {
         let phonePattern = /^[0-9/ ]+$/;
         let phoneInput = document.getElementById('add-contact-phone').value;
-        if (phonePattern.test(phoneInput) && phoneInput.length > 2) {
+        if (phonePattern.test(phoneInput) && phoneInput.length > 2 && phoneInput.length < 21) {
             document.getElementById('add-contact-phone-info').classList.remove("red-letters");
             document.getElementById('add-contact-phone-info').classList.add("green-letters");
         } else {
@@ -99,7 +99,7 @@ function initInputNameEdit() {
 
     document.getElementById('edit-contact-name').addEventListener("input", function (e) {
         let lettersForName = document.getElementById('edit-contact-name').value;
-        if (lettersForName.length > 3 && lettersForName.length < 20 && /^[A-Za-z]+$/.test(lettersForName)) {
+        if (lettersForName.length > 2 && lettersForName.length < 20 && /^[A-Za-z ]+$/.test(lettersForName)) {
             document.getElementById('add-contact-name-info-edit').classList.remove("red-letters");
             document.getElementById('add-contact-name-info-edit').classList.add("green-letters");
         } else {
@@ -150,7 +150,7 @@ function initInputPhoneEdit() {
     document.getElementById('edit-contact-phone').addEventListener("input", function (e) {
         let phonePattern = /^[0-9/ ]+$/;
         let phoneInput = document.getElementById('edit-contact-phone').value;
-        if (phonePattern.test(phoneInput) && phoneInput.length > 2) {
+        if (phonePattern.test(phoneInput) && phoneInput.length > 2 && phoneInput.length < 21) {
             document.getElementById('add-contact-phone-info-edit').classList.remove("red-letters");
             document.getElementById('add-contact-phone-info-edit').classList.add("green-letters");
         } else {

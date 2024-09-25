@@ -176,7 +176,7 @@ function openEditContact(id, letter, name, email, phone, inits, color) {
     document.getElementById('edit-initials').classList.add(`circle-${color}`);
     document.getElementById('edit-initials').innerHTML = inits;;
     IdForEditing = id;
-    letterForEditing = name.trim().charAt(0);
+    letterForEditing = name.charAt(0).trim();
 }
 
 /**
@@ -190,9 +190,16 @@ async function prepareSubmitEditetContact() {
     let phone = document.getElementById('edit-contact-phone');
     createInitials(name.value);
     let initialsForSaving = initials.join('').toUpperCase();
-    let path = `/letter${letterForEditing}/${IdForEditing}`
+    let path; 
     let color = createColor();
-    let response = await submitEditetContact(name, email, phone, initialsForSaving, color, path);
+    let response;
+    if (letterForEditing == name.value.charAt(0).trim()){
+        path = `/letter${letterForEditing}/${IdForEditing}`;
+        response = await submitEditetContact(name, email, phone, initialsForSaving, color, path);
+    } else {
+        path = `/letter${name.value.charAt(0).trim()}`;
+        response = await submitEditetContactNew(name, email, phone, initialsForSaving, color, path, letterForEditing, IdForEditing);
+    }
     loadContacts();
     loadChoosenContact(IdForEditing, name.value, email.value, phone.value, initialsForSaving, color);
     closeEditContact();
@@ -214,6 +221,36 @@ async function submitEditetContact(name, email, phone, initialsForSaving, color,
     data = ({ name: name.value, email: email.value, phone: phone.value, initials: initialsForSaving, color: color });
     let response = await fetch(BASE_URL + path + ".json", {
         method: "PUT",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+    return response;
+}
+
+/**
+ * If the letter is different the old contact will be deletet and a new one will be created
+ * @param {*} name 
+ * @param {*} email 
+ * @param {*} phone 
+ * @param {*} initialsForSaving 
+ * @param {*} color 
+ * @param {*} path 
+ * @param {*} oldLetter 
+ * @param {*} id 
+ * @returns 
+ */
+async function submitEditetContactNew(name, email, phone, initialsForSaving, color, path, oldLetter, id) {
+    await fetch(`${BASE_URL}/letter${oldLetter}/${id}.json`, {
+        method: "DELETE"
+    });
+    oldContact = ``;
+    currentContact = ``;
+    document.getElementById('choosen-contact-loading-area').innerHTML = ``;
+    data = ({ name: name.value.trim(), email: email.value, phone: phone.value, initials: initialsForSaving, color: color, tasks: tasks });
+    let response = await fetch(BASE_URL + path + ".json", {
+        method: "POST",
         header: {
             "Content-Type": "application/json",
         },

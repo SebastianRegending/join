@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./styles/register.css" />
     <link rel="icon" type="image/x-icon" href="./assets/img/join.png" />
   </head>
-  <body>
+  <body onload="initValidations()">
     <main id="registerpage">
       <form id="registerform" onsubmit="saveNewUser(); launchToasterAndRedirect(); return false;">
         <div id="signup-headline">
@@ -33,26 +33,17 @@
           placeholder="Name"
           required
           minlength="3"
-          oninput="validateName()"
         />
-        <img
-          src="./assets/img/person.png"
-          alt="person"
-          class="small-icons-inputfield"
-        />
+        <div id="name-info" class="v-hidden">Please enter letters only! (min 3, max 20)</div>
         <input
           id="email"
           class="input-field"
           type="email"
           placeholder="Email"
           required
-          oninput="validateEmail()"
+      
         />
-        <img
-          src="./assets/img/mail.png"
-          alt="mail"
-          class="small-icons-inputfield"
-        />
+        <div id="email-info" class="v-hidden">Please use a valid mailadress (sebastian@example.de)</div>
         <input
           id="password"
           class="input-field"
@@ -61,11 +52,7 @@
           minlength="6"
           required
         />
-        <img
-          src="./assets/img/lock.png"
-          alt="lock"
-          class="small-icons-inputfield"
-        />
+        <div id="password-info" class="v-hidden">Please enter a password with 6 letters min!</div>
         <input
           id="confirm_password"
           class="input-field"
@@ -73,13 +60,9 @@
           placeholder="Confirm Password"
           minlength="6"
           required
-          oninput="validatePasswordMatch()"
+
         />
-        <img
-          src="./assets/img/lock.png"
-          alt="lock"
-          class="small-icons-inputfield"
-        />
+        <div id="confirm_password-info" class="v-hidden">Use the same password as above!</div>
         <div id="privacy-policy-accept">
           <input
             id="checkbox"
