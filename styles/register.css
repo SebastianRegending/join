@@ -54,6 +54,18 @@
   z-index: 5;
 }
 
+#signup-logo-container {
+  width: 100%;
+  height: 121px;
+  margin: 0 0 40px 0;
+}
+
+#signup-logo {
+  width: 100px;
+  height: 121px;
+  margin: 0 0 0 77px;
+}
+
 #loginpage.show {
   opacity: 1;
 }
@@ -503,9 +515,19 @@ h1 {
 }
 
 @media (max-width: 680px) {
+  #signup-logo {
+    width: 44px;
+    height: 58px;
+  }
+
+  #signup-logo-container {
+    height: 58px;
+    margin: 0 0 32px 0;
+  }
+
   #registerform {
     width: 396px;
-    height: 595px;
+    height: 500px;
     padding: 16px 0;
   }
 
@@ -558,6 +580,23 @@ h1 {
   #animated-logo {
     margin: 0 0 0 140px;
   }
+
+  #name {
+    background-size: 26px !important;
+  }
+
+  #email {
+    background-size: 26px !important;
+  }
+
+  #password {
+    background-size: 26px !important;
+  }
+
+  #confirm_password {
+    background-size: 26px !important;
+  }
+
 }
 @media (max-width: 430px) {
   #loginpage {
@@ -622,6 +661,10 @@ h1 {
 
   .green-letters {
     font-size: 11px !important;
+  }
+
+  #signup-headline {
+    margin: 0 0 16px 0;
   }
 
   @keyframes logoShrinkAndMove {
