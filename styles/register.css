@@ -221,8 +221,8 @@ h1 {
 }
 
 #input-btn {
-  width: 126px;
-  height: 51px;
+  width: 110px;
+  height: 48px;
   border: none;
   border-radius: 8px;
   background-color: #2a3647;
@@ -581,6 +581,10 @@ h1 {
     margin: 0 0 0 140px;
   }
 
+  #loginbuttons {
+    width: 100%;
+  }
+
   #name {
     background-size: 26px !important;
   }
@@ -653,6 +657,10 @@ h1 {
     height: 123px;
     flex-direction: column;
     gap: 21px;
+  }
+
+  #input-btn {
+    width: 180px;
   }
 
   .red-letters {
