@@ -408,3 +408,38 @@ function validatePasswordMatch() {
         }
     });
 }
+
+function checkValidation(){
+let checkName = true;
+let checkEmail = true;
+let checkPassword = true;
+let checkPasswordConfirmation = true;
+let checkCheckbox;
+
+    if(!document.getElementById('name').classList.contains('green-border')){
+        checkName = false;
+        document.getElementById('name').focus();
+    }
+    if(!document.getElementById('email').classList.contains('green-border')){
+        checkName = false;
+        document.getElementById('email').focus();
+    }
+    if(!document.getElementById('password').classList.contains('green-border')){
+        checkName = false;
+        document.getElementById('password').focus();
+    }
+    if(!document.getElementById('confirm_password').classList.contains('green-border')){
+        checkName = false;
+        document.getElementById('confirm_password').focus();
+    }
+    if (checkbox.checked) {
+        checkCheckbox = true;
+      } else {
+        checkCheckbox = false;
+      }
+
+if(checkName && checkEmail && checkPassword && checkPasswordConfirmation){
+    saveNewUser(); 
+    launchToasterAndRedirect();
+}
+}

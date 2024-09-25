@@ -15,7 +15,7 @@
   </head>
   <body onload="initValidations()">
     <main id="registerpage">
-      <form id="registerform" onsubmit="saveNewUser(); launchToasterAndRedirect(); return false;">
+      <form id="registerform" onsubmit="checkValidation(); return false;">
         <div id="signup-headline">
           <h1 class="h1-signup">
             <img
@@ -79,7 +79,7 @@
             >Privacy policy</a
           >
         </div>
-        <button id="input-btn" disabled>
+        <button id="input-btn">
           Sign up
         </button>
       </form>
