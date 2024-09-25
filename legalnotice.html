@@ -97,6 +97,30 @@
       <time datetime="2023-07-26">Date: July 26, 2023</time>
     </p>
   </section>
+
+  <script>
+    async function initLegalNoticeHTML() {
+      await includeHTML();
+      hideMenuLinksAndInitials();
+      setInitialsForHeader();
+    }
+
+    function hideMenuLinksAndInitials() {
+      if (localStorage.getItem('hideMenuLinks') === 'true') {
+        let menuLinks = document.getElementById('menu-links');
+        if (menuLinks) {
+          menuLinks.style.display = 'none';
+        }
+        let initialsHeader = document.getElementById('initials-header-container');
+        if (initialsHeader) {
+          initialsHeader.parentElement.style.display = 'none';
+        }
+        localStorage.removeItem('hideMenuLinks');
+      }
+    }
+  </script>
+
+
 </body>
 
 </html>

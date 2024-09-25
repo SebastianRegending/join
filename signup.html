@@ -1,90 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join - Sign Up</title>
-    <script src="./scripts/usercontact.js"></script>
-    <script src="./scripts/register.js"></script>
-    <script src="./scripts/contacts.js"></script>
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/assets.css" />
-    <link rel="stylesheet" href="./styles/fonts.css" />
-    <link rel="stylesheet" href="./styles/register.css" />
-    <link rel="icon" type="image/x-icon" href="./assets/img/join.png" />
-  </head>
-  <body onload="initValidations()">
-    <main id="registerpage">
-      <form id="registerform" onsubmit="checkValidation(); return false;">
-        <div id="signup-headline">
-          <h1 class="h1-signup">
-            <img
-              class="arrow-left-line"
-              src="./assets/img/arrow-left-line.png"
-              onclick="backToLogin()"
-            />Sign up
-          </h1>
-          <div id="border-headline"></div>
-        </div>
-        <input
-          id="name"
-          class="input-field"
-          type="text"
-          placeholder="Name"
-          required
-          minlength="3"
-        />
-        <div id="name-info" class="v-hidden input-info">Please enter letters only! (min 3, max 20)</div>
-        <input
-          id="email"
-          class="input-field"
-          type="email"
-          placeholder="Email"
-          required
-      
-        />
-        <div id="email-info" class="v-hidden input-info">Please use a valid mailadress (max@example.de)</div>
-        <input
-          id="password"
-          class="input-field"
-          type="password"
-          placeholder="Password"
-          minlength="6"
-          required
-        />
-        <div id="password-info" class="v-hidden input-info">Please enter a password with 6 letters min!</div>
-        <input
-          id="confirm_password"
-          class="input-field"
-          type="password"
-          placeholder="Confirm Password"
-          minlength="6"
-          required
 
-        />
-        <div id="confirm_password-info" class="v-hidden input-info">Use the same password as above!</div>
-        <div id="privacy-policy-accept">
-          <input
-            id="checkbox"
-            class="checkbutton"
-            type="checkbox"
-            required
-            onclick="isChecked()"
-          />
-          I accept the
-          <a
-            href="privacypolicy.html"
-            id="link-privacy-policy"
-            class="link-privacy-policy-style"
-            >Privacy policy</a
-          >
-        </div>
-        <button id="input-btn">
-          Sign up
-        </button>
-      </form>
-      <div id="toaster">You Signed Up successfully</div>
-      <div id="wrongPasswordAtSignUp">Passwords are not the same</div>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join - Sign Up</title>
+  <script src="./scripts/usercontact.js"></script>
+  <script src="./scripts/register.js"></script>
+  <script src="./scripts/contacts.js"></script>
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/assets.css" />
+  <link rel="stylesheet" href="./styles/fonts.css" />
+  <link rel="stylesheet" href="./styles/register.css" />
+  <link rel="icon" type="image/x-icon" href="./assets/img/join.png" />
+</head>
+
+<body onload="initValidations()">
+  <main id="registerpage">
+    <form id="registerform" onsubmit="checkValidation(); return false;">
+      <div id="signup-headline">
+        <h1 class="h1-signup">
+          <img class="arrow-left-line" src="./assets/img/arrow-left-line.png" onclick="backToLogin()" />Sign up
+        </h1>
+        <div id="border-headline"></div>
+      </div>
+      <input id="name" class="input-field" type="text" placeholder="Name" required minlength="3" />
+      <div id="name-info" class="v-hidden input-info">Please enter letters only! (min 3, max 20)</div>
+      <input id="email" class="input-field" type="email" placeholder="Email" required />
+      <div id="email-info" class="v-hidden input-info">Please use a valid mailadress (max@example.de)</div>
+      <input id="password" class="input-field" type="password" placeholder="Password" minlength="6" required />
+      <div id="password-info" class="v-hidden input-info">Please enter a password with 6 letters min!</div>
+      <input id="confirm_password" class="input-field" type="password" placeholder="Confirm Password" minlength="6"
+        required />
+      <div id="confirm_password-info" class="v-hidden input-info">Use the same password as above!</div>
+      <div id="privacy-policy-accept">
+        <input id="checkbox" class="checkbutton" type="checkbox" required onclick="isChecked()" />
+        I accept the
+        <a onclick="storeHideMenu()" href="privacypolicy.html" id="link-privacy-policy"
+          class="link-privacy-policy-style">Privacy policy</a>
+      </div>
+      <button id="input-btn">
+        Sign up
+      </button>
+    </form>
+    <div id="toaster">You Signed Up successfully</div>
+    <div id="wrongPasswordAtSignUp">Passwords are not the same</div>
+  </main>
+
+  <script>
+    function storeHideMenu() {
+      localStorage.setItem('hideMenuLinks', 'true');
+    }
+  </script>
+
+</body>
+
 </html>

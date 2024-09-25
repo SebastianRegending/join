@@ -320,7 +320,6 @@ option {
   justify-content: flex-end;
   align-items: center;
   box-sizing: border-box;
-  margin-bottom: 40px;
 }
 
 .blue-btn {
@@ -751,6 +750,7 @@ option {
   .submit-area-help-container {
     width: 90%;
     justify-content: space-between;
+
   }
 
   .red-letter-resp {
