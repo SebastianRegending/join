@@ -1151,6 +1151,10 @@ body {
 
     }
 
+    #choosen-contact span {
+        font-size: 47px;
+        font-weight: 700 !important;
+    }
 
     #contacts-area {
         margin-left: 0;
@@ -1173,6 +1177,26 @@ body {
         left: 0;
         right: 0;
         overflow: hidden;
+    }
+
+    .contact-dialog {
+        height: 90vh;
+    }
+
+    .middle-area {
+        height: initial;
+    }
+
+    #add-contact-email #add-contact-phone {
+        margin: 12px 0 0 0;
+    }
+
+    .button-area {
+        margin: 12px 0 0 0;
+    }
+
+    .blue-btn {
+        margin: 0;
     }
 }
 
