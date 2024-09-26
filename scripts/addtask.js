@@ -222,6 +222,9 @@ function cancelAddSubtask() {
   document.getElementById('add-button-icon-check').classList.add('d-none');
 }
 
+/**
+ * Clears all prepared Tasks
+ */
 function clearTasks() {
   document.getElementById('input-title').value = ``;
   document.getElementById('input-description').value = ``;

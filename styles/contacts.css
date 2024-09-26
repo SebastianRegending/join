@@ -749,8 +749,8 @@ body {
 
 #choosen-contacts-name {
     width: 90%;
-
     overflow-wrap: break-word;
+    overflow-x: hidden;
 }
 
 #bg-small-dialog{
@@ -1159,7 +1159,7 @@ right: 0;
     .options-button-resp:hover {
         background-color: #29ABE2;
         box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.2);
-        cursor: pointer; */
+        cursor: pointer; 
     } 
 
 

@@ -257,8 +257,6 @@ function taskTemplate(task, taskID, progressHTML, contactsHTML, labelClass) {
     `;
 }
 
-
-
 /**
  * Generates a contact checkbox template for assigning contacts to a task.
  * @param {number} n - The index of the contact.
@@ -299,7 +297,6 @@ function getContactTemplate(n, i, IDs, isChecked) {
     `;
 }
 
-
 /**
  * Checks the Checkboxes and adds circles
  * 
@@ -335,7 +332,6 @@ function getContactTemplate(n, i, IDs, isChecked) {
     }
   }
   
-
 /**
  * Generates a contact template with "You" label for the current user.
  * @param {number} n - The index of the contact.
@@ -405,3 +401,46 @@ function getTaskHTML(task, taskID, progressHTML) {
         </div>
     `;
 }
+
+/**
+ * Renders the global array subtasks into the div
+ */
+function renderAddedSubtasks(){
+    document.getElementById('added-subtasks').innerHTML = ``;
+      for (let i = 0; i < subtasksDialog.length; i++) {
+        document.getElementById('added-subtasks').innerHTML += `<div id="outer-container-${i}" class="subtask-help-outer-container">
+                                                                  <li id="subtask${i}" class="subtask-help-inner-container">${subtasksDialog[i]['title']}</li>
+                                                                  <div id="edit-images-${i}" class="edit-images-area-subtasks">
+                                                                      <div><img id="pen-${i}" onclick="prepareEditSubtask('${i}')"src="./assets/img/subtaskedit.svg"></div>|
+                                                                      <div><img id="trash-${i}" onclick="deleteSubtask('${i}')" src="./assets/img/subtaskdelete.svg"></div>
+                                                                  </div> 
+                                                                </div>`;
+      }
+  }
+
+  /**
+ * Creates an initials-circle to the circle-area-assigned-contacts, if it's checked
+ * 
+ * @param {string} color 
+ * @param {string} id 
+ * @param {string} inits 
+ */
+function addCircle(color, id, inits, uniqueId) {
+    let check = document.getElementById(id);
+    if (check.checked == true) {
+      checkedContactsCirclesDialog.push({ "id": id, "color": color, "inits": inits });
+    } else {
+      checkedContactsCirclesDialog.splice(checkedContactsCirclesDialog.findIndex(item => item.id === id), 1);
+    }
+    document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
+    if (checkedContactsCirclesDialog.length > 6) {
+      for (let i = 0; i < 6; i++) {
+        document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCirclesDialog[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCirclesDialog[i]['inits']}</div>`;
+      }
+      document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-grey assigned-contacts z${7}">+${checkedContactsCirclesDialog.length - 6}</div>`
+    } else {
+      for (let i = 0; i < checkedContactsCirclesDialog.length; i++) {
+        document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCirclesDialog[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCirclesDialog[i]['inits']}</div>`;
+      }
+    }
+  }

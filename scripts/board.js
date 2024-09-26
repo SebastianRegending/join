@@ -24,20 +24,16 @@ async function loadContacts() {
  */
 async function loadTasks() {
     let URL_tasks = "https://join-da080-default-rtdb.europe-west1.firebasedatabase.app/tasks";
-
     try {
         let tasks = await fetchTasks(URL_tasks);
         let columns = getColumns();
-
         resetColumns(columns);
-
         Object.keys(tasks).forEach(taskID => {
             let task = tasks[taskID];
             let taskHTML = generateTaskHTML(task, taskID);
             let columnKey = task.progress.replace(/\s/g, '');
             columns[columnKey]?.insertAdjacentHTML('beforeend', taskHTML);
         });
-
         handleEmptyColumns(columns);
     } catch (error) {
         console.error('Error loading tasks:', error);
@@ -195,8 +191,6 @@ function generateContactsHTML(contacts = []) {
         return `<span class="user-badge circle-${contact.color}">${initials}</span>`;
         
     }).join('');
-    
-
     if (remainingContacts > 0) {
         badgesHTML += `<span class="user-badge" style="background-color: #A8A8A8">+${remainingContacts}</span>`;
     }
@@ -340,3 +334,15 @@ function filterTasks() {
         }
     });
 }
+
+/**
+ * Gives User-Feedback
+ */
+function launchToaster() {
+    let x = document.getElementById("toaster-task-board")
+    x.className = "show";
+    setTimeout(function () {
+      x.className = x.className.replace("show", "");
+      window.location.href = 'board.html';
+    }, 2000);
+  }

@@ -1,4 +1,6 @@
-
+/**
+ * For Logo Animation
+ */
 function startLogoAnimation() {
     let animatedLogo = document.getElementById('animated-logo');
     let animatedLogoContainer = document.getElementById('animated-logo-container');
@@ -18,6 +20,9 @@ function startLogoAnimation() {
     }, 800);
 }
 
+/**
+ * Opens Dialog via slide
+ */
 function openOptions(){
     document.getElementById('options-dialog').classList.remove('d-none');
     document.getElementById('bg-small-dialog').classList.remove('d-none');
@@ -27,7 +32,9 @@ function openOptions(){
       });
 }
 
-
+/**
+ * Closes Dialog via slide
+ */
 function closeOptions(){
     document.getElementById('options-dialog').classList.remove('d-none');
     document.getElementById('options-dialog').classList.add('hide');

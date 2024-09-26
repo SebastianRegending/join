@@ -466,7 +466,7 @@ body {
 }
 
 #pop-up-task{
-    z-index: 9999;
+    z-index: 1000;
 }
 
 
@@ -1269,7 +1269,7 @@ body {
     bottom: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    z-index: 1000;
+    z-index: 1001;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1521,7 +1521,7 @@ border-radius: 50%;
   
   #toaster-task-board.show {
     visibility: visible;
-    animation: slidein 0.75s, stay 1s 0.75s, slideout 0.75s 1.5s;
+    animation: slidein 0.75s, stay 1s 0.75s, pop-up-contentslideout 0.75s 1.5s;
   }
 
 

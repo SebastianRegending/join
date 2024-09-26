@@ -72,11 +72,14 @@ async function setUsernameOnGreeting() {
  * @param {string} name - name of the user that is used to create the initials
  */
 function createInitialsForHeader(name) {
+    let guestCheck = JSON.parse(sessionStorage.getItem('guest'));
+    if (!guestCheck){
     let words = name.split(" ");
     initialsSummary = [];
     words.length = 2;
     words.forEach((element) => initialsSummary.push(element.charAt(0)));
     sessionStorage.setItem('Initials', JSON.stringify(initialsSummary));
+}
 }
 
 /**

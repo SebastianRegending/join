@@ -16,7 +16,6 @@ function createLetterTemplate(letterForCards) {
         `
 }
 
-
 /**
  * Returns Contact-Template in HTML
  * 
@@ -58,7 +57,6 @@ function createContactTemplateYou(i){
         </div>
         `
 }
-
 
 /**
  * Creates the Choosen-Contact HTML  Template

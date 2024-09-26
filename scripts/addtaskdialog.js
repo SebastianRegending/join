@@ -8,12 +8,19 @@ let taskIDDialog = [];
 let checkedContactsCirclesDialog = [];
 let progressDialog;
 
+/**
+ * Opens the dialog and clears the areas for userfeedback
+ * @param {*} newProgress 
+ */
 function openDialogAddTask(newProgress) {
 
   progressDialog = newProgress;
   document.getElementById('addTaskDialog').classList.remove('d-none');
 }
 
+/**
+ * Closes the dialog
+ */
 function cancelDialogAddTask() {
   clearTasks();
   checkedContactsCircles = [];
@@ -115,33 +122,6 @@ function createContactsCheckboxTemplateYou(n, i) {
 }
 
 /**
- * Creates an initials-circle to the circle-area-assigned-contacts, if it's checked
- * 
- * @param {string} color 
- * @param {string} id 
- * @param {string} inits 
- */
-function addCircle(color, id, inits, uniqueId) {
-  let check = document.getElementById(id);
-  if (check.checked == true) {
-    checkedContactsCirclesDialog.push({ "id": id, "color": color, "inits": inits });
-  } else {
-    checkedContactsCirclesDialog.splice(checkedContactsCirclesDialog.findIndex(item => item.id === id), 1);
-  }
-  document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
-  if (checkedContactsCirclesDialog.length > 6) {
-    for (let i = 0; i < 6; i++) {
-      document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCirclesDialog[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCirclesDialog[i]['inits']}</div>`;
-    }
-    document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-grey assigned-contacts z${7}">+${checkedContactsCirclesDialog.length - 6}</div>`
-  } else {
-    for (let i = 0; i < checkedContactsCirclesDialog.length; i++) {
-      document.getElementById('circle-area-assigned-contacts').innerHTML += `<div class="circle circle-${checkedContactsCirclesDialog[i]['color']} assigned-contacts z${i + 1}">${checkedContactsCirclesDialog[i]['inits']}</div>`;
-    }
-  }
-}
-
-/**
  * Prepares a task with the necessary parameters
  */
 async function addTask() {
@@ -233,7 +213,6 @@ function jsonToArrayIDs(json) {
   return result;
 }
 
-
 /**
  * Sets the global variable prio to "low", "medium" or "urgent"
  * 
@@ -242,7 +221,6 @@ function jsonToArrayIDs(json) {
 function setPrio(priority) {
   prioDialog = priority;
 }
-
 
 /**
  * Searches for selected checkboxes and pushs them in an array
@@ -263,7 +241,6 @@ function getSelected() {
   return selectedData;
 }
 
-
 /**
  * Adds one subtask to subtask-array and loads it to subtask-html-area
  */
@@ -279,23 +256,6 @@ function addSubtask() {
 }
 
 /**
- * Renders the global array subtasks into the div
- */
-function renderAddedSubtasks(){
-  document.getElementById('added-subtasks').innerHTML = ``;
-    for (let i = 0; i < subtasksDialog.length; i++) {
-      document.getElementById('added-subtasks').innerHTML += `<div id="outer-container-${i}" class="subtask-help-outer-container">
-                                                                <li id="subtask${i}" class="subtask-help-inner-container">${subtasksDialog[i]['title']}</li>
-                                                                <div id="edit-images-${i}" class="edit-images-area-subtasks">
-                                                                    <div><img id="pen-${i}" onclick="prepareEditSubtask('${i}')"src="./assets/img/subtaskedit.svg"></div>|
-                                                                    <div><img id="trash-${i}" onclick="deleteSubtask('${i}')" src="./assets/img/subtaskdelete.svg"></div>
-                                                                </div> 
-                                                              </div>`;
-    }
-}
-
-
-/**
  * Deletes one added subtask from preparing
  * 
  * @param {number} i 
@@ -304,7 +264,6 @@ function deleteSubtask(i){
 subtasksDialog.splice(i, 1);
 renderAddedSubtasks();
 }
-
 
 /**
  * Prepares the choosen subtask divs to edit it
@@ -326,7 +285,6 @@ document.getElementById(`new-subtask-for-edit-${i}`).addEventListener('blur', fu
 });
 }
 
-
 /**
  * Confirms the editing and changes the array
  * @param {} i 
@@ -335,7 +293,6 @@ function confirmEditSubtask(i){
 subtasksDialog.splice(i, 1, {"title": document.getElementById(`new-subtask-for-edit-${i}`).value, "done": "false"});
 renderAddedSubtasks();
 }
-
 
 /**
  * Colors the urgent-area and uncolors the other areas
@@ -346,7 +303,6 @@ function colorPrioUrgent() {
   document.getElementById('prio-low').classList.remove('prio-active-low');
 }
 
-
 /**
  * Colors the medium-area and uncolors the other areas
  */
@@ -356,7 +312,6 @@ function colorPrioMedium() {
   document.getElementById('prio-low').classList.remove('prio-active-low');
 }
 
-
 /**
  * Colors the low-area and uncolors the other areas
  */
@@ -365,7 +320,6 @@ function colorPrioLow() {
   document.getElementById('prio-medium').classList.remove('prio-active-medium');
   document.getElementById('prio-low').classList.add('prio-active-low');
 }
-
 
 /**
  * Designs the subtasks input to focus-mode
@@ -377,7 +331,6 @@ function openAddSubtask() {
   document.getElementById('subtasks').focus();
 }
 
-
 /**
  * Designs the subtasks input to blur-mode
  */
@@ -386,7 +339,6 @@ function cancelAddSubtask() {
   document.getElementById('add-button-icon-cancel').classList.add('d-none');
   document.getElementById('add-button-icon-check').classList.add('d-none');
 }
-
 
 function clearTasks() {
   document.getElementById('input-title').value = ``;
@@ -403,7 +355,6 @@ function clearTasks() {
   subtasksDialog = [];
 }
 
-
 /**
  * Clears the Checkboxes-Inputs
  */
@@ -413,7 +364,6 @@ function clearCheckboxes() {
   checkedContactsCirclesDialog = [];
   document.getElementById('circle-area-assigned-contacts').innerHTML = ``;
 }
-
 
 /**
  * Sets category on default
@@ -425,17 +375,4 @@ function emptyCategory() {
   <option value="" disabled selected hidden>Select your option</option>
   <option value="Technical Task">Technical Task</option>
   <option value="User Story">User Story</option>`
-}
-
-
-/**
- * Gives User-Feedback
- */
-function launchToaster() {
-  let x = document.getElementById("toaster-task-board")
-  x.className = "show";
-  setTimeout(function () {
-    x.className = x.className.replace("show", "");
-    window.location.href = 'board.html';
-  }, 2000);
 }
