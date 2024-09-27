@@ -30,7 +30,7 @@ function validateName() {
 function listenerInputName() {
     document.getElementById('name').addEventListener("input", function (e) {
         let lettersForName = document.getElementById('name').value;
-        if (lettersForName.length > 2 && lettersForName.length < 20 && /^[A-Za-z ]+$/.test(lettersForName)) {
+        if (lettersForName.length > 2 && lettersForName.length < 20 && /^[A-Za-zäöüÄÖÜ ]+$/.test(lettersForName)) {
             document.getElementById('name-info').classList.remove("red-letters");
             document.getElementById('name-info').classList.add("green-letters");
             document.getElementById('name').classList.remove("red-border");

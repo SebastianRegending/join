@@ -41,7 +41,7 @@ function listenerForBlurName(){
 function listenerForInputName(){
     document.getElementById('add-contact-name').addEventListener("input", function (e) {
         let lettersForName = document.getElementById('add-contact-name').value;
-        if (lettersForName.length > 2 && lettersForName.length < 20 && /^[A-Za-z ]+$/.test(lettersForName)) {
+        if (lettersForName.length > 2 && lettersForName.length < 21 && /^[A-Za-zäöüÄÖÜ ]+$/.test(lettersForName)) {
             document.getElementById('add-contact-name-info').classList.remove("red-letters");
             document.getElementById('add-contact-name-info').classList.add("green-letters");
         } else {
@@ -175,7 +175,7 @@ function listenerForBlurNameEdit(){
 function listenerForInputNameEdit(){
     document.getElementById('edit-contact-name').addEventListener("input", function (e) {
         let lettersForName = document.getElementById('edit-contact-name').value;
-        if (lettersForName.length > 2 && lettersForName.length < 20 && /^[A-Za-z ]+$/.test(lettersForName)) {
+        if (lettersForName.length > 2 && lettersForName.length < 21 && /^[A-Za-zäöüÄÖÜ ]+$/.test(lettersForName)) {
             document.getElementById('add-contact-name-info-edit').classList.remove("red-letters");
             document.getElementById('add-contact-name-info-edit').classList.add("green-letters");
         } else {
@@ -281,7 +281,7 @@ function listenerForInputPhoneEdit(){
  */
 function validateForm() {
     let name = document.getElementById("add-contact-name").value.trim();
-    let namePattern = /^[A-Za-z][A-Za-z\s]{0,49}$/;
+    let namePattern = /^[A-Za-zäöüÄÖÜ][A-Za-zäöüÄÖÜ\s]{0,20}$/;
     if (!namePattern.test(name)) {
         document.getElementById("add-contact-name").focus();
         return false;
@@ -310,7 +310,7 @@ function validateForm() {
  */
 function validateFormEdit() {
     let name = document.getElementById("edit-contact-name").value.trim();
-    let namePattern = /^[A-Za-z][A-Za-z\s]{0,49}$/;
+    let namePattern = /^[A-Za-zäöüÄÖÜ][A-Za-zäöüÄÖÜ\s]{0,20}$/;
     if (!namePattern.test(name)) {
         document.getElementById("add-contact-name-edit").focus();
         return false;
