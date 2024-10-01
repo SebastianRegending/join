@@ -78,12 +78,18 @@
         </div>
     </header>
     <div id="logout-container" class="d-none">
-        <div id="logout-menu">
+        <div id="logout-menu" class="d-none">
+            <button class="logout-menu-btn" onclick="legalNotice()">Legal Notice</button>
+            <button class="logout-menu-btn" onclick="privacyPolicy()">Privacy Policy</button>
+            <button class="logout-menu-btn" onclick="logOutUser()">Log out</button>
+        </div>
+        <div id="logout-menu-mobile" class="d-none">
+            <button class="logout-menu-btn" onclick="help()">Help</button>
             <button class="logout-menu-btn" onclick="legalNotice()">Legal Notice</button>
             <button class="logout-menu-btn" onclick="privacyPolicy()">Privacy Policy</button>
             <button class="logout-menu-btn" onclick="logOutUser()">Log out</button>
         </div>
     </div>
+    </div>
 </body>
-
 </html>

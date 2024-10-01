@@ -184,6 +184,19 @@ a {
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
+#logout-menu-mobile {
+    width: 150px;
+    height: 204px;
+    padding: 10px;
+    border-radius: 20px 0 20px 20px;
+    background-color: #2A3647;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
 .logout-menu-btn {
     width: 130px;
     height: 46px;
@@ -194,6 +207,7 @@ a {
     background-color: #2A3647;
     border: none;
     cursor: pointer;
+    text-align: start;
 }
 
 .logout-menu-btn:hover {
@@ -323,11 +337,8 @@ header h3{
     gap: 0px;
 }
 
-
 .help-icon{
     display: none;
 }
-
-
 
 }

@@ -298,7 +298,14 @@ function closeDialog() {
  * toggles the log out menu show/hide
  */
 function logOutButton() {
-    document.getElementById('logout-container').classList.toggle('d-none');
+    const mediaQuery = window.matchMedia('(max-width: 650px)')
+    if (mediaQuery.matches) {
+        document.getElementById('logout-container').classList.toggle('d-none');        
+        document.getElementById('logout-menu-mobile').classList.toggle('d-none');     
+    } else {
+        document.getElementById('logout-container').classList.toggle('d-none');        
+        document.getElementById('logout-menu').classList.toggle('d-none');       
+    }
 }
 
 /**
@@ -308,6 +315,13 @@ function logOutUser() {
     localStorage.clear();
     sessionStorage.clear();
     window.location.href = 'login.html';
+}
+
+/**
+ * switch to help
+ */
+function help() {
+    window.location.href = 'help.html';
 }
 
 /**

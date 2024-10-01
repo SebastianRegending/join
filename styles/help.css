@@ -98,8 +98,8 @@ li:before {
   }
 
   .help-container {
-    margin: 160px 24px 104px 24px;
-    padding: 0;
+    margin: 96px 24px 104px 24px;
+    padding: 64px 0 0 0;
   }
 
   li {
