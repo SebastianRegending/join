@@ -48,7 +48,12 @@ async function setUsernameOnGreeting() {
  * 
  * @retuns
  */
-    function showUsernameOnGreeting(UserKeys, userEmail) {
+function showUsernameOnGreeting(UserKeys, userEmail) {
+    if (JSON.parse(sessionStorage.getItem('guest')) === 'Y') {
+        document.getElementById('username-greeting').innerHTML = "Guest";
+        document.getElementById('username-greeting-mobile').innerHTML = "Guest";
+        return;
+    }
     for (let i = 0; i < UserKeys.length; i++) {
         const currentUser = UserKeys[i];
         if (currentUser.email == userEmail) {
@@ -73,13 +78,13 @@ async function setUsernameOnGreeting() {
  */
 function createInitialsForHeader(name) {
     let guestCheck = JSON.parse(sessionStorage.getItem('guest'));
-    if (!guestCheck){
-    let words = name.split(" ");
-    initialsSummary = [];
-    words.length = 2;
-    words.forEach((element) => initialsSummary.push(element.charAt(0)));
-    sessionStorage.setItem('Initials', JSON.stringify(initialsSummary));
-}
+    if (!guestCheck) {
+        let words = name.split(" ");
+        initialsSummary = [];
+        words.length = 2;
+        words.forEach((element) => initialsSummary.push(element.charAt(0)));
+        sessionStorage.setItem('Initials', JSON.stringify(initialsSummary));
+    }
 }
 
 /**
@@ -145,7 +150,7 @@ async function getProgressOfTasks() {
  * @param {number} tasksInProgressDone 
  * @param {number} tasksPrio 
  */
-function calculateProgressOfTasks (tasks, tasksInProgressToDo, tasksInProgressInProgress, tasksInProgressAwaitFeedback, tasksInProgressDone, tasksPrio) {
+function calculateProgressOfTasks(tasks, tasksInProgressToDo, tasksInProgressInProgress, tasksInProgressAwaitFeedback, tasksInProgressDone, tasksPrio) {
     for (let taskID in tasks) {
         let taskProgress = tasks[taskID]['progress'];
         let taskPrio = tasks[taskID]['prio'];
@@ -246,7 +251,7 @@ function setZIndex() {
  * starts the greeting animation on mobile devices
  */
 function greetingOnMobile() {
-    const hasAnimationPlayed = localStorage.getItem('animationPlayed');    
+    const hasAnimationPlayed = localStorage.getItem('animationPlayed');
     if (!hasAnimationPlayed) {
         localStorage.setItem('animationPlayed', 'true');
         setTimeout(setZIndex, 3200);
